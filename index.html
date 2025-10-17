@@ -169,10 +169,16 @@
 						<p style="display:none"><a href="mailto:email@address.tld" title="Email the author">email@address.tld</a></p>
 					</div>
 				</div>
-				<div class="footer">© 2025 – Judy Wright – All rights reserved.</div>
+				<div class="footer">© <span class="footer-year"></span> – Judy Wright – All rights reserved.</div>
 			</div>
 		</section>
 	</main>
 	<script src="app-fallback.js" defer></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const yearEl = document.querySelector(".footer-year");
+			if (yearEl) yearEl.textContent = new Date().getFullYear();
+		});
+	</script>
 </body>
 </html>
