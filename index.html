@@ -173,12 +173,16 @@
 			</div>
 		</section>
 	</main>
+	<!-- Scripts -->
 	<script src="app-fallback.js" defer></script>
-	<script>
-		document.addEventListener("DOMContentLoaded", () => {
-			const yearEl = document.querySelector(".footer-year");
-			if (yearEl) yearEl.textContent = new Date().getFullYear();
+	<script defer>
+	(() => {
+		'use strict';
+		document.addEventListener('DOMContentLoaded', () => {
+			const el = document.querySelector('.footer-year');
+			if (el) el.textContent = new Date().getFullYear();
 		});
+	})();
 	</script>
 </body>
 </html>
