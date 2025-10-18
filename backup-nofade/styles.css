@@ -1,0 +1,318 @@
+/* ==========================================================================
+   JUST HOLD HER — Refined Master Stylesheet
+   Author: [Your Name]
+   Purpose: Showcase-quality handcrafted CSS demonstrating typographic precision,
+            layout rhythm, and cinematic hero treatment.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Root Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color System */
+  --fg: #111;
+  --bg: #fff;
+  --muted: #666;
+  --fg-dark: #f3f3f3;
+  --bg-dark: #000;
+  --bg-gray: #e8e8e8;
+  --link: #0a58ca;
+
+  /* Layout Scale */
+  --max-text: 72ch;       /* readable measure */
+  --max-wrap: 1200px;     /* grid container width */
+  --pad-v: clamp(2.75rem, 6vw, 5.5rem);
+  --radius: 10px;
+
+  /* Typography */
+  --font-head: "Noto Serif", Georgia, serif;
+  --font-body: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Reset & Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.575;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accessibility skip link */
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  margin: 0 0 1rem;
+}
+
+h1 {
+  font-size: 72px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase; 
+}
+
+h3 {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #6a6a6a;
+  text-transform: uppercase;
+}
+
+
+h4 {
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+strong {
+  font-weight: 500;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   4. Layout Containers
+   -------------------------------------------------------------------------- */
+.wrap {
+  max-width: var(--max-wrap);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section .section-copy {
+  max-width: var(--max-text);
+}
+.section p:first-of-type {
+  margin-top: 2.5rem; /* adds space before first paragraph in each section */
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  color: #fff;
+  background: #000;          /* fallback color */
+  overflow: hidden;          /* hides any image bleed */
+}
+
+/* Use background-image parallax instead of a fixed <img> element */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("./assets/prescription-of-comfort.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   /* subtle parallax */
+  z-index: 0;
+}
+
+/* Overlay text */
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;   /* top-aligned */
+  justify-content: flex-start;
+  height: 100vh;
+  padding-left: 5vw;
+  padding-top: 12vh;
+  background: transparent;
+  text-align: left;
+  opacity: 0;
+  animation: fadeInHero 1.5s ease-out 0.4s forwards;
+}
+
+/* Gentle fade-in animation */
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Gentle fade-in animation */
+@keyframes fadeInHero {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Section Layouts
+   -------------------------------------------------------------------------- */
+.section {
+  width: 100%;
+  padding: var(--pad-v) 0;
+}
+
+.section.theme-light {
+  background: #fff;
+  color: #111;
+}
+
+.section.theme-dark {
+  background: var(--bg-dark);
+  color: var(--fg-dark);
+}
+
+.section.theme-gray {
+  background: var(--bg-gray);
+  color: #111;
+}
+
+.section p + p {
+  margin-top: 0.75rem;
+}
+
+/* Alternating grid layout */
+.section-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem;
+  align-items: start;
+}
+
+.section-media img {
+  border-radius: var(--radius);
+}
+
+/* Explicit alternation: s2 R (copy left), s3 L (copy right), s4 R (copy left) */
+.s2 .section-copy {
+  order: 1;
+}
+.s2 .section-media {
+  order: 2;
+}
+.s3 .section-media {
+  order: 1;
+}
+.s3 .section-copy {
+  order: 2;
+}
+.s4 .section-copy {
+  order: 1;
+}
+.s4 .section-media {
+  order: 2;
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer
+   -------------------------------------------------------------------------- */
+.contact .footer {
+  margin-top: 2rem;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .section-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .section .section-copy {
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: 54px;
+    line-height: 1.05;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Print Styles
+   -------------------------------------------------------------------------- */
+@media print {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-media,
+  .hero-overlay::before {
+    display: none;
+  }
+
+  .section {
+    padding: 1.25rem 0;
+  }
+}

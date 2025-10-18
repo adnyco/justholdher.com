@@ -1,0 +1,257 @@
+/* ==========================================================================
+	JUST HOLD HER — Option 2 Cross‑Fade (Handwritten, Tab‑Spaced)
+	Author: Your Name
+	Purpose: Cinematic hero → Section 2 inverse reveal with warm‑to‑black color fade,
+	         synchronized via CSS scroll timelines with JS fallback.
+   ========================================================================== */
+
+/* 1) Tokens */
+:root {
+	--fg: #111;
+	--bg: #fff;
+	--muted: #666;
+	--fg-dark: #f3f3f3;
+	--bg-dark: #000;
+	--bg-gray: #e8e8e8;
+	--link: #0a58ca;
+
+	--max-text: 72ch;
+	--max-wrap: 1200px;
+	--pad-v: clamp(2.75rem, 6vw, 5.5rem);
+	--radius: 10px;
+
+	--font-head: "Noto Serif", Georgia, serif;
+	--font-body: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 2) Base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+	margin: 0;
+	color: var(--fg);
+	background: var(--bg);
+	font-family: var(--font-body);
+	font-size: 18px;
+	line-height: 1.575;
+	letter-spacing: -0.02em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; height: auto; display: block; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 1rem; top: 1rem; background: #000; color: #fff; padding: .5rem .75rem; border-radius: 6px; }
+
+/* 3) Type */
+h1, h2, h3, h4 {
+	font-family: var(--font-head);
+	font-weight: 200;
+	letter-spacing: -0.04em;
+	margin: 0 0 1rem;
+}
+h1 { font-size: 72px; line-height: 1; text-transform: uppercase; }
+h2 { font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; }
+h3 {
+	font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	font-weight: 400; font-size: 27px; line-height: 1.2; letter-spacing: -0.02em;
+	color: #6a6a6a; text-transform: uppercase;
+}
+h4 { font-size: 17px; line-height: 1.3; letter-spacing: -0.02em; }
+p { margin: 1rem 0; }
+strong { font-weight: 500; }
+a { color: var(--link); text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; }
+
+/* 4) Layout */
+.wrap { max-width: var(--max-wrap); margin: 0 auto; padding: 0 1.25rem; }
+.section .section-copy { max-width: var(--max-text); }
+.section p:first-of-type { margin-top: 2.5rem; }
+.section { width: 100%; padding: var(--pad-v) 0; }
+.section.theme-light { background: #fff; color: #111; }
+.section.theme-dark { background: var(--bg-dark); color: var(--fg-dark); }
+.section.theme-gray { background: var(--bg-gray); color: #111; }
+.section p + p { margin-top: .75rem; }
+.section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2.25rem; align-items: start; }
+.section-media img { border-radius: var(--radius); }
+.s2 .section-copy { order: 1; } .s2 .section-media { order: 2; }
+.s3 .section-media { order: 1; } .s3 .section-copy { order: 2; }
+.s4 .section-copy { order: 1; } .s4 .section-media { order: 2; }
+
+/* 5) Hero — parallax + scroll-driven crossfade */
+.hero {
+	position: relative;
+	height: 100vh; width: 100%;
+	color: #fff; background: #000; overflow: hidden;
+
+	/* scroll-linked timeline */
+	view-timeline-name: --hero;
+	view-timeline-axis: block;
+}
+
+/* parallax background */
+.hero::before {
+	content: "";
+	position: absolute; inset: 0;
+	background-image: url("./assets/prescription-of-comfort.png");
+	background-size: cover; background-position: center; background-repeat: no-repeat;
+	background-attachment: fixed;
+	z-index: 0;
+}
+
+/* bottom fade layer, animated only while exiting */
+.hero::after {
+	content: "";
+	position: absolute; left: 0; bottom: 0;
+	width: 100%; height: 35vh; pointer-events: none; z-index: 1;
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.22) 65%, rgba(0,0,0,0.85) 100%);
+	opacity: 0;
+	animation: heroShroud 1 both;
+	animation-timeline: --hero;
+	animation-range: exit 0% exit 100%;
+}
+@keyframes heroShroud { from { opacity: 0; } to { opacity: 1; } }
+
+.hero-overlay {
+	position: relative; z-index: 2;
+	display: flex; align-items: flex-start; justify-content: flex-start;
+	height: 100vh; padding-left: 5vw; padding-top: 12vh;
+	background: transparent; text-align: left;
+
+	opacity: 0;
+	animation: fadeInHero 1.5s ease-out .4s forwards;
+}
+@keyframes fadeInHero { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* 6) Section 2 — Option 2: inverse cross‑fade with warm‑to‑black color and cinematic easing */
+.section.theme-dark.s2 {
+	/* start state (overrides generic theme-dark to allow color animation) */
+	background-color: #b28547; /* warm cream */
+	color: #111;
+	opacity: 0;
+
+	/* two animations in sync with hero exit: opacity + color */
+	animation:
+		s2Reveal 1 both,
+		s2ToBlack 1 both;
+	animation-timeline: --hero;
+	animation-range: exit 0% exit 100%;
+
+	/* Option 2 easing: quicker rise for content, slower darkening for richness */
+	animation-timing-function:
+		cubic-bezier(.0,.0,.2,1),  /* s2Reveal (opacity) */
+		cubic-bezier(.2,.0,.0,1);  /* s2ToBlack (bg/text) */
+}
+@keyframes s2Reveal {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+@keyframes s2ToBlack {
+	from { background-color: #b28547; color: #111; }
+	to   { background-color: #000;   color: var(--fg-dark); }
+}
+
+/* 7) Footer */
+.contact .footer { margin-top: 2rem; color: #777; font-size: .95rem; }
+
+/* 8) Responsive */
+@media (max-width: 900px) {
+	.section-inner { grid-template-columns: 1fr; }
+	.section .section-copy { max-width: 100%; }
+	.hero-overlay h1 { font-size: 54px; line-height: 1.05; }
+	.hero::before { background-attachment: scroll; } /* smoother on mobile */
+}
+
+/* 9) Print */
+@media (print) {
+	.hero { min-height: auto; }
+	.hero::before, .hero::after { display: none; }
+	.section { padding: 1.25rem 0; }
+}
+/* ==========================================================================
+	10) Section Form — unified styling for contact / signup form
+   ========================================================================== */
+
+.section-form {
+	background-color: var(--bg-dark);
+	color: var(--fg-dark);
+	padding: var(--pad-v) 0;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.section-form .contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	max-width: 700px;
+	width: 90%;
+	background: rgba(0, 0, 0, 0.25);
+	padding: 2rem;
+	border-radius: var(--radius);
+	backdrop-filter: blur(5px);
+}
+
+.section-form h3 {
+	font-family: var(--font-head);
+	font-weight: 300;
+	font-size: 1.5rem;
+	line-height: 1.3;
+	letter-spacing: -0.02em;
+	margin-bottom: 1.25rem;
+	color: var(--fg-dark);
+}
+
+.section-form .form-row {
+	display: flex;
+	flex-direction: column;
+}
+
+.section-form .form-row label {
+	font-family: var(--font-body);
+	font-size: 0.9rem;
+	margin-bottom: 0.25rem;
+	color: #ccc;
+}
+
+.section-form .form-row input,
+.section-form .form-row textarea {
+	font-family: var(--font-body);
+	font-size: 0.95rem;
+	padding: 0.75rem;
+	border: 1px solid #555;
+	border-radius: 4px;
+	background-color: #111;
+	color: #fff;
+	width: 100%;
+}
+
+.section-form .form-row input::placeholder,
+.section-form .form-row textarea::placeholder {
+	color: #777;
+}
+
+.section-form .form-submit {
+	background-color: #fff;
+	color: #000;
+	font-family: var(--font-body);
+	font-weight: 600;
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.section-form .form-submit:hover {
+	background-color: #b28547;
+	color: #fff;
+}
+
+/* Responsive refinement */
+@media (max-width: 600px) {
+	.section-form .contact-form {
+		width: 100%;
+		padding: 1.5rem;
+	}
+}

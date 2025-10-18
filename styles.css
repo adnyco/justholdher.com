@@ -1,169 +1,160 @@
+/* =============================================================================
+   JUST HOLD HER — Production Styles (Stable Hero Fade, Safe Contact/Footer)
+   ============================================================================= */
+
+/* -------------------------------
+   Design Tokens
+   ------------------------------- */
+:root{
+  --fg:#111; --bg:#fff; --fg-dark:#f3f3f3; --bg-dark:#000; --bg-gray:#e8e8e8; --link:#0a58ca;
+  --max-text:72ch; --max-wrap:1200px; --pad-v:clamp(2.5rem,6vw,5.5rem); --radius:10px;
+  --font-head:"Noto Serif",Georgia,serif; --font-body:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+/* -------------------------------
+   Base Reset (lightweight)
+   ------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;color:var(--fg);background:var(--bg);font-family:var(--font-body);font-size:18px;line-height:1.575;letter-spacing:-.02em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--link);text-decoration:none;transition:color .2s ease}
+a:hover,a:focus{text-decoration:underline;text-underline-offset:2px}
+:focus-visible{outline:2px solid #b28547;outline-offset:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:#000;color:#fff;padding:.5rem .75rem;border-radius:6px}
+
+/* -------------------------------
+   Typography
+   ------------------------------- */
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:200;letter-spacing:-.04em;margin:0 0 1rem}
+h1{font-size:clamp(40px,8vw,72px);line-height:1;text-transform:uppercase;text-shadow:none}
+h2{font-size:clamp(28px,5vw,56px);line-height:1.1;letter-spacing:-.02em;text-transform:uppercase}
+h3{font-family:var(--font-body);font-weight:400;font-size:27px;line-height:1.2;letter-spacing:-.02em;color:#6a6a6a;text-transform:uppercase}
+h4{font-size:17px;line-height:1.3;letter-spacing:-.02em}
+p{margin:1rem 0}
+strong{font-weight:600}
+
+/* -------------------------------
+   Layout Primitives
+   ------------------------------- */
+.wrap{max-width:var(--max-wrap);margin:0 auto;padding:0 1.25rem}
+.section{width:100%;padding:var(--pad-v) 0}
+.section .section-copy{max-width:var(--max-text)}
+.section p+p{margin-top:.75rem}
+.section.theme-light{background:#fff;color:#111}
+.section.theme-dark{background:var(--bg-dark);color:var(--fg-dark)}
+.section.theme-gray{background:var(--bg-gray);color:#111}
+.section-inner{display:grid;grid-template-columns:1fr 1fr;gap:2.25rem;align-items:stretch}
+.section-media img{border-radius:var(--radius);width:100%;height:100%;object-fit:cover}
+
+/* Alternating Media Layout */
+.s2 .section-copy{order:1}.s2 .section-media{order:2}
+.s3 .section-media{order:1}.s3 .section-copy{order:2}
+.s4 .section-copy{order:1}.s4 .section-media{order:2}
+
+/* Equal height media across s2, s3, s4 */
+.s2 .section-media,.s3 .section-media,.s4 .section-media{min-height:clamp(340px,42vh,560px);display:flex}
+.s2 .section-media img,.s3 .section-media img,.s4 .section-media img{flex:1 1 auto;height:100%;width:100%;object-fit:cover}
+
 /* ==========================================================================
-	JUST HOLD HER — Option 2 Cross‑Fade (Handwritten, Tab‑Spaced)
-	Author: Your Name
-	Purpose: Cinematic hero → Section 2 inverse reveal with warm‑to‑black color fade,
-	         synchronized via CSS scroll timelines with JS fallback.
-   ========================================================================== */
+   HERO — Stable Fade-to-Black on Scroll (with graceful fallback)
+   ==========================================================================
+   Uses CSS Scroll-Linked Animations where supported. Fallback provides a
+   static bottom gradient so text remains readable without breaking layout.
+*/
+.hero{position:relative;height:100vh;color:#fff;background:#000;overflow:hidden}
+.hero picture,.hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;transform:translateZ(0)}
+/* Fallback static shroud */
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:45vh;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.28) 40%,rgba(0,0,0,.9) 100%);z-index:1;pointer-events:none;opacity:1}
+.hero-overlay{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:flex-start;height:100vh;padding:12vh 0 0 5vw;text-align:left}
+.hero-overlay::before{content:"";position:absolute;inset:0 65% 65% 0;background:linear-gradient(135deg,rgba(0,0,0,.15),rgba(0,0,0,0));z-index:-1;pointer-events:none}
 
-/* 1) Tokens */
-:root {
-	--fg: #111;
-	--bg: #fff;
-	--muted: #666;
-	--fg-dark: #f3f3f3;
-	--bg-dark: #000;
-	--bg-gray: #e8e8e8;
-	--link: #0a58ca;
-
-	--max-text: 72ch;
-	--max-wrap: 1200px;
-	--pad-v: clamp(2.75rem, 6vw, 5.5rem);
-	--radius: 10px;
-
-	--font-head: "Noto Serif", Georgia, serif;
-	--font-body: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+/* Progressive enhancement: animate the shroud opacity on scroll */
+@supports (animation-timeline: auto) {
+  .hero{view-timeline-name:--hero;view-timeline-axis:block}
+  .hero::after{opacity:0;animation:heroFade 1 both;animation-timeline:--hero;animation-range:entry 0% exit 100%}
+  @keyframes heroFade{from{opacity:0}to{opacity:1}}
 }
 
-/* 2) Base */
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-body {
-	margin: 0;
-	color: var(--fg);
-	background: var(--bg);
-	font-family: var(--font-body);
-	font-size: 18px;
-	line-height: 1.575;
-	letter-spacing: -0.02em;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-img { max-width: 100%; height: auto; display: block; }
-.skip { position: absolute; left: -9999px; }
-.skip:focus { left: 1rem; top: 1rem; background: #000; color: #fff; padding: .5rem .75rem; border-radius: 6px; }
-
-/* 3) Type */
-h1, h2, h3, h4 {
-	font-family: var(--font-head);
-	font-weight: 200;
-	letter-spacing: -0.04em;
-	margin: 0 0 1rem;
-}
-h1 { font-size: 72px; line-height: 1; text-transform: uppercase; }
-h2 { font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; }
-h3 {
-	font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-	font-weight: 400; font-size: 27px; line-height: 1.2; letter-spacing: -0.02em;
-	color: #6a6a6a; text-transform: uppercase;
-}
-h4 { font-size: 17px; line-height: 1.3; letter-spacing: -0.02em; }
-p { margin: 1rem 0; }
-strong { font-weight: 500; }
-a { color: var(--link); text-decoration: none; }
-a:hover, a:focus { text-decoration: underline; }
-
-/* 4) Layout */
-.wrap { max-width: var(--max-wrap); margin: 0 auto; padding: 0 1.25rem; }
-.section .section-copy { max-width: var(--max-text); }
-.section p:first-of-type { margin-top: 2.5rem; }
-.section { width: 100%; padding: var(--pad-v) 0; }
-.section.theme-light { background: #fff; color: #111; }
-.section.theme-dark { background: var(--bg-dark); color: var(--fg-dark); }
-.section.theme-gray { background: var(--bg-gray); color: #111; }
-.section p + p { margin-top: .75rem; }
-.section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2.25rem; align-items: start; }
-.section-media img { border-radius: var(--radius); }
-.s2 .section-copy { order: 1; } .s2 .section-media { order: 2; }
-.s3 .section-media { order: 1; } .s3 .section-copy { order: 2; }
-.s4 .section-copy { order: 1; } .s4 .section-media { order: 2; }
-
-/* 5) Hero — parallax + scroll-driven crossfade */
-.hero {
-	position: relative;
-	height: 100vh; width: 100%;
-	color: #fff; background: #000; overflow: hidden;
-
-	/* scroll-linked timeline */
-	view-timeline-name: --hero;
-	view-timeline-axis: block;
+/* Optional intro fade for overlay copy (kept subtle, no shadow) */
+@media (prefers-reduced-motion:no-preference){
+  .hero-overlay{opacity:0;animation:fadeInHero 1.2s ease-out .2s forwards}
+  @keyframes fadeInHero{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 }
 
-/* parallax background */
-.hero::before {
-	content: "";
-	position: absolute; inset: 0;
-	background-image: url("./assets/prescription-of-comfort.png");
-	background-size: cover; background-position: center; background-repeat: no-repeat;
-	background-attachment: fixed;
-	z-index: 0;
+/* ==========================================================================
+   FORM SECTION — Two Columns (Form Left / Inquiries Right)
+   ==========================================================================
+   Safe, scoped rules that won't affect other sections.
+*/
+.section-form{background:var(--bg-dark);color:var(--fg-dark);padding:var(--pad-v) 0}
+.section-form .wrap{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch}
+.section-form .col-form{min-width:0;align-self:stretch}
+.section-form .contact-form{display:grid;gap:.8rem;width:100%;padding:1.5rem;background:rgba(0,0,0,.18);border-radius:var(--radius);backdrop-filter:blur(5px);height:100%}
+.section-form h3{font-family:var(--font-head);font-weight:300;font-size:1.35rem;line-height:1.3;letter-spacing:-.02em;margin:0 0 .75rem;color:var(--fg-dark);text-align:left}
+.section-form .form-row{display:grid;gap:.35rem}
+.section-form label{font-family:var(--font-body);font-size:.9rem;line-height:1.3;color:#d8d8d8}
+.section-form input,.section-form textarea{font-family:var(--font-body);font-size:.95rem;line-height:1.4;color:#fff;width:100%;padding:.6rem .75rem;background:#121212;border:1px solid #555;border-radius:6px;transition:border-color .15s ease}
+.section-form textarea{resize:vertical;min-height:5.5rem}
+.section-form input::placeholder,.section-form textarea::placeholder{color:#7a7a7a}
+.section-form input:focus-visible,.section-form textarea:focus-visible{outline:2px solid #b28547;outline-offset:2px;border-color:#b28547}
+.section-form input:user-invalid,.section-form textarea:user-invalid{border-color:#c0392b}
+.section-form input:user-valid,.section-form textarea:user-valid{border-color:#3aa76d}
+.section-form .form-submit{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-weight:600;font-size:.95rem;padding:.65rem 1.25rem;border:0;border-radius:6px;background:#fff;color:#000;cursor:pointer;transition:transform .12s ease,background-color .16s ease,color .16s ease}
+.section-form .form-submit:hover{background:#b28547;color:#fff}
+.section-form .form-submit:active{transform:translateY(1px)}
+/* Right column CTA anchored to bottom of row */
+.section-form .col-cta{align-self:end;padding:1.5rem;background:rgba(255,255,255,.03);border:1px solid #2a2a2a;border-radius:var(--radius)}
+.section-form .col-cta h3{font-family:var(--font-body);font-weight:600;font-size:1.05rem;color:#e8e8e8;letter-spacing:.01em;margin:0 0 .5rem;text-transform:none}
+.contact-note{margin-top:.75rem;font:400 .95rem/1.4 var(--font-body);color:#d8d8d8}
+.contact-note a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.contact-sep {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #666, transparent);
+  margin: 2.5rem 0; /* ← add space above and below */
+}
+/* ==========================================================================
+   FOOTER — Unchanged, safe
+   ==========================================================================
+   Only scoped to .footer; no globals.
+*/
+.footer{width:100%;margin:2rem auto 0;padding:1.25rem 2rem;font-family:var(--font-body);font-size:.9rem;line-height:1.4;color:#a0a0a0;text-align:center;opacity:.85}
+.footer p{max-width:60ch;margin:0 auto}
+.footer a{color:inherit;text-decoration:none;transition:color .2s ease}
+.footer a:hover{color:#c0c0c0;text-decoration:underline}
+
+/* -------------------------------
+   Responsive
+   ------------------------------- */
+@media (max-width:900px){
+  .section-inner{grid-template-columns:1fr}
+  .section .section-copy{max-width:100%}
+  .hero{height:92vh}
+  .hero-overlay h1{font-size:54px;line-height:1.05}
+  .section-form .wrap{grid-template-columns:1fr}
+  .section-form .col-cta{margin-top:1rem;align-self:auto}
+  .section-form .contact-form{height:auto;padding:1.25rem}
+  .s2 .section-media,.s3 .section-media,.s4 .section-media{min-height:260px}
 }
 
-/* bottom fade layer, animated only while exiting */
-.hero::after {
-	content: "";
-	position: absolute; left: 0; bottom: 0;
-	width: 100%; height: 35vh; pointer-events: none; z-index: 1;
-	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.85) 100%);
-	opacity: 0;
-	animation: heroShroud 1 both;
-	animation-timeline: --hero;
-	animation-range: exit 0% exit 100%;
-}
-@keyframes heroShroud { from { opacity: 0; } to { opacity: 1; } }
-
-.hero-overlay {
-	position: relative; z-index: 2;
-	display: flex; align-items: flex-start; justify-content: flex-start;
-	height: 100vh; padding-left: 5vw; padding-top: 12vh;
-	background: transparent; text-align: left;
-
-	opacity: 0;
-	animation: fadeInHero 1.5s ease-out .4s forwards;
-}
-@keyframes fadeInHero { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-/* 6) Section 2 — Option 2: inverse cross‑fade with warm‑to‑black color and cinematic easing */
-.section.theme-dark.s2 {
-	/* start state (overrides generic theme-dark to allow color animation) */
-	background-color: #b28547; /* warm cream */
-	color: #111;
-	opacity: 0;
-
-	/* two animations in sync with hero exit: opacity + color */
-	animation:
-		s2Reveal 1 both,
-		s2ToBlack 1 both;
-	animation-timeline: --hero;
-	animation-range: exit 0% exit 100%;
-
-	/* Option 2 easing: quicker rise for content, slower darkening for richness */
-	animation-timing-function:
-		cubic-bezier(.0,.0,.2,1),  /* s2Reveal (opacity) */
-		cubic-bezier(.2,.0,.0,1);  /* s2ToBlack (bg/text) */
-}
-@keyframes s2Reveal {
-	from { opacity: 0; }
-	to   { opacity: 1; }
-}
-@keyframes s2ToBlack {
-	from { background-color: #b28547; color: #111; }
-	to   { background-color: #000;   color: var(--fg-dark); }
-}
-
-/* 7) Footer */
-.contact .footer { margin-top: 2rem; color: #777; font-size: .95rem; }
-
-/* 8) Responsive */
-@media (max-width: 900px) {
-	.section-inner { grid-template-columns: 1fr; }
-	.section .section-copy { max-width: 100%; }
-	.hero-overlay h1 { font-size: 54px; line-height: 1.05; }
-	.hero::before { background-attachment: scroll; } /* smoother on mobile */
-}
-
-/* 9) Print */
-@media (print) {
-	.hero { min-height: auto; }
-	.hero::before, .hero::after { display: none; }
-	.section { padding: 1.25rem 0; }
+/* -------------------------------
+   Print — Clean, Ink-Friendly
+   ------------------------------- */
+@media print{
+  @page{margin:18mm}
+  html,body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:economy;print-color-adjust:economy}
+  .hero,.hero::after,.hero-overlay::before,.section-media{display:none!important}
+  .section{padding:12mm 0!important}
+  .wrap{max-width:none;padding:0!important}
+  body{font-family:"Noto Serif",Georgia,serif!important;font-size:12pt!important;line-height:1.4!important}
+  h1,h2,h3,h4{color:#000!important;text-transform:none!important;margin-bottom:6mm!important}
+  h1{font-size:22pt!important;line-height:1.15!important}
+  h2{font-size:16pt!important;line-height:1.2!important}
+  h3{font-size:12pt!important;line-height:1.25!important}
+  p{margin:4mm 0!important}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt}
+  .section-form{display:none!important}
+  .footer{color:#000!important;margin-top:8mm!important}
 }
