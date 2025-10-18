@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Just Hold Her — A Memoir by Judy Wright</title>
-  <meta name="description" content="Just Hold Her is a literary memoir of medicine, caregiving, and the tender mercies found in staying. A foster mother’s nightwatch from the first call to the long, quiet hours that followed.">
+  <meta name="description" content="A foster mother’s vigil at the edge of life—medicine, caregiving, and the tender mercies found in staying. A literary memoir by Judy Wright.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="Judy Wright">
   <meta name="theme-color" content="#000000">
@@ -110,7 +111,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2 (Dark; image right; AVIF/WebP/JPG) -->
+    <!-- SECTION 2 (Dark; image right) -->
     <section class="section theme-dark s2" aria-labelledby="s2-title">
       <div class="wrap">
         <h2 id="s2-title"><em>“Would you, please…”</em><br>just hold her until she dies?</h2>
@@ -140,7 +141,7 @@
       </div>
     </section>
 
-    <!-- SECTION 3 (Gray; image left; AVIF/WebP/JPG) -->
+    <!-- SECTION 3 (Gray; image left) -->
     <section class="section theme-gray s3" aria-labelledby="s3-title">
       <div class="wrap">
         <div class="section-inner">
@@ -156,8 +157,9 @@
             </picture>
           </div>
           <div class="section-copy">
-            <h3>About the Author</h3>
-            <h2 id="s3-title">Mama Judy</h2>
+            <!-- Hierarchy fix: H2 then H3 (not H3 → H2) -->
+            <h2 id="s3-title">About the Author</h2>
+            <h3 class="subhed">Mama Judy</h3>
             <p>Judy Wright and her late husband, John, fostered fifty-five infants over twelve years, many medically fragile. In 2012 they were honored as both Oakland County and Michigan Foster Parents of the Year. Their work inspired the John and Judy Wright Scholarship for Foster Youth and the Judy Wright Volunteer of the Year Award.</p>
             <p>Judy’s debut memoir, <strong>Just Hold Her</strong>, tells the true story of a nightwatch that began with a single call to “just hold” a dying baby — and the quiet, hard-won mercies that followed.</p>
             <p>Judy writes to foster, medical, and faith-aware communities about presence, caregiving, and the courage to stay.</p>
@@ -166,13 +168,14 @@
       </div>
     </section>
 
-    <!-- SECTION 4 (Dark; image right; AVIF/WebP/PNG) -->
+    <!-- SECTION 4 (Dark; image right) -->
     <section class="section theme-dark s4" aria-labelledby="s4-title">
       <div class="wrap">
         <div class="section-inner">
           <div class="section-copy">
-            <h3>About the Book</h3>
-            <h2 id="s4-title">Just Hold Her</h2>
+            <!-- Hierarchy fix: H2 then H3 -->
+            <h2 id="s4-title">About the Book</h2>
+            <h3 class="subhed">Just Hold Her</h3>
             <p>When the call comes to “just hold her until she dies,” a foster mother opens her arms to a child the world has already given up on.</p>
             <p><strong>Just Hold Her</strong> is the true story of that vigil: a quiet house remade into a lifeline, where medicine meets mercy and love learns to breathe between alarms. Told in spare, luminous fragments, it bears witness to the fierce tenderness found at the edge of life — where protocol ends, faith flickers, and staying becomes the bravest act of all.</p>
             <p>A memoir of presence over perfection, <strong>Just Hold Her</strong> speaks to anyone who has faced the unthinkable, loved without promise, or learned that hope sometimes arrives softly — in the simple act of holding on.</p>
@@ -193,65 +196,70 @@
       </div>
     </section>
 
- <!-- CONTACT -->
-<section class="section-form" aria-labelledby="contact-title">
-<hr class ="contact-sep"/>
-  <div class="wrap">
-    <!-- Left column: Form -->
-    <div class="col-form">
-      <form action="https://formspree.io/f/xjkaljgn" method="POST" class="contact-form" novalidate>
-        <h3 id="contact-title">A story like this travels slowly.</h3>
-        <p class="contact-note">Sign up to receive updates as <strong>Just Hold Her</strong> finds its first readers.</p>
+    <!-- CONTACT -->
+    <section class="section-form" aria-labelledby="contact-title">
+      <div class="wrap">
+        <!-- Centered section title spanning both columns -->
+        <h2 id="contact-title" class="section-title">Stay Close to the Story</h2>
+        <!-- Left column: Form -->
+        <div class="col-form">
+        
+          <form action="https://formspree.io/f/xjkaljgn" method="POST" class="contact-form">
+        	<h3 id="form-hed">Keep Me Posted</h3>
+          
+            <p class="contact-note">A story like this travels slowly.<br>Sign up to receive quiet updates as <strong>Just Hold Her</strong> nears publication.</p>
 
-        <div class="form-row">
-          <label for="first-name">First name</label>
-          <input id="first-name" name="first-name" type="text" autocomplete="given-name" required placeholder="First name">
+            <div class="form-row">
+              <label for="first-name">First name</label>
+              <input id="first-name" name="first-name" type="text" autocomplete="given-name" required
+                     placeholder="First name" aria-describedby="err-first-name">
+              <p class="field-error" id="err-first-name">Please enter your first name.</p>
+            </div>
+
+            <div class="form-row">
+              <label for="last-name">Last name</label>
+              <input id="last-name" name="last-name" type="text" autocomplete="family-name" required
+                     placeholder="Last name" aria-describedby="err-last-name">
+              <p class="field-error" id="err-last-name">Please enter your last name.</p>
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" autocomplete="email" required
+                     placeholder="you@example.com" aria-describedby="err-email">
+              <p class="field-error" id="err-email">Enter a valid email address.</p>
+            </div>
+
+            <!-- Honeypot -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
+            <!-- Optional subject for Formspree -->
+            <input type="hidden" name="_subject" value="Just Hold Her — Mailing List">
+
+            <button type="submit" class="form-submit">Send</button>
+            <div id="form-status" role="status" aria-live="polite"></div>
+          </form>
         </div>
 
-        <div class="form-row">
-          <label for="last-name">Last name</label>
-          <input id="last-name" name="last-name" type="text" autocomplete="family-name" required placeholder="Last name">
-        </div>
+        <!-- Right column: Status on top, Inquiries below -->
+        <aside class="col-cta" aria-labelledby="status-title inquiries-title">
+          <section aria-labelledby="status-title">
+            <h3 id="status-title">Status</h3>
+            <p class="contact-note">
+              The manuscript for <strong>Just Hold Her</strong> is complete, with a final polish now in progress. Each line is being refined with care before the book steps into the world. Publication is planned for 2026. Join the mailing list to follow its path to print and be among the first to hear when it finds its readers.
+              </p>
+           </section>
 
-        <div class="form-row">
-          <label for="email">Email address</label>
-          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
-        </div>
+          <hr class="contact-sep" />
 
-        <!-- Honeypot -->
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
-        <!-- Optional subject for Formspree -->
-        <input type="hidden" name="_subject" value="Just Hold Her — Mailing List">
-
-        <button type="submit" class="form-submit">Send</button>
-        <div id="form-status" role="status" aria-live="polite"></div>
-      </form>
-    </div>
-
-    <!-- Right column: Status + Inquiries (swapped order) -->
-    <aside class="col-cta" aria-labelledby="status-title inquiries-title">
-      <section aria-labelledby="status-title">
-        <h3 id="status-title">Status</h3>
-        <p class="contact-note">
-          The manuscript for <strong>Just Hold Her</strong> is complete, with a final polish now in progress. Each line is being refined with care before the book steps into the world.
-        </p>
-        <p class="contact-note">Publication is planned for 2026.</p>
-        <p class="contact-note">
-          Join the mailing list to follow its path to print and be among the first to hear when it finds its readers.
-        </p>
-      </section>
-
-      <hr class="contact-sep" />
-
-      <section aria-labelledby="inquiries-title">
-        <h3 id="inquiries-title">Inquiries</h3>
-        <p class="contact-note">
-          Publishing professionals (agents, editors, scouts): please send rights &amp; representation inquiries to
-          <a href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>.
-        </p>
-      </section>
-    </aside>
-  </div>
+          <section aria-labelledby="inquiries-title">
+            <h3 id="inquiries-title">Inquiries</h3>
+            <p class="contact-note">
+              Publishing professionals (agents, editors, scouts): please send rights and representation inquiries to: 
+              <a href="mailto:inquiries@justholdher.com" title="Book Inquiries">inquiries@justholdher.com</a>.
+            </p>
+          </section>
+        </aside>
+      </div>
 
       <!-- Footer -->
       <footer class="footer">
@@ -263,13 +271,13 @@
   <!-- Scripts -->
   <script src="app-fallback.js" defer></script>
   <script defer>
-    (() => {
-      'use strict';
-      document.addEventListener('DOMContentLoaded', () => {
-        const el = document.querySelector('.footer-year');
-        if (el) el.textContent = new Date().getFullYear();
-      });
-    })();
+  (() => {
+    'use strict';
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.querySelector('.footer-year');
+      if (el) el.textContent = new Date().getFullYear();
+    });
+  })();
   </script>
 </body>
 </html>
