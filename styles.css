@@ -1,6 +1,6 @@
+/* styles.css */
 /* ==========================================================================
    JUST HOLD HER — Production Styles
-   (Hierarchy fixed, hero fade, equal media, a11y, perf)
    ========================================================================== */
 
 /* -------------------------------
@@ -53,7 +53,7 @@ h3{
   font-size:27px; line-height:1.2;
   letter-spacing:-.02em; color:#6a6a6a; text-transform:uppercase;
 }
-h4{font-size:24px;line-height:1.2;letter-spacing:-.02em}
+h4{font-size:17px;line-height:1.3;letter-spacing:-.02em}
 p{margin:1rem 0}
 strong{font-weight:600}
 .subhed{letter-spacing:-.02em;text-transform:uppercase;color:#6a6a6a}
@@ -72,6 +72,8 @@ strong{font-weight:600}
   display:grid;grid-template-columns:1fr 1fr;gap:2.25rem;align-items:stretch;
 }
 .section-media img{border-radius:var(--radius);width:100%;height:100%;object-fit:cover}
+figure{margin:0}
+figcaption{margin-top:.5rem;font-size:.9rem;color:#777}
 
 /* Alternating Media Layout */
 .s2 .section-copy{order:1}.s2 .section-media{order:2}
@@ -87,7 +89,7 @@ strong{font-weight:600}
 .s4 .section-media img{flex:1 1 auto;height:100%;width:100%;object-fit:cover}
 
 /* ==========================================================================
-   HERO — Stable Fade-to-Black on Scroll (Progressive Enhancement)
+   HERO — Stable Fade-to-Black on Scroll (PE + fallback)
    ========================================================================== */
 .hero{
   position:relative;height:100vh;color:#fff;background:#000;overflow:hidden;
@@ -96,11 +98,12 @@ strong{font-weight:600}
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center;z-index:0;transform:translateZ(0);
 }
-/* Fallback shroud for legibility */
-.hero::after{
-  content:"";position:absolute;inset:auto 0 0;height:45vh;
+/* Real element shroud (replaces ::after) */
+.hero-shroud{
+  position:absolute;inset:auto 0 0;height:45vh;z-index:1;pointer-events:none;
+  /* Fallback: legible static gradient */
   background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.28) 40%,rgba(0,0,0,.9) 100%);
-  z-index:1;pointer-events:none;opacity:1;
+  opacity:1;
 }
 .hero-overlay{
   position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:flex-start;
@@ -110,11 +113,25 @@ strong{font-weight:600}
   content:"";position:absolute;inset:0 65% 65% 0;
   background:linear-gradient(135deg,rgba(0,0,0,.15),rgba(0,0,0,0));z-index:-1;pointer-events:none;
 }
-/* Scroll-linked enhancement where supported */
+/* Scroll-linked enhancement */
 @supports (animation-timeline: auto){
   .hero{view-timeline-name:--hero;view-timeline-axis:block}
-  .hero::after{opacity:0;animation:heroFade 1 both;animation-timeline:--hero;animation-range:entry 0% exit 100%}
+  .hero-shroud{opacity:0;animation:heroFade 1 both;animation-timeline:--hero;animation-range:entry 0% exit 100%}
   @keyframes heroFade{from{opacity:0}to{opacity:1}}
+}
+
+/* ==========================================================================
+   SECTION 2 — Warm → Black background fade (kept)
+   ========================================================================== */
+.section.theme-dark.s2{
+  background-color:#b28547;color:var(--fg-dark);
+  view-timeline-name:--s2;view-timeline-axis:block;animation:s2Bg 1 both;
+  animation-timeline:--s2;animation-range:entry 0% entry 20%;
+}
+@keyframes s2Bg{to{background-color:#000}}
+@supports not (animation-timeline: auto){
+  .section.theme-dark.s2{animation:s2BgTime 450ms ease-out both}
+  @keyframes s2BgTime{from{background-color:#b28547}to{background-color:#000}}
 }
 
 /* ==========================================================================
@@ -141,13 +158,13 @@ strong{font-weight:600}
 .section-form label{font-family:var(--font-body);font-size:.9rem;line-height:1.3;color:#d8d8d8}
 .section-form input,.section-form textarea{
   font-family:var(--font-body);font-size:.95rem;line-height:1.4;color:#fff;width:100%;
-  padding:.6rem .75rem;background:#121212;border:1px solid #555;border-radius:6px;transition:border-color .15s ease;
+  padding:.6rem .75rem;background:#121212;border:1px solid #555;border-radius:6px;transition:border-color .15s ease
 }
 .section-form textarea{resize:vertical;min-height:5.5rem}
 .section-form input::placeholder,.section-form textarea::placeholder{color:#7a7a7a}
 .section-form input:focus-visible,.section-form textarea:focus-visible{outline:2px solid #b28547;outline-offset:2px;border-color:#b28547}
 
-/* Inline error messaging */
+/* Inline error messaging (visible + programmatic via aria-describedby) */
 .field-error{display:none;font-size:.85rem;color:#ffb4b4}
 .form-row input:user-invalid + .field-error,
 .form-row textarea:user-invalid + .field-error{display:block}
@@ -159,7 +176,7 @@ strong{font-weight:600}
 .section-form .form-submit{
   display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);
   font-weight:600;font-size:.95rem;padding:.65rem 1.25rem;border:0;border-radius:6px;
-  background:#fff;color:#000;cursor:pointer;transition:transform .12s ease,background-color .16s ease,color .16s ease;
+  background:#fff;color:#000;cursor:pointer;transition:transform .12s ease,background-color .16s ease,color .16s ease
 }
 .section-form .form-submit:hover{background:#b28547;color:#fff}
 .section-form .form-submit:active{transform:translateY(1px)}
@@ -211,13 +228,12 @@ strong{font-weight:600}
   text-transform:none;
   letter-spacing:-.01em;
   margin-top:0;
-  margin-bottom:1.5rem;
+  margin-bottom:1rem;
   color:#6a6a6a;
 }
-
 /* Color inversion for dark sections (e.g., .theme-dark.s4) */
-.theme-dark.s4 h3{ color:var(--fg-dark); }                  /* bright for 'title'-looking H3 */
-.theme-dark.s4 h2{ color:color-mix(in srgb, #ffffff 78%, #000); } /* soft, lighter subtitle on dark */
+.theme-dark.s4 h3{ color:var(--fg-dark); }
+.theme-dark.s4 h2{ color:color-mix(in srgb, #ffffff 78%, #000); }
 
 /* ==========================================================================
    Responsive
@@ -239,7 +255,7 @@ strong{font-weight:600}
 @media print{
   @page{margin:18mm}
   html,body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:economy;print-color-adjust:economy}
-  .hero,.hero::after,.hero-overlay::before,.section-media{display:none!important}
+  .hero,.hero-shroud,.hero-overlay::before,.section-media{display:none!important}
   .section{padding:12mm 0!important}
   .wrap{max-width:none;padding:0!important}
   body{font-family:"Noto Serif",Georgia,serif!important;font-size:12pt!important;line-height:1.4!important}
