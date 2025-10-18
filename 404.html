@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — Not Found | Just Hold Her</title>
+  <meta name="description" content="The page you’re looking for has moved on, but we’re still here — quiet, steady, waiting.">
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Minimal self-contained styles for the 404 page */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--bg-dark, #000);
+      color: var(--fg-dark, #f3f3f3);
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      margin: 0;
+      text-align: center;
+    }
+    main {
+      max-width: 600px;
+      padding: 2rem;
+    }
+    h1 {
+      font-family: "Noto Serif", Georgia, serif;
+      font-weight: 200;
+      font-size: clamp(64px, 12vw, 120px);
+      line-height: 1;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+    }
+    h2 {
+      font-family: "Noto Serif", Georgia, serif;
+      font-weight: 200;
+      font-size: clamp(24px, 4vw, 40px);
+      margin: 0 0 0.25rem;
+    }
+    h3 {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: #aaa;
+      margin: 0 0 2rem;
+      letter-spacing: 0.01em;
+    }
+    p {
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    button {
+      margin-top: 2rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+    button:hover {
+      background: #b28547;
+      color: #fff;
+    }
+    button:active {
+      transform: translateY(1px);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>404</h1>
+    <h2>Not Found. But Still Here.</h2>
+    <h3>So it goes.</h3>
+    <p>Looks like the page you’re searching for has moved on.<br>Maybe it found a new home.</p>
+    <p>Ours is still here — quiet, steady, waiting.</p>
+    <button onclick="window.location.href='/'">Return Home</button>
+  </main>
+</body>
+</html>
