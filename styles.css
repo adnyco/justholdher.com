@@ -1,6 +1,6 @@
 /* styles.css */
 /* ==========================================================================
-   JUST HOLD HER — Production Styles (Optimized)
+   JUST HOLD HER — Production Styles
    ========================================================================== */
 
 /* -------------------------------
@@ -77,7 +77,7 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 .s2 .section-media img,.s3 .section-media img,.s4 .section-media img{flex:1 1 auto;height:100%;width:100%;object-fit:cover}
 
 /* ==========================================================================
-   TOP NAV — Black bar
+   TOP NAV — Black bar (with wrap for anchor-heavy nav)
    ========================================================================== */
 .topnav{
   position:sticky;top:0;z-index:50;
@@ -88,9 +88,13 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 .topnav a:hover,.topnav a:focus-visible{text-decoration:underline;text-underline-offset:3px}
 .brand{
   font-family:var(--font-head);font-weight:300;letter-spacing:-.03em;text-transform:uppercase;
-  font-size:1.05rem
+  font-size:1.05rem;white-space:nowrap
 }
-.topnav-links{display:flex;align-items:center;gap:1rem;font:500 .92rem/1.2 var(--font-body)}
+.topnav-links{
+  display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;
+  gap:.85rem 1rem;font:500 .92rem/1.2 var(--font-body)
+}
+.topnav-links a{white-space:nowrap}
 .topnav-links a[aria-current="page"]{text-decoration:underline;text-underline-offset:3px}
 
 /* ==========================================================================
@@ -120,9 +124,7 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 }
 
 /* Hero stacked variant (home page) */
-.hero-overlay.hero-stack{
-  flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:.55rem
-}
+.hero-overlay.hero-stack{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:.55rem}
 .hero-sub{
   font-family:var(--font-body);font-weight:500;
   font-size:clamp(16px,2.2vw,22px);
@@ -168,6 +170,36 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 .theme-dark.s4 h2{color:color-mix(in srgb,#fff 78%,#000)}
 
 /* ==========================================================================
+   SECTION 5 (Agents) — clean list + tight helper tone
+   ========================================================================== */
+.agent-list{
+  margin:.75rem 0 1rem;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:.55rem;
+  max-width:var(--max-text)
+}
+.agent-list li{
+  position:relative;
+  padding-left:1.05rem;
+}
+.agent-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.55em;
+  width:.45rem;
+  height:.45rem;
+  border-radius:50%;
+  background:color-mix(in srgb,#000 72%,#fff)
+}
+/* If section is on dark background in the future, keep bullets visible */
+.theme-dark .agent-list li::before{
+  background:color-mix(in srgb,#fff 70%,#000)
+}
+
+/* ==========================================================================
    CTA Buttons (shared)
    ========================================================================== */
 .center-cta{display:flex;justify-content:center;margin-top:1.25rem}
@@ -184,7 +216,7 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 .about-back-btn:hover{background:#b28547;border-color:#b28547;color:#fff;text-decoration:none}
 .about-back-btn:active{transform:translateY(1px)}
 
-/* About page: center the Back to Home button (NEW) */
+/* About page: center the Back to Home button */
 .about-actions{display:flex;justify-content:center;margin-top:1.75rem}
 .about-actions .about-back-btn{width:auto;text-align:center}
 
@@ -219,10 +251,18 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
   outline:2px solid #b28547;outline-offset:2px;border-color:#b28547
 }
 
+/* Inline helper microcopy (NEW) */
+.field-help{
+  font-size:.85rem;
+  line-height:1.35;
+  color:#bdbdbd;
+  margin:.15rem 0 0
+}
+
 /* Inline error messaging */
 .field-error{display:none;font-size:.85rem;color:#ffb4b4;margin:.15rem 0 0}
-.form-row input:user-invalid + .field-error,
-.form-row textarea:user-invalid + .field-error{display:block}
+.form-row input:user-invalid ~ .field-error,
+.form-row textarea:user-invalid ~ .field-error{display:block}
 .form-row input:user-invalid,
 .form-row textarea:user-invalid{border-color:#c0392b}
 .form-row input:user-valid,
@@ -237,6 +277,9 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 }
 .section-form .form-submit:hover{background:#b28547;color:#fff}
 .section-form .form-submit:active{transform:translateY(1px)}
+
+/* Form status (confirmation) */
+#form-status{min-height:1.25rem;margin-top:.25rem;color:#d8d8d8;font-size:.9rem}
 
 .section-form .col-cta{
   align-self:center;padding:1.5rem;background:rgba(255,255,255,.03);
@@ -293,7 +336,7 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 }
 @media (max-width:700px){
   .topnav-inner{padding:.75rem 0}
-  .topnav-links{gap:.8rem}
+  .topnav-links{gap:.65rem .85rem}
   .about-head{padding-right:0}
   .about-portrait{
     position:relative;right:auto;top:auto;
@@ -320,5 +363,5 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
   p{margin:4mm 0!important}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt}
   .section-form{display:none!important}
-  .footer{color:#000!important;margin-top:8mm!important}
-}
+  .footer{color:#000!important;margi
+::contentReference[oaicite:0]{index=0}
