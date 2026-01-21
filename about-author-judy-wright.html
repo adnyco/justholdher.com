@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -71,23 +70,32 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <main id="main">
-    <!-- Minimal masthead (keeps the home page’s typographic feel) -->
-    <header class="page-header theme-gray">
-      <div class="wrap page-header-inner">
-        <a class="nav-back" href="index.html" aria-label="Return to home">← Return Home</a>
-      </div>
-    </header>
+  <!-- Top Nav (black bar) -->
+  <header class="topnav" role="banner">
+    <div class="wrap topnav-inner">
+      <a class="brand" href="index.html" aria-label="Just Hold Her — Home">Just Hold Her</a>
 
-    <!-- ABOUT (matches Section 3 styling) -->
-    <section class="section theme-gray s3 about-page" aria-labelledby="about-title">
+      <nav class="topnav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html" aria-current="page">Bio</a>
+        <!-- Contact is anchored to homepage footer / bottom section -->
+        <a href="index.html#contact-title">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ABOUT (same palette/tone as home Section 3) -->
+    <section class="section theme-gray about-page" aria-labelledby="about-title">
       <div class="wrap">
-        <div class="section-inner">
-          <!-- Placeholder: same image block style as home Section 3 -->
-          <div class="section-media">
-            <figure>
+        <article class="about-article">
+          <header class="about-head">
+            <h2 id="about-title">About the Author</h2>
+            <h3 class="subhed">Judy Wright</h3>
+
+            <!-- Small portrait, upper-right; text flows after it -->
+            <figure class="about-portrait">
               <picture>
-                <!-- Placeholder image: reuse existing author image from home page -->
                 <source srcset="assets/john-and-judy-wright-2.avif" type="image/avif">
                 <source srcset="assets/john-and-judy-wright-2.webp" type="image/webp">
                 <img
@@ -95,17 +103,13 @@
                   loading="lazy"
                   decoding="async"
                   alt="Judy Wright and her late husband, John."
-                  width="1400"
-                  height="933">
+                  width="900"
+                  height="1350">
               </picture>
             </figure>
-          </div>
+          </header>
 
-          <div class="section-copy about-copy">
-            <!-- Semantics: H2 then H3 (visual flip already handled in your CSS overrides) -->
-            <h2 id="about-title">About the Author</h2>
-            <h3 class="subhed">Judy Wright</h3>
-
+          <div class="about-body">
             <p>Judy Wright is a foster mother, caregiver, and advocate whose life has been shaped by the demanding, ordinary work of staying.</p>
 
             <p>She met her husband, John, through aviation. He was a flight instructor, a Vietnam veteran, and later a corporate pilot whose career carried him across the world. What bound them most deeply, from the beginning of their marriage, was a shared conviction that children mattered not abstractly, but concretely, in the daily decisions of a household. Over thirty-seven years of marriage, that conviction became the center of their life together.</p>
@@ -120,12 +124,11 @@
 
             <p>Judy writes for foster, medical, and faith-aware communities about presence, caregiving, and the courage required to remain available. She lives with the conviction that while children may not remember every face that held them, they remember what it felt like to be held.</p>
 
-            <div class="about-actions" role="group" aria-label="Page actions">
-              <a class="btn" href="index.html#contact-title">Stay Close to the Story</a>
-              <a class="btn btn-ghost" href="index.html">Back to Home</a>
+            <div class="about-actions">
+              <a class="about-back-btn" href="index.html">Back to Home</a>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
