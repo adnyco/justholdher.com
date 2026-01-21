@@ -209,6 +209,39 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777}
 /* ==========================================================================
    OVERRIDES — Flip visual appearance (keep H2 > H3 semantics)
    ========================================================================== */
+/* HERO: force stacked, left-aligned layout (no side-by-side flex) */
+.hero-overlay.hero-stack{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  gap:.55rem;
+  padding:12vh 0 0 5vw;
+  text-align:left;
+}
+.hero-sub{
+  font-family:var(--font-body);
+  font-weight:500;
+  font-size:clamp(16px,2.2vw,22px);
+  line-height:1.25;
+  letter-spacing:-.01em;
+  text-transform:none; /* Title Case as authored */
+  margin:0;
+  max-width:min(46ch, 92vw);
+}
+
+/* Center “About Judy” button within Section 3 copy */
+.center-cta{
+  display:flex;
+  justify-content:center;
+  margin-top:1.25rem;
+}
+
+/* Keep button from stretching */
+.center-cta .about-back-btn{
+  width:auto;
+}
+
 /* In sections 3 & 4, visually promote H3 and demote H2 */
 .s3 h3, .s4 h3{
   font-family:var(--font-head);
