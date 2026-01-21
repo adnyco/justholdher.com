@@ -89,8 +89,22 @@
     gtag('config', 'G-CCX49YFZRQ');
   </script>
 </head>
+
 <body>
   <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Top Navigation (matches About page) -->
+  <header class="topnav" role="banner">
+    <div class="wrap topnav-inner">
+      <a class="brand" href="index.html" aria-label="Just Hold Her — Home">Just Hold Her</a>
+
+      <nav class="topnav-links" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="about-author-judy-wright.html">Bio</a>
+        <a href="index.html#contact-title">Contact</a>
+      </nav>
+    </div>
+  </header>
 
   <main id="main">
     <!-- HERO -->
@@ -112,7 +126,11 @@
       <div class="hero-shroud" aria-hidden="true"></div>
 
       <div class="hero-overlay">
-        <h1>The Story of Witness<br>Foster Care, Medicine, and Presence</h1>
+        <!-- Line 1: H1 -->
+        <h1>The Story of Witness</h1>
+
+        <!-- Line 2: H2 (smaller, Title Case) -->
+        <h2 class="hero-sub">Foster Care, Medicine, and Presence</h2>
       </div>
     </section>
 
@@ -146,8 +164,8 @@
                a literary memoir where medicine, bureaucracy, and human attachment collide,
                and where faith arrives less as certainty than as presence.</p>
 
-            <p>It stays with Jayden from that first call into the long months that followed, 
-               bearing witness to the quiet, aching grace at the edge of life &mdash; 
+            <p>It stays with Jayden from that first call into the long months that followed,
+               bearing witness to the quiet, aching grace at the edge of life &mdash;
                where protocol ends, and staying costs what it costs.</p>
           </div>
 
@@ -198,6 +216,11 @@
             <p><strong>Just Hold Her</strong> is her debut memoir. A true account of a nightwatch that began with a single call to “just hold” a dying baby, and unfolded into a sustained act of care, witness, and staying.</p>
 
             <p>Judy writes for foster, medical, and faith-aware communities about presence, caregiving, and the courage to remain when certainty is gone.</p>
+
+            <!-- CTA -->
+            <p>
+              <a class="about-back-btn" href="about-author-judy-wright.html">About Judy</a>
+            </p>
           </div>
         </div>
       </div>
@@ -241,8 +264,8 @@
 
     <!-- CONTACT -->
     <section class="section-form" aria-labelledby="contact-title">
-           <hr class="contact-sep" />
-       <div class="wrap">
+      <hr class="contact-sep" />
+      <div class="wrap">
         <!-- Centered section title spanning both columns -->
         <h2 id="contact-title" class="section-title">Stay Close to the Story</h2>
 
@@ -275,7 +298,6 @@
 
             <!-- Honeypot -->
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
-            <!-- Optional subject for Formspree -->
             <input type="hidden" name="_subject" value="Just Hold Her — Mailing List">
 
             <button type="submit" class="form-submit">Join the early readers list</button>
@@ -313,18 +335,17 @@
 
   <!-- Scripts -->
   <script src="app-fallback.js" defer></script>
-  <!-- Hero fade JS fallback (for browsers without scroll-linked animations) -->
+
+  <!-- Footer year + Hero fade JS fallback (for browsers without scroll-linked animations) -->
   <script defer>
   (() => {
     'use strict';
 
-    // Footer year (progressive enhancement)
     document.addEventListener('DOMContentLoaded', () => {
       const y = document.querySelector('.footer-year');
       if (y) y.textContent = new Date().getFullYear();
     });
 
-    // Scroll-linked animation fallback:
     const supportsScrollLinked = CSS && CSS.supports && CSS.supports('animation-timeline: auto');
     if (supportsScrollLinked) return;
 
@@ -332,7 +353,6 @@
     const shroud = document.querySelector('.hero-shroud');
     if (!hero || !shroud) return;
 
-    // IntersectionObserver to simulate progress-based opacity
     const thresholds = Array.from({ length: 21 }, (_, i) => i / 20);
     const io = new IntersectionObserver(([entry]) => {
       const r = entry.rootBounds;
