@@ -1,4 +1,4 @@
-<!-- index.html (only the updated parts shown previously are now fully applied) -->
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +35,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif:wght@200;300;400&display=swap" rel="stylesheet">
 
-  <!-- Hero preload -->
-  <link rel="preload" href="assets/prescription-of-comfort.png" as="image" fetchpriority="high">
+  <!-- Hero preload: WebP first, PNG fallback in markup -->
+  <link rel="preload" href="assets/prescription-of-comfort.webp" as="image" fetchpriority="high">
 
   <link rel="stylesheet" href="styles.css">
 
@@ -90,10 +90,15 @@
     <div class="wrap topnav-inner">
       <a class="brand" href="index.html" aria-label="Just Hold Her — Home">Just Hold Her</a>
 
+      <!-- Skimmable anchors for agents + readers -->
       <nav class="topnav-links" aria-label="Primary">
         <a href="index.html" aria-current="page">Home</a>
+        <a href="#story">Story</a>
+        <a href="#author">About</a>
+        <a href="#book">Book</a>
+        <a href="#agents">Agents</a>
+        <a href="#contact-title">Contact</a>
         <a href="about-author-judy-wright.html">Bio</a>
-        <a href="index.html#contact-title">Contact</a>
       </nav>
     </div>
   </header>
@@ -102,7 +107,6 @@
     <!-- HERO -->
     <section class="hero" aria-label="Introduction">
       <picture>
-        <source srcset="assets/prescription-of-comfort.avif" type="image/avif">
         <source srcset="assets/prescription-of-comfort.webp" type="image/webp">
         <img class="hero-img"
              src="assets/prescription-of-comfort.png"
@@ -123,29 +127,36 @@
       </div>
     </section>
 
-    <!-- SECTION 2 (unchanged) -->
-    <section class="section theme-dark s2" aria-labelledby="s2-title">
+    <!-- SECTION 2 (Story) -->
+    <section id="story" class="section theme-dark s2" aria-labelledby="s2-title">
       <div class="wrap">
         <h2 id="s2-title"><em>“WOULD YOU, PLEASE… JUST HOLD HER UNTIL SHE DIES?”</em></h2>
 
         <div class="section-inner">
           <div class="section-copy">
             <p>That was the call.</p>
+
             <p>Two months old. Three pounds.<br>We named her Jayden.</p>
+
             <p>She arrived swaddled in hospital linens,<br>
                tethered to tubes and monitors.<br>
                Blind. Deaf. Insulin-dependent.<br>
                Hands and feet raw since birth.<br>
                Thirty diagnoses. No plan.</p>
+
             <p>They didn’t ask us to save her.<br>They asked us to stay.</p>
+
             <p>What followed wasn’t heroic. It was relentless.<br>
                Alarms in the dark. A thin-gauge lancet.<br>
                A cooler on the porch.<br>
                A spiral notebook filling with numbers.</p>
+
             <p>And one question I kept asking, again and again:<br><strong>What about breast milk?</strong></p>
+
             <p><strong>Just Hold Her</strong> is the true story of a foster mother’s nightwatch &mdash;
                a literary memoir where medicine, bureaucracy, and human attachment collide,
                and where faith arrives less as certainty than as presence.</p>
+
             <p>It stays with Jayden from that first call into the long months that followed,
                bearing witness to the quiet, aching grace at the edge of life &mdash;
                where protocol ends, and staying costs what it costs.</p>
@@ -154,31 +165,38 @@
           <div class="section-media">
             <figure>
               <picture>
-                <source srcset="assets/book.avif" type="image/avif">
                 <source srcset="assets/book.webp" type="image/webp">
-                <img src="assets/book.jpg" loading="lazy" decoding="async" alt="" width="1600" height="1067">
+                <img src="assets/book.jpg"
+                     loading="lazy" decoding="async"
+                     alt="Book cover mockup for Just Hold Her resting on a bedside table."
+                     width="1600" height="1067">
               </picture>
+              <figcaption style="display:none;">Book cover for <em>Just Hold Her</em> resting on a bedside table.</figcaption>
             </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3 -->
-    <section class="section theme-gray s3" aria-labelledby="s3-title">
+    <!-- SECTION 3 (About the Author) -->
+    <section id="author" class="section theme-gray s3" aria-labelledby="s3-title">
       <div class="wrap">
         <div class="section-inner">
           <div class="section-media">
             <figure>
               <picture>
-                <source srcset="assets/john-and-judy-wright-2.avif" type="image/avif">
                 <source srcset="assets/john-and-judy-wright-2.webp" type="image/webp">
-                <img src="assets/john-and-judy-wright-2.jpg" loading="lazy" decoding="async" alt="" width="1400" height="933">
+                <img src="assets/john-and-judy-wright-2.jpg"
+                     loading="lazy" decoding="async"
+                     alt="John and Judy Wright, honored foster parents."
+                     width="1400" height="933">
               </picture>
+              <figcaption style="display:none;">John and Judy Wright, honored foster parents.</figcaption>
             </figure>
           </div>
 
           <div class="section-copy">
+            <!-- Semantics: H2 then H3 (visual flip handled in CSS) -->
             <h2 id="s3-title">About the Author</h2>
             <h3 class="subhed">JUDY WRIGHT</h3>
 
@@ -197,8 +215,71 @@
       </div>
     </section>
 
-    <!-- SECTION 4 + CONTACT (unchanged from your provided file) -->
-    <!-- ... keep the rest of your existing markup exactly as-is ... -->
+    <!-- SECTION 4 (About the Book) -->
+    <section id="book" class="section theme-dark s4" aria-labelledby="s4-title">
+      <div class="wrap">
+        <div class="section-inner">
+          <div class="section-copy">
+            <h2 id="s4-title">About the Book</h2>
+            <h3 class="subhed">Just Hold Her</h3>
+
+            <p>When the call comes to “just hold her until she dies,” a foster mother opens her arms to a child the world has already given up on.</p>
+
+            <p><strong>Just Hold Her</strong> is the true story of that vigil: a quiet house remade into a lifeline, where medicine meets mercy and love learns to breathe between alarms. Told in spare, luminous fragments, it bears witness to the fierce tenderness found at the edge of life, where protocol ends, faith flickers, and staying becomes the bravest act of all.</p>
+
+            <p>A memoir of presence over perfection, <strong>Just Hold Her</strong> speaks to anyone who has faced the unthinkable, loved without promise, or learned that hope sometimes arrives softly — in the simple act of holding on.</p>
+
+            <!-- Explicit reader-benefit line (tight, skimmable) -->
+            <p class="contact-note"><strong>For caregivers, foster parents, medical staff, and anyone who’s loved where medicine can’t fix</strong> — this memoir offers compassion, witness, and shared humanity.</p>
+
+            <p>Coming soon.</p>
+          </div>
+
+          <div class="section-media">
+            <figure>
+              <picture>
+                <source srcset="assets/prescription-of-comfort.webp" type="image/webp">
+                <img src="assets/prescription-of-comfort.png"
+                     loading="lazy" decoding="async"
+                     alt="A handwritten prescription note reading “Just Hold Her” resting on a baby blanket."
+                     width="1200" height="1600">
+              </picture>
+              <figcaption style="display:none;">Prescription note reading “Just Hold Her” on a baby blanket.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 (For Agents & Editors) -->
+    <section id="agents" class="section theme-light s5" aria-labelledby="agents-title">
+      <div class="wrap">
+        <div class="section-inner">
+          <div class="section-copy">
+            <h2 id="agents-title">For Agents &amp; Editors</h2>
+            <h3 class="subhed">Quick Facts</h3>
+
+            <!-- Compact, skimmable commercial framing -->
+            <ul class="agent-list">
+              <li><strong>Status:</strong> Complete; final line polish in progress. Publication planned for 2026.</li>
+              <li><strong>Category:</strong> Literary memoir / narrative nonfiction.</li>
+              <li><strong>Primary audiences:</strong> foster &amp; adoption community, medically-fragile caregivers, NICU/clinical readers, faith-aware readers.</li>
+              <li><strong>Word count:</strong> <em>Available upon request.</em></li>
+              <li><strong>Comparable titles:</strong> <em>Available upon request</em> (selected for tone, audience, and market position).</li>
+              <li><strong>Rights / representation:</strong> <a href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a></li>
+            </ul>
+
+            <p class="contact-note">If helpful, I can provide a synopsis, proposal materials, and sample chapters upon request.</p>
+          </div>
+
+          <div class="section-copy">
+            <h3 class="subhed">Why This Book</h3>
+            <p><strong>Just Hold Her</strong> offers a rare intersection of foster care, medical complexity, and the ethics of daily caregiving — told with restraint, specificity, and lived authority. The narrative is built from contemporaneous notes kept through long nights, with a clear arc from crisis to clarity.</p>
+            <p class="contact-note">This section is intentionally concise for scanning; details can expand as comps/word count finalize.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACT -->
     <section class="section-form" aria-labelledby="contact-title">
@@ -206,37 +287,51 @@
       <div class="wrap">
         <h2 id="contact-title" class="section-title">Stay Close to the Story</h2>
 
+        <!-- Left column: Form -->
         <div class="col-form">
-          <form action="https://formspree.io/f/xjkaljgn" method="POST" class="contact-form" novalidate>
+          <form id="signup-form" action="https://formspree.io/f/xjkaljgn" method="POST" class="contact-form" novalidate aria-describedby="form-help">
             <h3 class="form-hed">Keep me posted</h3>
-            <p class="contact-note">A story like this travels slowly. Join a small circle of early readers as <strong>Just Hold Her</strong> makes its way into the world. You will receive occasional updates — early excerpts, cover reveals, and launch news.</p>
+
+            <p id="form-help" class="contact-note">
+              A story like this travels slowly. Get early excerpts and launch news as <strong>Just Hold Her</strong> makes its way into the world.
+              <br><span class="field-help">A few thoughtful updates per year. No noise.</span>
+            </p>
 
             <div class="form-row">
               <label for="first-name">First Name</label>
-              <input id="first-name" name="first-name" type="text" autocomplete="given-name" required placeholder="First name" aria-describedby="err-first-name">
+              <input id="first-name" name="first-name" type="text" autocomplete="given-name" required
+                     placeholder="First name" aria-describedby="err-first-name">
               <p class="field-error" id="err-first-name">Please enter your first name.</p>
             </div>
 
             <div class="form-row">
               <label for="last-name">Last Name</label>
-              <input id="last-name" name="last-name" type="text" autocomplete="family-name" required placeholder="Last name" aria-describedby="err-last-name">
+              <input id="last-name" name="last-name" type="text" autocomplete="family-name" required
+                     placeholder="Last name" aria-describedby="err-last-name">
               <p class="field-error" id="err-last-name">Please enter your last name.</p>
             </div>
 
             <div class="form-row">
               <label for="email">Email Address</label>
-              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" aria-describedby="err-email">
+              <input id="email" name="email" type="email" autocomplete="email" required
+                     placeholder="you@example.com"
+                     aria-describedby="help-email err-email">
+              <p class="field-help" id="help-email">We’ll only email occasional updates — early excerpts, cover reveal, and launch news.</p>
               <p class="field-error" id="err-email">Enter a valid email address.</p>
             </div>
 
+            <!-- Honeypot -->
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
             <input type="hidden" name="_subject" value="Just Hold Her — Mailing List">
 
-            <button type="submit" class="form-submit">Join the early readers list</button>
+            <button type="submit" class="form-submit">Get early excerpts &amp; launch news</button>
+
+            <!-- Confirmation + error surface -->
             <div id="form-status" role="status" aria-live="polite"></div>
           </form>
         </div>
 
+        <!-- Right column: Status on top, Inquiries below -->
         <aside class="col-cta" aria-labelledby="status-title inquiries-title">
           <section aria-labelledby="status-title">
             <h3 id="status-title">Status</h3>
@@ -265,6 +360,7 @@
 
   <script src="app-fallback.js" defer></script>
 
+  <!-- Progressive enhancement: inline confirmation on Formspree submit -->
   <script defer>
   (() => {
     'use strict';
@@ -274,6 +370,37 @@
       if (y) y.textContent = new Date().getFullYear();
     });
 
+    // Formspree AJAX submit (keeps existing action as fallback)
+    const form = document.getElementById('signup-form');
+    const statusEl = document.getElementById('form-status');
+    if (form && statusEl && window.fetch) {
+      form.addEventListener('submit', async (e) => {
+        // Allow native validation UI
+        if (!form.checkValidity()) return;
+
+        e.preventDefault();
+        statusEl.textContent = 'Sending…';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            statusEl.textContent = 'Thank you — you’re on the early readers list.';
+            form.reset();
+          } else {
+            statusEl.textContent = 'Something went wrong. Please try again, or email inquiries@justholdher.com.';
+          }
+        } catch {
+          statusEl.textContent = 'Network error. Please try again in a moment.';
+        }
+      });
+    }
+
+    // Hero fade fallback (for browsers without scroll-linked animations)
     const supportsScrollLinked = CSS && CSS.supports && CSS.supports('animation-timeline: auto');
     if (supportsScrollLinked) return;
 
