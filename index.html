@@ -1,4 +1,4 @@
-<!-- index.html (only the updated parts shown previously are now fully applied) -->
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +35,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif:wght@200;300;400&display=swap" rel="stylesheet">
 
-  <!-- Hero preload -->
-  <link rel="preload" href="assets/prescription-of-comfort.png" as="image" fetchpriority="high">
+  <!-- Hero preload (WebP default) -->
+  <link rel="preload" href="assets/prescription-of-comfort.webp" as="image" type="image/webp" fetchpriority="high">
 
   <link rel="stylesheet" href="styles.css">
 
@@ -102,7 +102,6 @@
     <!-- HERO -->
     <section class="hero" aria-label="Introduction">
       <picture>
-        <source srcset="assets/prescription-of-comfort.avif" type="image/avif">
         <source srcset="assets/prescription-of-comfort.webp" type="image/webp">
         <img class="hero-img"
              src="assets/prescription-of-comfort.png"
@@ -123,7 +122,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2 (unchanged) -->
+    <!-- SECTION 2 -->
     <section class="section theme-dark s2" aria-labelledby="s2-title">
       <div class="wrap">
         <h2 id="s2-title"><em>“WOULD YOU, PLEASE… JUST HOLD HER UNTIL SHE DIES?”</em></h2>
@@ -154,9 +153,11 @@
           <div class="section-media">
             <figure>
               <picture>
-                <source srcset="assets/book.avif" type="image/avif">
                 <source srcset="assets/book.webp" type="image/webp">
-                <img src="assets/book.jpg" loading="lazy" decoding="async" alt="" width="1600" height="1067">
+                <img src="assets/book.jpg"
+                     loading="lazy" decoding="async"
+                     alt=""
+                     width="1600" height="1067">
               </picture>
             </figure>
           </div>
@@ -171,9 +172,11 @@
           <div class="section-media">
             <figure>
               <picture>
-                <source srcset="assets/john-and-judy-wright-2.avif" type="image/avif">
                 <source srcset="assets/john-and-judy-wright-2.webp" type="image/webp">
-                <img src="assets/john-and-judy-wright-2.jpg" loading="lazy" decoding="async" alt="" width="1400" height="933">
+                <img src="assets/john-and-judy-wright-2.jpg"
+                     loading="lazy" decoding="async"
+                     alt=""
+                     width="1400" height="933">
               </picture>
             </figure>
           </div>
@@ -197,8 +200,40 @@
       </div>
     </section>
 
-    <!-- SECTION 4 + CONTACT (unchanged from your provided file) -->
-    <!-- ... keep the rest of your existing markup exactly as-is ... -->
+    <!-- SECTION 4 (Dark; image right) -->
+    <section class="section theme-dark s4" aria-labelledby="s4-title">
+      <div class="wrap">
+        <div class="section-inner">
+          <div class="section-copy">
+            <!-- Hierarchy: H2 then H3 -->
+            <h2 id="s4-title">About the Book</h2>
+            <h3 class="subhed">Just Hold Her</h3>
+
+            <p>When the call comes to “just hold her until she dies,” a foster mother opens her arms to a child the world has already given up on.</p>
+
+            <p><strong>Just Hold Her</strong> is the true story of that vigil: a quiet house remade into a lifeline, where medicine meets mercy and love learns to breathe between alarms. Told in spare, luminous fragments, it bears witness to the fierce tenderness found at the edge of life, where protocol ends, faith flickers, and staying becomes the bravest act of all.</p>
+
+            <p>A memoir of presence over perfection, <strong>Just Hold Her</strong> speaks to anyone who has faced the unthinkable, loved without promise, or learned that hope sometimes arrives softly — in the simple act of holding on.</p>
+
+            <p>Coming soon.</p>
+          </div>
+
+          <div class="section-media">
+            <figure>
+              <picture>
+                <source srcset="assets/prescription-of-comfort.webp" type="image/webp">
+                <img
+                  src="assets/prescription-of-comfort.png"
+                  loading="lazy" decoding="async"
+                  alt=""
+                  width="1200" height="1600">
+              </picture>
+              <figcaption style="display:none;">Prescription note reading “Just Hold Her” on a baby blanket.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACT -->
     <section class="section-form" aria-labelledby="contact-title">
