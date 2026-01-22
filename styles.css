@@ -169,13 +169,23 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 .theme-dark.s4 h3{color:var(--fg-dark)}
 .theme-dark.s4 h2{color:color-mix(in srgb,#fff 78%,#000)}
 
+/* Keep the About-the-Book helper line visually consistent in the left column
+   (prevents it from inheriting form-style .contact-note typography if reused) */
+.s4 .section-copy .contact-note{
+  font:inherit;
+  color:inherit;
+  margin:1rem 0;
+}
+.s4 .section-copy .contact-note strong{font-weight:600}
+
 /* ===============================
    AGENT SNAPSHOT — Dashboard card
    =============================== */
 
+/* Allow media column to stack image + card */
 .s4 .section-media{flex-direction:column;gap:1.25rem}
 
-/* Card container */
+/* Card container (light by default; dark-aware below) */
 .agent-card{
   margin-top:1.25rem;
   padding:1.25rem 1.25rem 1.1rem;
@@ -201,6 +211,26 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
   background:#b28547;
 }
 
+/* Mail link in snapshot should look like Status section (not blue) */
+.agent-card a{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+.agent-card a:hover,
+.agent-card a:focus-visible{
+  color:inherit;
+  text-decoration:underline;
+}
+
+/* Lede line (if you use it) */
+.agent-lede{
+  margin:.25rem 0 1rem;
+  font:400 .98rem/1.5 var(--font-body);
+  color:var(--fg);
+}
+.agent-lede strong{font-weight:600}
+
 /* Grid layout */
 .agent-grid{
   display:grid;
@@ -222,7 +252,7 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 }
 .agent-value{
   margin:0;
-  font:400 .98rem/1.45 var(--font-body);
+  font:400 .98rem/1.55 var(--font-body);
   color:var(--fg);
 }
 
@@ -241,24 +271,21 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
   margin:.1rem 0 0;
   padding-left:1.15rem;
 }
-.agent-comps li{
-  margin:.25rem 0;
-}
+.agent-comps li{margin:.25rem 0}
 
-/* Dark-section compatibility (if you ever place it on theme-dark) */
+/* Dark-section compatibility (if used on theme-dark elsewhere) */
 .theme-dark .agent-card{
   background:rgba(255,255,255,.06);
   border-color:rgba(255,255,255,.12);
 }
 .theme-dark .agent-card__kicker{color:rgba(255,255,255,.75)}
 .theme-dark .agent-label{color:rgba(255,255,255,.65)}
-.theme-dark .agent-value{color:var(--fg-dark)}
+.theme-dark .agent-value,
+.theme-dark .agent-lede{color:var(--fg-dark)}
 .theme-dark .agent-highlight{
   background:rgba(0,0,0,.22);
   border-color:rgba(255,255,255,.14);
 }
-
-
 
 /* ==========================================================================
    SECTION 5 (Agents) — clean list + tight helper tone
@@ -285,7 +312,6 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
   border-radius:50%;
   background:color-mix(in srgb,#000 72%,#fff)
 }
-/* If section is on dark background in the future, keep bullets visible */
 .theme-dark .agent-list li::before{
   background:color-mix(in srgb,#fff 70%,#000)
 }
@@ -342,7 +368,7 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
   outline:2px solid #b28547;outline-offset:2px;border-color:#b28547
 }
 
-/* Inline helper microcopy (NEW) */
+/* Inline helper microcopy */
 .field-help{
   font-size:.85rem;
   line-height:1.35;
@@ -454,5 +480,5 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
   p{margin:4mm 0!important}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt}
   .section-form{display:none!important}
-  .footer{color:#000!important;margi
-::contentReference[oaicite:0]{index=0}
+  .footer{color:#000!important;margin-top:8mm!important}
+}
