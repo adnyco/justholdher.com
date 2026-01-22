@@ -431,6 +431,9 @@ figcaption{
   color:var(--fg);
 }
 
+/* Hard safety: default everything inside the card inherits the card color */
+.agent-card *{color:inherit}
+
 /* Kicker */
 .agent-card__kicker{
   display:inline-flex;
@@ -439,9 +442,11 @@ figcaption{
   font:600 .82rem/1.2 var(--font-body);
   letter-spacing:.08em;
   text-transform:uppercase;
-  color:#5a5a5a;
+  color:inherit;
+  opacity:.72;
   margin:0 0 .9rem;
 }
+
 .agent-card__kicker::before{
   content:"";
   width:.55rem;
@@ -454,9 +459,7 @@ figcaption{
 .agent-card--consolidated .agent-lede{
   margin:.15rem 0 1rem;
   font:400 1rem/1.55 var(--font-body);
-  color:inherit;
 }
-.agent-card--consolidated .agent-lede strong{font-weight:600}
 
 /* Divider inside the card */
 .agent-rule{
@@ -471,10 +474,12 @@ figcaption{
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:1rem 1.25rem;
 }
+
 .agent-grid--consolidated{
   grid-template-columns:1fr;
   gap:1rem;
 }
+
 @media (max-width:700px){
   .agent-grid{grid-template-columns:1fr}
 }
@@ -482,18 +487,19 @@ figcaption{
 .agent-item{min-width:0}
 .agent-item--wide{grid-column:1 / -1}
 
+/* Labels / values */
 .agent-label{
   margin:0 0 .25rem;
   font:600 .8rem/1.2 var(--font-body);
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:#6a6a6a;
+  color:inherit;
+  opacity:.62;
 }
 
 .agent-value{
   margin:0;
   font:400 .98rem/1.45 var(--font-body);
-  color:inherit;
 }
 
 /* Comparable titles (slightly smaller, per request) */
@@ -522,8 +528,9 @@ figcaption{
   border-color:rgba(255,255,255,.14);
   color:var(--fg-dark);
 }
-.theme-dark .agent-card__kicker{color:rgba(255,255,255,.75)}
-.theme-dark .agent-label{color:rgba(255,255,255,.65)}
+
+.theme-dark .agent-card__kicker{opacity:.78}
+.theme-dark .agent-label{opacity:.72}
 
 .theme-dark .agent-rule{
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
