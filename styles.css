@@ -171,8 +171,9 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 
 /* ===============================
    AGENT SNAPSHOT — Dashboard card
-   (Add to styles.css)
    =============================== */
+
+.s4 .section-media{flex-direction:column;gap:1.25rem}
 
 /* Card container */
 .agent-card{
