@@ -169,6 +169,96 @@ figcaption{margin-top:.5rem;font-size:.9rem;color:#777;display:none}
 .theme-dark.s4 h3{color:var(--fg-dark)}
 .theme-dark.s4 h2{color:color-mix(in srgb,#fff 78%,#000)}
 
+/* ===============================
+   AGENT SNAPSHOT — Dashboard card
+   (Add to styles.css)
+   =============================== */
+
+/* Card container */
+.agent-card{
+  margin-top:1.25rem;
+  padding:1.25rem 1.25rem 1.1rem;
+  border-radius:var(--radius);
+  background:rgba(0,0,0,.04);
+  border:1px solid rgba(0,0,0,.10);
+}
+
+/* Card header */
+.agent-card__kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font:600 .82rem/1.2 var(--font-body);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#5a5a5a;
+  margin:0 0 .9rem;
+}
+.agent-card__kicker::before{
+  content:"";
+  width:.55rem;height:.55rem;border-radius:50%;
+  background:#b28547;
+}
+
+/* Grid layout */
+.agent-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1rem 1.25rem;
+}
+@media (max-width:700px){
+  .agent-grid{grid-template-columns:1fr}
+}
+
+/* Label/value pairs */
+.agent-item{min-width:0}
+.agent-label{
+  margin:0 0 .25rem;
+  font:600 .8rem/1.2 var(--font-body);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#6a6a6a;
+}
+.agent-value{
+  margin:0;
+  font:400 .98rem/1.45 var(--font-body);
+  color:var(--fg);
+}
+
+/* Highlight block spans full width */
+.agent-item--wide{grid-column:1 / -1}
+.agent-highlight{
+  padding:.85rem .95rem;
+  border-radius:calc(var(--radius) - 2px);
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+}
+.agent-highlight .agent-value{margin:0}
+
+/* Comparable titles list */
+.agent-comps{
+  margin:.1rem 0 0;
+  padding-left:1.15rem;
+}
+.agent-comps li{
+  margin:.25rem 0;
+}
+
+/* Dark-section compatibility (if you ever place it on theme-dark) */
+.theme-dark .agent-card{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.12);
+}
+.theme-dark .agent-card__kicker{color:rgba(255,255,255,.75)}
+.theme-dark .agent-label{color:rgba(255,255,255,.65)}
+.theme-dark .agent-value{color:var(--fg-dark)}
+.theme-dark .agent-highlight{
+  background:rgba(0,0,0,.22);
+  border-color:rgba(255,255,255,.14);
+}
+
+
+
 /* ==========================================================================
    SECTION 5 (Agents) — clean list + tight helper tone
    ========================================================================== */
