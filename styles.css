@@ -518,6 +518,9 @@ figcaption{
 
 .agent-comps li{margin:.28rem 0}
 
+.agent-comps{
+  font-size:.93em;
+
 /* Email should read like “Status” links (not blue) */
 .agent-email{
   color:inherit;
