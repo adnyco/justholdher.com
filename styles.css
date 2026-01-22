@@ -1,6 +1,6 @@
 /* styles.css */
 /* ==========================================================================
-   JUST HOLD HER — Production Styles (Hand-tuned)
+   JUST HOLD HER — Production Styles (Hand-tuned, refactored)
    ========================================================================== */
 
 /* ==========================================================================
@@ -55,18 +55,13 @@ body{
   -moz-osx-font-smoothing:grayscale;
 }
 
-img{
-  display:block;
-  max-width:100%;
-  height:auto;
-}
+img{display:block;max-width:100%;height:auto}
 
 a{
   color:var(--link);
   text-decoration:none;
   transition:color .2s var(--ease-out);
 }
-
 a:hover,
 a:focus{
   text-decoration:underline;
@@ -79,11 +74,7 @@ a:focus{
 }
 
 /* Skip link */
-.skip{
-  position:absolute;
-  left:-9999px;
-}
-
+.skip{position:absolute;left:-9999px}
 .skip:focus{
   left:1rem;
   top:1rem;
@@ -235,11 +226,7 @@ figcaption{
   gap:1rem;
 }
 
-.topnav a{
-  color:#fff;
-  text-decoration:none;
-}
-
+.topnav a{color:#fff;text-decoration:none}
 .topnav a:hover,
 .topnav a:focus-visible{
   text-decoration:underline;
@@ -265,7 +252,6 @@ figcaption{
 }
 
 .topnav-links a{white-space:nowrap}
-
 .topnav-links a[aria-current="page"]{
   text-decoration:underline;
   text-underline-offset:3px;
@@ -359,10 +345,7 @@ figcaption{
     animation-timeline:--hero;
     animation-range:entry 0% exit 100%;
   }
-  @keyframes heroFade{
-    from{opacity:0}
-    to{opacity:1}
-  }
+  @keyframes heroFade{from{opacity:0}to{opacity:1}}
 }
 
 /* ==========================================================================
@@ -378,9 +361,7 @@ figcaption{
   animation-range:entry 0% entry 20%;
 }
 
-@keyframes s2Bg{
-  to{background-color:#000}
-}
+@keyframes s2Bg{to{background-color:#000}}
 
 @supports not (animation-timeline:auto){
   .section.theme-dark.s2{animation:s2BgTime 450ms var(--ease-out) both}
@@ -430,8 +411,16 @@ figcaption{
 .s4 .section-copy .contact-note strong{font-weight:600}
 
 /* ==========================================================================
-   9) Agent Snapshot — Consolidated card (hand-tuned)
+   9) Agent Snapshot — Consolidated card (fixed + tidy)
    ========================================================================== */
+
+/* Allow media column to stack image + card */
+.s4 .section-media{
+  flex-direction:column;
+  gap:1.25rem;
+}
+
+/* Card container */
 .agent-card{
   margin-top:1.25rem;
   padding:1.25rem 1.25rem 1.1rem;
@@ -451,7 +440,6 @@ figcaption{
   color:#5a5a5a;
   margin:0 0 .9rem;
 }
-
 .agent-card__kicker::before{
   content:"";
   width:.55rem;
@@ -460,7 +448,7 @@ figcaption{
   background:var(--accent);
 }
 
-/* Consolidated lede paragraph */
+/* Consolidated lede */
 .agent-card--consolidated .agent-lede{
   margin:.15rem 0 1rem;
   font:400 1rem/1.55 var(--font-body);
@@ -475,24 +463,22 @@ figcaption{
   margin:.9rem 0 1rem;
 }
 
-/* Grid (single column even on desktop for “snapshot” clarity) */
+/* Grid */
 .agent-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:1rem 1.25rem;
 }
-
 .agent-grid--consolidated{
   grid-template-columns:1fr;
   gap:1rem;
 }
-
 @media (max-width:700px){
   .agent-grid{grid-template-columns:1fr}
 }
 
-/* Labels / values */
 .agent-item{min-width:0}
+.agent-item--wide{grid-column:1 / -1}
 
 .agent-label{
   margin:0 0 .25rem;
@@ -508,18 +494,13 @@ figcaption{
   color:var(--fg);
 }
 
-.agent-item--wide{grid-column:1 / -1}
-
-/* Comparable titles */
+/* Comparable titles (slightly smaller, per request) */
 .agent-comps{
   margin:.15rem 0 0;
   padding-left:1.05rem;
-}
-
-.agent-comps li{margin:.28rem 0}
-
-.agent-comps{
   font-size:.93em;
+}
+.agent-comps li{margin:.28rem 0}
 
 /* Email should read like “Status” links (not blue) */
 .agent-email{
@@ -527,14 +508,13 @@ figcaption{
   text-decoration:underline;
   text-underline-offset:2px;
 }
-
 .agent-email:hover,
 .agent-email:focus-visible{
   color:inherit;
   text-decoration:underline;
 }
 
-/* Dark compatibility (if placed on a dark section later) */
+/* Dark compatibility */
 .theme-dark .agent-card{
   background:rgba(255,255,255,.06);
   border-color:rgba(255,255,255,.12);
@@ -582,17 +562,12 @@ figcaption{
 
 .about-back-btn:active{transform:translateY(1px)}
 
-/* About page: center the Back to Home button */
 .about-actions{
   display:flex;
   justify-content:center;
   margin-top:1.75rem;
 }
-
-.about-actions .about-back-btn{
-  width:auto;
-  text-align:center;
-}
+.about-actions .about-back-btn{width:auto;text-align:center}
 
 /* ==========================================================================
    11) Form Section — Two Columns + centered title + a11y messaging
@@ -618,10 +593,7 @@ figcaption{
   letter-spacing:-.02em;
 }
 
-.section-form .col-form{
-  min-width:0;
-  align-self:stretch;
-}
+.section-form .col-form{min-width:0;align-self:stretch}
 
 .section-form .contact-form{
   display:grid;
@@ -636,10 +608,7 @@ figcaption{
 
 .section-form .form-hed{margin:0 0 .75rem}
 
-.section-form .form-row{
-  display:grid;
-  gap:.35rem;
-}
+.section-form .form-row{display:grid;gap:.35rem}
 
 .section-form label{
   font-size:.9rem;
@@ -661,10 +630,7 @@ figcaption{
   transition:border-color .15s var(--ease-out);
 }
 
-.section-form textarea{
-  resize:vertical;
-  min-height:5.5rem;
-}
+.section-form textarea{resize:vertical;min-height:5.5rem}
 
 .section-form input::placeholder,
 .section-form textarea::placeholder{color:#7a7a7a}
@@ -691,13 +657,10 @@ figcaption{
   color:#ffb4b4;
   margin:.15rem 0 0;
 }
-
 .form-row input:user-invalid ~ .field-error,
 .form-row textarea:user-invalid ~ .field-error{display:block}
-
 .form-row input:user-invalid,
 .form-row textarea:user-invalid{border-color:#c0392b}
-
 .form-row input:user-valid,
 .form-row textarea:user-valid{border-color:#3aa76d}
 
@@ -719,15 +682,10 @@ figcaption{
     background-color .16s var(--ease-out),
     color .16s var(--ease-out);
 }
-
-.section-form .form-submit:hover{
-  background:var(--accent);
-  color:#fff;
-}
-
+.section-form .form-submit:hover{background:var(--accent);color:#fff}
 .section-form .form-submit:active{transform:translateY(1px)}
 
-/* Form status (confirmation) */
+/* Form status */
 #form-status{
   min-height:1.25rem;
   margin-top:.25rem;
@@ -806,7 +764,7 @@ figcaption{
 }
 
 /* ==========================================================================
-   13) Footer
+   13) Footer (inside Contact section)
    ========================================================================== */
 .footer{
   width:100%;
@@ -830,7 +788,6 @@ figcaption{
   text-decoration:none;
   transition:color .2s var(--ease-out);
 }
-
 .footer a:hover{
   color:#c0c0c0;
   text-decoration:underline;
