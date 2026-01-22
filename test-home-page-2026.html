@@ -1,4 +1,4 @@
-<!-- index.html -->
+<!-- index.html (refactored: Agent Snapshot moved to right column in Book section; optimized markup; WebP-first; no AVIF) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif:wght@200;300;400&display=swap" rel="stylesheet">
 
-  <!-- Hero preload: WebP first, PNG fallback in markup -->
+  <!-- Hero preload: WebP first; PNG fallback in markup -->
   <link rel="preload" href="assets/prescription-of-comfort.webp" as="image" fetchpriority="high">
 
   <link rel="stylesheet" href="styles.css">
@@ -96,7 +96,6 @@
         <a href="#story">Story</a>
         <a href="#author">About</a>
         <a href="#book">Book</a>
-        <a href="#agents">Agents</a>
         <a href="#contact-title">Contact</a>
         <a href="about-author-judy-wright.html">Bio</a>
       </nav>
@@ -120,7 +119,6 @@
 
       <div class="hero-shroud" aria-hidden="true"></div>
 
-      <!-- Keep stacked + left aligned -->
       <div class="hero-overlay hero-stack">
         <h1>The Work of Staying</h1>
         <h2 class="hero-sub">Foster Care, Medicine, and Presence</h2>
@@ -135,31 +133,34 @@
         <div class="section-inner">
           <div class="section-copy">
             <p>That was the call.</p>
-
             <p>Two months old. Three pounds.<br>We named her Jayden.</p>
 
             <p>She arrived swaddled in hospital linens,<br>
-               tethered to tubes and monitors.<br>
-               Blind. Deaf. Insulin-dependent.<br>
-               Hands and feet raw since birth.<br>
-               Thirty diagnoses. No plan.</p>
+              tethered to tubes and monitors.<br>
+              Blind. Deaf. Insulin-dependent.<br>
+              Hands and feet raw since birth.<br>
+              Thirty diagnoses. No plan.
+            </p>
 
             <p>They didn’t ask us to save her.<br>They asked us to stay.</p>
 
             <p>What followed wasn’t heroic. It was relentless.<br>
-               Alarms in the dark. A thin-gauge lancet.<br>
-               A cooler on the porch.<br>
-               A spiral notebook filling with numbers.</p>
+              Alarms in the dark. A thin-gauge lancet.<br>
+              A cooler on the porch.<br>
+              A spiral notebook filling with numbers.
+            </p>
 
             <p>And one question I kept asking, again and again:<br><strong>What about breast milk?</strong></p>
 
             <p><strong>Just Hold Her</strong> is the true story of a foster mother’s nightwatch &mdash;
-               a literary memoir where medicine, bureaucracy, and human attachment collide,
-               and where faith arrives less as certainty than as presence.</p>
+              a literary memoir where medicine, bureaucracy, and human attachment collide,
+              and where faith arrives less as certainty than as presence.
+            </p>
 
             <p>It stays with Jayden from that first call into the long months that followed,
-               bearing witness to the quiet, aching grace at the edge of life &mdash;
-               where protocol ends, and staying costs what it costs.</p>
+              bearing witness to the quiet, aching grace at the edge of life &mdash;
+              where protocol ends, and staying costs what it costs.
+            </p>
           </div>
 
           <div class="section-media">
@@ -171,7 +172,7 @@
                      alt="Book cover mockup for Just Hold Her resting on a bedside table."
                      width="1600" height="1067">
               </picture>
-              <figcaption style="display:none;">Book cover for <em>Just Hold Her</em> resting on a bedside table.</figcaption>
+              <figcaption>Book cover for <em>Just Hold Her</em> resting on a bedside table.</figcaption>
             </figure>
           </div>
         </div>
@@ -191,12 +192,11 @@
                      alt="John and Judy Wright, honored foster parents."
                      width="1400" height="933">
               </picture>
-              <figcaption style="display:none;">John and Judy Wright, honored foster parents.</figcaption>
+              <figcaption>John and Judy Wright, honored foster parents.</figcaption>
             </figure>
           </div>
 
           <div class="section-copy">
-            <!-- Semantics: H2 then H3 (visual flip handled in CSS) -->
             <h2 id="s3-title">About the Author</h2>
             <h3 class="subhed">JUDY WRIGHT</h3>
 
@@ -206,7 +206,6 @@
 
             <p>Judy writes for foster, medical, and faith-aware communities about presence, caregiving, and the courage to remain when certainty is gone.</p>
 
-            <!-- Centered button -->
             <div class="center-cta">
               <a class="about-back-btn" href="about-author-judy-wright.html">About Judy</a>
             </div>
@@ -215,10 +214,11 @@
       </div>
     </section>
 
-    <!-- SECTION 4 (About the Book) -->
+    <!-- SECTION 4 (About the Book + Agents in right column) -->
     <section id="book" class="section theme-dark s4" aria-labelledby="s4-title">
       <div class="wrap">
         <div class="section-inner">
+          <!-- Left column: About the Book -->
           <div class="section-copy">
             <h2 id="s4-title">About the Book</h2>
             <h3 class="subhed">Just Hold Her</h3>
@@ -229,54 +229,70 @@
 
             <p>A memoir of presence over perfection, <strong>Just Hold Her</strong> speaks to anyone who has faced the unthinkable, loved without promise, or learned that hope sometimes arrives softly — in the simple act of holding on.</p>
 
-            <!-- Explicit reader-benefit line (tight, skimmable) -->
             <p class="contact-note"><strong>For caregivers, foster parents, medical staff, and anyone who’s loved where medicine can’t fix</strong> — this memoir offers compassion, witness, and shared humanity.</p>
 
             <p>Coming soon.</p>
           </div>
 
-          <!-- Agent Snapshot (drop into your chosen section, e.g., below About the Book copy) -->
-          <aside class="agent-card" aria-labelledby="agent-snapshot-title">
+          <!-- Right column: Image + Agent Snapshot (dashboard) -->
+          <div class="section-media">
+            <figure>
+              <picture>
+                <source srcset="assets/prescription-of-comfort.webp" type="image/webp">
+                <img src="assets/prescription-of-comfort.png"
+                     loading="lazy" decoding="async"
+                     alt="A handwritten prescription note reading “Just Hold Her” resting on a baby blanket."
+                     width="1200" height="1600">
+              </picture>
+              <figcaption>Prescription note reading “Just Hold Her” on a baby blanket.</figcaption>
+            </figure>
+
+            <!-- Agent Snapshot -->
+            <aside class="agent-card" aria-labelledby="agent-snapshot-title">
               <p class="agent-card__kicker" id="agent-snapshot-title">Agent Snapshot</p>
-            <div class="agent-grid">
-              <div class="agent-item">
-                <p class="agent-label">Genre</p>
-                <p class="agent-value">Literary Memoir / Narrative Nonfiction</p>
-              </div>
-              <div class="agent-item">
-                <p class="agent-label">Status</p>
-                <p class="agent-value">Complete manuscript, 85,000 words</p>
-              </div>
 
-              <div class="agent-item">
-                <p class="agent-label">Seeking representation</p>
-                <p class="agent-value">Yes</p>
-              </div>
+              <div class="agent-grid">
+                <div class="agent-item">
+                  <p class="agent-label">Genre</p>
+                  <p class="agent-value">Literary Memoir / Narrative Nonfiction</p>
+                </div>
 
-              <div class="agent-item agent-item--wide">
-                <p class="agent-label">Positioning</p>
-                <div class="agent-highlight">
-                  <p class="agent-value">
-                    A literary memoir at the intersection of foster care, medical complexity, and daily caregiving ethics.
-                    Built from contemporaneous notes kept through long nights, with a clear arc from crisis to clarity.
-                    A witness narrative, not a rescue story.
-                  </p>
+                <div class="agent-item">
+                  <p class="agent-label">Status</p>
+                  <p class="agent-value">Complete manuscript, 85,000 words</p>
+                </div>
+
+                <div class="agent-item">
+                  <p class="agent-label">Seeking representation</p>
+                  <p class="agent-value">Yes</p>
+                </div>
+
+                <div class="agent-item agent-item--wide">
+                  <p class="agent-label">Positioning</p>
+                  <div class="agent-highlight">
+                    <p class="agent-value">
+                      A literary memoir at the intersection of foster care, medical complexity, and daily caregiving ethics.
+                      Built from contemporaneous notes kept through long nights, with a clear arc from crisis to clarity.
+                      A witness narrative, not a rescue story.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="agent-item agent-item--wide">
+                  <p class="agent-label">Comparable Titles</p>
+                  <ul class="agent-comps">
+                    <li><em>When Breath Becomes Air</em> (Paul Kalanithi)</li>
+                    <li><em>The Bright Hour</em> (Nina Riggs)</li>
+                    <li><em>Another Place at the Table</em> (Kathy Harrison)</li>
+                  </ul>
                 </div>
               </div>
-              <div class="agent-item agent-item--wide">
-                <p class="agent-label">Comparable Titles</p>
-                <ul class="agent-comps">
-                  <li><em>When Breath Becomes Air</em> (Paul Kalanithi)</li>
-                  <li><em>The Bright Hour</em> (Nina Riggs)</li>
-                  <li><em>Another Place at the Table</em> (Kathy Harrison)</li>
-                </ul>
-              </div>
-            </div>
-          </aside>
+            </aside>
+          </div>
         </div>
       </div>
     </section>
-    
+
     <!-- CONTACT -->
     <section class="section-form" aria-labelledby="contact-title">
       <hr class="contact-sep" />
@@ -285,7 +301,12 @@
 
         <!-- Left column: Form -->
         <div class="col-form">
-          <form id="signup-form" action="https://formspree.io/f/xjkaljgn" method="POST" class="contact-form" novalidate aria-describedby="form-help">
+          <form id="signup-form"
+                action="https://formspree.io/f/xjkaljgn"
+                method="POST"
+                class="contact-form"
+                novalidate
+                aria-describedby="form-help">
             <h3 class="form-hed">Keep me posted</h3>
 
             <p id="form-help" class="contact-note">
@@ -322,12 +343,11 @@
 
             <button type="submit" class="form-submit">Get early excerpts &amp; launch news</button>
 
-            <!-- Confirmation + error surface -->
             <div id="form-status" role="status" aria-live="polite"></div>
           </form>
         </div>
 
-        <!-- Right column: Status on top, Inquiries below -->
+        <!-- Right column: Status + Inquiries -->
         <aside class="col-cta" aria-labelledby="status-title inquiries-title">
           <section aria-labelledby="status-title">
             <h3 id="status-title">Status</h3>
@@ -356,22 +376,21 @@
 
   <script src="app-fallback.js" defer></script>
 
-  <!-- Progressive enhancement: inline confirmation on Formspree submit -->
   <script defer>
   (() => {
     'use strict';
 
+    // Footer year
     document.addEventListener('DOMContentLoaded', () => {
       const y = document.querySelector('.footer-year');
       if (y) y.textContent = new Date().getFullYear();
     });
 
-    // Formspree AJAX submit (keeps existing action as fallback)
+    // Formspree AJAX submit (keeps action fallback)
     const form = document.getElementById('signup-form');
     const statusEl = document.getElementById('form-status');
     if (form && statusEl && window.fetch) {
       form.addEventListener('submit', async (e) => {
-        // Allow native validation UI
         if (!form.checkValidity()) return;
 
         e.preventDefault();
