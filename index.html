@@ -35,8 +35,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif:wght@200;300;400&display=swap" rel="stylesheet">
 
-  <!-- Hero preload (WebP default) -->
-  <link rel="preload" href="assets/prescription-of-comfort.webp" as="image" type="image/webp" fetchpriority="high">
+  <!-- Hero preload: AVIF first; PNG fallback in markup -->
+  <link rel="preload" href="assets/prescription-of-comfort.avif" as="image" fetchpriority="high">
 
   <link rel="stylesheet" href="styles.css">
 
@@ -92,8 +92,11 @@
 
       <nav class="topnav-links" aria-label="Primary">
         <a href="index.html" aria-current="page">Home</a>
+        <a href="#story">Story</a>
+        <a href="#author">About</a>
+        <a href="#book">Book</a>
+        <a href="#contact-title">Contact</a>
         <a href="about-author-judy-wright.html">Bio</a>
-        <a href="index.html#contact-title">Contact</a>
       </nav>
     </div>
   </header>
@@ -102,6 +105,7 @@
     <!-- HERO -->
     <section class="hero" aria-label="Introduction">
       <picture>
+        <source srcset="assets/prescription-of-comfort.avif" type="image/avif">
         <source srcset="assets/prescription-of-comfort.webp" type="image/webp">
         <img class="hero-img"
              src="assets/prescription-of-comfort.png"
@@ -115,15 +119,14 @@
 
       <div class="hero-shroud" aria-hidden="true"></div>
 
-      <!-- Keep stacked + left aligned -->
       <div class="hero-overlay hero-stack">
-        <h1>The Story of Witness</h1>
-        <h2 class="hero-sub">Foster Care, Medicine, and Presence</h2>
+        <h1>Just Hold Her</h1>
+        <h2 class="hero-sub">A memoir of foster care, medicine, and the long nights in between.</h2>
       </div>
     </section>
 
-    <!-- SECTION 2 -->
-    <section class="section theme-dark s2" aria-labelledby="s2-title">
+    <!-- SECTION 2 (Story) -->
+    <section id="story" class="section theme-dark s2" aria-labelledby="s2-title">
       <div class="wrap">
         <h2 id="s2-title"><em>“WOULD YOU, PLEASE… JUST HOLD HER UNTIL SHE DIES?”</em></h2>
 
@@ -131,53 +134,67 @@
           <div class="section-copy">
             <p>That was the call.</p>
             <p>Two months old. Three pounds.<br>We named her Jayden.</p>
+
             <p>She arrived swaddled in hospital linens,<br>
-               tethered to tubes and monitors.<br>
-               Blind. Deaf. Insulin-dependent.<br>
-               Hands and feet raw since birth.<br>
-               Thirty diagnoses. No plan.</p>
+              tethered to tubes and monitors.<br>
+              Blind. Deaf. Insulin-dependent.<br>
+              Hands and feet raw since birth.<br>
+              Thirty diagnoses. No plan.
+            </p>
+
             <p>They didn’t ask us to save her.<br>They asked us to stay.</p>
+
             <p>What followed wasn’t heroic. It was relentless.<br>
-               Alarms in the dark. A thin-gauge lancet.<br>
-               A cooler on the porch.<br>
-               A spiral notebook filling with numbers.</p>
+              Alarms in the dark. A thin-gauge lancet.<br>
+              A cooler on the porch.<br>
+              A spiral notebook filling with numbers.
+            </p>
+
             <p>And one question I kept asking, again and again:<br><strong>What about breast milk?</strong></p>
-            <p><strong>Just Hold Her</strong> is the true story of a foster mother’s nightwatch &mdash;
-               a literary memoir where medicine, bureaucracy, and human attachment collide,
-               and where faith arrives less as certainty than as presence.</p>
-            <p>It stays with Jayden from that first call into the long months that followed,
-               bearing witness to the quiet, aching grace at the edge of life.
-               Where protocol ends, and staying asks everything of you.</p>
+
+            <p><strong>Just Hold Her</strong> is the true story of a foster mother’s nightwatch.
+              A literary memoir where medicine, bureaucracy, and human attachment collide,
+              and where faith arrives less as certainty than as presence.
+            </p>
+
+            <p>The story stays with Jayden from that first call into the long months that followed,
+              bearing witness to the quiet, aching grace at the edge of life &mdash;
+              where protocol ends, and staying asks for everything you have.
+            </p>
           </div>
 
           <div class="section-media">
             <figure>
               <picture>
+                <source srcset="assets/book.avif" type="image/avif">
                 <source srcset="assets/book.webp" type="image/webp">
                 <img src="assets/book.jpg"
                      loading="lazy" decoding="async"
-                     alt=""
+                     alt="Book cover mockup for Just Hold Her resting on a bedside table."
                      width="1600" height="1067">
               </picture>
+              <figcaption>Book cover for <em>Just Hold Her</em> resting on a bedside table.</figcaption>
             </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3 -->
-    <section class="section theme-gray s3" aria-labelledby="s3-title">
+    <!-- SECTION 3 (About the Author) -->
+    <section id="author" class="section theme-gray s3" aria-labelledby="s3-title">
       <div class="wrap">
         <div class="section-inner">
           <div class="section-media">
             <figure>
               <picture>
+                <source srcset="assets/john-and-judy-wright-2.avif" type="image/avif">
                 <source srcset="assets/john-and-judy-wright-2.webp" type="image/webp">
                 <img src="assets/john-and-judy-wright-2.jpg"
                      loading="lazy" decoding="async"
-                     alt=""
+                     alt="John and Judy Wright, honored foster parents."
                      width="1400" height="933">
               </picture>
+              <figcaption>John and Judy Wright, honored foster parents.</figcaption>
             </figure>
           </div>
 
@@ -185,13 +202,19 @@
             <h2 id="s3-title">About the Author</h2>
             <h3 class="subhed">JUDY WRIGHT</h3>
 
-            <p>Judy Wright and her late husband, John, fostered fifty-five infants over twelve years, many medically fragile. In 2012, they were honored as both Oakland County and Michigan Foster Parents of the Year. Their advocacy helped inspire the John and Judy Wright Scholarship for Foster Youth and the Judy Wright Volunteer of the Year Award.</p>
+            <p>Judy Wright is a foster mother, caregiver, and advocate whose life has been shaped by the demanding, ordinary work of staying. Alongside her late husband, John, she fostered fifty-five children over twelve years, many medically fragile.</p>
 
-            <p><strong>Just Hold Her</strong> is her debut memoir. A true account of a nightwatch that began with a single call to “just hold” a dying baby, and unfolded into a sustained act of care, witness, and staying.</p>
+            <p>In 2012, Judy and John were recognized as Oakland County Foster Parents of the Year by the Oakland County Board of Commissioners and named Michigan’s Foster Parents of the Year by the Michigan Supreme Court. Their years of hard work and dedication helped inspire the
+              <a href="https://jjwrightscholarship.com" target="_blank" rel="noopener">John and Judy Wright Scholarship for Foster Children</a>
+              in collaboration with the Ennis Center for Children.
+            </p>
 
-            <p>Judy writes for foster, medical, and faith-aware communities about presence, caregiving, and the courage to remain when certainty is gone.</p>
+            <p><strong>Just Hold Her</strong> is Judy’s debut memoir, drawn from the spiral notebooks she kept during a two-year nightwatch that began with a single call to “just hold” a dying baby and became a sustained act of care, witness, and love without guarantees.</p>
 
-            <!-- Centered button -->
+            <p>Judy writes for foster, medical, and faith-aware communities about presence, caregiving, and the courage required to remain available when certainty is gone.</p>
+
+            <p>&nbsp;</p>
+
             <div class="center-cta">
               <a class="about-back-btn" href="about-author-judy-wright.html">About Judy</a>
             </div>
@@ -200,36 +223,68 @@
       </div>
     </section>
 
-    <!-- SECTION 4 (Dark; image right) -->
-    <section class="section theme-dark s4" aria-labelledby="s4-title">
+    <!-- SECTION 4 (About the Book + Agent Snapshot in right column) -->
+    <section id="book" class="section theme-dark s4" aria-labelledby="s4-title">
       <div class="wrap">
         <div class="section-inner">
+          <!-- Left column: About the Book -->
           <div class="section-copy">
-            <!-- Hierarchy: H2 then H3 -->
             <h2 id="s4-title">About the Book</h2>
             <h3 class="subhed">Just Hold Her</h3>
 
-            <p>When the call comes to “just hold her until she dies,” a foster mother opens her arms to a child the world has already given up on.</p>
+            <p>When the call comes to “just hold her until she dies,” a foster mother opens her arms to a child the world is already turning away from.</p>
 
-            <p><strong>Just Hold Her</strong> is the true story of that vigil: a quiet house remade into a lifeline, where medicine meets mercy and love learns to breathe between alarms. Told in spare, luminous fragments, it bears witness to the fierce tenderness found at the edge of life, where protocol ends, faith flickers, and staying becomes the bravest act of all.</p>
+            <p><strong>Just Hold Her</strong> is the true story of a long vigil lived inside ordinary days. A quiet house becomes a lifeline, where medicine, bureaucracy, and human attachment collide, and where care is measured in alarms, feedings, phone calls, and the choice to show up again. Built from the spiral notebook Judy kept through those nights, the memoir traces an emotional arc from fear to fierce attachment, and the cost of staying without guarantees.</p>
 
-            <p>A memoir of presence over perfection, <strong>Just Hold Her</strong> speaks to anyone who has faced the unthinkable, loved without promise, or learned that hope sometimes arrives softly — in the simple act of holding on.</p>
+            <p>A memoir of presence over perfection, <strong>Just Hold Her</strong> speaks to anyone who has carried responsibility without certainty, loved without promise, or learned that hope can arrive quietly, one steady hour at a time.</p>
+
+            <p>For caregivers, foster parents, medical staff, and anyone who has lived at the edge of what medicine can do, this is a story of witness, compassion, and shared humanity.</p>
 
             <p>Coming soon.</p>
           </div>
 
+          <!-- Right column: Image + Agent Snapshot -->
           <div class="section-media">
             <figure>
               <picture>
+                <source srcset="assets/prescription-of-comfort.avif" type="image/avif">
                 <source srcset="assets/prescription-of-comfort.webp" type="image/webp">
-                <img
-                  src="assets/prescription-of-comfort.png"
-                  loading="lazy" decoding="async"
-                  alt=""
-                  width="1200" height="1600">
+                <img src="assets/prescription-of-comfort.png"
+                     loading="lazy" decoding="async"
+                     alt="A handwritten prescription note reading “Just Hold Her” resting on a baby blanket."
+                     width="1200" height="1600">
               </picture>
-              <figcaption style="display:none;">Prescription note reading “Just Hold Her” on a baby blanket.</figcaption>
+              <figcaption>Prescription note reading “Just Hold Her” on a baby blanket.</figcaption>
             </figure>
+
+            <!-- Agent Snapshot -->
+            <aside id="agent-snapshot" class="agent-card agent-card--consolidated" aria-labelledby="agent-snapshot-title">
+              <p class="agent-card__kicker" id="agent-snapshot-title">Agent Snapshot</p>
+
+              <p class="agent-lede">
+                <strong>Just Hold Her</strong> is a completed <strong>85,000-word</strong> literary memoir at the intersection of foster care, medical complexity, and the ethics of daily caregiving. Built from contemporaneous notes kept through long nights, it moves from fear to fierce attachment… and finally, to letting go. <strong>A witness story, not a rescue story.</strong>
+              </p>
+
+              <div class="agent-rule" aria-hidden="true"></div>
+
+              <div class="agent-grid agent-grid--consolidated">
+                <div class="agent-item agent-item--wide">
+                  <p class="agent-label">Comparable Titles</p>
+                  <ul class="agent-comps" aria-label="Comparable titles">
+                    <li><em>When Breath Becomes Air</em> (Paul Kalanithi)</li>
+                    <li><em>The Bright Hour</em> (Nina Riggs)</li>
+                    <li><em>Another Place at the Table</em> (Kathy Harrison)</li>
+                  </ul>
+                </div>
+
+                <div class="agent-item agent-item--wide agent-contact">
+                  <p class="agent-label">Seeking representation</p>
+                  <p class="agent-value">
+                    <a class="agent-email" href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>
+                  </p>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </div>
@@ -241,52 +296,70 @@
       <div class="wrap">
         <h2 id="contact-title" class="section-title">Stay Close to the Story</h2>
 
+        <!-- Left column: Form -->
         <div class="col-form">
-          <form action="https://formspree.io/f/xjkaljgn" method="POST" class="contact-form" novalidate>
+          <form id="signup-form"
+                action="https://formspree.io/f/xjkaljgn"
+                method="POST"
+                class="contact-form"
+                novalidate
+                aria-describedby="form-help">
             <h3 class="form-hed">Keep me posted</h3>
-            <p class="contact-note">A story like this travels slowly. Join a small circle of early readers as <strong>Just Hold Her</strong> makes its way into the world. You will receive occasional updates — early excerpts, cover reveals, and launch news.</p>
+
+            <p id="form-help" class="contact-note">
+              A story like this travels slowly. Get early excerpts and launch news as <strong>Just Hold Her</strong> makes its way into the world.
+              <br><span class="field-help">A few thoughtful updates per year. No noise.</span>
+            </p>
 
             <div class="form-row">
               <label for="first-name">First Name</label>
-              <input id="first-name" name="first-name" type="text" autocomplete="given-name" required placeholder="First name" aria-describedby="err-first-name">
+              <input id="first-name" name="first-name" type="text" autocomplete="given-name" required
+                     placeholder="First name" aria-describedby="err-first-name">
               <p class="field-error" id="err-first-name">Please enter your first name.</p>
             </div>
 
             <div class="form-row">
               <label for="last-name">Last Name</label>
-              <input id="last-name" name="last-name" type="text" autocomplete="family-name" required placeholder="Last name" aria-describedby="err-last-name">
+              <input id="last-name" name="last-name" type="text" autocomplete="family-name" required
+                     placeholder="Last name" aria-describedby="err-last-name">
               <p class="field-error" id="err-last-name">Please enter your last name.</p>
             </div>
 
             <div class="form-row">
               <label for="email">Email Address</label>
-              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" aria-describedby="err-email">
+              <input id="email" name="email" type="email" autocomplete="email" required
+                     placeholder="you@example.com"
+                     aria-describedby="help-email err-email">
+              <p class="field-help" id="help-email">We’ll only email occasional updates — early excerpts, cover reveal, and launch news.</p>
               <p class="field-error" id="err-email">Enter a valid email address.</p>
             </div>
 
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
             <input type="hidden" name="_subject" value="Just Hold Her — Mailing List">
 
-            <button type="submit" class="form-submit">Join the early readers list</button>
+            <button type="submit" class="form-submit">Get early excerpts &amp; launch news</button>
             <div id="form-status" role="status" aria-live="polite"></div>
           </form>
         </div>
 
-        <aside class="col-cta" aria-labelledby="status-title inquiries-title">
-          <section aria-labelledby="status-title">
-            <h3 id="status-title">Status</h3>
+        <!-- Right column: Updates + Industry -->
+        <aside class="col-cta" aria-labelledby="updates-title industry-title">
+          <section aria-labelledby="updates-title">
+            <h3 id="updates-title">Updates</h3>
             <p class="contact-note">
-              The manuscript for <strong>Just Hold Her</strong> is complete, with a final polish now in progress. Each line is being refined with care before the book steps into the world. Publication is planned for 2026. Join the mailing list to follow its path to print and be among the first to hear when it finds its readers.
+              <strong>Just Hold Her</strong> is on a careful final polish. Publication is planned for 2026.
+              Join the mailing list to follow the path to print and be first to hear news and release details.
             </p>
           </section>
 
           <hr class="contact-sep" />
 
-          <section aria-labelledby="inquiries-title">
-            <h3 id="inquiries-title">Inquiries</h3>
+          <section aria-labelledby="industry-title">
+            <h3 id="industry-title">Industry</h3>
             <p class="contact-note">
-              Publishing professionals (agents, editors, scouts): please send rights and representation inquiries to
-              <a href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>.
+              Agents, editors, and scouts:
+              <a href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a><br>
+              <span class="field-help">(see <a class="agent-email" href="#agent-snapshot">Agent Snapshot</a> above).</span>
             </p>
           </section>
         </aside>
@@ -304,11 +377,42 @@
   (() => {
     'use strict';
 
+    // Footer year
     document.addEventListener('DOMContentLoaded', () => {
       const y = document.querySelector('.footer-year');
       if (y) y.textContent = new Date().getFullYear();
     });
 
+    // Formspree AJAX submit (keeps action fallback)
+    const form = document.getElementById('signup-form');
+    const statusEl = document.getElementById('form-status');
+    if (form && statusEl && window.fetch) {
+      form.addEventListener('submit', async (e) => {
+        if (!form.checkValidity()) return;
+
+        e.preventDefault();
+        statusEl.textContent = 'Sending…';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            statusEl.textContent = 'Thank you — you’re on the early readers list.';
+            form.reset();
+          } else {
+            statusEl.textContent = 'Something went wrong. Please try again, or email inquiries@justholdher.com.';
+          }
+        } catch {
+          statusEl.textContent = 'Network error. Please try again in a moment.';
+        }
+      });
+    }
+
+    // Hero fade fallback (for browsers without scroll-linked animations)
     const supportsScrollLinked = CSS && CSS.supports && CSS.supports('animation-timeline: auto');
     if (supportsScrollLinked) return;
 
