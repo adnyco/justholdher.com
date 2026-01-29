@@ -1,6 +1,12 @@
 /* styles.css */
 /* ==========================================================================
-   JUST HOLD HER — Production Styles (Hand-tuned, refactored)
+   JUST HOLD HER — Production Styles (stable baseline + light contact section)
+   Goal:
+   - Restore the previously working site styling (nav, s4 layout, agent snapshot,
+     button styles, link styles).
+   - Keep the bottom “Stay Close to the Story” section LIGHT (like Section 3),
+     while preserving the two-column layout + card styling.
+   - Keep legacy Formspree inputs styled (for any pages still using them).
    ========================================================================== */
 
 /* ==========================================================================
@@ -136,6 +142,17 @@ strong{font-weight:600}
   color:#6a6a6a;
 }
 
+/* Make links readable on dark themed sections */
+.section.theme-dark a{
+  color:var(--fg-dark);
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+.section.theme-dark a:hover,
+.section.theme-dark a:focus-visible{
+  color:var(--fg-dark);
+}
+
 /* ==========================================================================
    4) Layout Primitives
    ========================================================================== */
@@ -197,6 +214,12 @@ figcaption{
   display:flex;
 }
 
+/* Let s4 media stack image + agent card cleanly */
+.s4 .section-media{
+  flex-direction:column;
+  gap:1.25rem;
+}
+
 .s2 .section-media img,
 .s3 .section-media img,
 .s4 .section-media img{
@@ -204,6 +227,14 @@ figcaption{
   height:100%;
   width:100%;
   object-fit:cover;
+}
+
+/* In s4, the figure should size naturally above the card (not force-stretch) */
+.s4 .section-media figure{
+  flex:0 0 auto;
+}
+.s4 .section-media figure img{
+  height:auto;
 }
 
 /* ==========================================================================
@@ -402,7 +433,7 @@ figcaption{
 .theme-dark.s4 h3{color:var(--fg-dark)}
 .theme-dark.s4 h2{color:color-mix(in srgb,#fff 78%,#000)}
 
-/* Prevent About-the-Book helper line from inheriting form-style .contact-note */
+/* Prevent About-the-Book helper line from inheriting contact-note styling */
 .s4 .section-copy .contact-note{
   font:inherit;
   color:inherit;
@@ -411,18 +442,10 @@ figcaption{
 .s4 .section-copy .contact-note strong{font-weight:600}
 
 /* ==========================================================================
-   9) Agent Snapshot — Consolidated card (fixed + tidy)
+   9) Agent Snapshot — Consolidated card (restored)
    ========================================================================== */
-
-/* Allow media column to stack image + card */
-.s4 .section-media{
-  flex-direction:column;
-  gap:1.25rem;
-}
-
-/* Card container */
 .agent-card{
-  margin-top:1.25rem;
+  margin-top:0; /* stacked under figure inside s4 media */
   padding:1.25rem 1.25rem 1.1rem;
   border-radius:var(--radius);
   font-size:.98rem;
@@ -431,10 +454,8 @@ figcaption{
   color:var(--fg);
 }
 
-/* Hard safety: default everything inside the card inherits the card color */
 .agent-card *{color:inherit}
 
-/* Kicker */
 .agent-card__kicker{
   display:inline-flex;
   align-items:center;
@@ -442,7 +463,6 @@ figcaption{
   font:600 .82rem/1.2 var(--font-body);
   letter-spacing:.08em;
   text-transform:uppercase;
-  color:inherit;
   opacity:.72;
   margin:0 0 .9rem;
 }
@@ -455,20 +475,17 @@ figcaption{
   background:var(--accent);
 }
 
-/* Consolidated lede */
 .agent-card--consolidated .agent-lede{
   margin:.15rem 0 1rem;
   font:400 1rem/1.55 var(--font-body);
 }
 
-/* Divider inside the card */
 .agent-rule{
   height:1px;
   background:linear-gradient(90deg,transparent,rgba(0,0,0,.18),transparent);
   margin:.9rem 0 1rem;
 }
 
-/* Grid */
 .agent-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -487,13 +504,11 @@ figcaption{
 .agent-item{min-width:0}
 .agent-item--wide{grid-column:1 / -1}
 
-/* Labels / values */
 .agent-label{
   margin:0 0 .25rem;
   font:600 .8rem/1.2 var(--font-body);
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:inherit;
   opacity:.62;
 }
 
@@ -502,7 +517,6 @@ figcaption{
   font:400 .98rem/1.45 var(--font-body);
 }
 
-/* Comparable titles (slightly smaller, per request) */
 .agent-comps{
   margin:.15rem 0 0;
   padding-left:1.05rem;
@@ -510,7 +524,6 @@ figcaption{
 }
 .agent-comps li{margin:.28rem 0}
 
-/* Email should read like “Status” links (not blue) */
 .agent-email{
   color:inherit;
   text-decoration:underline;
@@ -522,22 +535,20 @@ figcaption{
   text-decoration:underline;
 }
 
-/* Dark compatibility */
+/* Dark compatibility (for Section 4) */
 .theme-dark .agent-card{
   background:rgba(255,255,255,.08);
   border-color:rgba(255,255,255,.14);
   color:var(--fg-dark);
 }
-
 .theme-dark .agent-card__kicker{opacity:.78}
 .theme-dark .agent-label{opacity:.72}
-
 .theme-dark .agent-rule{
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
 }
 
 /* ==========================================================================
-   10) CTA Buttons
+   10) CTA Buttons (restored)
    ========================================================================== */
 .center-cta{
   display:flex;
@@ -580,14 +591,23 @@ figcaption{
 .about-actions .about-back-btn{width:auto;text-align:center}
 
 /* ==========================================================================
-   11) Form Section — Two Columns + centered title + a11y messaging
+   11) Contact Section — LIGHT, but still structured + “card” layout
    ========================================================================== */
 .section-form{
-  background:var(--bg-dark);
-  color:var(--fg-dark);
+  background:var(--bg-gray);
+  color:var(--fg);
   padding:var(--pad-v) 0;
 }
 
+/* keep the separator, but tune for light background */
+.section-form .contact-sep{
+  border:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.22),transparent);
+  margin:1.25rem 0;
+}
+
+/* Keep the two-column grid (restored) */
 .section-form .wrap{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -601,29 +621,36 @@ figcaption{
   margin:0;
   text-align:center;
   letter-spacing:-.02em;
+  color:var(--fg);
 }
 
 .section-form .col-form{min-width:0;align-self:stretch}
 
+/* Card container matches your “contact-form” feel, but light */
 .section-form .contact-form{
   display:grid;
   gap:.8rem;
   width:100%;
   padding:1.5rem;
-  background:rgba(0,0,0,.18);
+  background:rgba(255,255,255,.85);
   border-radius:var(--radius);
-  backdrop-filter:blur(5px);
+  border:1px solid rgba(0,0,0,.10);
   height:100%;
 }
 
-.section-form .form-hed{margin:0 0 .75rem}
+.section-form .form-hed{
+  margin:0 0 .75rem;
+  color:var(--fg);
+}
 
+/* Shared row spacing pattern (legacy + embed) */
 .section-form .form-row{display:grid;gap:.35rem}
 
+/* Legacy Formspree support (if any old form remains) */
 .section-form label{
   font-size:.9rem;
   line-height:1.3;
-  color:#d8d8d8;
+  color:#333;
 }
 
 .section-form input,
@@ -632,10 +659,10 @@ figcaption{
   font-family:var(--font-body);
   font-size:.95rem;
   line-height:1.4;
-  color:#fff;
+  color:#111;
   padding:.6rem .75rem;
-  background:#121212;
-  border:1px solid #555;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.22);
   border-radius:6px;
   transition:border-color .15s var(--ease-out);
 }
@@ -643,7 +670,7 @@ figcaption{
 .section-form textarea{resize:vertical;min-height:5.5rem}
 
 .section-form input::placeholder,
-.section-form textarea::placeholder{color:#7a7a7a}
+.section-form textarea::placeholder{color:#777}
 
 .section-form input:focus-visible,
 .section-form textarea:focus-visible{
@@ -653,27 +680,28 @@ figcaption{
 }
 
 /* Inline helper microcopy */
-.field-help{
+.section-form .field-help{
   font-size:.85rem;
   line-height:1.35;
-  color:#bdbdbd;
+  color:#444;
   margin:.15rem 0 0;
 }
 
 /* Inline error messaging */
-.field-error{
+.section-form .field-error{
   display:none;
   font-size:.85rem;
-  color:#ffb4b4;
+  color:#b00020;
   margin:.15rem 0 0;
 }
-.form-row input:user-invalid ~ .field-error,
-.form-row textarea:user-invalid ~ .field-error{display:block}
-.form-row input:user-invalid,
-.form-row textarea:user-invalid{border-color:#c0392b}
-.form-row input:user-valid,
-.form-row textarea:user-valid{border-color:#3aa76d}
+.section-form .form-row input:user-invalid ~ .field-error,
+.section-form .form-row textarea:user-invalid ~ .field-error{display:block}
+.section-form .form-row input:user-invalid,
+.section-form .form-row textarea:user-invalid{border-color:#b00020}
+.section-form .form-row input:user-valid,
+.section-form .form-row textarea:user-valid{border-color:#3aa76d}
 
+/* Submit button (works for any legacy forms still live) */
 .section-form .form-submit{
   display:inline-flex;
   align-items:center;
@@ -684,8 +712,8 @@ figcaption{
   padding:.65rem 1.25rem;
   border:0;
   border-radius:6px;
-  background:#fff;
-  color:#000;
+  background:#000;
+  color:#fff;
   cursor:pointer;
   transition:
     transform .12s var(--ease-out),
@@ -696,18 +724,35 @@ figcaption{
 .section-form .form-submit:active{transform:translateY(1px)}
 
 /* Form status */
-#form-status{
+.section-form #form-status{
   min-height:1.25rem;
   margin-top:.25rem;
-  color:#d8d8d8;
+  color:#333;
   font-size:.9rem;
 }
 
+/* Substack embed alignment (restored, simple) */
+.section-form .form-row--embed{margin-top:.25rem}
+.section-form .substack-embed{
+  display:flex;
+  justify-content:center;
+}
+.section-form .substack-embed iframe{
+  width:100%;
+  max-width:480px;
+  height:150px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.14);
+  border-radius:12px;
+  display:block;
+}
+
+/* Right column “Updates / Industry” card */
 .section-form .col-cta{
-  align-self:center;
+  align-self:stretch;
   padding:1.5rem;
-  background:rgba(255,255,255,.03);
-  border:1px solid #2a2a2a;
+  background:rgba(255,255,255,.75);
+  border:1px solid rgba(0,0,0,.10);
   border-radius:var(--radius);
 }
 
@@ -715,27 +760,20 @@ figcaption{
   font-family:var(--font-body);
   font-weight:600;
   font-size:1.05rem;
-  color:#e8e8e8;
+  color:#111;
   letter-spacing:.01em;
   margin:0 0 .5rem;
   text-transform:none;
 }
 
-.contact-sep{
-  border:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,#666,transparent);
-  margin:1.25rem 0;
-}
-
-.contact-note{
+.section-form .contact-note{
   margin-top:.5rem;
   font:400 .95rem/1.4 var(--font-body);
-  color:#d8d8d8;
+  color:#333;
 }
 
-.contact-note a{
-  color:#fff;
+.section-form .contact-note a{
+  color:#111;
   text-decoration:underline;
   text-underline-offset:2px;
 }
@@ -774,7 +812,7 @@ figcaption{
 }
 
 /* ==========================================================================
-   13) Footer (inside Contact section)
+   13) Footer (inside Contact section) — restored spacing
    ========================================================================== */
 .footer{
   width:100%;
@@ -783,9 +821,9 @@ figcaption{
   font-family:var(--font-body);
   font-size:.9rem;
   line-height:1.4;
-  color:#a0a0a0;
+  color:#555;
   text-align:center;
-  opacity:.85;
+  opacity:.95;
 }
 
 .footer p{
@@ -799,7 +837,7 @@ figcaption{
   transition:color .2s var(--ease-out);
 }
 .footer a:hover{
-  color:#c0c0c0;
+  color:#111;
   text-decoration:underline;
 }
 
