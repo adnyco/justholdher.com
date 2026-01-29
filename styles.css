@@ -1,8 +1,12 @@
 /* styles.css */
 /* ==========================================================================
    JUST HOLD HER — Production Styles (Hand-tuned, refactored)
-   NOTE: Refactor adds a light-theme variant for the Contact/Subscribe section
-         while preserving legacy Formspree form styling during rollout.
+   Refactor goals:
+   - Keep the site’s current behavior as the default (no surprises).
+   - Add an OPT-IN light “paper” theme for the Contact/Subscribe section:
+       <section class="section-form theme-paper" ...>
+   - Preserve legacy Formspree form styling (still works if present).
+   - Remove/avoid “dark stage” iframe tricks that read disabled.
    ========================================================================== */
 
 /* ==========================================================================
@@ -12,14 +16,11 @@
   /* Colors */
   --fg:#111;
   --bg:#fff;
-
   --fg-dark:#f3f3f3;
   --bg-dark:#000;
-
-  /* Existing gray (used sitewide) */
   --bg-gray:#e8e8e8;
 
-  /* NEW: “paper” gray for light contact section (matches s3 feel) */
+  /* NEW (opt-in contact section background; matches s3 vibe) */
   --bg-paper:#f4f4f2;
 
   --link:#0a58ca;
@@ -41,192 +42,4 @@
 
 /* ==========================================================================
    2) Base Reset + Accessibility
-   ========================================================================== */
-*,
-*::before,
-*::after{box-sizing:border-box}
-
-html{
-  -webkit-text-size-adjust:100%;
-  text-size-adjust:100%;
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  color:var(--fg);
-  background:var(--bg);
-  font-family:var(--font-body);
-  font-size:18px;
-  line-height:1.575;
-  letter-spacing:-.02em;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-
-img{display:block;max-width:100%;height:auto}
-
-a{
-  color:var(--link);
-  text-decoration:none;
-  transition:color .2s var(--ease-out);
-}
-a:hover,
-a:focus{
-  text-decoration:underline;
-  text-underline-offset:2px;
-}
-
-:focus-visible{
-  outline:2px solid var(--accent);
-  outline-offset:2px;
-}
-
-/* Skip link */
-.skip{position:absolute;left:-9999px}
-.skip:focus{
-  left:1rem;
-  top:1rem;
-  background:#000;
-  color:#fff;
-  padding:.5rem .75rem;
-  border-radius:6px;
-}
-
-/* ==========================================================================
-   3) Typography
-   ========================================================================== */
-h1,
-h2,
-h3,
-h4{
-  font-family:var(--font-head);
-  font-weight:200;
-  letter-spacing:-.04em;
-  margin:0 0 1rem;
-}
-
-h1{
-  font-size:clamp(40px,8vw,72px);
-  line-height:1;
-  text-transform:uppercase;
-  text-shadow:none;
-}
-
-h2{
-  font-size:clamp(28px,5vw,56px);
-  line-height:1.1;
-  letter-spacing:-.02em;
-  text-transform:uppercase;
-}
-
-h3{
-  font-family:var(--font-body);
-  font-weight:400;
-  font-size:27px;
-  line-height:1.2;
-  letter-spacing:-.02em;
-  color:#6a6a6a;
-  text-transform:uppercase;
-}
-
-h4{
-  font-size:17px;
-  line-height:1.3;
-  letter-spacing:-.02em;
-}
-
-p{margin:1rem 0}
-strong{font-weight:600}
-
-.subhed{
-  letter-spacing:-.02em;
-  text-transform:uppercase;
-  color:#6a6a6a;
-}
-
-/* ==========================================================================
-   4) Layout Primitives
-   ========================================================================== */
-.wrap{
-  max-width:var(--max-wrap);
-  margin:0 auto;
-  padding:0 1.25rem;
-}
-
-.section{
-  width:100%;
-  padding:var(--pad-v) 0;
-}
-
-.section .section-copy{max-width:var(--max-text)}
-.section p + p{margin-top:.75rem}
-
-.section.theme-light{background:#fff;color:#111}
-.section.theme-dark{background:var(--bg-dark);color:var(--fg-dark)}
-.section.theme-gray{background:var(--bg-gray);color:#111}
-
-.section-inner{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2.25rem;
-  align-items:stretch;
-}
-
-.section-media img{
-  width:100%;
-  height:100%;
-  border-radius:var(--radius);
-  object-fit:cover;
-}
-
-figure{margin:0}
-figcaption{
-  margin-top:.5rem;
-  font-size:.9rem;
-  color:#777;
-  display:none;
-}
-
-/* Alternating media layout */
-.s2 .section-copy{order:1}
-.s2 .section-media{order:2}
-
-.s3 .section-media{order:1}
-.s3 .section-copy{order:2}
-
-.s4 .section-copy{order:1}
-.s4 .section-media{order:2}
-
-/* Equal media height (s2–s4) */
-.s2 .section-media,
-.s3 .section-media,
-.s4 .section-media{
-  min-height:clamp(340px,42vh,560px);
-  display:flex;
-}
-
-.s2 .section-media img,
-.s3 .section-media img,
-.s4 .section-media img{
-  flex:1 1 auto;
-  height:100%;
-  width:100%;
-  object-fit:cover;
-}
-
-/* ==========================================================================
-   5) Top Nav — Black bar (wrap-friendly)
-   ========================================================================== */
-.topnav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:#000;
-  color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.topnav-inner{
-  display:flex;
-  align-items:center;
+   ===
