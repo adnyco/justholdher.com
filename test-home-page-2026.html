@@ -293,38 +293,36 @@
       <div class="wrap">
         <h2 id="contact-title" class="section-title">Stay Close to the Story</h2>
 
-<div class="contact-form" role="form" aria-labelledby="signup-title">
-  <h3 class="form-hed" id="signup-title">Keep me posted</h3>
+        <!-- Left column: Subscribe card (uses the same .contact-form card container styles) -->
+        <div class="col-form">
+          <div class="contact-form" role="form" aria-labelledby="signup-title">
+            <h3 class="form-hed" id="signup-title">Keep me posted</h3>
 
-  <p id="form-help" class="contact-note">
-    A story like this travels slowly. Get early excerpts and launch news as <strong>Just Hold Her</strong> makes its way into the world.
-    <br><span class="field-help">A few thoughtful updates per year. No noise.</span>
-  </p>
+            <p id="form-help" class="contact-note">
+              A story like this travels slowly. Get early excerpts and launch news as <strong>Just Hold Her</strong> makes its way into the world.
+              <br><span class="field-help">A few thoughtful updates per year. No noise.</span>
+            </p>
 
-  <!-- matches the spacing behavior of .form-row blocks -->
-  <div class="form-row form-row--embed">
-    <div class="substack-embed" aria-label="Subscribe to Judy’s Notebook on Substack">
-      <iframe
-        src="https://judysnotebook.substack.com/embed"
-        width="480"
-        height="150"
-        frameborder="0"
-        scrolling="no"
-        title="Subscribe to Judy’s Notebook">
-      </iframe>
-    </div>
-  </div>
+            <!-- matches spacing rhythm of former .form-row blocks -->
+            <div class="form-row form-row--embed">
+              <div class="substack-embed" aria-label="Subscribe to Judy’s Notebook on Substack">
+                <iframe
+                  src="https://judysnotebook.substack.com/embed"
+                  width="480"
+                  height="150"
+                  frameborder="0"
+                  scrolling="no"
+                  title="Subscribe to Judy’s Notebook">
+                </iframe>
+              </div>
+            </div>
 
-  <p class="field-help">
-    Prefer email? You can also write us at
-    <a class="agent-email" href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>.
-  </p>
-</div>
-
-  <p class="field-help">
-    Prefer email? You can also write us at <a class="agent-email" href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>.
-  </p>
-</div>
+            <p class="field-help">
+              Prefer email? You can also write us at
+              <a class="agent-email" href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>.
+            </p>
+          </div>
+        </div>
 
         <!-- Right column: Updates + Industry -->
         <aside class="col-cta" aria-labelledby="updates-title industry-title">
@@ -357,37 +355,37 @@
 
   <script src="app-fallback.js" defer></script>
 
-<script defer>
-(() => {
-  'use strict';
+  <script defer>
+  (() => {
+    'use strict';
 
-  // Footer year
-  document.addEventListener('DOMContentLoaded', () => {
-    const y = document.querySelector('.footer-year');
-    if (y) y.textContent = new Date().getFullYear();
-  });
+    // Footer year
+    document.addEventListener('DOMContentLoaded', () => {
+      const y = document.querySelector('.footer-year');
+      if (y) y.textContent = new Date().getFullYear();
+    });
 
-  // Hero fade fallback (for browsers without scroll-linked animations)
-  const supportsScrollLinked = CSS && CSS.supports && CSS.supports('animation-timeline: auto');
-  if (supportsScrollLinked) return;
+    // Hero fade fallback (for browsers without scroll-linked animations)
+    const supportsScrollLinked = CSS && CSS.supports && CSS.supports('animation-timeline: auto');
+    if (supportsScrollLinked) return;
 
-  const hero = document.querySelector('.hero');
-  const shroud = document.querySelector('.hero-shroud');
-  if (!hero || !shroud) return;
+    const hero = document.querySelector('.hero');
+    const shroud = document.querySelector('.hero-shroud');
+    if (!hero || !shroud) return;
 
-  const thresholds = Array.from({ length: 21 }, (_, i) => i / 20);
-  const io = new IntersectionObserver(([entry]) => {
-    const r = entry.rootBounds;
-    const t = entry.boundingClientRect;
-    if (!r) return;
+    const thresholds = Array.from({ length: 21 }, (_, i) => i / 20);
+    const io = new IntersectionObserver(([entry]) => {
+      const r = entry.rootBounds;
+      const t = entry.boundingClientRect;
+      if (!r) return;
 
-    const heroHeight = t.height || hero.offsetHeight || r.height;
-    const progress = Math.min(1, Math.max(0, (0 - t.top) / heroHeight));
-    shroud.style.opacity = String(progress);
-  }, { threshold: thresholds });
+      const heroHeight = t.height || hero.offsetHeight || r.height;
+      const progress = Math.min(1, Math.max(0, (0 - t.top) / heroHeight));
+      shroud.style.opacity = String(progress);
+    }, { threshold: thresholds });
 
-  io.observe(hero);
-})();
-</script>
+    io.observe(hero);
+  })();
+  </script>
 </body>
 </html>
