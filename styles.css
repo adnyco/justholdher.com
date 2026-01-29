@@ -740,17 +740,26 @@ figcaption{
   text-underline-offset:2px;
 }
 
-.substack-embed {
+/* Keep iframe visually consistent with .contact-form controls */
+
+.form-row--embed {
   margin-top: 0.75rem;
 }
 
+.substack-embed {
+  display: flex;
+  justify-content: center;
+}
+
 .substack-embed iframe {
-  display: block;
   width: 100%;
   max-width: 480px;
   height: 150px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
   border-radius: 12px;
 }
+
 
 /* ==========================================================================
    12) About Page — Portrait upper-right
