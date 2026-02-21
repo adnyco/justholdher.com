@@ -2,123 +2,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Judy's Notebook — Reflections & Excerpts</title>
+  <meta name="description" content="Excerpts from the book and written photographs — moments captured in time through regular reflections published on Substack.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Judy’s Notebook — Recent Essays</title>
-  <meta name="description" content="Recent essays and field notes from Judy’s Notebook on Substack.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://justholdher.com/notebook.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Judy's Notebook">
+  <meta property="og:description" content="Written photographs. Reflections on time.">
+  <meta property="og:type" content="website">
 
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="theme-light">
+
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="topnav" role="banner">
+<header class="topnav">
   <div class="wrap topnav-inner">
-    <a class="brand" href="index.html">Just Hold Her</a>
-    <nav class="topnav-links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="about-author-judy-wright.html">About</a>
-      <a href="index.html#book">Book</a>
-      <a href="notebook.html" aria-current="page">Notebook</a>
+    <a href="index.html" class="brand">Just Hold Her</a>
+    <nav aria-label="Primary">
+      <div class="topnav-links">
+        <a href="about.html">About</a>
+        <a href="notebook.html" aria-current="page">Notebook</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </nav>
   </div>
 </header>
 
 <main id="main">
-  <section class="section theme-gray" aria-labelledby="notebook-title">
-    <div class="wrap">
-      <header class="section-head">
-        <h1 id="notebook-title">Judy’s Notebook</h1>
-        <p class="subhed">Field notes, essays, and quiet updates.</p>
-      </header>
 
-      <div class="section-actions">
-        <button class="about-back-btn" id="subscribe-btn">
-          Subscribe
-        </button>
-      </div>
-
-      <div id="rss-container" class="notebook-list" aria-live="polite">
-        <p class="loading-state">Loading…</p>
-      </div>
-
-      <footer class="notebook-footer">
-        <a href="https://judysnotebook.substack.com"
-           target="_blank"
-           rel="noopener">
-          View Full Archive →
-        </a>
-      </footer>
+  <!-- Hero Intro -->
+  <section class="section notebook-hero theme-gray">
+    <div class="wrap section-copy">
+      <h1>Judy’s Notebook</h1>
+      <p class="notebook-intro">
+        Excerpts from the book and explorations of moments in time —
+        captured like written photographs in these regular reflections.
+        Published on
+        <a href="https://judysnotebook.substack.com" target="_blank" rel="noopener">
+          judysnotebook.substack.com
+        </a>.
+      </p>
     </div>
   </section>
+
+
+  <!-- Posts -->
+  <section class="section notebook-list theme-light">
+    <div class="wrap">
+
+      <article class="notebook-post">
+        <a href="#" class="post-link">
+          <header>
+            <p class="post-meta">April 2026 · 6 min read</p>
+            <h2 class="post-title">The Weight of Quiet Mornings</h2>
+          </header>
+          <p class="post-excerpt">
+            The kettle hums before the sun rises fully. There is something sacred
+            about these early hours — before the world decides what it wants from you.
+          </p>
+        </a>
+      </article>
+
+
+      <article class="notebook-post">
+        <a href="#" class="post-link">
+          <header>
+            <p class="post-meta">March 2026 · 5 min read</p>
+            <h2 class="post-title">A Photograph Without a Camera</h2>
+          </header>
+          <p class="post-excerpt">
+            Memory has a shutter speed of its own. Sometimes slow enough
+            to blur the edges, sometimes sharp enough to wound.
+          </p>
+        </a>
+      </article>
+
+
+      <article class="notebook-post">
+        <a href="#" class="post-link">
+          <header>
+            <p class="post-meta">February 2026 · 7 min read</p>
+            <h2 class="post-title">The Sound of Her Laugh in Winter</h2>
+          </header>
+          <p class="post-excerpt">
+            Snow absorbs everything — even grief. But some sounds refuse
+            to disappear into white silence.
+          </p>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
 </main>
 
-<!-- POST MODAL -->
-<div class="modal" id="post-modal" hidden>
-  <div class="modal-overlay" data-close></div>
-  <div class="modal-dialog"
-       role="dialog"
-       aria-modal="true"
-       aria-labelledby="modal-title"
-       tabindex="-1">
 
-    <button class="modal-close"
-            aria-label="Close"
-            data-close>&times;</button>
-
-    <article class="modal-content">
-      <h2 id="modal-title"></h2>
-      <div id="modal-body"></div>
-      <p class="modal-footer">
-        <a id="modal-link" target="_blank" rel="noopener">
-          Read full post on Substack →
-        </a>
-      </p>
-    </article>
+<footer class="section theme-dark">
+  <div class="wrap">
+    <p>© 2026 Just Hold Her</p>
   </div>
-</div>
+</footer>
 
-<!-- SUBSCRIBE MODAL -->
-<div class="modal" id="subscribe-modal" hidden>
-  <div class="modal-overlay" data-close></div>
-  <div class="modal-dialog" role="dialog" aria-modal="true" tabindex="-1">
-    <button class="modal-close" aria-label="Close" data-close>&times;</button>
-    <div class="modal-content">
-      <!-- Your exact embed preserved -->
-      <div class="contact-form" role="form" aria-labelledby="signup-title">
-        <h3 class="form-hed" id="signup-title">Keep me posted</h3>
-
-        <p class="contact-note">
-          A story like this travels slowly. Subscribe to
-          <a href="https://substack.com/@judysnotebook" target="_blank">
-            Judy’s Notebook
-          </a>
-          for early excerpts, field notes, and quiet updates as
-          <strong>Just Hold Her</strong> makes its way into the world.
-          <br><span class="field-help">A few thoughtful updates per year. No noise.</span>
-        </p>
-
-        <div class="form-row form-row--embed">
-          <div class="substack-stage">
-            <iframe
-              src="https://judysnotebook.substack.com/embed"
-              width="480"
-              height="150"
-              frameborder="0"
-              scrolling="no"
-              title="Subscribe to Judy’s Notebook">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="substack.js" defer></script>
 </body>
 </html>
