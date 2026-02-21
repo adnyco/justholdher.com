@@ -1,5 +1,6 @@
 /* ==========================================================================
-   JUST HOLD HER — Optimized Production Styles
+   JUST HOLD HER — Global Production Styles
+   Refactored Architecture — 2026
    ========================================================================== */
 
 
@@ -8,6 +9,7 @@
    ========================================================================== */
 
 :root{
+
   /* Colors */
   --fg:#111;
   --bg:#fff;
@@ -18,19 +20,21 @@
   --accent:#b28547;
 
   /* Layout */
-  --max-text:72ch;
   --max-wrap:1200px;
-  --pad-v:clamp(2.5rem,6vw,5.5rem);
-  --radius:10px;
+  --max-text:72ch;
+  --pad-v:clamp(3rem,6vw,6rem);
+  --pad-v-sm:clamp(2rem,5vw,4rem);
+  --radius:12px;
 
-  /* Type */
+  /* Typography */
   --font-head:"Noto Serif", Georgia, serif;
   --font-body:"IBM Plex Mono", ui-monospace, monospace;
 
   /* Motion */
-  --ease-out:cubic-bezier(.2,.8,.2,1);
-  --fast:.16s var(--ease-out);
-  --snap:.12s var(--ease-out);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --fast:.18s var(--ease);
+  --slow:.4s var(--ease);
+
 }
 
 
@@ -50,7 +54,7 @@ html{
 
 body{
   margin:0;
-  font:18px/1.575 var(--font-body);
+  font:18px/1.6 var(--font-body);
   color:var(--fg);
   background:var(--bg);
   letter-spacing:-.02em;
@@ -58,7 +62,11 @@ body{
   -moz-osx-font-smoothing:grayscale;
 }
 
-img{display:block;max-width:100%;height:auto}
+img{
+  display:block;
+  max-width:100%;
+  height:auto;
+}
 
 a{
   color:var(--link);
@@ -74,10 +82,9 @@ a:focus-visible{
 
 :focus-visible{
   outline:2px solid var(--accent);
-  outline-offset:2px;
+  outline-offset:3px;
 }
 
-/* Skip */
 .skip{
   position:absolute;
   left:-9999px;
@@ -85,51 +92,57 @@ a:focus-visible{
 .skip:focus{
   left:1rem;
   top:1rem;
-  padding:.5rem .75rem;
   background:#000;
   color:#fff;
+  padding:.5rem .75rem;
   border-radius:6px;
 }
 
 
 /* ==========================================================================
-   3. Typography
+   3. Typography System
    ========================================================================== */
 
 h1,h2,h3,h4{
   font-family:var(--font-head);
   font-weight:200;
-  letter-spacing:-.04em;
+  letter-spacing:-.045em;
   margin:0 0 1rem;
 }
 
 h1{
-  font-size:clamp(40px,8vw,72px);
+  font-size:clamp(44px,8vw,84px);
   line-height:1;
   text-transform:uppercase;
 }
 
 h2{
-  font-size:clamp(28px,5vw,56px);
+  font-size:clamp(30px,5vw,56px);
   line-height:1.1;
   text-transform:uppercase;
-  letter-spacing:-.02em;
 }
 
 h3{
   font-family:var(--font-body);
   font-weight:400;
-  font-size:27px;
+  font-size:1.2rem;
   text-transform:uppercase;
-  color:#6a6a6a;
+  letter-spacing:.08em;
+  color:#666;
 }
 
-p{margin:1rem 0}
+p{
+  margin:1rem 0;
+  max-width:var(--max-text);
+}
+
 strong{font-weight:600}
 
 .subhed{
   text-transform:uppercase;
-  color:#6a6a6a;
+  font-size:.85rem;
+  letter-spacing:.14em;
+  color:#777;
 }
 
 
@@ -140,24 +153,30 @@ strong{font-weight:600}
 .wrap{
   max-width:var(--max-wrap);
   margin:auto;
-  padding:0 1.25rem;
+  padding:0 1.5rem;
 }
 
 .section{
-  width:100%;
   padding:var(--pad-v) 0;
 }
 
-.section-copy{max-width:var(--max-text)}
+.section-sm{
+  padding:var(--pad-v-sm) 0;
+}
+
+.section-copy{
+  max-width:var(--max-text);
+}
 
 .section-inner{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:2.25rem;
-  align-items:stretch;
+  gap:3rem;
+  align-items:center;
 }
 
-/* Themes */
+
+/* Theme Modifiers */
 
 .theme-light{background:#fff;color:#111}
 .theme-dark{background:var(--bg-dark);color:var(--fg-dark)}
@@ -169,13 +188,299 @@ strong{font-weight:600}
    ========================================================================== */
 
 
-/* --- Media --- */
+/* --- Top Navigation --- */
 
-.section-media{
-  min-height:clamp(340px,42vh,560px);
-  display:flex;
+.topnav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#000;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.section-media img{
-  flex:1;
+.topnav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 0;
+}
+
+.brand{
+  font-family:var(--font-head);
+  font-weight:300;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+.topnav-links{
+  display:flex;
+  gap:1.5rem;
+  font-size:.9rem;
+}
+
+.topnav a{
+  color:#fff;
+  text-decoration:none;
+}
+
+.topnav a[aria-current="page"]{
+  opacity:.6;
+}
+
+
+/* --- Buttons --- */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.8rem 1.25rem;
+  border-radius:var(--radius);
+  font:600 .95rem var(--font-body);
+  border:1px solid #000;
+  background:#000;
+  color:#fff;
+  transition:
+    background var(--fast),
+    border-color var(--fast),
+    transform var(--fast);
+}
+
+.btn:hover{
+  background:var(--accent);
+  border-color:var(--accent);
+}
+
+.btn:active{
+  transform:translateY(1px);
+}
+
+
+/* --- Cards --- */
+
+.card{
+  padding:2rem;
+  border-radius:var(--radius);
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+}
+
+
+/* --- Forms --- */
+
+input,
+textarea{
   width:100%;
+  padding:.75rem .9rem;
+  border:1px solid rgba(0,0,0,.25);
+  border-radius:6px;
+  font:inherit;
+  transition:border-color var(--fast);
+}
+
+input:focus-visible,
+textarea:focus-visible{
+  border-color:var(--accent);
+}
+
+label{
+  font-size:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:.4rem;
+  display:block;
+}
+
+
+/* ==========================================================================
+   6. Page Modules
+   ========================================================================== */
+
+
+/* =============================
+   HOME
+   ============================= */
+
+.hero{
+  padding-top:clamp(6rem,10vw,10rem);
+  padding-bottom:clamp(5rem,8vw,8rem);
+}
+
+.hero h1{
+  margin-bottom:1.5rem;
+}
+
+.hero p{
+  font-family:var(--font-head);
+  font-weight:300;
+  font-size:1.2rem;
+}
+
+
+/* =============================
+   NOTEBOOK — Editorial Showcase
+   ============================= */
+
+.notebook-hero{
+  text-align:center;
+  padding-top:clamp(5rem,9vw,9rem);
+  padding-bottom:clamp(4rem,7vw,6rem);
+}
+
+.notebook-hero h1{
+  font-size:clamp(52px,9vw,96px);
+}
+
+.notebook-intro{
+  margin:1.5rem auto 0;
+  max-width:60ch;
+  font-family:var(--font-head);
+  font-weight:300;
+  font-size:1.2rem;
+  line-height:1.75;
+  color:#333;
+}
+
+.notebook-list{
+  padding-bottom:clamp(6rem,8vw,10rem);
+}
+
+.notebook-post{
+  padding:4rem 0;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  transition:transform var(--fast);
+}
+
+.post-meta{
+  font-size:.75rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#888;
+  margin-bottom:.75rem;
+}
+
+.post-title{
+  font-family:var(--font-head);
+  font-weight:300;
+  font-size:clamp(28px,4vw,42px);
+  margin-bottom:1rem;
+  transition:color var(--fast);
+}
+
+.post-excerpt{
+  font-family:var(--font-head);
+  font-weight:300;
+  font-size:1.05rem;
+  color:#444;
+}
+
+.notebook-post:hover{
+  transform:translateY(-3px);
+}
+
+.notebook-post:hover .post-title{
+  color:var(--accent);
+}
+
+
+/* =============================
+   ABOUT
+   ============================= */
+
+.about-copy{
+  font-family:var(--font-head);
+  font-weight:300;
+  font-size:1.15rem;
+  line-height:1.8;
+}
+
+
+/* =============================
+   CONTACT
+   ============================= */
+
+.section-form{
+  background:var(--bg-gray);
+}
+
+.contact-form{
+  display:grid;
+  gap:1.25rem;
+  max-width:600px;
+}
+
+
+/* ==========================================================================
+   7. Utilities
+   ========================================================================== */
+
+.center{text-align:center}
+.mt-lg{margin-top:4rem}
+.mb-lg{margin-bottom:4rem}
+
+
+/* ==========================================================================
+   8. Motion & Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+  *{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+
+}
+
+
+/* ==========================================================================
+   9. Responsive
+   ========================================================================== */
+
+@media (max-width:900px){
+
+  .section-inner{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+}
+
+@media (max-width:700px){
+
+  body{
+    font-size:16px;
+  }
+
+  .notebook-post{
+    padding:2.5rem 0;
+  }
+
+}
+
+
+/* ==========================================================================
+   10. Print
+   ========================================================================== */
+
+@media print{
+
+  body{
+    background:#fff!important;
+    color:#000!important;
+    font-family:"Noto Serif", Georgia, serif!important;
+  }
+
+  .topnav,
+  .btn{
+    display:none!important;
+  }
+
+  a[href^="http"]::after{
+    content:" (" attr(href) ")";
+    font-size:9pt;
+  }
+
+}
