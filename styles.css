@@ -1,17 +1,12 @@
-/* styles.css */
 /* ==========================================================================
-   JUST HOLD HER — Production Styles (stable baseline + light contact section)
-   Goal:
-   - Restore the previously working site styling (nav, s4 layout, agent snapshot,
-     button styles, link styles).
-   - Keep the bottom “Stay Close to the Story” section LIGHT (like Section 3),
-     while preserving the two-column layout + card styling.
-   - Keep legacy Formspree inputs styled (for any pages still using them).
+   JUST HOLD HER — Optimized Production Styles
    ========================================================================== */
 
+
 /* ==========================================================================
-   1) Design Tokens
+   1. Design Tokens
    ========================================================================== */
+
 :root{
   /* Colors */
   --fg:#111;
@@ -29,16 +24,20 @@
   --radius:10px;
 
   /* Type */
-  --font-head:"Noto Serif",Georgia,serif;
-  --font-body:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --font-head:"Noto Serif", Georgia, serif;
+  --font-body:"IBM Plex Mono", ui-monospace, monospace;
 
   /* Motion */
   --ease-out:cubic-bezier(.2,.8,.2,1);
+  --fast:.16s var(--ease-out);
+  --snap:.12s var(--ease-out);
 }
 
+
 /* ==========================================================================
-   2) Base Reset + Accessibility
+   2. Reset + Base
    ========================================================================== */
+
 *,
 *::before,
 *::after{box-sizing:border-box}
@@ -51,11 +50,9 @@ html{
 
 body{
   margin:0;
+  font:18px/1.575 var(--font-body);
   color:var(--fg);
   background:var(--bg);
-  font-family:var(--font-body);
-  font-size:18px;
-  line-height:1.575;
   letter-spacing:-.02em;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -66,10 +63,11 @@ img{display:block;max-width:100%;height:auto}
 a{
   color:var(--link);
   text-decoration:none;
-  transition:color .2s var(--ease-out);
+  transition:color var(--fast);
 }
+
 a:hover,
-a:focus{
+a:focus-visible{
   text-decoration:underline;
   text-underline-offset:2px;
 }
@@ -79,24 +77,26 @@ a:focus{
   outline-offset:2px;
 }
 
-/* Skip link */
-.skip{position:absolute;left:-9999px}
+/* Skip */
+.skip{
+  position:absolute;
+  left:-9999px;
+}
 .skip:focus{
   left:1rem;
   top:1rem;
+  padding:.5rem .75rem;
   background:#000;
   color:#fff;
-  padding:.5rem .75rem;
   border-radius:6px;
 }
 
+
 /* ==========================================================================
-   3) Typography
+   3. Typography
    ========================================================================== */
-h1,
-h2,
-h3,
-h4{
+
+h1,h2,h3,h4{
   font-family:var(--font-head);
   font-weight:200;
   letter-spacing:-.04em;
@@ -107,58 +107,39 @@ h1{
   font-size:clamp(40px,8vw,72px);
   line-height:1;
   text-transform:uppercase;
-  text-shadow:none;
 }
 
 h2{
   font-size:clamp(28px,5vw,56px);
   line-height:1.1;
-  letter-spacing:-.02em;
   text-transform:uppercase;
+  letter-spacing:-.02em;
 }
 
 h3{
   font-family:var(--font-body);
   font-weight:400;
   font-size:27px;
-  line-height:1.2;
-  letter-spacing:-.02em;
-  color:#6a6a6a;
   text-transform:uppercase;
-}
-
-h4{
-  font-size:17px;
-  line-height:1.3;
-  letter-spacing:-.02em;
+  color:#6a6a6a;
 }
 
 p{margin:1rem 0}
 strong{font-weight:600}
 
 .subhed{
-  letter-spacing:-.02em;
   text-transform:uppercase;
   color:#6a6a6a;
 }
 
-/* Make links readable on dark themed sections */
-.section.theme-dark a{
-  color:var(--fg-dark);
-  text-decoration:underline;
-  text-underline-offset:2px;
-}
-.section.theme-dark a:hover,
-.section.theme-dark a:focus-visible{
-  color:var(--fg-dark);
-}
 
 /* ==========================================================================
-   4) Layout Primitives
+   4. Layout System
    ========================================================================== */
+
 .wrap{
   max-width:var(--max-wrap);
-  margin:0 auto;
+  margin:auto;
   padding:0 1.25rem;
 }
 
@@ -167,12 +148,7 @@ strong{font-weight:600}
   padding:var(--pad-v) 0;
 }
 
-.section .section-copy{max-width:var(--max-text)}
-.section p + p{margin-top:.75rem}
-
-.section.theme-light{background:#fff;color:#111}
-.section.theme-dark{background:var(--bg-dark);color:var(--fg-dark)}
-.section.theme-gray{background:var(--bg-gray);color:#111}
+.section-copy{max-width:var(--max-text)}
 
 .section-inner{
   display:grid;
@@ -181,836 +157,25 @@ strong{font-weight:600}
   align-items:stretch;
 }
 
-.section-media img{
-  width:100%;
-  height:100%;
-  border-radius:var(--radius);
-  object-fit:cover;
-}
+/* Themes */
 
-figure{margin:0}
-figcaption{
-  margin-top:.5rem;
-  font-size:.9rem;
-  color:#777;
-  display:none;
-}
+.theme-light{background:#fff;color:#111}
+.theme-dark{background:var(--bg-dark);color:var(--fg-dark)}
+.theme-gray{background:var(--bg-gray);color:#111}
 
-/* Alternating media layout */
-.s2 .section-copy{order:1}
-.s2 .section-media{order:2}
 
-.s3 .section-media{order:1}
-.s3 .section-copy{order:2}
+/* ==========================================================================
+   5. Components
+   ========================================================================== */
 
-.s4 .section-copy{order:1}
-.s4 .section-media{order:2}
 
-/* Equal media height (s2–s4) */
-.s2 .section-media,
-.s3 .section-media,
-.s4 .section-media{
+/* --- Media --- */
+
+.section-media{
   min-height:clamp(340px,42vh,560px);
   display:flex;
 }
 
-/* Let s4 media stack image + agent card cleanly */
-.s4 .section-media{
-  flex-direction:column;
-  gap:1.25rem;
-}
-
-.s2 .section-media img,
-.s3 .section-media img,
-.s4 .section-media img{
-  flex:1 1 auto;
-  height:100%;
+.section-media img{
+  flex:1;
   width:100%;
-  object-fit:cover;
-}
-
-/* In s4, the figure should size naturally above the card (not force-stretch) */
-.s4 .section-media figure{
-  flex:0 0 auto;
-}
-.s4 .section-media figure img{
-  height:auto;
-}
-
-/* ==========================================================================
-   5) Top Nav — Black bar (wrap-friendly)
-   ========================================================================== */
-.topnav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:#000;
-  color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.topnav-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:.9rem 0;
-  gap:1rem;
-}
-
-.topnav a{color:#fff;text-decoration:none}
-.topnav a:hover,
-.topnav a:focus-visible{
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
-
-.brand{
-  font-family:var(--font-head);
-  font-weight:300;
-  letter-spacing:-.03em;
-  text-transform:uppercase;
-  font-size:1.05rem;
-  white-space:nowrap;
-}
-
-.topnav-links{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-  align-items:center;
-  gap:.85rem 1rem;
-  font:500 .92rem/1.2 var(--font-body);
-}
-
-.topnav-links a{white-space:nowrap}
-.topnav-links a[aria-current="page"]{
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
-
-/* ==========================================================================
-   6) Hero — Fade-to-black on scroll (PE + fallback)
-   ========================================================================== */
-.hero{
-  position:relative;
-  height:100vh;
-  color:#fff;
-  background:#000;
-  overflow:hidden;
-}
-
-.hero picture,
-.hero .hero-img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  z-index:0;
-  transform:translateZ(0);
-}
-
-.hero-shroud{
-  position:absolute;
-  inset:auto 0 0;
-  height:45vh;
-  z-index:1;
-  pointer-events:none;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,.28) 40%,
-    rgba(0,0,0,.9) 100%
-  );
-  opacity:1;
-}
-
-.hero-overlay{
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-start;
-  height:100vh;
-  padding:12vh 0 0 5vw;
-  text-align:left;
-}
-
-.hero-overlay::before{
-  content:"";
-  position:absolute;
-  inset:0 65% 65% 0;
-  background:linear-gradient(135deg,rgba(0,0,0,.15),rgba(0,0,0,0));
-  z-index:-1;
-  pointer-events:none;
-}
-
-.hero-overlay.hero-stack{
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:flex-start;
-  gap:.55rem;
-}
-
-.hero-sub{
-  font-family:var(--font-body);
-  font-weight:500;
-  font-size:clamp(16px,2.2vw,22px);
-  line-height:1.25;
-  letter-spacing:-.01em;
-  text-transform:none;
-  margin:0;
-  max-width:min(46ch,92vw);
-}
-
-/* Scroll-linked enhancement */
-@supports (animation-timeline:auto){
-  .hero{
-    view-timeline-name:--hero;
-    view-timeline-axis:block;
-  }
-  .hero-shroud{
-    opacity:0;
-    animation:heroFade 1 both;
-    animation-timeline:--hero;
-    animation-range:entry 0% exit 100%;
-  }
-  @keyframes heroFade{from{opacity:0}to{opacity:1}}
-}
-
-/* ==========================================================================
-   7) Section 2 — Warm → Black background fade
-   ========================================================================== */
-.section.theme-dark.s2{
-  background-color:var(--accent);
-  color:var(--fg-dark);
-  view-timeline-name:--s2;
-  view-timeline-axis:block;
-  animation:s2Bg 1 both;
-  animation-timeline:--s2;
-  animation-range:entry 0% entry 20%;
-}
-
-@keyframes s2Bg{to{background-color:#000}}
-
-@supports not (animation-timeline:auto){
-  .section.theme-dark.s2{animation:s2BgTime 450ms var(--ease-out) both}
-  @keyframes s2BgTime{
-    from{background-color:var(--accent)}
-    to{background-color:#000}
-  }
-}
-
-/* ==========================================================================
-   8) Sections 3 & 4 — Visual flip (keep semantic H2 > H3)
-   ========================================================================== */
-.s3 h3,
-.s4 h3{
-  font-family:var(--font-head);
-  font-weight:200;
-  font-size:clamp(32px,5vw,56px);
-  line-height:1.1;
-  text-transform:uppercase;
-  letter-spacing:-.03em;
-  margin-bottom:.25rem;
-  color:var(--fg);
-}
-
-.s3 h2,
-.s4 h2{
-  font-family:var(--font-body);
-  font-weight:400;
-  font-size:20px;
-  line-height:1.3;
-  text-transform:none;
-  letter-spacing:-.01em;
-  margin-top:0;
-  margin-bottom:1rem;
-  color:#6a6a6a;
-}
-
-.theme-dark.s4 h3{color:var(--fg-dark)}
-.theme-dark.s4 h2{color:color-mix(in srgb,#fff 78%,#000)}
-
-/* Prevent About-the-Book helper line from inheriting contact-note styling */
-.s4 .section-copy .contact-note{
-  font:inherit;
-  color:inherit;
-  margin:1rem 0;
-}
-.s4 .section-copy .contact-note strong{font-weight:600}
-
-/* ==========================================================================
-   9) Agent Snapshot — Consolidated card (restored)
-   ========================================================================== */
-.agent-card{
-  margin-top:0; /* stacked under figure inside s4 media */
-  padding:1.25rem 1.25rem 1.1rem;
-  border-radius:var(--radius);
-  font-size:.98rem;
-  background:rgba(0,0,0,.04);
-  border:1px solid rgba(0,0,0,.10);
-  color:var(--fg);
-}
-
-.agent-card *{color:inherit}
-
-.agent-card__kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:.5rem;
-  font:600 .82rem/1.2 var(--font-body);
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  opacity:.72;
-  margin:0 0 .9rem;
-}
-
-.agent-card__kicker::before{
-  content:"";
-  width:.55rem;
-  height:.55rem;
-  border-radius:50%;
-  background:var(--accent);
-}
-
-.agent-card--consolidated .agent-lede{
-  margin:.15rem 0 1rem;
-  font:400 1rem/1.55 var(--font-body);
-}
-
-.agent-rule{
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(0,0,0,.18),transparent);
-  margin:.9rem 0 1rem;
-}
-
-.agent-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:1rem 1.25rem;
-}
-
-.agent-grid--consolidated{
-  grid-template-columns:1fr;
-  gap:1rem;
-}
-
-@media (max-width:700px){
-  .agent-grid{grid-template-columns:1fr}
-}
-
-.agent-item{min-width:0}
-.agent-item--wide{grid-column:1 / -1}
-
-.agent-label{
-  margin:0 0 .25rem;
-  font:600 .8rem/1.2 var(--font-body);
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  opacity:.62;
-}
-
-.agent-value{
-  margin:0;
-  font:400 .98rem/1.45 var(--font-body);
-}
-
-.agent-comps{
-  margin:.15rem 0 0;
-  padding-left:1.05rem;
-  font-size:.93em;
-}
-.agent-comps li{margin:.28rem 0}
-
-.agent-email{
-  color:inherit;
-  text-decoration:underline;
-  text-underline-offset:2px;
-}
-.agent-email:hover,
-.agent-email:focus-visible{
-  color:inherit;
-  text-decoration:underline;
-}
-
-/* Dark compatibility (for Section 4) */
-.theme-dark .agent-card{
-  background:rgba(255,255,255,.08);
-  border-color:rgba(255,255,255,.14);
-  color:var(--fg-dark);
-}
-.theme-dark .agent-card__kicker{opacity:.78}
-.theme-dark .agent-label{opacity:.72}
-.theme-dark .agent-rule{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-}
-
-/* ==========================================================================
-   10) CTA Buttons (restored)
-   ========================================================================== */
-.center-cta{
-  display:flex;
-  justify-content:center;
-  margin-top:1.25rem;
-}
-
-.about-back-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:.75rem 1.15rem;
-  background:#000;
-  color:#fff;
-  border:1px solid #000;
-  border-radius:var(--radius);
-  font:600 .95rem/1.2 var(--font-body);
-  text-decoration:none;
-  transition:
-    transform .12s var(--ease-out),
-    background-color .16s var(--ease-out),
-    color .16s var(--ease-out),
-    border-color .16s var(--ease-out);
-}
-
-.about-back-btn:hover{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-  text-decoration:none;
-}
-
-.about-back-btn:active{transform:translateY(1px)}
-
-.about-actions{
-  display:flex;
-  justify-content:center;
-  margin-top:1.75rem;
-}
-.about-actions .about-back-btn{width:auto;text-align:center}
-
-/* ==========================================================================
-   11) Contact Section — LIGHT, but still structured + “card” layout
-   ========================================================================== */
-.section-form{
-  background:var(--bg-gray);
-  color:var(--fg);
-  padding:var(--pad-v) 0;
-}
-
-/* keep the separator, but tune for light background */
-.section-form .contact-sep{
-  border:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(0,0,0,.22),transparent);
-  margin:1.25rem 0;
-}
-
-/* Keep the two-column grid (restored) */
-.section-form .wrap{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:auto auto;
-  gap:2rem;
-  align-items:stretch;
-}
-
-.section-form .section-title{
-  grid-column:1 / -1;
-  margin:0;
-  text-align:center;
-  letter-spacing:-.02em;
-  color:var(--fg);
-}
-
-.section-form .col-form{min-width:0;align-self:stretch}
-
-/* Card container matches your “contact-form” feel, but light */
-.section-form .contact-form{
-  display:grid;
-  gap:.8rem;
-  width:100%;
-  padding:1.5rem;
-  background:rgba(255,255,255,.85);
-  border-radius:var(--radius);
-  border:1px solid rgba(0,0,0,.10);
-  height:100%;
-}
-
-.section-form .form-hed{
-  margin:0 0 .75rem;
-  color:var(--fg);
-}
-
-/* Shared row spacing pattern (legacy + embed) */
-.section-form .form-row{display:grid;gap:.35rem}
-
-/* Legacy Formspree support (if any old form remains) */
-.section-form label{
-  font-size:.9rem;
-  line-height:1.3;
-  color:#333;
-}
-
-.section-form input,
-.section-form textarea{
-  width:100%;
-  font-family:var(--font-body);
-  font-size:.95rem;
-  line-height:1.4;
-  color:#111;
-  padding:.6rem .75rem;
-  background:#fff;
-  border:1px solid rgba(0,0,0,.22);
-  border-radius:6px;
-  transition:border-color .15s var(--ease-out);
-}
-
-.section-form textarea{resize:vertical;min-height:5.5rem}
-
-.section-form input::placeholder,
-.section-form textarea::placeholder{color:#777}
-
-.section-form input:focus-visible,
-.section-form textarea:focus-visible{
-  outline:2px solid var(--accent);
-  outline-offset:2px;
-  border-color:var(--accent);
-}
-
-/* Inline helper microcopy */
-.section-form .field-help{
-  font-size:.85rem;
-  line-height:1.35;
-  color:#444;
-  margin:.15rem 0 0;
-}
-
-/* Inline error messaging */
-.section-form .field-error{
-  display:none;
-  font-size:.85rem;
-  color:#b00020;
-  margin:.15rem 0 0;
-}
-.section-form .form-row input:user-invalid ~ .field-error,
-.section-form .form-row textarea:user-invalid ~ .field-error{display:block}
-.section-form .form-row input:user-invalid,
-.section-form .form-row textarea:user-invalid{border-color:#b00020}
-.section-form .form-row input:user-valid,
-.section-form .form-row textarea:user-valid{border-color:#3aa76d}
-
-/* Submit button (works for any legacy forms still live) */
-.section-form .form-submit{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--font-body);
-  font-weight:600;
-  font-size:.95rem;
-  padding:.65rem 1.25rem;
-  border:0;
-  border-radius:6px;
-  background:#000;
-  color:#fff;
-  cursor:pointer;
-  transition:
-    transform .12s var(--ease-out),
-    background-color .16s var(--ease-out),
-    color .16s var(--ease-out);
-}
-.section-form .form-submit:hover{background:var(--accent);color:#fff}
-.section-form .form-submit:active{transform:translateY(1px)}
-
-/* Form status */
-.section-form #form-status{
-  min-height:1.25rem;
-  margin-top:.25rem;
-  color:#333;
-  font-size:.9rem;
-}
-
-/* Substack embed alignment (restored, simple) */
-.section-form .form-row--embed{margin-top:.25rem}
-.section-form .substack-embed{
-  display:flex;
-  justify-content:center;
-}
-.section-form .substack-embed iframe{
-  width:100%;
-  max-width:480px;
-  height:150px;
-  background:#fff;
-  border:1px solid rgba(0,0,0,.14);
-  border-radius:12px;
-  display:block;
-}
-
-/* Right column “Updates / Industry” card */
-.section-form .col-cta{
-  align-self:stretch;
-  padding:1.5rem;
-  background:rgba(255,255,255,.75);
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:var(--radius);
-}
-
-.section-form .col-cta h3{
-  font-family:var(--font-body);
-  font-weight:600;
-  font-size:1.05rem;
-  color:#111;
-  letter-spacing:.01em;
-  margin:0 0 .5rem;
-  text-transform:none;
-}
-
-.section-form .contact-note{
-  margin-top:.5rem;
-  font:400 .95rem/1.4 var(--font-body);
-  color:#333;
-}
-
-.section-form .contact-note a{
-  color:#111;
-  text-decoration:underline;
-  text-underline-offset:2px;
-}
-
-/* ==========================================================================
-   12) About Page — Portrait upper-right
-   ========================================================================== */
-.about-page .wrap{position:relative}
-.about-article{max-width:min(100%,var(--max-wrap))}
-
-.about-head{
-  position:relative;
-  padding-top:.5rem;
-  padding-right:clamp(0px,8vw,300px);
-}
-
-.about-portrait{
-  margin:0;
-  position:absolute;
-  top:.25rem;
-  right:0;
-  width:clamp(180px,22vw,280px);
-  aspect-ratio:1/1;
-}
-
-.about-portrait img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:var(--radius);
-}
-
-.about-body{
-  margin-top:clamp(1.25rem,3vw,2rem);
-  max-width:var(--max-text);
-}
-
-/* ==========================================================================
-   13) Footer (inside Contact section) — restored spacing
-   ========================================================================== */
-.footer{
-  width:100%;
-  margin:2rem auto 0;
-  padding:1.25rem 2rem;
-  font-family:var(--font-body);
-  font-size:.9rem;
-  line-height:1.4;
-  color:#555;
-  text-align:center;
-  opacity:.95;
-}
-
-.footer p{
-  max-width:60ch;
-  margin:0 auto;
-}
-
-.footer a{
-  color:inherit;
-  text-decoration:none;
-  transition:color .2s var(--ease-out);
-}
-.footer a:hover{
-  color:#111;
-  text-decoration:underline;
-}
-
-/* ==========================================================================
-   14) Responsive
-   ========================================================================== */
-@media (max-width:900px){
-  .section-inner{grid-template-columns:1fr}
-  .section .section-copy{max-width:100%}
-
-  .hero{height:92vh}
-  .hero-overlay h1{font-size:54px;line-height:1.05}
-
-  .section-form .wrap{grid-template-columns:1fr}
-  .section-form .col-cta{margin-top:1rem;align-self:auto}
-  .section-form .contact-form{height:auto;padding:1.25rem}
-
-  .s2 .section-media,
-  .s3 .section-media,
-  .s4 .section-media{min-height:260px}
-}
-
-@media (max-width:700px){
-  .topnav-inner{padding:.75rem 0}
-  .topnav-links{gap:.65rem .85rem}
-
-  .about-head{padding-right:0}
-  .about-portrait{
-    position:relative;
-    right:auto;
-    top:auto;
-    width:min(260px,70%);
-    margin:.75rem 0 0 auto;
-  }
-  .about-body{max-width:100%}
-}
-
-/* ==========================================================================
-   15) Print
-   ========================================================================== */
-@media print{
-  @page{margin:18mm}
-
-  html,
-  body{
-    background:#fff!important;
-    color:#000!important;
-    -webkit-print-color-adjust:economy;
-    print-color-adjust:economy;
-  }
-
-  .topnav,
-  .hero,
-  .hero-shroud,
-  .hero-overlay::before,
-  .section-media{display:none!important}
-
-  .section{padding:12mm 0!important}
-  .wrap{max-width:none;padding:0!important}
-
-  body{
-    font-family:"Noto Serif",Georgia,serif!important;
-    font-size:12pt!important;
-    line-height:1.4!important;
-  }
-
-  h1,h2,h3,h4{
-    color:#000!important;
-    text-transform:none!important;
-    margin-bottom:6mm!important;
-  }
-
-  h1{font-size:22pt!important;line-height:1.15!important}
-  h2{font-size:16pt!important;line-height:1.2!important}
-  h3{font-size:12pt!important;line-height:1.25!important}
-
-  p{margin:4mm 0!important}
-
-  a[href^="http"]::after{
-    content:" (" attr(href) ")";
-    font-size:9pt;
-  }
-
-  .section-form{display:none!important}
-  .footer{color:#000!important;margin-top:8mm!important}
-}
-
-/* Notebook list */
-
-.post-list {
-  margin-top: 2rem;
-}
-
-.post-item {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(0,0,0,.08);
-}
-
-.post-date {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: .8rem;
-  color: #666;
-  margin-bottom: .5rem;
-}
-
-.post-title {
-  font-size: 1.25rem;
-  margin: 0 0 .5rem 0;
-}
-
-.post-desc {
-  margin-bottom: .75rem;
-}
-
-.read-more {
-  font-size: .9rem;
-  text-decoration: underline;
-}
-
-/* Modal */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal[hidden] {
-  display: none;
-}
-
-.modal-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.6);
-}
-
-.modal-dialog {
-  position: relative;
-  background: #fff;
-  max-width: 800px;
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 2rem;
-  z-index: 2;
-}
-
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Accessibility */
-.modal-dialog:focus {
-  outline: 3px solid #000;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: no-preference) {
-  .modal-dialog {
-    animation: fadeIn .2s ease;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
