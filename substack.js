@@ -1,155 +1,146 @@
+/**
+ * Substack RSS Feed Integration
+ * Site: Judy’s Notebook
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("rss-container");
-  const postModal = document.getElementById("post-modal");
-  const subscribeModal = document.getElementById("subscribe-modal");
-  const subscribeBtn = document.getElementById("subscribe-btn");
+  // --- Configuration ---
+  const RSS_URL = "https://substack-proxy.adnyco.workers.dev";
+  const POST_LIMIT = 10;
+  
+  // --- DOM Elements ---
+  const el = {
+    container: document.getElementById("rss-container"),
+    postModal: document.getElementById("post-modal"),
+    subscribeModal: document.getElementById("subscribe-modal"),
+    subscribeBtn: document.getElementById("subscribe-btn"),
+    modalTitle: document.getElementById("modal-title"),
+    modalBody: document.getElementById("modal-body"),
+    modalLink: document.getElementById("modal-link"),
+    closeBtns: document.querySelectorAll("[data-close]")
+  };
 
-  const modalTitle = document.getElementById("modal-title");
-  const modalBody = document.getElementById("modal-body");
-  const modalLink = document.getElementById("modal-link");
+  /**
+   * Initialization
+   */
+  const init = async () => {
+    try {
+      showLoading(true);
+      const response = await fetch(RSS_URL);
+      if (!response.ok) throw new Error("Network response was not ok");
+      
+      const data = await response.json();
+      const posts = data.items.slice(0, POST_LIMIT);
+      
+      renderPosts(posts);
+      injectJSONLD(posts);
+    } catch (error) {
+      console.error("Feed failed to load:", error);
+      el.container.innerHTML = `<p class="error-msg">Unable to load posts. Please visit <a href="https://judysnotebook.substack.com">Judy's Notebook</a> directly.</p>`;
+    } finally {
+      showLoading(false);
+    }
+  };
 
-  const RSS_URL = "https://api.rss2json.com/v1/api.json?rss_url=https://judysnotebook.substack.com/feed";
+  /**
+   * Rendering Logic
+   */
+  function renderPosts(posts) {
+    el.container.innerHTML = ""; // Clear loader
 
-  /* ------------------ FETCH ------------------ */
-
-  fetch(RSS_URL)
-    .then(res => res.json())
-    .then(data => {
-      container.innerHTML = "";
-
-      const structuredData = [];
-
-      data.items.slice(0, 10).forEach(post => {
-
-        const date = new Date(post.pubDate);
-        const formattedDate = date.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        });
-
-        const article = document.createElement("article");
-        article.className = "post-item";
-
-        article.innerHTML = `
-          <div class="post-date">${formattedDate}</div>
-          <h2 class="post-title">${post.title}</h2>
-          <p class="post-desc">${stripHTML(post.description)}</p>
-          <a href="#" class="read-more">Read More →</a>
-        `;
-
-        article.querySelector(".read-more").addEventListener("click", e => {
-          e.preventDefault();
-          openPost(post);
-        });
-
-        container.appendChild(article);
-
-        /* JSON-LD */
-        structuredData.push({
-          "@type": "BlogPosting",
-          "headline": post.title,
-          "datePublished": post.pubDate,
-          "author": {
-            "@type": "Person",
-            "name": "Judy Wright"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Judy’s Notebook"
-          },
-          "mainEntityOfPage": post.link
-        });
+    posts.forEach(post => {
+      const date = new Date(post.pubDate).toLocaleDateString("en-US", {
+        year: "numeric", month: "long", day: "numeric"
       });
 
-      injectJSONLD(structuredData);
-    })
-    .catch(() => {
-      container.innerHTML = "<p>Unable to load posts at this time.</p>";
+      const article = document.createElement("article");
+      article.className = "post-item";
+      article.innerHTML = `
+        <div class="post-date">${date}</div>
+        <h2 class="post-title">${post.title}</h2>
+        <p class="post-desc">${stripHTML(post.description)}</p>
+        <button class="read-more" aria-label="Read more about ${post.title}">Read More →</button>
+      `;
+
+      article.querySelector(".read-more").addEventListener("click", (e) => {
+        e.preventDefault();
+        openPost(post);
+      });
+
+      el.container.appendChild(article);
     });
+  }
 
-  /* ------------------ SANITIZER ------------------ */
+  /**
+   * Post Modal Content Logic
+   */
+  function openPost(post) {
+    el.modalTitle.textContent = post.title;
+    // content:encoded is usually where the full body lives in Substack RSS
+    const fullContent = post.content || post.description; 
+    el.modalBody.innerHTML = sanitizeContent(fullContent);
+    el.modalLink.href = post.link;
+    
+    toggleModal(el.postModal, true);
+  }
 
+  /**
+   * Utilities & Security
+   */
   function stripHTML(html) {
-    const temp = document.createElement("div");
-    temp.innerHTML = html;
-    return temp.textContent || temp.innerText || "";
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
   }
 
   function sanitizeContent(html) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
-    doc.querySelectorAll("script, iframe").forEach(el => el.remove());
+    // Remove scripts, iframes, and forms for security
+    doc.querySelectorAll("script, iframe, form, object").forEach(el => el.remove());
     return doc.body.innerHTML;
   }
 
-  /* ------------------ MODAL ------------------ */
-
-  function openPost(post) {
-    modalTitle.textContent = post.title;
-    modalBody.innerHTML = sanitizeContent(post.content);
-    modalLink.href = post.link;
-    openModal(postModal);
+  function showLoading(isLoading) {
+    if (isLoading) el.container.innerHTML = `<div class="loader">Loading latest posts...</div>`;
   }
 
-  function openModal(modal) {
-    modal.hidden = false;
-    modal.classList.add("is-open");
-    trapFocus(modal);
-    modal.querySelector(".modal-dialog").focus();
+  /**
+   * Modal Management
+   */
+  function toggleModal(modal, show) {
+    if (show) {
+      modal.hidden = false;
+      setTimeout(() => modal.classList.add("is-open"), 10);
+      trapFocus(modal);
+      // Optional: Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden'; 
+    } else {
+      modal.classList.remove("is-open");
+      document.body.style.overflow = '';
+      setTimeout(() => modal.hidden = true, 250);
+    }
   }
 
-  function closeModal(modal) {
-    modal.classList.remove("is-open");
-    setTimeout(() => modal.hidden = true, 250);
-  }
-
-  document.querySelectorAll("[data-close]").forEach(btn => {
+  /**
+   * Event Listeners
+   */
+  el.closeBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      closeModal(postModal);
-      closeModal(subscribeModal);
+      toggleModal(el.postModal, false);
+      toggleModal(el.subscribeModal, false);
     });
   });
 
-  subscribeBtn.addEventListener("click", () => openModal(subscribeModal));
+  el.subscribeBtn?.addEventListener("click", () => toggleModal(el.subscribeModal, true));
 
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
-      closeModal(postModal);
-      closeModal(subscribeModal);
+      toggleModal(el.postModal, false);
+      toggleModal(el.subscribeModal, false);
     }
   });
 
-  /* ------------------ FOCUS TRAP ------------------ */
-
-  function trapFocus(modal) {
-    const focusable = modal.querySelectorAll("a, button, textarea, input");
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-
-    modal.addEventListener("keydown", function(e) {
-      if (e.key === "Tab") {
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    });
-  }
-
-  /* ------------------ JSON-LD ------------------ */
-
-  function injectJSONLD(posts) {
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": posts
-    });
-    document.head.appendChild(script);
-  }
-
-});
+  // Close modal if clicking background overlay
+  [el.postModal, el.subscribeModal].forEach(modal => {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) toggleModal(modal, false
