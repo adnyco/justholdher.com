@@ -1,0 +1,108 @@
+<!-- notebook.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Judy’s Notebook — Recent Posts</title>
+  <meta name="description" content="Recent essays and field notes from Judy’s Notebook on Substack.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://justholdher.com/notebook.html">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topnav" role="banner">
+  <div class="wrap topnav-inner">
+    <a class="brand" href="index.html">Just Hold Her</a>
+    <nav class="topnav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about-author-judy-wright.html">About</a>
+      <a href="index.html#book">Book</a>
+      <a href="notebook.html" aria-current="page">Notebook</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section theme-gray" aria-labelledby="notebook-title">
+    <div class="wrap">
+      <h1 id="notebook-title">Judy’s Notebook</h1>
+      <p class="subhed">Field notes, essays, and quiet updates.</p>
+
+      <div class="notebook-actions">
+        <button class="btn" id="subscribe-btn">Subscribe</button>
+      </div>
+
+      <div id="rss-container" class="post-list" aria-live="polite">
+        <p class="loading-state">Loading...</p>
+      </div>
+
+      <p class="archive-link">
+        <a href="https://judysnotebook.substack.com" target="_blank" rel="noopener">
+          View Full Archive →
+        </a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- POST MODAL -->
+<div class="modal" id="post-modal" hidden>
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" aria-label="Close" data-close>&times;</button>
+    <div class="modal-content">
+      <h2 id="modal-title"></h2>
+      <div id="modal-body"></div>
+      <p class="modal-footer">
+        <a id="modal-link" target="_blank" rel="noopener">
+          Read full post on Substack →
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SUBSCRIBE MODAL -->
+<div class="modal" id="subscribe-modal" hidden>
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-dialog" role="dialog" aria-modal="true">
+    <button class="modal-close" aria-label="Close" data-close>&times;</button>
+    <div class="modal-content">
+      <div class="contact-form" role="form" aria-labelledby="signup-title">
+        <h3 class="form-hed" id="signup-title">Keep me posted</h3>
+
+        <p class="contact-note">
+          A story like this travels slowly. Subscribe to 
+          <a href="https://substack.com/@judysnotebook" target="_blank">
+            Judy’s Notebook
+          </a> for early excerpts, field notes, and quiet updates as 
+          <strong>Just Hold Her</strong> makes its way into the world.
+          <br><span class="field-help">A few thoughtful updates per year. No noise.</span>
+        </p>
+
+        <div class="form-row form-row--embed">
+          <div class="substack-stage">
+            <iframe
+              src="https://judysnotebook.substack.com/embed"
+              width="480"
+              height="150"
+              frameborder="0"
+              scrolling="no"
+              title="Subscribe to Judy’s Notebook">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="substack.js" defer></script>
+</body>
+</html>
