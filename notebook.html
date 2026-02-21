@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Judy’s Notebook — Recent Posts</title>
+  <title>Judy’s Notebook — Recent Essays</title>
   <meta name="description" content="Recent essays and field notes from Judy’s Notebook on Substack.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://justholdher.com/notebook.html">
@@ -31,22 +31,28 @@
 <main id="main">
   <section class="section theme-gray" aria-labelledby="notebook-title">
     <div class="wrap">
-      <h1 id="notebook-title">Judy’s Notebook</h1>
-      <p class="subhed">Field notes, essays, and quiet updates.</p>
+      <header class="section-head">
+        <h1 id="notebook-title">Judy’s Notebook</h1>
+        <p class="subhed">Field notes, essays, and quiet updates.</p>
+      </header>
 
-      <div class="notebook-actions">
-        <button class="btn" id="subscribe-btn">Subscribe</button>
+      <div class="section-actions">
+        <button class="about-back-btn" id="subscribe-btn">
+          Subscribe
+        </button>
       </div>
 
-      <div id="rss-container" class="post-list" aria-live="polite">
-        <p class="loading-state">Loading...</p>
+      <div id="rss-container" class="notebook-list" aria-live="polite">
+        <p class="loading-state">Loading…</p>
       </div>
 
-      <p class="archive-link">
-        <a href="https://judysnotebook.substack.com" target="_blank" rel="noopener">
+      <footer class="notebook-footer">
+        <a href="https://judysnotebook.substack.com"
+           target="_blank"
+           rel="noopener">
           View Full Archive →
         </a>
-      </p>
+      </footer>
     </div>
   </section>
 </main>
@@ -54,9 +60,17 @@
 <!-- POST MODAL -->
 <div class="modal" id="post-modal" hidden>
   <div class="modal-overlay" data-close></div>
-  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <button class="modal-close" aria-label="Close" data-close>&times;</button>
-    <div class="modal-content">
+  <div class="modal-dialog"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="modal-title"
+       tabindex="-1">
+
+    <button class="modal-close"
+            aria-label="Close"
+            data-close>&times;</button>
+
+    <article class="modal-content">
       <h2 id="modal-title"></h2>
       <div id="modal-body"></div>
       <p class="modal-footer">
@@ -64,24 +78,26 @@
           Read full post on Substack →
         </a>
       </p>
-    </div>
+    </article>
   </div>
 </div>
 
 <!-- SUBSCRIBE MODAL -->
 <div class="modal" id="subscribe-modal" hidden>
   <div class="modal-overlay" data-close></div>
-  <div class="modal-dialog" role="dialog" aria-modal="true">
+  <div class="modal-dialog" role="dialog" aria-modal="true" tabindex="-1">
     <button class="modal-close" aria-label="Close" data-close>&times;</button>
     <div class="modal-content">
+      <!-- Your exact embed preserved -->
       <div class="contact-form" role="form" aria-labelledby="signup-title">
         <h3 class="form-hed" id="signup-title">Keep me posted</h3>
 
         <p class="contact-note">
-          A story like this travels slowly. Subscribe to 
+          A story like this travels slowly. Subscribe to
           <a href="https://substack.com/@judysnotebook" target="_blank">
             Judy’s Notebook
-          </a> for early excerpts, field notes, and quiet updates as 
+          </a>
+          for early excerpts, field notes, and quiet updates as
           <strong>Just Hold Her</strong> makes its way into the world.
           <br><span class="field-help">A few thoughtful updates per year. No noise.</span>
         </p>
