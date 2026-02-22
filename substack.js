@@ -11,7 +11,6 @@
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, {
-      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric"
@@ -61,10 +60,11 @@
     `;
     document.body.appendChild(modal);
 
-    modal.querySelector(".modal-close").addEventListener("click", () => closeModal());
-    modal.querySelector(".modal-overlay").addEventListener("click", () => closeModal());
+    // Close events
+    modal.querySelector(".modal-close").addEventListener("click", closeModal);
+    modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
 
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", function onKeyDown(e) {
       if (e.key === "Escape") closeModal();
     });
 
@@ -75,15 +75,15 @@
     const modal = document.querySelector(".notebook-modal") || createModal();
     const body = modal.querySelector(".modal-body");
 
+    const subtitle = post.subtitle || "";
     const contentHTML = post.content || post.description || "";
     const cleanText = stripHTML(contentHTML);
-    const subtitle = post.subtitle || ""; // Use subtitle if available
 
     body.innerHTML = `
       <article class="modal-article">
-        <h2>${post.title}</h2>
-        ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         <p class="post-meta">${formatDate(post.pubDate)} · ${estimateReadTime(cleanText)}</p>
+        <h2 class="post-title">${post.title}</h2>
+        ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         <div class="modal-content-body">${contentHTML}</div>
         ${CTA_HTML}
       </article>
@@ -128,7 +128,7 @@
     const article = document.createElement("article");
     article.className = "notebook-post";
 
-    const subtitle = post.subtitle || ""; // Use subtitle if available
+    const subtitle = post.subtitle || "";
     const rawText = stripHTML(post.description || post.content || "");
     const readTime = estimateReadTime(rawText);
 
