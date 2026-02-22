@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(RSS_URL);
       if (!response.ok) throw new Error("Network response was not ok");
-
+      console.log("Posts received:", posts);
       const data = await response.json();
       const posts = (data.items || []).slice(0, POST_LIMIT);
 
