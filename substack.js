@@ -5,7 +5,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- Configuration ---
-  const RSS_URL = "https://substack-proxy.adnyco.workers.dev";
+  const RSS_URL = "https://substack-proxy.adny.workers.dev";
   const POST_LIMIT = 10;
   
   // --- DOM Elements ---
