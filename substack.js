@@ -38,7 +38,7 @@
   ================================== */
 
   const CTA_HTML = `
-    <div class="post-cta" style="margin-top: 2rem; padding-top:1rem; border-top:1px solid #ddd;">
+    <div class="post-cta" style="margin-top: 4rem; padding-top:1rem; border-top:1px solid #ddd;">
       <p>Enjoyed this essay? Subscribe for future posts:</p>
       <a href="https://judysnotebook.substack.com/subscribe" 
          target="_blank" 
