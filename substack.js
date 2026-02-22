@@ -1,5 +1,5 @@
 /**
- * Substack RSS Feed Integration — Robust Version
+ * Substack RSS Feed Integration — Two Columns
  * Site: Judy’s Notebook
  */
 
@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      renderPosts(posts);
-      injectJSONLD?.(posts); // optional
+      renderTwoColumnPosts(posts);
+      injectJSONLD?.(posts);
     } catch (err) {
       console.error("Feed failed to load:", err);
       el.container.innerHTML = `<p class="error-msg">Unable to load posts. Please visit <a href="https://judysnotebook.substack.com">Judy's Notebook</a> directly.</p>`;
@@ -47,34 +47,53 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // -----------------------------
-  // Render Posts
+  // Render Posts in Two Columns
   // -----------------------------
-  function renderPosts(posts) {
+  function renderTwoColumnPosts(posts) {
     el.container.innerHTML = "";
 
-    posts.forEach(post => {
-      const date = post.pubDate ? new Date(post.pubDate).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      }) : "";
+    // Create two column containers
+    const col1 = document.createElement("div");
+    const col2 = document.createElement("div");
+    col1.className = "rss-column";
+    col2.className = "rss-column";
 
-      const article = document.createElement("article");
-      article.className = "post-item";
-      article.innerHTML = `
-        <div class="post-date">${date}</div>
-        <h2 class="post-title">${post.title || "Untitled"}</h2>
-        <p class="post-desc">${stripHTML(post.description || post.content || "")}</p>
-        <button class="read-more" aria-label="Read more about ${post.title || "post"}">Read More →</button>
-      `;
-
-      article.querySelector(".read-more").addEventListener("click", e => {
-        e.preventDefault();
-        openPost(post);
-      });
-
-      el.container.appendChild(article);
+    // Distribute posts evenly
+    posts.forEach((post, i) => {
+      const article = createPostElement(post);
+      if (i % 2 === 0) col1.appendChild(article);
+      else col2.appendChild(article);
     });
+
+    el.container.appendChild(col1);
+    el.container.appendChild(col2);
+  }
+
+  // -----------------------------
+  // Create Individual Post Element
+  // -----------------------------
+  function createPostElement(post) {
+    const date = post.pubDate ? new Date(post.pubDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }) : "";
+
+    const article = document.createElement("article");
+    article.className = "post-item";
+    article.innerHTML = `
+      <div class="post-date">${date}</div>
+      <h2 class="post-title">${post.title || "Untitled"}</h2>
+      <p class="post-desc">${stripHTML(post.description || post.content || "")}</p>
+      <button class="read-more" aria-label="Read more about ${post.title || "post"}">Read More →</button>
+    `;
+
+    article.querySelector(".read-more").addEventListener("click", e => {
+      e.preventDefault();
+      openPost(post);
+    });
+
+    return article;
   }
 
   // -----------------------------
@@ -125,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Close modal on clicks
   el.closeBtns.forEach(btn => btn.addEventListener("click", () => {
     toggleModal(el.postModal, false);
     toggleModal(el.subscribeModal, false);
