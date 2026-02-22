@@ -1,16 +1,5 @@
-/**
- * substack.js
- * Reverse chronological
- * Skeleton loader
- * Uses .notebook-post layout
- */
-
 (function () {
   "use strict";
-
-  /* ================================
-     CONFIG
-  ================================== */
 
   const RSS_URL = "https://substack-proxy.adny.workers.dev/";
   const POST_LIMIT = 10;
@@ -20,10 +9,7 @@
   ================================== */
 
   function formatDate(dateString) {
-    if (!dateString) return "";
-
     const date = new Date(dateString);
-
     return date.toLocaleDateString(undefined, {
       year: "numeric",
       month: "long"
@@ -32,8 +18,7 @@
 
   function estimateReadTime(text = "") {
     const words = text.trim().split(/\s+/).length;
-    const minutes = Math.max(1, Math.round(words / 200));
-    return `${minutes} min read`;
+    return `${Math.max(1, Math.round(words / 200))} min read`;
   }
 
   function stripHTML(html = "") {
@@ -48,30 +33,76 @@
   }
 
   /* ================================
-     SKELETON LOADER
+     MODAL
   ================================== */
 
-  function renderSkeleton(container, count = 4) {
+  function createModal() {
+    const modal = document.createElement("div");
+    modal.className = "notebook-modal";
+    modal.innerHTML = `
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <button class="modal-close">×</button>
+        <div class="modal-body"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.querySelector(".modal-close").addEventListener("click", () => closeModal());
+    modal.querySelector(".modal-overlay").addEventListener("click", () => closeModal());
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    return modal;
+  }
+
+  function openModal(post) {
+    const modal = document.querySelector(".notebook-modal") || createModal();
+    const body = modal.querySelector(".modal-body");
+
+    body.innerHTML = `
+      <h2>${post.title}</h2>
+      <p class="post-meta">${formatDate(post.pubDate)}</p>
+      <div class="modal-article">
+        ${post.content || post.description || ""}
+      </div>
+    `;
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    const modal = document.querySelector(".notebook-modal");
+    if (!modal) return;
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  /* ================================
+     SKELETON
+  ================================== */
+
+  function renderSkeleton(container, count = 6) {
     container.innerHTML = "";
     container.classList.add("notebook-center");
 
     for (let i = 0; i < count; i++) {
       const skeleton = document.createElement("div");
       skeleton.className = "skeleton-card";
-
       skeleton.innerHTML = `
         <div class="skeleton-line short"></div>
         <div class="skeleton-line"></div>
         <div class="skeleton-line"></div>
-        <div class="skeleton-line short"></div>
       `;
-
       container.appendChild(skeleton);
     }
   }
 
   /* ================================
-     POST RENDER
+     POSTS
   ================================== */
 
   function createPostCard(post) {
@@ -83,20 +114,21 @@
     const readTime = estimateReadTime(rawText);
 
     article.innerHTML = `
-      <a href="${post.link}" class="post-link" target="_blank" rel="noopener noreferrer">
+      <a href="#" class="post-link">
         <header>
           <p class="post-meta">
             ${formatDate(post.pubDate)} · ${readTime}
           </p>
-          <h2 class="post-title">
-            ${post.title || "Untitled"}
-          </h2>
+          <h2 class="post-title">${post.title}</h2>
         </header>
-        <p class="post-excerpt">
-          ${excerpt}
-        </p>
+        <p class="post-excerpt">${excerpt}</p>
       </a>
     `;
+
+    article.querySelector(".post-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal(post);
+    });
 
     return article;
   }
@@ -106,8 +138,7 @@
     container.classList.add("notebook-center");
 
     posts.forEach(post => {
-      const card = createPostCard(post);
-      container.appendChild(card);
+      container.appendChild(createPostCard(post));
     });
   }
 
@@ -119,7 +150,7 @@
     const container = document.getElementById("rss-container");
     if (!container) return;
 
-    renderSkeleton(container, 6);
+    renderSkeleton(container);
 
     try {
       const response = await fetch(RSS_URL);
@@ -128,33 +159,16 @@
       const data = await response.json();
       let posts = data.items || [];
 
-      // ✅ Reverse chronological sort (most recent first)
-      posts.sort((a, b) => {
-        return new Date(b.pubDate) - new Date(a.pubDate);
-      });
-
+      posts.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
       posts = posts.slice(0, POST_LIMIT);
-
-      if (!posts.length) {
-        container.innerHTML = `<p>No posts available.</p>`;
-        return;
-      }
 
       renderPosts(posts, container);
 
     } catch (err) {
-      console.error("Substack fetch failed:", err);
-      container.innerHTML = `
-        <div class="loader-container">
-          <div class="loader">Unable to load posts.</div>
-        </div>
-      `;
+      container.innerHTML = `<p>Unable to load posts.</p>`;
+      console.error(err);
     }
   }
-
-  /* ================================
-     START
-  ================================== */
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
