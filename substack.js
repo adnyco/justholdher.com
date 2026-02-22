@@ -1,166 +1,154 @@
 /**
- * Substack RSS Feed Integration — Two Columns
- * Site: Judy’s Notebook
+ * substack.js
+ * Fetches posts from Cloudflare Worker JSON endpoint
+ * and renders them into a two-column layout.
  */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const RSS_URL = "https://substack-proxy.adny.workers.dev";
-  const POST_LIMIT = 10;
+(function () {
+  "use strict";
 
-  const el = {
-    container: document.getElementById("rss-container"),
-    postModal: document.getElementById("post-modal"),
-    subscribeModal: document.getElementById("subscribe-modal"),
-    subscribeBtn: document.getElementById("subscribe-btn"),
-    modalTitle: document.getElementById("modal-title"),
-    modalBody: document.getElementById("modal-body"),
-    modalLink: document.getElementById("modal-link"),
-    closeBtns: document.querySelectorAll("[data-close]")
-  };
+  /* ================================
+     CONFIG
+  ================================== */
 
-  // -----------------------------
-  // Initialization
-  // -----------------------------
-  const init = async () => {
-    showLoading(true);
+  const RSS_URL = "https://YOUR-WORKER-URL.workers.dev";
+  const POST_LIMIT = 10; // Total posts to display
 
-    try {
-      const response = await fetch(RSS_URL);
-      if (!response.ok) throw new Error("Network response was not ok");
-      console.log("Posts received:", posts);
-      const data = await response.json();
-      const posts = (data.items || []).slice(0, POST_LIMIT);
-      console.log("Container:", el.container);
-      console.log("Posts:", posts);
-    
-      if (!posts.length) {
-        el.container.innerHTML = `<p class="error-msg">No posts available. Please visit <a href="https://judysnotebook.substack.com">Judy's Notebook</a>.</p>`;
-        return;
-      }
+  /* ================================
+     UTILITIES
+  ================================== */
 
-     el.container.innerHTML = "<h1>TEST RENDER</h1>";
-      
-
-  // -----------------------------
-  // Render Posts in Two Columns
-  // -----------------------------
-  function renderTwoColumnPosts(posts) {
-    el.container.innerHTML = "";
-
-    // Create two column containers
-    const col1 = document.createElement("div");
-    const col2 = document.createElement("div");
-    col1.className = "rss-column";
-    col2.className = "rss-column";
-
-    // Distribute posts evenly
-    posts.forEach((post, i) => {
-      const article = createPostElement(post);
-      if (i % 2 === 0) col1.appendChild(article);
-      else col2.appendChild(article);
-    });
-
-    el.container.appendChild(col1);
-    el.container.appendChild(col2);
-  }
-
-  // -----------------------------
-  // Create Individual Post Element
-  // -----------------------------
-  function createPostElement(post) {
-    const date = post.pubDate ? new Date(post.pubDate).toLocaleDateString("en-US", {
+  function formatDate(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, {
       year: "numeric",
       month: "long",
-      day: "numeric"
-    }) : "";
-
-    const article = document.createElement("article");
-    article.className = "post-item";
-    article.innerHTML = `
-      <div class="post-date">${date}</div>
-      <h2 class="post-title">${post.title || "Untitled"}</h2>
-      <p class="post-desc">${stripHTML(post.description || post.content || "")}</p>
-      <button class="read-more" aria-label="Read more about ${post.title || "post"}">Read More →</button>
-    `;
-
-    article.querySelector(".read-more").addEventListener("click", e => {
-      e.preventDefault();
-      openPost(post);
+      day: "numeric",
     });
+  }
+
+  function escapeHTML(str = "") {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function stripHTML(html = "") {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  }
+
+  function truncate(text, length = 180) {
+    if (!text) return "";
+    if (text.length <= length) return text;
+    return text.substring(0, length).trim() + "...";
+  }
+
+  /* ================================
+     RENDERING
+  ================================== */
+
+  function createPostCard(post) {
+    const article = document.createElement("article");
+    article.className = "rss-card";
+
+    const title = escapeHTML(post.title || "Untitled");
+    const link = post.link || "#";
+    const date = formatDate(post.pubDate);
+    const rawExcerpt = post.description || "";
+    const excerpt = truncate(stripHTML(rawExcerpt), 200);
+
+    article.innerHTML = `
+      <h3 class="rss-title">
+        <a href="${link}" target="_blank" rel="noopener noreferrer">
+          ${title}
+        </a>
+      </h3>
+      ${date ? `<div class="rss-date">${date}</div>` : ""}
+      <p class="rss-excerpt">${escapeHTML(excerpt)}</p>
+      <a class="rss-read-more" href="${link}" target="_blank" rel="noopener noreferrer">
+        Read more →
+      </a>
+    `;
 
     return article;
   }
 
-  // -----------------------------
-  // Open Modal
-  // -----------------------------
-  function openPost(post) {
-    el.modalTitle.textContent = post.title || "Untitled";
-    const fullContent = post.content || post.description || "<p>No content available.</p>";
-    el.modalBody.innerHTML = sanitizeContent(fullContent);
-    el.modalLink.href = post.link || "#";
+  function renderTwoColumnPosts(posts, container) {
+    container.innerHTML = "";
 
-    toggleModal(el.postModal, true);
-  }
+    const wrapper = document.createElement("div");
+    wrapper.className = "rss-grid";
 
-  // -----------------------------
-  // Utilities
-  // -----------------------------
-  function stripHTML(html) {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  }
+    const leftCol = document.createElement("div");
+    leftCol.className = "rss-column";
 
-  function sanitizeContent(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    doc.querySelectorAll("script, iframe, form, object").forEach(el => el.remove());
-    return doc.body.innerHTML;
-  }
+    const rightCol = document.createElement("div");
+    rightCol.className = "rss-column";
 
-  function showLoading(isLoading) {
-    if (isLoading) el.container.innerHTML = `<div class="loader-container"><div class="loader">Loading latest posts…</div></div>`;
-  }
-
-  // -----------------------------
-  // Modal Management
-  // -----------------------------
-  function toggleModal(modal, show) {
-    if (!modal) return;
-    if (show) {
-      modal.hidden = false;
-      setTimeout(() => modal.classList.add("is-open"), 10);
-      trapFocus?.(modal);
-      document.body.style.overflow = "hidden";
-    } else {
-      modal.classList.remove("is-open");
-      document.body.style.overflow = "";
-      setTimeout(() => modal.hidden = true, 250);
-    }
-  }
-
-  el.closeBtns.forEach(btn => btn.addEventListener("click", () => {
-    toggleModal(el.postModal, false);
-    toggleModal(el.subscribeModal, false);
-  }));
-
-  el.subscribeBtn?.addEventListener("click", () => toggleModal(el.subscribeModal, true));
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      toggleModal(el.postModal, false);
-      toggleModal(el.subscribeModal, false);
-    }
-  });
-
-  [el.postModal, el.subscribeModal].forEach(modal => {
-    modal?.addEventListener("click", e => {
-      if (e.target === modal) toggleModal(modal, false);
+    posts.forEach((post, index) => {
+      const card = createPostCard(post);
+      if (index % 2 === 0) {
+        leftCol.appendChild(card);
+      } else {
+        rightCol.appendChild(card);
+      }
     });
-  });
 
-  // -----------------------------
-  // Start
-  // -----------------------------
-  init();
-});
+    wrapper.appendChild(leftCol);
+    wrapper.appendChild(rightCol);
+    container.appendChild(wrapper);
+  }
+
+  /* ================================
+     INIT
+  ================================== */
+
+  async function init() {
+    const container = document.getElementById("rss-container");
+
+    // Exit quietly if container not present (prevents breaking other pages)
+    if (!container) return;
+
+    try {
+      container.innerHTML = `<p class="rss-loading">Loading posts...</p>`;
+
+      const response = await fetch(RSS_URL);
+
+      if (!response.ok) {
+        throw new Error(`Network error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      const posts = (data.items || []).slice(0, POST_LIMIT);
+
+      if (!posts.length) {
+        container.innerHTML =
+          `<p class="rss-error">No posts available.</p>`;
+        return;
+      }
+
+      renderTwoColumnPosts(posts, container);
+
+    } catch (error) {
+      console.error("Substack fetch failed:", error);
+      container.innerHTML =
+        `<p class="rss-error">Unable to load posts at this time.</p>`;
+    }
+  }
+
+  /* ================================
+     START
+  ================================== */
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+})();
