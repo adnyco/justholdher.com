@@ -29,11 +29,6 @@
     return div.textContent || div.innerText || "";
   }
 
-  function truncate(text = "", length = 220) {
-    if (text.length <= length) return text;
-    return text.substring(0, length).trim() + "...";
-  }
-
   /* ================================
      CTA TEMPLATE
   ================================== */
@@ -98,6 +93,13 @@
     document.body.style.overflow = "hidden";
   }
 
+  function closeModal() {
+    const modal = document.querySelector(".notebook-modal");
+    if (!modal) return;
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
   /* ================================
      SKELETON
   ================================== */
@@ -126,19 +128,17 @@
     const article = document.createElement("article");
     article.className = "notebook-post";
 
-    const rawText = stripHTML(post.description || post.content || "");
-    const excerpt = truncate(rawText, 220);
-    const readTime = estimateReadTime(rawText);
     const subtitle = post.subtitle || ""; // Use subtitle if available
+    const rawText = stripHTML(post.description || post.content || "");
+    const readTime = estimateReadTime(rawText);
 
     article.innerHTML = `
       <a href="#" class="post-link">
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
-          ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         </header>
-        <p class="post-excerpt">${excerpt}</p>
+        <p class="post-excerpt">${subtitle}</p>
       </a>
     `;
 
