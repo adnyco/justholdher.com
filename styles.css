@@ -1232,16 +1232,9 @@ figcaption{
 
 /* Two-column RSS layout */
 #rss-container {
-  display: flex;
-  gap: 2rem;
-  justify-content: center; /* center columns */
-}
-
-.rss-column {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  flex: 1; /* stretch to fill evenly */
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 /* Responsive: stack on small screens */
