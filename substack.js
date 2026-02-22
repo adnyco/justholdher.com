@@ -1,7 +1,8 @@
 /**
  * substack.js
- * Fetches posts from Cloudflare Worker JSON endpoint
- * and renders them into a two-column layout.
+ * Reverse chronological
+ * Skeleton loader
+ * Uses .notebook-post layout
  */
 
 (function () {
@@ -12,7 +13,7 @@
   ================================== */
 
   const RSS_URL = "https://substack-proxy.adny.workers.dev/";
-  const POST_LIMIT = 10; // Total posts to display
+  const POST_LIMIT = 10;
 
   /* ================================
      UTILITIES
@@ -20,19 +21,19 @@
 
   function formatDate(dateString) {
     if (!dateString) return "";
+
     const date = new Date(dateString);
+
     return date.toLocaleDateString(undefined, {
       year: "numeric",
-      month: "long",
-      day: "numeric",
+      month: "long"
     });
   }
 
-  function escapeHTML(str = "") {
-    return str
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
+  function estimateReadTime(text = "") {
+    const words = text.trim().split(/\s+/).length;
+    const minutes = Math.max(1, Math.round(words / 200));
+    return `${minutes} min read`;
   }
 
   function stripHTML(html = "") {
@@ -41,66 +42,73 @@
     return div.textContent || div.innerText || "";
   }
 
-  function truncate(text, length = 180) {
-    if (!text) return "";
+  function truncate(text = "", length = 220) {
     if (text.length <= length) return text;
     return text.substring(0, length).trim() + "...";
   }
 
   /* ================================
-     RENDERING
+     SKELETON LOADER
+  ================================== */
+
+  function renderSkeleton(container, count = 4) {
+    container.innerHTML = "";
+    container.classList.add("notebook-center");
+
+    for (let i = 0; i < count; i++) {
+      const skeleton = document.createElement("div");
+      skeleton.className = "skeleton-card";
+
+      skeleton.innerHTML = `
+        <div class="skeleton-line short"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line short"></div>
+      `;
+
+      container.appendChild(skeleton);
+    }
+  }
+
+  /* ================================
+     POST RENDER
   ================================== */
 
   function createPostCard(post) {
     const article = document.createElement("article");
-    article.className = "rss-card";
+    article.className = "notebook-post";
 
-    const title = escapeHTML(post.title || "Untitled");
-    const link = post.link || "#";
-    const date = formatDate(post.pubDate);
-    const rawExcerpt = post.description || "";
-    const excerpt = truncate(stripHTML(rawExcerpt), 200);
+    const rawText = stripHTML(post.description || post.content || "");
+    const excerpt = truncate(rawText, 220);
+    const readTime = estimateReadTime(rawText);
 
     article.innerHTML = `
-      <h3 class="rss-title">
-        <a href="${link}" target="_blank" rel="noopener noreferrer">
-          ${title}
-        </a>
-      </h3>
-      ${date ? `<div class="rss-date">${date}</div>` : ""}
-      <p class="rss-excerpt">${escapeHTML(excerpt)}</p>
-      <a class="rss-read-more" href="${link}" target="_blank" rel="noopener noreferrer">
-        Read more →
+      <a href="${post.link}" class="post-link" target="_blank" rel="noopener noreferrer">
+        <header>
+          <p class="post-meta">
+            ${formatDate(post.pubDate)} · ${readTime}
+          </p>
+          <h2 class="post-title">
+            ${post.title || "Untitled"}
+          </h2>
+        </header>
+        <p class="post-excerpt">
+          ${excerpt}
+        </p>
       </a>
     `;
 
     return article;
   }
 
-  function renderTwoColumnPosts(posts, container) {
+  function renderPosts(posts, container) {
     container.innerHTML = "";
+    container.classList.add("notebook-center");
 
-    const wrapper = document.createElement("div");
-    wrapper.className = "rss-grid";
-
-    const leftCol = document.createElement("div");
-    leftCol.className = "rss-column";
-
-    const rightCol = document.createElement("div");
-    rightCol.className = "rss-column";
-
-    posts.forEach((post, index) => {
+    posts.forEach(post => {
       const card = createPostCard(post);
-      if (index % 2 === 0) {
-        leftCol.appendChild(card);
-      } else {
-        rightCol.appendChild(card);
-      }
+      container.appendChild(card);
     });
-
-    wrapper.appendChild(leftCol);
-    wrapper.appendChild(rightCol);
-    container.appendChild(wrapper);
   }
 
   /* ================================
@@ -109,35 +117,38 @@
 
   async function init() {
     const container = document.getElementById("rss-container");
-
-    // Exit quietly if container not present (prevents breaking other pages)
     if (!container) return;
 
+    renderSkeleton(container, 6);
+
     try {
-      container.innerHTML = `<p class="rss-loading">Loading posts...</p>`;
-
       const response = await fetch(RSS_URL);
-
-      if (!response.ok) {
-        throw new Error(`Network error: ${response.status}`);
-      }
+      if (!response.ok) throw new Error("Network error");
 
       const data = await response.json();
+      let posts = data.items || [];
 
-      const posts = (data.items || []).slice(0, POST_LIMIT);
+      // ✅ Reverse chronological sort (most recent first)
+      posts.sort((a, b) => {
+        return new Date(b.pubDate) - new Date(a.pubDate);
+      });
+
+      posts = posts.slice(0, POST_LIMIT);
 
       if (!posts.length) {
-        container.innerHTML =
-          `<p class="rss-error">No posts available.</p>`;
+        container.innerHTML = `<p>No posts available.</p>`;
         return;
       }
 
-      renderTwoColumnPosts(posts, container);
+      renderPosts(posts, container);
 
-    } catch (error) {
-      console.error("Substack fetch failed:", error);
-      container.innerHTML =
-        `<p class="rss-error">Unable to load posts at this time.</p>`;
+    } catch (err) {
+      console.error("Substack fetch failed:", err);
+      container.innerHTML = `
+        <div class="loader-container">
+          <div class="loader">Unable to load posts.</div>
+        </div>
+      `;
     }
   }
 
