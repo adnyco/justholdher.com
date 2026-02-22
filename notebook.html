@@ -45,24 +45,27 @@
 
 <!-- Substack RSS Posts -->
 <section class="section notebook-list theme-light" aria-labelledby="notebook-title">
-<div class="loader-container">
-  <div class="loader">Loading latest posts…</div>
+
+  <!-- Loader -->
+  <div class="loader-container">
+    <div class="loader">Loading latest posts…</div>
+  </div>
+
+  <!-- Posts -->
   <div class="wrap notebook-container">
     <div class="notebook-center" id="rss-container" aria-live="polite">
-      <p class="loading-state">Loading…</p>
       <!-- RSS posts will be injected here -->
     </div>
 
-    <div class="notebook-footer">
+    <footer class="notebook-footer">
       <a href="https://judysnotebook.substack.com"
          target="_blank"
          rel="noopener"
          class="button button--primary">
         View Full Archive →
       </a>
-    </div>
+    </footer>
   </div>
-</div>
 </section>
 
 <!-- POST MODAL -->
@@ -89,7 +92,6 @@
     </article>
   </div>
 </div>
-
   <!-- CONTACT -->
     <section class="section-form" aria-labelledby="contact-title">
       <hr class="contact-sep" />
