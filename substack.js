@@ -30,13 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Posts received:", posts);
       const data = await response.json();
       const posts = (data.items || []).slice(0, POST_LIMIT);
-
+      console.log("Container:", el.container);
+      console.log("Posts:", posts);
+    
       if (!posts.length) {
         el.container.innerHTML = `<p class="error-msg">No posts available. Please visit <a href="https://judysnotebook.substack.com">Judy's Notebook</a>.</p>`;
         return;
       }
 
      el.container.innerHTML = "<h1>TEST RENDER</h1>";
+      
 
   // -----------------------------
   // Render Posts in Two Columns
