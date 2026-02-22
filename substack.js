@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       renderTwoColumnPosts(posts);
-      injectJSONLD?.(posts);
     } catch (err) {
       console.error("Feed failed to load:", err);
       el.container.innerHTML = `<p class="error-msg">Unable to load posts. Please visit <a href="https://judysnotebook.substack.com">Judy's Notebook</a> directly.</p>`;
