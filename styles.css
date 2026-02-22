@@ -1289,7 +1289,6 @@ figcaption{
   color: var(--accent, #ff6600);
   font-size: 1.25rem;
 }
-
 @keyframes pulse {
   0% { background-color: #eee; }
   50% { background-color: #e0e0e0; }
