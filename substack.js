@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showLoading(isLoading) {
-    if (isLoading) el.container.innerHTML = `<div class="loader">Loading latest posts...</div>`;
+    if (isLoading) el.container.innerHTML = `<div class="loader-container"><div class="loader">Loading latest posts…</div></div>`;
   }
 
   // -----------------------------
