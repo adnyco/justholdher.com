@@ -11,7 +11,7 @@
      CONFIG
   ================================== */
 
-  const RSS_URL = "https://YOUR-WORKER-URL.workers.dev";
+  const RSS_URL = "https://substack-proxy.adny.workers.dev/";
   const POST_LIMIT = 10; // Total posts to display
 
   /* ================================
