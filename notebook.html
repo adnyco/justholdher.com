@@ -51,52 +51,47 @@
 
 
   <!-- Posts -->
-  <section class="section notebook-list theme-light">
-    <div class="wrap">
+   <section class="section theme-gray" aria-labelledby="notebook-title">
+    
+      <div id="rss-container" class="notebook-list" aria-live="polite">
+        <p class="loading-state">Loading…</p>
+      </div>
 
-      <article class="notebook-post">
-        <a href="#" class="post-link">
-          <header>
-            <p class="post-meta">April 2026 · 6 min read</p>
-            <h2 class="post-title">The Weight of Quiet Mornings</h2>
-          </header>
-          <p class="post-excerpt">
-            The kettle hums before the sun rises fully. There is something sacred
-            about these early hours — before the world decides what it wants from you.
-          </p>
+      <footer class="notebook-footer">
+        <a href="https://judysnotebook.substack.com"
+           target="_blank"
+           rel="noopener">
+          View Full Archive →
         </a>
-      </article>
-
-
-      <article class="notebook-post">
-        <a href="#" class="post-link">
-          <header>
-            <p class="post-meta">March 2026 · 5 min read</p>
-            <h2 class="post-title">A Photograph Without a Camera</h2>
-          </header>
-          <p class="post-excerpt">
-            Memory has a shutter speed of its own. Sometimes slow enough
-            to blur the edges, sometimes sharp enough to wound.
-          </p>
-        </a>
-      </article>
-
-
-      <article class="notebook-post">
-        <a href="#" class="post-link">
-          <header>
-            <p class="post-meta">February 2026 · 7 min read</p>
-            <h2 class="post-title">The Sound of Her Laugh in Winter</h2>
-          </header>
-          <p class="post-excerpt">
-            Snow absorbs everything — even grief. But some sounds refuse
-            to disappear into white silence.
-          </p>
-        </a>
-      </article>
-
+      </footer>
     </div>
   </section>
+</main>
+
+<!-- POST MODAL -->
+<div class="modal" id="post-modal" hidden>
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-dialog"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="modal-title"
+       tabindex="-1">
+
+    <button class="modal-close"
+            aria-label="Close"
+            data-close>&times;</button>
+
+    <article class="modal-content">
+      <h2 id="modal-title"></h2>
+      <div id="modal-body"></div>
+      <p class="modal-footer">
+        <a id="modal-link" target="_blank" rel="noopener">
+          Read full post on Substack →
+        </a>
+      </p>
+    </article>
+  </div>
+</div>
 
 </main>
 
