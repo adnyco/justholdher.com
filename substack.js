@@ -11,6 +11,7 @@
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, {
+      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric"
@@ -38,7 +39,7 @@
   ================================== */
 
   const CTA_HTML = `
-    <div class="post-cta" style="margin-top: 4rem; padding-top:1rem; border-top:1px solid #ddd;">
+    <div class="post-cta" style="margin-top: 2rem; padding-top:1rem; border-top:1px solid #ddd;">
       <p>Enjoyed this essay? Subscribe for future posts:</p>
       <a href="https://judysnotebook.substack.com/subscribe" 
          target="_blank" 
@@ -81,10 +82,12 @@
 
     const contentHTML = post.content || post.description || "";
     const cleanText = stripHTML(contentHTML);
+    const subtitle = post.subtitle || ""; // Use subtitle if available
 
     body.innerHTML = `
       <article class="modal-article">
         <h2>${post.title}</h2>
+        ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         <p class="post-meta">${formatDate(post.pubDate)} · ${estimateReadTime(cleanText)}</p>
         <div class="modal-content-body">${contentHTML}</div>
         ${CTA_HTML}
@@ -93,13 +96,6 @@
 
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    const modal = document.querySelector(".notebook-modal");
-    if (!modal) return;
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
   }
 
   /* ================================
@@ -133,12 +129,14 @@
     const rawText = stripHTML(post.description || post.content || "");
     const excerpt = truncate(rawText, 220);
     const readTime = estimateReadTime(rawText);
+    const subtitle = post.subtitle || ""; // Use subtitle if available
 
     article.innerHTML = `
       <a href="#" class="post-link">
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
+          ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         </header>
         <p class="post-excerpt">${excerpt}</p>
       </a>
