@@ -1276,6 +1276,20 @@ figcaption{
 
 .skeleton-card .skeleton-line.short { width: 60%; }
 
+/* Loader spans both columns */
+.loader-container {
+  grid-column: 1 / -1; /* spans entire grid in notebook-center if using grid */
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.loader {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--accent, #ff6600);
+  font-size: 1.25rem;
+}
+
 @keyframes pulse {
   0% { background-color: #eee; }
   50% { background-color: #e0e0e0; }
