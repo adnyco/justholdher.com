@@ -8,13 +8,14 @@
      UTILITIES
   ================================== */
 
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "long"
-    });
-  }
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
 
   function estimateReadTime(text = "") {
     const words = text.trim().split(/\s+/).length;
