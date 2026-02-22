@@ -10,11 +10,16 @@
 
   function formatDate(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleDateString(undefined, {
       year: "numeric",
       month: "long",
       day: "numeric"
     });
+  }
+
+  function estimateReadTime(text = "") {
+    const words = text.trim().split(/\s+/).length;
+    return `${Math.max(1, Math.round(words / 200))} min read`;
   }
 
   function stripHTML(html = "") {
@@ -28,11 +33,21 @@
     return text.substring(0, length).trim() + "...";
   }
 
-  function calculateReadingTime(text = "") {
-    const words = text.trim().split(/\s+/).length;
-    const minutes = Math.ceil(words / 225);
-    return `${minutes} min read`;
-  }
+  /* ================================
+     CTA TEMPLATE
+  ================================== */
+
+  const CTA_HTML = `
+    <div class="post-cta" style="margin-top: 2rem; padding-top:1rem; border-top:1px solid #ddd;">
+      <p>Enjoyed this essay? Subscribe for future posts:</p>
+      <a href="https://judysnotebook.substack.com/subscribe" 
+         target="_blank" 
+         rel="noopener" 
+         style="display:inline-block;margin-top:.5rem;padding:.5rem 1rem;background:#ff6600;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;">
+        Subscribe →
+      </a>
+    </div>
+  `;
 
   /* ================================
      MODAL
@@ -41,19 +56,17 @@
   function createModal() {
     const modal = document.createElement("div");
     modal.className = "notebook-modal";
-
     modal.innerHTML = `
       <div class="modal-overlay"></div>
       <div class="modal-content">
-        <button class="modal-close" aria-label="Close">×</button>
+        <button class="modal-close">×</button>
         <div class="modal-body"></div>
       </div>
     `;
-
     document.body.appendChild(modal);
 
-    modal.querySelector(".modal-close").addEventListener("click", closeModal);
-    modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
+    modal.querySelector(".modal-close").addEventListener("click", () => closeModal());
+    modal.querySelector(".modal-overlay").addEventListener("click", () => closeModal());
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeModal();
@@ -63,9 +76,7 @@
   }
 
   function openModal(post) {
-    const modal =
-      document.querySelector(".notebook-modal") || createModal();
-
+    const modal = document.querySelector(".notebook-modal") || createModal();
     const body = modal.querySelector(".modal-body");
 
     const contentHTML = post.content || post.description || "";
@@ -74,23 +85,9 @@
     body.innerHTML = `
       <article class="modal-article">
         <h2>${post.title}</h2>
-        <p class="post-meta">
-          ${formatDate(post.pubDate)} · ${calculateReadingTime(cleanText)}
-        </p>
-        <div class="modal-content-body">
-          ${contentHTML}
-        </div>
-
-        <div class="post-cta">
-          <hr>
-          <p>If this resonated, subscribe to receive future essays directly.</p>
-          <a href="https://judysnotebook.substack.com/subscribe"
-             target="_blank"
-             rel="noopener"
-             class="button button--primary">
-             Subscribe →
-          </a>
-        </div>
+        <p class="post-meta">${formatDate(post.pubDate)} · ${estimateReadTime(cleanText)}</p>
+        <div class="modal-content-body">${contentHTML}</div>
+        ${CTA_HTML}
       </article>
     `;
 
@@ -111,6 +108,7 @@
 
   function renderSkeleton(container, count = 6) {
     container.innerHTML = "";
+    container.classList.add("notebook-center");
 
     for (let i = 0; i < count; i++) {
       const skeleton = document.createElement("div");
@@ -132,17 +130,14 @@
     const article = document.createElement("article");
     article.className = "notebook-post";
 
-    const contentHTML = post.content || post.description || "";
-    const rawText = stripHTML(contentHTML);
+    const rawText = stripHTML(post.description || post.content || "");
     const excerpt = truncate(rawText, 220);
-    const readTime = calculateReadingTime(rawText);
+    const readTime = estimateReadTime(rawText);
 
     article.innerHTML = `
       <a href="#" class="post-link">
         <header>
-          <p class="post-meta">
-            ${formatDate(post.pubDate)} · ${readTime}
-          </p>
+          <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
         </header>
         <p class="post-excerpt">${excerpt}</p>
@@ -159,6 +154,7 @@
 
   function renderPosts(posts, container) {
     container.innerHTML = "";
+    container.classList.add("notebook-center");
 
     posts.forEach(post => {
       container.appendChild(createPostCard(post));
@@ -182,6 +178,7 @@
       const data = await response.json();
       let posts = data.items || [];
 
+      // Sort reverse chronological
       posts.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
       posts = posts.slice(0, POST_LIMIT);
 
