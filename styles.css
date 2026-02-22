@@ -1244,6 +1244,50 @@ figcaption{
   }
 }
 
+/* ================================
+   Notebook Modal
+================================== */
+
+.notebook-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.notebook-modal.active {
+  display: block;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  max-width: 720px;
+  margin: 5vh auto;
+  background: #fff;
+  padding: 3rem;
+  border-radius: 12px;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
 /* =========================================================
    18) Skeleton Loader for RSS Posts
    ========================================================= */
