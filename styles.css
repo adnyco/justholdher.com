@@ -152,7 +152,24 @@ strong{font-weight:600}
 .section.theme-dark a:focus-visible{
   color:var(--fg-dark);
 }
+/* =========================================================
+   Global Link System (Overrides Browser Defaults)
+   ========================================================= */
 
+a,
+a:visited{
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+a:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 /* ==========================================================================
    4) Layout Primitives
    ========================================================================== */
@@ -923,4 +940,344 @@ figcaption{
 
   .section-form{display:none!important}
   .footer{color:#000!important;margin-top:8mm!important}
+}
+/* ==========================================================================
+   16) Notebook RSS Page — Editorial Layer (Scoped & Non-Destructive)
+   ========================================================================== */
+
+/* Scope everything strictly to notebook page */
+.notebook-page {
+  background: #fff;
+  color: var(--fg);
+}
+
+/* =========================================================
+   16a) Notebook Hero — Editorial Redesign
+   ========================================================= */
+.notebook-hero {
+  position: relative;
+  padding: clamp(5rem, 8vw, 8rem) 0 4rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 60%);
+}
+
+.notebook-hero h1 {
+  font-size: clamp(40px, 6vw, 64px);
+  letter-spacing: -.02em;
+  margin-bottom: 1.25rem;
+}
+
+.notebook-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.notebook-intro a {
+  border-bottom: 1px solid rgba(0,0,0,.3);
+  transition: border-color .2s ease, color .2s ease;
+}
+
+.notebook-intro a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Add "field-help" style for subtle header text */
+.field-help, .notebook-intro .field-help {
+  display: block;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #666;
+  margin-top: 0.5rem;
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------
+   Main Layout
+   -------------------------------------------------- */
+.notebook-wrap {
+  max-width: var(--max-wrap);
+  margin: 0 auto;
+  padding: 0 1.25rem clamp(3rem,6vw,5rem);
+  display: grid;
+  grid-template-columns: minmax(0,760px) 280px;
+  justify-content: center;
+  gap: clamp(2rem,4vw,3rem);
+}
+
+.notebook-main {
+  min-width: 0;
+}
+
+.notebook-sidebar {
+  min-width: 0;
+}
+
+/* --------------------------------------------------
+   Entry Styling
+   -------------------------------------------------- */
+.notebook-entry {
+  position: relative;
+  padding: 3.5rem 0;
+  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+
+.notebook-entry + .notebook-entry::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:1px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,.18), transparent);
+}
+
+.notebook-entry h2 {
+  text-transform: none;
+  font-size: clamp(26px,3vw,38px);
+  margin-bottom:.75rem;
+}
+
+.notebook-entry p {
+  max-width: 72ch;
+  line-height: 1.7;
+  margin: .9rem 0;
+  color: #222;
+}
+
+.notebook-entry:hover {
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------
+   Read More Link (Refined)
+   -------------------------------------------------- */
+.notebook-entry .read-more {
+  display: inline-block;
+  margin-top: 1rem;
+  font: 600 .85rem/1.2 var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #111;
+  border-bottom: 1px solid rgba(0,0,0,.35);
+  text-decoration: none;
+  transition: color .2s var(--ease-out), border-color .2s var(--ease-out);
+}
+
+.notebook-entry .read-more:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* --------------------------------------------------
+   Sidebar Cards
+   -------------------------------------------------- */
+.notebook-card {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,.1);
+  background: #fafafa;
+  margin-bottom: 2rem;
+  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+
+.notebook-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,0,0,.06);
+}
+
+.notebook-card h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 0 0 1rem;
+}
+
+/* --------------------------------------------------
+   Archive / Tag Lists
+   -------------------------------------------------- */
+.notebook-archive, .notebook-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notebook-archive li { margin: .5rem 0; }
+.notebook-archive a { color: #333; text-decoration: none; }
+.notebook-archive a:hover { text-decoration: underline; }
+
+.notebook-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.notebook-tag {
+  font: 500 .75rem/1.2 var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: .4rem .65rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.18);
+  color: #333;
+  text-decoration: none;
+  transition: border-color .2s var(--ease-out), color .2s var(--ease-out);
+}
+
+.notebook-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* --------------------------------------------------
+   Responsive
+   -------------------------------------------------- */
+@media (max-width:1000px){
+  .notebook-wrap {
+    grid-template-columns: 1fr;
+  }
+  .notebook-sidebar { margin-top: 2rem; }
+  .notebook-hero { padding-top: 3rem; }
+}
+
+/* =========================================================
+   16b) Notebook Center Column & Card Layout (RSS)
+   ========================================================= */
+.notebook-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.notebook-center {
+  width: 100%;
+  max-width: 720px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+/* =========================================================
+   17) Notebook Post Cards (including RSS posts)
+   ========================================================= */
+.notebook-post,
+.post-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 2rem 2.25rem;
+  width: 100%;
+  max-width: 100%x;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  color: inherit;
+}
+
+.notebook-post:hover,
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  border-color: rgba(0,0,0,.18);
+}
+
+.post-meta {
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: .75rem;
+}
+
+.post-title {
+  font-size: clamp(22px, 3vw, 28px);
+  margin-bottom: .75rem;
+}
+
+.post-excerpt {
+  color: #444;
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+/* =========================================================
+   Notebook Center Column — Two Column Layout & Spacing
+   ========================================================= */
+.notebook-center {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* two flexible columns */
+  gap: 3rem 2.5rem;
+  width: 100%;
+  max-width: 960px; /* limit total width */
+  margin: 0 auto; /* center the grid */
+  justify-items: stretch; /* cards take full column width */
+}
+
+@media (max-width: 900px) {
+  .notebook-center {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Two-column RSS layout */
+#rss-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center; /* center columns */
+}
+
+.rss-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  flex: 1; /* stretch to fill evenly */
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+  #rss-container {
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   18) Skeleton Loader for RSS Posts
+   ========================================================= */
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  background: #eee;
+  animation: pulse 1.5s infinite ease-in-out;
+  min-height: 140px;
+  gap: 0.5rem;
+}
+
+.skeleton-card .skeleton-line {
+  height: 1rem;
+  border-radius: 4px;
+  background: #ddd;
+  width: 100%;
+}
+
+.skeleton-card .skeleton-line.short { width: 60%; }
+
+@keyframes pulse {
+  0% { background-color: #eee; }
+  50% { background-color: #e0e0e0; }
+  100% { background-color: #eee; }
 }
