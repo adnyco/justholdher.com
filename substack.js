@@ -11,6 +11,7 @@
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, {
+      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric"
@@ -26,6 +27,18 @@
     const div = document.createElement("div");
     div.innerHTML = html;
     return div.textContent || div.innerText || "";
+  }
+
+  function truncate(text = "", length = 220) {
+    if (!text) return "";
+    return text.length <= length ? text : text.substring(0, length).trim() + "...";
+  }
+
+  // Safely get subtitle from post JSON
+  function getSubtitle(post) {
+    if (post.subtitle && post.subtitle.trim()) return post.subtitle.trim();
+    if (post.summary && post.summary.trim()) return post.summary.trim();
+    return ""; // fallback
   }
 
   /* ================================
@@ -60,7 +73,6 @@
     `;
     document.body.appendChild(modal);
 
-    // Close events
     modal.querySelector(".modal-close").addEventListener("click", closeModal);
     modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
 
@@ -75,7 +87,7 @@
     const modal = document.querySelector(".notebook-modal") || createModal();
     const body = modal.querySelector(".modal-body");
 
-    const subtitle = post.subtitle || "";
+    const subtitle = getSubtitle(post);
     const contentHTML = post.content || post.description || "";
     const cleanText = stripHTML(contentHTML);
 
@@ -128,7 +140,7 @@
     const article = document.createElement("article");
     article.className = "notebook-post";
 
-    const subtitle = post.subtitle || "";
+    const subtitle = getSubtitle(post);
     const rawText = stripHTML(post.description || post.content || "");
     const readTime = estimateReadTime(rawText);
 
@@ -138,7 +150,7 @@
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
         </header>
-        <p class="post-excerpt">${subtitle}</p>
+        <p class="post-excerpt">${subtitle || truncate(rawText, 220)}</p>
       </a>
     `;
 
