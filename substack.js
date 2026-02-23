@@ -138,19 +138,19 @@
   function createPostCard(post) {
     const article = document.createElement("article");
     article.className = "notebook-post";
-
-    const subtitle = getSubtitle(post);
+  
+    const subtitle = getSubtitle(post); // <- use subtitle
     const contentHTML = post.content || post.description || "";
     const cleanText = stripHTML(contentHTML);
     const readTime = estimateReadTime(cleanText);
-
+  
     article.innerHTML = `
       <a href="#" class="post-link">
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
         </header>
-        <p class="post-excerpt">${subtitle || truncate(cleanText, 220)}</p>
+        <p class="post-excerpt">${subtitle || ""}</p> <!-- only subtitle now -->
       </a>
     `;
 
@@ -159,8 +159,8 @@
       openModal(post);
     });
 
-    return article;
-  }
+   return article;
+}
 
   function renderPosts(posts, container) {
     container.innerHTML = "";
