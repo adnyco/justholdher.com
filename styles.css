@@ -1161,7 +1161,7 @@ figcaption{
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.65));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15));
   z-index: 0;
 }
 
@@ -1234,19 +1234,25 @@ figcaption{
   display: inline-block;
 }
 
-.button--dark {
+.button--dark,
+.button--dark:visited {
   display: inline-block;
   padding: 0.65rem 1.25rem;
-  background-color: #000;
-  color: #fff;
+  background-color: #000; /* solid black */
+  color: #fff;            /* white text */
   font-weight: 600;
   border-radius: 6px;
   text-decoration: none;
   transition: background 0.25s ease;
 }
 
-.button--dark:hover {
-  background-color: #222;
+.button--dark:hover,
+.button--dark:focus {
+  background-color: #222; /* slightly lighter on hover/focus */
+}
+
+.button--dark:active {
+  background-color: #111; /* optional click feedback */
 }
 
 /* =========================================================
