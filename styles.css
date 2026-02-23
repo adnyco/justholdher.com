@@ -1234,6 +1234,21 @@ figcaption{
   display: inline-block;
 }
 
+.button--dark {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+
+.button--dark:hover {
+  background-color: #222;
+}
+
 /* =========================================================
    Modal — Wider + More Breathing Room
    ========================================================= */
