@@ -139,28 +139,27 @@
     const article = document.createElement("article");
     article.className = "notebook-post";
   
-    const subtitle = getSubtitle(post); // <- use subtitle
-    const contentHTML = post.content || post.description || "";
-    const cleanText = stripHTML(contentHTML);
-    const readTime = estimateReadTime(cleanText);
+    const subtitle = getSubtitle(post); // fetch subtitle
+    const rawText = stripHTML(post.content || post.description || "");
+    const readTime = estimateReadTime(rawText);
   
     article.innerHTML = `
       <a href="#" class="post-link">
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
+          ${subtitle ? `<p class="post-subtitle">${subtitle}</p>` : ""}
         </header>
-        <p class="post-excerpt">${subtitle || ""}</p> <!-- only subtitle now -->
       </a>
     `;
-
+  
     article.querySelector(".post-link").addEventListener("click", (e) => {
       e.preventDefault();
       openModal(post);
     });
-
-   return article;
-}
+  
+    return article;
+  }
 
   function renderPosts(posts, container) {
     container.innerHTML = "";
