@@ -1058,19 +1058,6 @@ figcaption{
   background-repeat: no-repeat;
 }
 
-/* Subtle dark overlay for text contrast */
-.notebook-list::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.55),
-    rgba(0,0,0,.65)
-  );
-  z-index: 0;
-}
-
 /* Ensure content sits above overlay */
 .notebook-container {
   position: relative;
