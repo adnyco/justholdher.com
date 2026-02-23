@@ -960,19 +960,12 @@ figcaption{
   .footer{color:#000!important;margin-top:8mm!important}
 }
 /* ==========================================================================
-   16) Notebook RSS Page — Editorial Layer
+   Notebook RSS Page — Final Adjustments
    ========================================================================== */
 
-/* Scope strictly to notebook */
-.notebook-page {
-  background: #fff;
-  color: var(--fg);
-}
-
-/* =========================================================
-   Notebook Hero (Black + Elegant Gradients — No Image)
-   ========================================================= */
-
+/* =========================
+   Hero Section
+   ========================= */
 .notebook-hero {
   position: relative;
   min-height: 65vh;
@@ -981,41 +974,32 @@ figcaption{
   justify-content: center;
   text-align: center;
   padding: clamp(3rem, 6vw, 4rem) 1.5rem;
-  background: #000; /* solid black base */
+  background-color: #000; /* solid black base */
   overflow: hidden;
+  z-index: 0;
 }
 
-/* Subtle radial glow behind text */
 .notebook-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(255,255,255,0.06),
-      transparent 60%
-    );
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.06), transparent 60%);
   pointer-events: none;
+  z-index: 0;
 }
 
-/* Elegant bottom fade (last 10% of hero) */
 .notebook-hero::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 10%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0,0,0,0.85)
-  );
+  height: 12%;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
   pointer-events: none;
+  z-index: 0;
 }
 
-/* Keep hero content above gradients */
 .notebook-hero > * {
   position: relative;
   z-index: 1;
@@ -1042,67 +1026,8 @@ figcaption{
   text-underline-offset: 3px;
 }
 
-.notebook-page {
-  background: #fff;
-  color: var(--fg);
-}
-
 /* =========================
-   Hero Section
-   ========================= */
-.notebook-hero {
-  position: relative;
-  min-height: 65vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: clamp(3rem, 6vw, 4rem) 1.5rem;
-  background: #000; /* solid black base */
-  overflow: hidden;
-}
-
-.notebook-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.06), transparent 60%);
-  pointer-events: none;
-}
-
-.notebook-hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 10%;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
-  pointer-events: none;
-}
-
-.notebook-hero > * {
-  position: relative;
-  z-index: 1;
-}
-
-.notebook-hero h1 {
-  font-size: clamp(40px, 6vw, 64px);
-  letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
-  color: #fff;
-}
-
-.notebook-intro {
-  max-width: 720px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #cfcfcf;
-}
-
-/* =========================
-   RSS Section
+   RSS Section — Background Image & Mobile Fallback
    ========================= */
 .notebook-list {
   position: relative;
@@ -1113,7 +1038,6 @@ figcaption{
 }
 
 @media(min-width: 768px) {
-  /* show background image only on tablet+ */
   .notebook-list {
     background-image: image-set(
       url("/assets/judys-notebook.avif") type("image/avif"),
@@ -1126,7 +1050,7 @@ figcaption{
   }
 }
 
-/* remove dark overlay entirely */
+/* Remove dark overlay */
 .notebook-list::before {
   content: none;
 }
@@ -1136,7 +1060,7 @@ figcaption{
   z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+  padding: clamp(3rem, 6vw, 5rem) 2.5rem; /* wider gutters */
 }
 
 /* RSS Grid */
@@ -1161,7 +1085,6 @@ figcaption{
   display: flex;
   flex-direction: column;
   background: rgba(255,255,255,0.95);
-  border-radius: 14px;
   border: 1px solid rgba(0,0,0,0.08);
   box-shadow: 0 6px 24px rgba(0,0,0,0.12);
   padding: 2rem 2.25rem;
@@ -1178,19 +1101,24 @@ figcaption{
 
 .post-title {
   font-size: clamp(22px, 3vw, 28px);
-  margin-bottom: .75rem;
-}
-
-.post-excerpt {
-  display: none; /* hide excerpt */
+  margin-bottom: 0.25rem;
 }
 
 .post-subtitle {
-  display: block; /* show subtitle instead */
+  display: block;
   color: #444;
   line-height: 1.55;
-  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
   max-width: 60ch;
+}
+
+.post-excerpt {
+  display: block;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 60ch;
+  margin-top: 0.25rem;
 }
 
 /* =========================
@@ -1227,7 +1155,7 @@ figcaption{
 }
 
 /* =========================
-   Modal
+   Modal — Square, Wider Gutters, Right-aligned Close
    ========================= */
 .notebook-modal {
   position: fixed;
@@ -1243,7 +1171,7 @@ figcaption{
 .modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,0.6);
   backdrop-filter: blur(5px);
 }
 
@@ -1253,10 +1181,21 @@ figcaption{
   max-width: 1000px;
   margin: 8vh auto;
   background: #fff;
-  padding: clamp(2.5rem, 4vw, 4rem);
-  border-radius: 18px;
+  padding: clamp(3rem, 5vw, 5rem); /* wider gutters */
+  border-radius: 0; /* remove rounding */
   overflow-y: auto;
   max-height: 90vh;
+}
+
+/* Close button right-aligned */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.75rem;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 /* =========================
@@ -1270,7 +1209,6 @@ figcaption{
 
 .skeleton-card {
   padding: 1.5rem 2rem;
-  border-radius: 14px;
   background: #eee;
   animation: pulse 1.5s infinite ease-in-out;
   min-height: 140px;
