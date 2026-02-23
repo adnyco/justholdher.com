@@ -17,9 +17,11 @@
     });
   }
 
-  function estimateReadTime(text = "") {
+  function calculateReadingTime(htmlContent) {
+    const text = htmlContent.replace(/<[^>]*>/g, "");
     const words = text.trim().split(/\s+/).length;
-    return `${Math.max(1, Math.round(words / 225))} min read`;
+    const minutes = Math.ceil(words / 225);
+    return `${minutes} min read`;
   }
 
   function stripHTML(html = "") {
