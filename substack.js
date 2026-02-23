@@ -19,7 +19,7 @@
 
   function estimateReadTime(text = "") {
     const words = text.trim().split(/\s+/).length;
-    return `${Math.max(1, Math.round(words / 200))} min read`;
+    return `${Math.max(1, Math.round(words / 225))} min read`;
   }
 
   function stripHTML(html = "") {
