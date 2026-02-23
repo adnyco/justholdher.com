@@ -4,10 +4,6 @@
   const RSS_URL = "https://substack-proxy.adny.workers.dev/";
   const POST_LIMIT = 10;
 
-  /* ================================
-     UTILITIES
-  ================================== */
-
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, {
@@ -28,24 +24,11 @@
     return div.textContent || div.innerText || "";
   }
 
-  function truncate(text = "", length = 220) {
-    if (!text) return "";
-    return text.length <= length ? text : text.substring(0, length).trim() + "...";
-  }
-
   function getSubtitle(post) {
     if (post.subtitle && post.subtitle.trim()) return post.subtitle.trim();
-    if (post.summary && post.summary.trim()) return post.summary.trim();
-    if (post.content) {
-      const text = stripHTML(post.content);
-      return text.split(/\s+/).slice(0, 20).join(" ") + "…";
-    }
+    if (post.summary && post.summary.trim()) return stripHTML(post.summary).trim();
     return "";
   }
-
-  /* ================================
-     CTA TEMPLATE
-  ================================== */
 
   const CTA_HTML = `
     <div class="post-cta" style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;">
@@ -59,17 +42,13 @@
     </div>
   `;
 
-  /* ================================
-     MODAL
-  ================================== */
-
   function createModal() {
     const modal = document.createElement("div");
     modal.className = "notebook-modal";
     modal.innerHTML = `
       <div class="modal-overlay"></div>
       <div class="modal-content">
-        <button class="modal-close" style="position:absolute; top:1rem; right:1rem;">×</button>
+        <button class="modal-close">×</button>
         <div class="modal-body"></div>
       </div>
     `;
@@ -114,14 +93,9 @@
     document.body.style.overflow = "";
   }
 
-  /* ================================
-     SKELETON
-  ================================== */
-
   function renderSkeleton(container, count = 6) {
     container.innerHTML = "";
     container.classList.add("notebook-center");
-
     for (let i = 0; i < count; i++) {
       const skeleton = document.createElement("div");
       skeleton.className = "skeleton-card";
@@ -133,10 +107,6 @@
       container.appendChild(skeleton);
     }
   }
-
-  /* ================================
-     POSTS
-  ================================== */
 
   function createPostCard(post) {
     const article = document.createElement("article");
@@ -151,7 +121,7 @@
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
-          <p class="post-subtitle">${subtitle}</p>
+          ${subtitle ? `<p class="post-subtitle">${subtitle}</p>` : ""}
         </header>
       </a>
     `;
@@ -170,10 +140,6 @@
     posts.forEach((post) => container.appendChild(createPostCard(post)));
   }
 
-  /* ================================
-     INIT
-  ================================== */
-
   async function init() {
     const container = document.getElementById("rss-container");
     if (!container) return;
@@ -187,7 +153,6 @@
       const data = await response.json();
       let posts = data.items || [];
 
-      // Sort reverse chronological
       posts.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
       posts = posts.slice(0, POST_LIMIT);
 
