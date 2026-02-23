@@ -1124,14 +1124,37 @@ figcaption{
 
 .notebook-list {
   position: relative;
-  width: 100vw;                    /* full viewport width */
-  margin-left: calc(50% - 50vw);    /* break out of wrapper */
-  margin-right: calc(50% - 50vw);
+  width: 100%;
   min-height: 100%;
-  background: url("https://justholdher.com/assets/notebook-background.png") center / cover no-repeat;
   overflow: hidden;
+
+  /* fallback color */
+  background-color: #111;
+
+  /* Modern formats with degradation */
+  background-image: image-set(
+    url("/assets/judys-notebook.avif") type("image/avif"),
+    url("/assets/judys-notebook.webp") type("image/webp"),
+    url("/assets/judys-notebook.png") type("image/png")
+  );
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
+/* Overlay for readability */
+.notebook-list::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.75)
+  );
+  z-index: 0;
+}
 
 /* Readability overlay */
 .notebook-page .notebook-list::before {
