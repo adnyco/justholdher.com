@@ -795,6 +795,24 @@ figcaption{
   text-underline-offset:2px;
 }
 
+.substack-stage {
+   width: 100%;
+   max-width: 480px;
+   margin: 0 auto;
+}
+.substack-stage iframe {
+   width: 100%;
+   max-width: 100%;
+   display: block;
+   border: 0;
+}
+@media (max-width: 480px) {
+   .substack-stage {
+      max-width: 100%;
+   }
+}
+
+
 /* ==========================================================================
    12) About Page — Portrait upper-right
    ========================================================================== */
