@@ -46,7 +46,8 @@
 
   const CTA_HTML = `
     <div class="post-cta" style="margin-top: 2rem; padding-top:1rem; border-top:1px solid #ddd;">
-      <p>If this piece stayed with you, I’d be honored to have you read the next one.</p>
+      <p>Thank you for reading.<br />
+          If you’d like to stay,</p>
       <a href="https://judysnotebook.substack.com/subscribe" 
          target="_blank" 
          rel="noopener" 
