@@ -1043,38 +1043,45 @@ figcaption{
 }
 
 /* =========================================================
-   Notebook RSS Section (Image Background Lives Here)
+   Notebook RSS Section (Full Width Image Background)
    ========================================================= */
 
 .notebook-list {
   position: relative;
+  width: 100%;
+  min-height: 100%;
   overflow: hidden;
-  background-color: #111; /* fallback only */
 
+  /* Proper fallback order */
+  background-color: #111; /* fallback */
+  background-image: url("https://justholdher.com/assets/notebook-background.png");
+
+  /* Modern formats layered correctly */
   background-image: image-set(
-    url("assets/notebook-background.avif") type("image/avif"),
-    url("assets/notebook-background.webp") type("image/webp"),
-    url("assets/notebook-background.png") type("image/png")
+    url("https://justholdher.com/assets/notebook-background.avif") type("image/avif"),
+    url("https://justholdher.com/assets/notebook-background.webp") type("image/webp"),
+    url("https://justholdher.com/assets/notebook-background.png") type("image/png")
   );
 
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 
-/* Readability overlay */
+/* Overlay for readability */
 .notebook-list::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,.55),
-    rgba(0,0,0,.7)
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.75)
   );
   z-index: 0;
 }
 
+/* Keep content above overlay */
 .notebook-container {
   position: relative;
   z-index: 1;
