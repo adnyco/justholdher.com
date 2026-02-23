@@ -1049,9 +1049,9 @@ figcaption{
 
 .notebook-list {
   background-image: image-set(
-    url("assets/judys-notebook.avif") type("image/avif"),
-    url("assets/judys-notebook.webp") type("image/webp"),
-    url("assets/judys-notebook.png") type("image/png")
+    url("assets/notebook-background.avif") type("image/avif"),
+    url("assets/notebook-background.webp") type("image/webp"),
+    url("assets/notebook-background.png") type("image/png")
   );
   background-size: cover;
   background-position: center;
