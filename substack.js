@@ -43,6 +43,8 @@
   `;
 
   function createModal() {
+    if (document.querySelector(".notebook-modal")) return document.querySelector(".notebook-modal");
+
     const modal = document.createElement("div");
     modal.className = "notebook-modal";
     modal.innerHTML = `
@@ -64,7 +66,7 @@
   }
 
   function openModal(post) {
-    const modal = document.querySelector(".notebook-modal") || createModal();
+    const modal = createModal();
     const body = modal.querySelector(".modal-body");
 
     const subtitle = getSubtitle(post);
@@ -121,7 +123,7 @@
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
-          ${subtitle ? `<p class="post-subtitle">${subtitle}</p>` : ""}
+          ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         </header>
       </a>
     `;
@@ -153,8 +155,10 @@
       const data = await response.json();
       let posts = data.items || [];
 
-      posts.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-      posts = posts.slice(0, POST_LIMIT);
+      posts = posts
+        .filter(post => post.title) // filter out invalid entries
+        .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
+        .slice(0, POST_LIMIT);
 
       renderPosts(posts, container);
     } catch (err) {
