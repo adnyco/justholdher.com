@@ -17,7 +17,6 @@
     });
   }
 
-  // Read time based on full content
   function estimateReadTime(text = "") {
     const words = text.trim().split(/\s+/).length;
     return `${Math.max(1, Math.round(words / 225))} min read`;
@@ -37,7 +36,11 @@
   function getSubtitle(post) {
     if (post.subtitle && post.subtitle.trim()) return post.subtitle.trim();
     if (post.summary && post.summary.trim()) return post.summary.trim();
-    return ""; // fallback
+    if (post.content) {
+      const text = stripHTML(post.content);
+      return text.split(/\s+/).slice(0, 20).join(" ") + "…";
+    }
+    return "";
   }
 
   /* ================================
@@ -66,7 +69,7 @@
     modal.innerHTML = `
       <div class="modal-overlay"></div>
       <div class="modal-content">
-        <button class="modal-close">×</button>
+        <button class="modal-close" style="position:absolute; top:1rem; right:1rem;">×</button>
         <div class="modal-body"></div>
       </div>
     `;
@@ -138,26 +141,26 @@
   function createPostCard(post) {
     const article = document.createElement("article");
     article.className = "notebook-post";
-  
-    const subtitle = getSubtitle(post); // fetch subtitle
+
+    const subtitle = getSubtitle(post);
     const rawText = stripHTML(post.content || post.description || "");
     const readTime = estimateReadTime(rawText);
-  
+
     article.innerHTML = `
       <a href="#" class="post-link">
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
-          ${subtitle ? `<p class="post-subtitle">${subtitle}</p>` : ""}
+          <p class="post-subtitle">${subtitle}</p>
         </header>
       </a>
     `;
-  
+
     article.querySelector(".post-link").addEventListener("click", (e) => {
       e.preventDefault();
       openModal(post);
     });
-  
+
     return article;
   }
 
