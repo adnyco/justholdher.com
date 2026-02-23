@@ -1042,68 +1042,51 @@ figcaption{
   text-underline-offset: 3px;
 }
 
-/* ==========================================================================
-   16) Notebook RSS Page — Stable Production Version
-   ========================================================================== */
-
-/* Scope strictly to notebook */
 .notebook-page {
   background: #fff;
   color: var(--fg);
 }
 
-/* =========================================================
-   Notebook Hero — Solid Black + Subtle Editorial Glow
-   ========================================================= */
-
-.notebook-page .notebook-hero {
+/* =========================
+   Hero Section
+   ========================= */
+.notebook-hero {
   position: relative;
-  min-height: 85vh;
+  min-height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: clamp(4rem, 8vw, 6rem) 1.5rem;
-  background-color: #000; /* force solid black */
-  color: #fff;
+  padding: clamp(3rem, 6vw, 4rem) 1.5rem;
+  background: #000; /* solid black base */
   overflow: hidden;
 }
 
-/* Soft radial highlight */
-.notebook-page .notebook-hero::before {
+.notebook-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 50% 35%,
-    rgba(255,255,255,0.05),
-    transparent 65%
-  );
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.06), transparent 60%);
   pointer-events: none;
 }
 
-/* Bottom fade for elegant transition */
-.notebook-page .notebook-hero::after {
+.notebook-hero::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 12%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0,0,0,0.9)
-  );
+  height: 10%;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
   pointer-events: none;
 }
 
-.notebook-page .notebook-hero > * {
+.notebook-hero > * {
   position: relative;
   z-index: 1;
 }
 
-.notebook-page .notebook-hero h1 {
+.notebook-hero h1 {
   font-size: clamp(40px, 6vw, 64px);
   letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
@@ -1118,96 +1101,73 @@ figcaption{
   color: #cfcfcf;
 }
 
-/* =========================================================
-   Notebook RSS Section — Full Width Image (No image-set)
-   ========================================================= */
-
+/* =========================
+   RSS Section
+   ========================= */
 .notebook-list {
   position: relative;
   width: 100%;
   min-height: 100%;
   overflow: hidden;
-
-  /* fallback color */
-  background-color: #111;
-
-  /* Modern formats with degradation */
-  background-image: image-set(
-    url("/assets/judys-notebook.avif") type("image/avif"),
-    url("/assets/judys-notebook.webp") type("image/webp"),
-    url("/assets/judys-notebook.png") type("image/png")
-  );
-
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background-color: #f9f9f9; /* very light gray fallback */
 }
 
-/* Overlay for readability */
+@media(min-width: 768px) {
+  /* show background image only on tablet+ */
+  .notebook-list {
+    background-image: image-set(
+      url("/assets/judys-notebook.avif") type("image/avif"),
+      url("/assets/judys-notebook.webp") type("image/webp"),
+      url("/assets/judys-notebook.png") type("image/png")
+    );
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
+
+/* remove dark overlay entirely */
 .notebook-list::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.75)
-  );
-  z-index: 0;
+  content: none;
 }
 
-/* Readability overlay */
-.notebook-page .notebook-list::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15));
-  z-index: 0;
-}
-
-/* Center content above overlay */
 .notebook-container {
   position: relative;
   z-index: 1;
-  max-width: 1100px;  /* wider than before */
+  max-width: 1100px;
   margin: 0 auto;
   padding: clamp(3rem, 6vw, 5rem) 1.5rem;
 }
 
-/* =========================================================
-   RSS Grid Layout
-   ========================================================= */
-
+/* RSS Grid */
 .notebook-center {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 3rem 2.5rem;
 }
 
-@media (max-width: 900px) {
+@media(max-width:900px) {
   .notebook-center {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
 
-/* =========================================================
-   Post Cards
-   ========================================================= */
-
+/* =========================
+   Post Cards — show subtitle
+   ========================= */
 .notebook-post,
 .post-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255,255,255,0.95);
   border-radius: 14px;
   border: 1px solid rgba(0,0,0,0.08);
   box-shadow: 0 6px 24px rgba(0,0,0,0.12);
   padding: 2rem 2.25rem;
   text-decoration: none;
   color: inherit;
-  transition: transform .25s ease,
-              box-shadow .25s ease;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .notebook-post:hover,
@@ -1222,14 +1182,25 @@ figcaption{
 }
 
 .post-excerpt {
+  display: none; /* hide excerpt */
+}
+
+.post-subtitle {
+  display: block; /* show subtitle instead */
   color: #444;
   line-height: 1.55;
+  margin-top: 0.25rem;
   max-width: 60ch;
 }
+
+/* =========================
+   Footer Archive Button
+   ========================= */
 .notebook-footer {
   text-align: center;
   margin-top: 3rem;
 }
+
 .notebook-footer .button {
   display: inline-block;
 }
@@ -1238,8 +1209,8 @@ figcaption{
 .button--dark:visited {
   display: inline-block;
   padding: 0.65rem 1.25rem;
-  background-color: #000; /* solid black */
-  color: #fff;            /* white text */
+  background-color: #000;
+  color: #fff;
   font-weight: 600;
   border-radius: 6px;
   text-decoration: none;
@@ -1248,17 +1219,16 @@ figcaption{
 
 .button--dark:hover,
 .button--dark:focus {
-  background-color: #222; /* slightly lighter on hover/focus */
+  background-color: #222;
 }
 
 .button--dark:active {
-  background-color: #111; /* optional click feedback */
+  background-color: #111;
 }
 
-/* =========================================================
-   Modal — Wider + More Breathing Room
-   ========================================================= */
-
+/* =========================
+   Modal
+   ========================= */
 .notebook-modal {
   position: fixed;
   inset: 0;
@@ -1280,8 +1250,8 @@ figcaption{
 .modal-content {
   position: relative;
   width: 90%;
-  max-width: 1000px;         /* increased width */
-  margin: 8vh auto;          /* more top/bottom space */
+  max-width: 1000px;
+  margin: 8vh auto;
   background: #fff;
   padding: clamp(2.5rem, 4vw, 4rem);
   border-radius: 18px;
@@ -1289,20 +1259,9 @@ figcaption{
   max-height: 90vh;
 }
 
-.modal-close {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  font-size: 1.5rem;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-/* =========================================================
+/* =========================
    Skeleton Loader
-   ========================================================= */
-
+   ========================= */
 .loader-container {
   grid-column: 1 / -1;
   text-align: center;
