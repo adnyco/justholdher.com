@@ -1042,34 +1042,99 @@ figcaption{
   text-underline-offset: 3px;
 }
 
-/* =========================================================
-   Notebook RSS Section (Full Width Image Background)
-   ========================================================= */
+/* ==========================================================================
+   16) Notebook RSS Page — Stable Production Version
+   ========================================================================== */
 
-.notebook-list {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-
-  /* Proper fallback order */
-  background-color: #111; /* fallback */
-  background-image: url("https://justholdher.com/assets/notebook-background.png");
-
-  /* Modern formats layered correctly */
-  background-image: image-set(
-    url("https://justholdher.com/assets/notebook-background.avif") type("image/avif"),
-    url("https://justholdher.com/assets/notebook-background.webp") type("image/webp"),
-    url("https://justholdher.com/assets/notebook-background.png") type("image/png")
-  );
-
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+/* Scope strictly to notebook */
+.notebook-page {
+  background: #fff;
+  color: var(--fg);
 }
 
-/* Overlay for readability */
-.notebook-list::before {
+/* =========================================================
+   Notebook Hero — Solid Black + Subtle Editorial Glow
+   ========================================================= */
+
+.notebook-page .notebook-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(4rem, 8vw, 6rem) 1.5rem;
+  background-color: #000; /* force solid black */
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Soft radial highlight */
+.notebook-page .notebook-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 35%,
+    rgba(255,255,255,0.05),
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+/* Bottom fade for elegant transition */
+.notebook-page .notebook-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0,0,0,0.9)
+  );
+  pointer-events: none;
+}
+
+.notebook-page .notebook-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.notebook-page .notebook-hero h1 {
+  font-size: clamp(40px, 6vw, 64px);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  color: #fff;
+}
+
+.notebook-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #cfcfcf;
+}
+
+/* =========================================================
+   Notebook RSS Section — Full Width Image (No image-set)
+   ========================================================= */
+
+.notebook-page .notebook-list {
+  position: relative;
+  width: 100vw;                    /* force full viewport bleed */
+  margin-left: calc(50% - 50vw);    /* break out of centered wrapper */
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+
+  background: #111 url("https://justholdher.com/assets/notebook-background.png")
+              center / cover no-repeat;
+}
+
+/* Readability overlay */
+.notebook-page .notebook-list::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1081,13 +1146,13 @@ figcaption{
   z-index: 0;
 }
 
-/* Keep content above overlay */
+/* Center content above overlay */
 .notebook-container {
   position: relative;
   z-index: 1;
-  max-width: 960px;
+  max-width: 1100px;  /* wider than before */
   margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5rem) 1.25rem;
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
 }
 
 /* =========================================================
@@ -1098,7 +1163,6 @@ figcaption{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 3rem 2.5rem;
-  width: 100%;
 }
 
 @media (max-width: 900px) {
@@ -1116,34 +1180,21 @@ figcaption{
 .post-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(4px);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
   border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
   padding: 2rem 2.25rem;
-  width: 100%;
   text-decoration: none;
   color: inherit;
-  transition:
-    transform .25s var(--ease-out),
-    box-shadow .25s var(--ease-out),
-    border-color .25s var(--ease-out);
+  transition: transform .25s ease,
+              box-shadow .25s ease;
 }
 
 .notebook-post:hover,
 .post-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  border-color: rgba(0,0,0,0.18);
-}
-
-.post-meta {
-  font-size: .8rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: #777;
-  margin-bottom: .75rem;
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.18);
 }
 
 .post-title {
@@ -1158,7 +1209,7 @@ figcaption{
 }
 
 /* =========================================================
-   Modal
+   Modal — Wider + More Breathing Room
    ========================================================= */
 
 .notebook-modal {
@@ -1175,25 +1226,26 @@ figcaption{
 .modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(5px);
 }
 
 .modal-content {
   position: relative;
-  max-width: 860px;
-  margin: 5vh auto;
+  width: 92%;
+  max-width: 1100px;         /* increased width */
+  margin: 8vh auto;          /* more top/bottom space */
   background: #fff;
-  padding: 3rem;
-  border-radius: 12px;
+  padding: clamp(2.5rem, 4vw, 4rem);
+  border-radius: 18px;
   overflow-y: auto;
-  max-height: 90vh;
+  max-height: 85vh;
 }
 
 .modal-close {
   position: absolute;
-  top: 1rem;
-  right: 1.25rem;
+  top: 1.25rem;
+  right: 1.5rem;
   font-size: 1.5rem;
   border: none;
   background: none;
@@ -1211,30 +1263,15 @@ figcaption{
 }
 
 .skeleton-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
   padding: 1.5rem 2rem;
-  border-radius: 12px;
+  border-radius: 14px;
   background: #eee;
   animation: pulse 1.5s infinite ease-in-out;
   min-height: 140px;
-  gap: .5rem;
-}
-
-.skeleton-line {
-  height: 1rem;
-  border-radius: 4px;
-  background: #ddd;
-  width: 100%;
-}
-
-.skeleton-line.short {
-  width: 60%;
 }
 
 @keyframes pulse {
   0% { background-color: #eee; }
-  50% { background-color: #e0e0e0; }
+  50% { background-color: #e3e3e3; }
   100% { background-color: #eee; }
 }
