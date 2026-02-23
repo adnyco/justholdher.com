@@ -1034,7 +1034,48 @@ figcaption{
 .notebook-sidebar {
   min-width: 0;
 }
+/* =========================================================
+   Notebook RSS Section — Full Width Background Image
+   ========================================================= */
 
+/* Full-width image layer */
+.notebook-list {
+  position: relative;
+  overflow: hidden;
+  background-color: #111; /* fallback color */
+}
+
+/* Progressive image loading with modern formats */
+
+.notebook-list {
+  background-image: image-set(
+    url("assets/judys-notebook.avif") type("image/avif"),
+    url("assets/judys-notebook.webp") type("image/webp"),
+    url("assets/judys-notebook.png") type("image/png")
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Subtle dark overlay for text contrast */
+.notebook-list::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.65)
+  );
+  z-index: 0;
+}
+
+/* Ensure content sits above overlay */
+.notebook-container {
+  position: relative;
+  z-index: 1;
+}
 /* --------------------------------------------------
    Entry Styling
    -------------------------------------------------- */
