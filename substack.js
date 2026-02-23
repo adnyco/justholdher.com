@@ -110,12 +110,12 @@
     }
   }
 
-  function createPostCard(post) {
+ function createPostCard(post) {
     const article = document.createElement("article");
     article.className = "notebook-post";
 
-    const subtitle = getSubtitle(post);
-    const rawText = stripHTML(post.content || post.description || "");
+    const subtitle = post.subtitle || ""; // Use subtitle if available
+    const rawText = stripHTML(post.description || post.content || "");
     const readTime = estimateReadTime(rawText);
 
     article.innerHTML = `
@@ -123,8 +123,8 @@
         <header>
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
-          ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         </header>
+        <p class="post-excerpt">${subtitle}</p>
       </a>
     `;
 
