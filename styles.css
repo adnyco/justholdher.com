@@ -960,7 +960,7 @@ figcaption{
   .footer{color:#000!important;margin-top:8mm!important}
 }
 /* ==========================================================================
-   16) Notebook RSS Page — Editorial Layer (Refactored + Intentional)
+   16) Notebook RSS Page — Editorial Layer
    ========================================================================== */
 
 /* Scope strictly to notebook */
@@ -975,12 +975,12 @@ figcaption{
 
 .notebook-hero {
   position: relative;
-  min-height: 85vh;
+  min-height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: clamp(4rem, 8vw, 6rem) 1.5rem;
+  padding: clamp(3rem, 6vw, 4rem) 1.5rem;
   background: #000; /* solid black base */
   overflow: hidden;
 }
@@ -1122,27 +1122,23 @@ figcaption{
    Notebook RSS Section — Full Width Image (No image-set)
    ========================================================= */
 
-.notebook-page .notebook-list {
+.notebook-list {
   position: relative;
-  width: 100vw;                    /* force full viewport bleed */
-  margin-left: calc(50% - 50vw);    /* break out of centered wrapper */
+  width: 100vw;                    /* full viewport width */
+  margin-left: calc(50% - 50vw);    /* break out of wrapper */
   margin-right: calc(50% - 50vw);
+  min-height: 100%;
+  background: url("https://justholdher.com/assets/notebook-background.png") center / cover no-repeat;
   overflow: hidden;
-
-  background: #111 url("https://justholdher.com/assets/notebook-background.png")
-              center / cover no-repeat;
 }
+
 
 /* Readability overlay */
 .notebook-page .notebook-list::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.75)
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.65));
   z-index: 0;
 }
 
@@ -1207,6 +1203,13 @@ figcaption{
   line-height: 1.55;
   max-width: 60ch;
 }
+.notebook-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+.notebook-footer .button {
+  display: inline-block;
+}
 
 /* =========================================================
    Modal — Wider + More Breathing Room
@@ -1232,14 +1235,14 @@ figcaption{
 
 .modal-content {
   position: relative;
-  width: 92%;
-  max-width: 1100px;         /* increased width */
+  width: 90%;
+  max-width: 1000px;         /* increased width */
   margin: 8vh auto;          /* more top/bottom space */
   background: #fff;
   padding: clamp(2.5rem, 4vw, 4rem);
   border-radius: 18px;
   overflow-y: auto;
-  max-height: 85vh;
+  max-height: 90vh;
 }
 
 .modal-close {
