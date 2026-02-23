@@ -960,110 +960,144 @@ figcaption{
   .footer{color:#000!important;margin-top:8mm!important}
 }
 /* ==========================================================================
-   16) Notebook RSS Page — Editorial Layer (Clean + Stable)
+   16) Notebook RSS Page — Editorial Layer (Refactored + Intentional)
    ========================================================================== */
 
 /* Scope strictly to notebook */
 .notebook-page {
-  background:#fff;
-  color:var(--fg);
+  background: #fff;
+  color: var(--fg);
 }
 
 /* =========================================================
-   Notebook Hero
+   Notebook Hero (Black + Elegant Gradients — No Image)
    ========================================================= */
 
-.notebook-hero{
-  position:relative;
-  padding:clamp(5rem,8vw,8rem) 0 5rem;
-  text-align:center;
+.notebook-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(4rem, 8vw, 6rem) 1.5rem;
+  background: #000; /* solid black base */
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind text */
+.notebook-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(circle at 50% 20%, rgba(255,255,255,.04), transparent 60%),
-    linear-gradient(to bottom,#000 0%,#000 90%,#1a1a1a 100%);
-  color:#fff;
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255,255,255,0.06),
+      transparent 60%
+    );
+  pointer-events: none;
 }
 
-.notebook-hero h1{
-  font-size:clamp(40px,6vw,64px);
-  letter-spacing:-.02em;
-  margin-bottom:1.25rem;
-  color:#fff;
+/* Elegant bottom fade (last 10% of hero) */
+.notebook-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0,0,0,0.85)
+  );
+  pointer-events: none;
 }
 
-.notebook-intro{
-  max-width:720px;
-  margin:0 auto;
-  font-size:1.1rem;
-  line-height:1.7;
-  color:#cfcfcf;
+/* Keep hero content above gradients */
+.notebook-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
-.notebook-intro a{
-  color:#fff;
-  text-decoration:underline;
-  text-underline-offset:3px;
+.notebook-hero h1 {
+  font-size: clamp(40px, 6vw, 64px);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  color: #fff;
+}
+
+.notebook-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #cfcfcf;
+}
+
+.notebook-intro a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* =========================================================
-   Notebook RSS Section Background
+   Notebook RSS Section (Image Background Lives Here)
    ========================================================= */
 
-.notebook-list{
-  position:relative;
-  overflow:hidden;
-  background-color:#111;
+.notebook-list {
+  position: relative;
+  overflow: hidden;
+  background-color: #111; /* fallback only */
 
-  background-image:url("assets/notebook-background.png");
-
-  background-image:-webkit-image-set(
+  background-image: image-set(
     url("assets/notebook-background.avif") type("image/avif"),
     url("assets/notebook-background.webp") type("image/webp"),
     url("assets/notebook-background.png") type("image/png")
   );
 
-  background-image:image-set(
-    url("assets/notebook-background.avif") type("image/avif"),
-    url("assets/notebook-background.webp") type("image/webp"),
-    url("assets/notebook-background.png") type("image/png")
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Readability overlay */
+.notebook-list::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.7)
   );
-
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  z-index: 0;
 }
 
-/* Dark overlay for readability */
-.notebook-list::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.65));
-  z-index:0;
-}
-
-.notebook-container{
-  position:relative;
-  z-index:1;
-  max-width:960px;
-  margin:0 auto;
-  padding:clamp(3rem,6vw,5rem) 1.25rem;
+.notebook-container {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) 1.25rem;
 }
 
 /* =========================================================
    RSS Grid Layout
    ========================================================= */
 
-.notebook-center{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:3rem 2.5rem;
-  width:100%;
+.notebook-center {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem 2.5rem;
+  width: 100%;
 }
 
-@media (max-width:900px){
-  .notebook-center{
-    grid-template-columns:1fr;
-    gap:2rem;
+@media (max-width: 900px) {
+  .notebook-center {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
@@ -1072,125 +1106,128 @@ figcaption{
    ========================================================= */
 
 .notebook-post,
-.post-card{
-  display:flex;
-  flex-direction:column;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(4px);
-  border-radius:12px;
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow:0 4px 18px rgba(0,0,0,.08);
-  padding:2rem 2.25rem;
-  width:100%;
-  text-decoration:none;
-  color:inherit;
-  transition:transform .25s var(--ease-out),
-             box-shadow .25s var(--ease-out),
-             border-color .25s var(--ease-out);
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  padding: 2rem 2.25rem;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform .25s var(--ease-out),
+    box-shadow .25s var(--ease-out),
+    border-color .25s var(--ease-out);
 }
 
 .notebook-post:hover,
-.post-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px rgba(0,0,0,.12);
-  border-color:rgba(0,0,0,.18);
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  border-color: rgba(0,0,0,0.18);
 }
 
-.post-meta{
-  font-size:.8rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:#777;
-  margin-bottom:.75rem;
+.post-meta {
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: .75rem;
 }
 
-.post-title{
-  font-size:clamp(22px,3vw,28px);
-  margin-bottom:.75rem;
+.post-title {
+  font-size: clamp(22px, 3vw, 28px);
+  margin-bottom: .75rem;
 }
 
-.post-excerpt{
-  color:#444;
-  line-height:1.55;
-  max-width:60ch;
+.post-excerpt {
+  color: #444;
+  line-height: 1.55;
+  max-width: 60ch;
 }
 
 /* =========================================================
    Modal
    ========================================================= */
 
-.notebook-modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  z-index:9999;
+.notebook-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
 }
 
-.notebook-modal.active{
-  display:block;
+.notebook-modal.active {
+  display: block;
 }
 
-.modal-overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(4px);
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
 }
 
-.modal-content{
-  position:relative;
-  max-width:860px;
-  margin:5vh auto;
-  background:#fff;
-  padding:3rem;
-  border-radius:12px;
-  overflow-y:auto;
-  max-height:90vh;
+.modal-content {
+  position: relative;
+  max-width: 860px;
+  margin: 5vh auto;
+  background: #fff;
+  padding: 3rem;
+  border-radius: 12px;
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
-.modal-close{
-  position:absolute;
-  top:1rem;
-  right:1.25rem;
-  font-size:1.5rem;
-  border:none;
-  background:none;
-  cursor:pointer;
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 /* =========================================================
    Skeleton Loader
    ========================================================= */
 
-.loader-container{
-  grid-column:1 / -1;
-  text-align:center;
-  padding:4rem 0;
+.loader-container {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 0;
 }
 
-.skeleton-card{
-  display:flex;
-  flex-direction:column;
-  width:100%;
-  padding:1.5rem 2rem;
-  border-radius:12px;
-  background:#eee;
-  animation:pulse 1.5s infinite ease-in-out;
-  min-height:140px;
-  gap:.5rem;
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  background: #eee;
+  animation: pulse 1.5s infinite ease-in-out;
+  min-height: 140px;
+  gap: .5rem;
 }
 
-.skeleton-line{
-  height:1rem;
-  border-radius:4px;
-  background:#ddd;
-  width:100%;
+.skeleton-line {
+  height: 1rem;
+  border-radius: 4px;
+  background: #ddd;
+  width: 100%;
 }
 
-.skeleton-line.short{width:60%}
+.skeleton-line.short {
+  width: 60%;
+}
 
-@keyframes pulse{
-  0%{background-color:#eee}
-  50%{background-color:#e0e0e0}
-  100%{background-color:#eee}
+@keyframes pulse {
+  0% { background-color: #eee; }
+  50% { background-color: #e0e0e0; }
+  100% { background-color: #eee; }
 }
