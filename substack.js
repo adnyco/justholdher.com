@@ -13,11 +13,12 @@
     return date.toLocaleDateString(undefined, {
       year: "numeric",
       month: "long",
-      day: "numeric"
+      day: "numeric",
     });
   }
 
-    function estimateReadTime(text = "") {
+  // Read time based on full content
+  function estimateReadTime(text = "") {
     const words = text.trim().split(/\s+/).length;
     return `${Math.max(1, Math.round(words / 225))} min read`;
   }
@@ -33,7 +34,6 @@
     return text.length <= length ? text : text.substring(0, length).trim() + "...";
   }
 
-  // Safely get subtitle from post JSON
   function getSubtitle(post) {
     if (post.subtitle && post.subtitle.trim()) return post.subtitle.trim();
     if (post.summary && post.summary.trim()) return post.summary.trim();
@@ -45,9 +45,8 @@
   ================================== */
 
   const CTA_HTML = `
-    <div class="post-cta" style="margin-top: 2rem; padding-top:1rem; border-top:1px solid #ddd;">
-      <p>Thank you for reading.<br />
-          If you’d like to stay,</p>
+    <div class="post-cta" style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;">
+      <p>Thank you for reading.<br/>If you’d like to stay,</p>
       <a href="https://judysnotebook.substack.com/subscribe" 
          target="_blank" 
          rel="noopener" 
@@ -75,8 +74,7 @@
 
     modal.querySelector(".modal-close").addEventListener("click", closeModal);
     modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
-
-    document.addEventListener("keydown", function onKeyDown(e) {
+    document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeModal();
     });
 
@@ -90,10 +88,11 @@
     const subtitle = getSubtitle(post);
     const contentHTML = post.content || post.description || "";
     const cleanText = stripHTML(contentHTML);
+    const readTime = estimateReadTime(cleanText);
 
     body.innerHTML = `
       <article class="modal-article">
-        <p class="post-meta">${formatDate(post.pubDate)} · ${estimateReadTime(cleanText)}</p>
+        <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
         <h2 class="post-title">${post.title}</h2>
         ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         <div class="modal-content-body">${contentHTML}</div>
@@ -141,8 +140,9 @@
     article.className = "notebook-post";
 
     const subtitle = getSubtitle(post);
-    const rawText = stripHTML(post.description || post.content || "");
-    const readTime = estimateReadTime(rawText);
+    const contentHTML = post.content || post.description || "";
+    const cleanText = stripHTML(contentHTML);
+    const readTime = estimateReadTime(cleanText);
 
     article.innerHTML = `
       <a href="#" class="post-link">
@@ -150,7 +150,7 @@
           <p class="post-meta">${formatDate(post.pubDate)} · ${readTime}</p>
           <h2 class="post-title">${post.title}</h2>
         </header>
-        <p class="post-excerpt">${subtitle || truncate(rawText, 220)}</p>
+        <p class="post-excerpt">${subtitle || truncate(cleanText, 220)}</p>
       </a>
     `;
 
@@ -165,10 +165,7 @@
   function renderPosts(posts, container) {
     container.innerHTML = "";
     container.classList.add("notebook-center");
-
-    posts.forEach(post => {
-      container.appendChild(createPostCard(post));
-    });
+    posts.forEach((post) => container.appendChild(createPostCard(post)));
   }
 
   /* ================================
@@ -193,7 +190,6 @@
       posts = posts.slice(0, POST_LIMIT);
 
       renderPosts(posts, container);
-
     } catch (err) {
       container.innerHTML = `<p>Unable to load posts.</p>`;
       console.error(err);
@@ -205,5 +201,4 @@
   } else {
     init();
   }
-
 })();
