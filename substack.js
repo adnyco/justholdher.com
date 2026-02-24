@@ -5,6 +5,18 @@
   const POST_LIMIT = 10;
   const SUBTITLE_LENGTH = 240;
 
+  const CTA_HTML = `
+  <div class="post-cta">
+    <p>Thank you for reading.<br>If you’d like to stay,</p>
+    <a href="https://judysnotebook.substack.com/subscribe" 
+       target="_blank" 
+       rel="noopener"
+       class="cta-button">
+      Subscribe →
+    </a>
+  </div>
+`;
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, {
@@ -104,6 +116,7 @@
         <h2 class="post-title">${post.title}</h2>
         ${subtitle ? `<h3 class="post-subtitle">${subtitle}</h3>` : ""}
         <div class="modal-content-body">${contentHTML}</div>
+        ${CTA_HTML}
       </article>
     `;
 
