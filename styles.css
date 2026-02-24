@@ -920,7 +920,7 @@ figcaption{
   ---------------------------------- */
 
   --nb-title: clamp(20px, 2vw, 24px);
-  --nb-card-title: 1.05rem;
+  --nb-card-title: 1.25rem;
   --nb-meta: 0.75rem;
   --nb-body: 0.95rem;
 
@@ -1108,6 +1108,7 @@ figcaption{
   margin-top:0.4rem;
   max-width:58ch;
 }
+
 
 /* =========================
    Footer Button
