@@ -1,14 +1,6 @@
 /* styles.css */
 /* ==========================================================================
-   JUST HOLD HER — Production Styles (stable baseline + light contact section)
-   Goal:
-   - Restore the previously working site styling (nav, s4 layout, agent snapshot,
-     button styles, link styles).
-   - Keep the bottom “Stay Close to the Story” section LIGHT (like Section 3),
-     while preserving the two-column layout + card styling.
-   - Keep legacy Formspree inputs styled (for any pages still using them).
-   ========================================================================== */
-
+   JUST HOLD HER — Production Styles
 /* ==========================================================================
    1) Design Tokens
    ========================================================================== */
@@ -879,6 +871,7 @@ figcaption{
 /* ==========================================================================
    14) Responsive
    ========================================================================== */
+
 @media (max-width:900px){
   .section-inner{grid-template-columns:1fr}
   .section .section-copy{max-width:100%}
@@ -893,6 +886,11 @@ figcaption{
   .s2 .section-media,
   .s3 .section-media,
   .s4 .section-media{min-height:260px}
+
+  .notebook-center{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
 }
 
 @media (max-width:700px){
@@ -910,44 +908,379 @@ figcaption{
   .about-body{max-width:100%}
 }
 
+
 /* ==========================================================================
-   15) Print
+   Notebook RSS Page
    ========================================================================== */
+
+
+/* =========================
+   Hero Section
+   ========================= */
+
+.notebook-hero{
+  position:relative;
+  min-height:65vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:clamp(3rem,6vw,4rem) 1.5rem;
+  overflow:hidden;
+  z-index:0;
+
+  background:
+    radial-gradient(
+      900px 450px at 50% 18%,
+      rgba(255,255,255,0.08),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #000000 0%,
+      #0a0a0a 100%
+    );
+}
+
+.notebook-hero::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:12%;
+  background:linear-gradient(to bottom,transparent,rgba(0,0,0,0.85));
+  pointer-events:none;
+}
+
+.notebook-hero > *{
+  position:relative;
+  z-index:1;
+}
+
+.notebook-hero h1{
+  font-size:clamp(40px,6vw,64px);
+  letter-spacing:-0.02em;
+  margin-bottom:1.25rem;
+  color:#fff;
+}
+
+.notebook-intro{
+  max-width:720px;
+  margin:0 auto;
+  font-size:1.1rem;
+  line-height:1.7;
+  color:#cfcfcf;
+}
+
+.notebook-intro a{
+  color:#fff;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+
+/* =========================
+   RSS Section
+   ========================= */
+
+.notebook-list{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  background-color:#f9f9f9;
+}
+
+@media(min-width:768px){
+  .notebook-list{
+    background-image:image-set(
+      url("/assets/judys-notebook.avif") type("image/avif"),
+      url("/assets/judys-notebook.webp") type("image/webp"),
+      url("/assets/judys-notebook.png") type("image/png")
+    );
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+  }
+}
+
+.notebook-container{
+  position:relative;
+  z-index:1;
+  max-width:1100px;
+  margin:0 auto;
+  padding:clamp(3rem,6vw,5rem) 2.5rem;
+}
+
+.notebook-center{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:3rem 2.5rem;
+}
+
+
+/* =========================
+   Post Subtitle
+   ========================= */
+
+.post-subtitle{
+  font-size:0.92rem;
+  font-weight:400;
+  line-height:1.55;
+  letter-spacing:0.01em;
+  color:#555;
+  margin-top:0.4rem;
+  max-width:58ch;
+}
+
+
+/* =========================
+   Footer Button
+   ========================= */
+
+.notebook-footer{
+  text-align:center;
+  margin-top:3rem;
+}
+
+.button--dark,
+.button--dark:visited{
+  display:inline-block;
+  padding:0.65rem 1.25rem;
+  background:#000;
+  color:#fff;
+  font-weight:600;
+  border-radius:6px;
+  text-decoration:none;
+  transition:background .25s ease;
+}
+
+.button--dark:hover,
+.button--dark:focus{background:#222}
+.button--dark:active{background:#111}
+
+
+/* =========================
+   Modal
+   ========================= */
+
+.notebook-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:9999;
+  opacity:0;
+  transition:opacity .35s ease;
+}
+
+.notebook-modal.active{
+  display:block;
+  opacity:1;
+}
+
+.modal-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+.modal-content{
+  position:relative;
+  width:90%;
+  max-width:1000px;
+  margin:8vh auto;
+  background:#fff;
+  padding:clamp(3rem,5vw,5rem);
+  border-radius:0;
+  overflow-y:auto;
+  max-height:90vh;
+
+  transform:scale(.96) translateY(10px);
+  opacity:0;
+  transition:
+    transform .35s cubic-bezier(.22,.61,.36,1),
+    opacity .35s ease;
+}
+
+.notebook-modal.active .modal-content{
+  transform:scale(1) translateY(0);
+  opacity:1;
+}
+
+.modal-close{
+  position:absolute;
+  top:1rem;
+  right:1rem;
+  font-size:1.75rem;
+  border:none;
+  background:none;
+  cursor:pointer;
+}
+
+
+/* =========================
+   Modal Typography
+   ========================= */
+
+.modal-article{
+  max-width:720px;
+  margin:0 auto;
+}
+
+.modal-article .post-meta{
+  font-size:.85rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#777;
+  margin-bottom:1.25rem;
+}
+
+.modal-article .post-title{
+  font-size:clamp(28px,3vw,40px);
+  line-height:1.2;
+  letter-spacing:-0.01em;
+  margin-bottom:1rem;
+}
+
+.modal-article .post-subtitle{
+  font-size:1.05rem;
+  line-height:1.6;
+  color:#666;
+  margin-bottom:2rem;
+}
+
+.modal-content-body{
+  font-size:1.08rem;
+  line-height:1.8;
+  color:#222;
+}
+
+.modal-content-body p{margin-bottom:1.4rem}
+
+.modal-content-body h2,
+.modal-content-body h3{
+  margin-top:2.2rem;
+  margin-bottom:1rem;
+  line-height:1.3;
+}
+
+
+/* =========================
+   Modal CTA
+   ========================= */
+
+.post-cta{
+  margin-top:3.5rem;
+  padding-top:2.5rem;
+  border-top:1px solid #e5e5e5;
+  text-align:center;
+}
+
+.post-cta p{
+  font-size:.95rem;
+  color:#555;
+  margin-bottom:1rem;
+}
+
+.cta-button{
+  display:inline-block;
+  padding:.75rem 1.5rem;
+  background:#000;
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+  font-size:.9rem;
+  letter-spacing:.02em;
+  transition:background .25s ease,transform .18s ease;
+}
+
+.cta-button:hover{
+  background:#222;
+  transform:translateY(-1px);
+}
+
+.cta-button:visited{color:#fff}
+
+
+/* =========================
+   Skeleton Loader
+   ========================= */
+
+.loader-container{
+  grid-column:1 / -1;
+  text-align:center;
+  padding:4rem 0;
+}
+
+.skeleton-card{
+  padding:1.5rem 2rem;
+  background:#eee;
+  animation:pulse 1.5s infinite ease-in-out;
+  min-height:140px;
+}
+
+@keyframes pulse{
+  0%{background:#eee}
+  50%{background:#e3e3e3}
+  100%{background:#eee}
+}
+
+
+/* ==========================================================================
+   15) Print — Global + Notebook
+   ========================================================================== */
+
 @media print{
+
   @page{margin:18mm}
 
-  html,
-  body{
+  html,body{
     background:#fff!important;
     color:#000!important;
     -webkit-print-color-adjust:economy;
     print-color-adjust:economy;
+    font-family:"Noto Serif",Georgia,serif!important;
+    font-size:12pt!important;
+    line-height:1.45!important;
   }
 
+  /* Hide navigation + UI */
   .topnav,
   .hero,
   .hero-shroud,
-  .hero-overlay::before,
-  .section-media{display:none!important}
-
-  .section{padding:12mm 0!important}
-  .wrap{max-width:none;padding:0!important}
-
-  body{
-    font-family:"Noto Serif",Georgia,serif!important;
-    font-size:12pt!important;
-    line-height:1.4!important;
+  .section-media,
+  .notebook-hero,
+  .notebook-footer,
+  .post-cta,
+  .modal-close,
+  .modal-overlay{
+    display:none!important;
   }
 
-  h1,h2,h3,h4{
-    color:#000!important;
-    text-transform:none!important;
-    margin-bottom:6mm!important;
+  /* Force modal open cleanly */
+  .notebook-modal{
+    position:static!important;
+    display:block!important;
+    opacity:1!important;
   }
 
-  h1{font-size:22pt!important;line-height:1.15!important}
-  h2{font-size:16pt!important;line-height:1.2!important}
-  h3{font-size:12pt!important;line-height:1.25!important}
+  .modal-content{
+    all:unset;
+    display:block;
+    max-width:none;
+    padding:0!important;
+  }
+
+  .modal-article{
+    max-width:none;
+    margin:0;
+  }
+
+  h1{font-size:22pt!important;line-height:1.2!important}
+  h2{font-size:16pt!important}
+  h3{font-size:13pt!important}
 
   p{margin:4mm 0!important}
 
@@ -956,266 +1289,8 @@ figcaption{
     font-size:9pt;
   }
 
-  .section-form{display:none!important}
-  .footer{color:#000!important;margin-top:8mm!important}
-}
-/* ==========================================================================
-   Notebook RSS Page — Final Adjustments
-   ========================================================================== */
-
-/* =========================
-   Hero Section
-   ========================= */
-.notebook-hero {
-  position: relative;
-  min-height: 65vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: clamp(3rem, 6vw, 4rem) 1.5rem;
-  background-color: #000; /* solid black base */
-  overflow: hidden;
-  z-index: 0;
-}
-
-.notebook-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.06), transparent 60%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.notebook-hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 12%;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
-  pointer-events: none;
-  z-index: 0;
-}
-
-.notebook-hero > * {
-  position: relative;
-  z-index: 1;
-}
-
-.notebook-hero h1 {
-  font-size: clamp(40px, 6vw, 64px);
-  letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
-  color: #fff;
-}
-
-.notebook-intro {
-  max-width: 720px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #cfcfcf;
-}
-
-.notebook-intro a {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* =========================
-   RSS Section — Background Image & Mobile Fallback
-   ========================= */
-.notebook-list {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  background-color: #f9f9f9; /* very light gray fallback */
-}
-
-@media(min-width: 768px) {
-  .notebook-list {
-    background-image: image-set(
-      url("/assets/judys-notebook.avif") type("image/avif"),
-      url("/assets/judys-notebook.webp") type("image/webp"),
-      url("/assets/judys-notebook.png") type("image/png")
-    );
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+  .footer{
+    color:#000!important;
+    margin-top:8mm!important;
   }
-}
-
-/* Remove dark overlay */
-.notebook-list::before {
-  content: none;
-}
-
-.notebook-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5rem) 2.5rem; /* wider gutters */
-}
-
-/* RSS Grid */
-.notebook-center {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 3rem 2.5rem;
-}
-
-@media(max-width:900px) {
-  .notebook-center {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-/* =========================
-   Post Cards — show subtitle
-   ========================= */
-.notebook-post,
-.post-card {
-  display: flex;
-  flex-direction: column;
-  background: rgba(255,255,255,0.95);
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-  padding: 2rem 2.25rem;
-  text-decoration: none;
-  color: inherit;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.notebook-post:hover,
-.post-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 36px rgba(0,0,0,0.18);
-}
-
-.post-title {
-  font-size: clamp(22px, 3vw, 28px);
-  margin-bottom: 0.25rem;
-}
-
-.post-subtitle {
-  display: block;
-  color: #444;
-  line-height: 1.55;
-  margin-bottom: 0.5rem;
-  max-width: 60ch;
-}
-
-.post-excerpt {
-  display: block;
-  color: #666;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  max-width: 60ch;
-  margin-top: 0.25rem;
-}
-
-/* =========================
-   Footer Archive Button
-   ========================= */
-.notebook-footer {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.notebook-footer .button {
-  display: inline-block;
-}
-
-.button--dark,
-.button--dark:visited {
-  display: inline-block;
-  padding: 0.65rem 1.25rem;
-  background-color: #000;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background 0.25s ease;
-}
-
-.button--dark:hover,
-.button--dark:focus {
-  background-color: #222;
-}
-
-.button--dark:active {
-  background-color: #111;
-}
-
-/* =========================
-   Modal — Square, Wider Gutters, Right-aligned Close
-   ========================= */
-.notebook-modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  z-index: 9999;
-}
-
-.notebook-modal.active {
-  display: block;
-}
-
-.modal-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(5px);
-}
-
-.modal-content {
-  position: relative;
-  width: 90%;
-  max-width: 1000px;
-  margin: 8vh auto;
-  background: #fff;
-  padding: clamp(3rem, 5vw, 5rem); /* wider gutters */
-  border-radius: 0; /* remove rounding */
-  overflow-y: auto;
-  max-height: 90vh;
-}
-
-/* Close button right-aligned */
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.75rem;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-/* =========================
-   Skeleton Loader
-   ========================= */
-.loader-container {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.skeleton-card {
-  padding: 1.5rem 2rem;
-  background: #eee;
-  animation: pulse 1.5s infinite ease-in-out;
-  min-height: 140px;
-}
-
-@keyframes pulse {
-  0% { background-color: #eee; }
-  50% { background-color: #e3e3e3; }
-  100% { background-color: #eee; }
 }
