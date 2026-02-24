@@ -7,7 +7,7 @@
 
   const CTA_HTML = `
   <div class="post-cta">
-    <p>Thank you for reading.<br>If you’d like to stay,</p>
+    <p>Thank you for reading.<br>If you’d like to stay, please:</p>
     <a href="https://judysnotebook.substack.com/subscribe" 
        target="_blank" 
        rel="noopener"
