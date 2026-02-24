@@ -928,17 +928,17 @@ figcaption{
   padding:clamp(3rem,6vw,4rem) 1.5rem;
   overflow:hidden;
   z-index:0;
-
+   
   background:
     radial-gradient(
-      900px 450px at 50% 18%,
-      rgba(255,255,255,0.08),
-      transparent 60%
+      1200px 650px at 50% 18%,
+      rgba(255, 255, 255, 0.08),
+      transparent 62%
     ),
     linear-gradient(
       180deg,
-      #000000 0%,
-      #0a0a0a 100%
+      #0b0f1a,
+      #111827
     );
 }
 
@@ -1018,6 +1018,24 @@ figcaption{
   gap:3rem 2.5rem;
 }
 
+.notebook-card {
+  background: #ffffff;
+  padding: 1.6rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.notebook-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+}
+
+.notebook-card h2 {
+  font-size: 1.35rem;
+  line-height: 1.35;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
 
 /* =========================
    Post Subtitle
