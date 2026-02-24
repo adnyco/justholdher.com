@@ -938,7 +938,7 @@ figcaption{
     linear-gradient(
       180deg,
       #000,
-      #333
+      #111
     );
 }
 
@@ -959,7 +959,7 @@ figcaption{
 }
 
 .notebook-hero h1{
-  font-size:clamp(32px,6vw,48px);
+  font-size:clamp(48px,6vw,64px);
   letter-spacing:-0.02em;
   margin-bottom:1.25rem;
   color:#fff;
@@ -988,7 +988,7 @@ figcaption{
   position:relative;
   width:100%;
   overflow:hidden;
-  background-color:#f9f9f9;
+  background:transparent;
 }
 
 @media(min-width:768px){
@@ -1001,6 +1001,16 @@ figcaption{
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
+  }
+}
+
+@media(min-width:768px){
+  .notebook-list::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.55);
+    z-index:0;
   }
 }
 
@@ -1030,11 +1040,26 @@ figcaption{
   box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 }
 
+.notebook-card .post-title{
+  font-size:1.2rem;
+  line-height:1.35;
+  font-weight:600;
+  margin-bottom:0.35rem;
+}
+
 .notebook-card h2 {
-  font-size: 1.35rem;
+  font-size: 1.2rem !important;
   line-height: 1.35;
   font-weight: 600;
   margin-bottom: 0.4rem;
+}
+
+.notebook-card .post-meta{
+  font-size:0.82rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#666;
+  margin-bottom:0.5rem;
 }
 
 /* =========================
@@ -1247,7 +1272,7 @@ figcaption{
 
 
 /* ==========================================================================
-   15) Print — Global + Notebook
+   15) Print — Global
    ========================================================================== */
 
 @media print{
