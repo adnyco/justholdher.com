@@ -937,8 +937,8 @@ figcaption{
     ),
     linear-gradient(
       180deg,
-      #000,
-      #111
+      #010101,
+      #333
     );
 }
 
@@ -980,86 +980,110 @@ figcaption{
 }
 
 
-/* =========================
-   RSS Section
-   ========================= */
+/* ==========================================================================
+   RSS Section & Notebook Cards — Cleaned
+   ========================================================================== */
 
-.notebook-list{
-  position:relative;
-  width:100%;
-  overflow:hidden;
-  background:transparent;
+/* Notebook List — container for RSS feed */
+.notebook-list {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
 }
 
-@media(min-width:768px){
-  .notebook-list{
-    background-image:image-set(
+/* Background image and subtle overlay for large screens */
+@media (min-width: 768px) {
+  .notebook-list {
+    background-image: image-set(
       url("/assets/judys-notebook.avif") type("image/avif"),
       url("/assets/judys-notebook.webp") type("image/webp"),
       url("/assets/judys-notebook.png") type("image/png")
     );
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  /* Soft light overlay for contrast */
+  .notebook-list::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.55);
+    z-index: 0;
   }
 }
 
-@media(min-width:768px){
-  .notebook-list::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(255,255,255,0.55);
-    z-index:0;
+/* Container ensures cards sit above overlay */
+.notebook-container {
+  position: relative;
+  z-index: 1; /* ensures cards float above ::before overlay */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) 2.5rem;
+}
+
+/* RSS Grid Layout */
+.notebook-center {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem 2.5rem;
+}
+
+@media (max-width: 900px) {
+  .notebook-center {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
-.notebook-container{
-  position:relative;
-  z-index:1;
-  max-width:1100px;
-  margin:0 auto;
-  padding:clamp(3rem,6vw,5rem) 2.5rem;
-}
-
-.notebook-center{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:3rem 2.5rem;
-}
-
+/* =========================
+   Notebook Cards
+   ========================= */
 .notebook-card {
+  position: relative; /* ensures z-index stacking context */
   background: #fff;
   padding: 1.6rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 2; /* above the overlay */
+  border-radius: 6px;
 }
 
 .notebook-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
 }
 
-.notebook-card .post-title{
-  font-size:1.2rem;
-  line-height:1.35;
-  font-weight:600;
-  margin-bottom:0.35rem;
-}
-
+/* Post Title */
+.notebook-card .post-title,
 .notebook-card h2 {
-  font-size: 1.2rem !important;
+  font-size: 1.1rem; /* smaller, longform-friendly */
   line-height: 1.35;
   font-weight: 600;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
+  color: #222;
 }
 
-.notebook-card .post-meta{
-  font-size:0.82rem;
-  letter-spacing:.04em;
-  text-transform:uppercase;
-  color:#666;
-  margin-bottom:0.5rem;
+/* Post Meta — harmonized with subtitles */
+.notebook-card .post-meta {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #555; /* match subtitle tone */
+  margin-bottom: 0.5rem;
+}
+
+/* Post Subtitle */
+.post-subtitle {
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: #555;
+  margin-top: 0.4rem;
+  max-width: 58ch;
 }
 
 /* =========================
