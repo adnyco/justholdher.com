@@ -910,39 +910,68 @@ figcaption{
 
 
 /* ==========================================================================
-   Notebook RSS Page
+   Notebook RSS Page — Scoped & Refactored
    ========================================================================== */
 
+.notebook-scope {
 
-/* =========================
+  /* ----------------------------------
+     Local Typography System
+  ---------------------------------- */
+
+  --nb-title: clamp(20px, 2vw, 24px);
+  --nb-card-title: 1.05rem;
+  --nb-meta: 0.75rem;
+  --nb-body: 0.95rem;
+
+  --nb-ink: #1a1a1a;
+  --nb-muted: #666;
+  --nb-soft: #999;
+
+  color: var(--nb-ink);
+}
+
+
+/* Reset global heading inheritance */
+.notebook-scope h1,
+.notebook-scope h2,
+.notebook-scope h3,
+.notebook-scope h4 {
+  text-transform: none;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+
+/* ==========================================================================
    Hero Section
-   ========================= */
+   ========================================================================== */
 
-.notebook-hero{
-  position:relative;
-  min-height:65vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:clamp(3rem,6vw,4rem) 1.5rem;
-  overflow:hidden;
-  z-index:0;
-   
+.notebook-scope .notebook-hero {
+  position: relative;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(3rem,6vw,4rem) 1.5rem;
+  overflow: hidden;
+
   background:
     radial-gradient(
       1200px 650px at 50% 18%,
-      rgba(255, 255, 255, 0.08),
+      rgba(255,255,255,0.08),
       transparent 62%
     ),
     linear-gradient(
       180deg,
-      #010101,
-      #333
+      #000,
+      #030303
     );
 }
 
-.notebook-hero::after{
+.notebook-scope .notebook-hero::after {
   content:"";
   position:absolute;
   bottom:0;
@@ -950,156 +979,135 @@ figcaption{
   width:100%;
   height:12%;
   background:linear-gradient(to bottom,transparent,rgba(0,0,0,0.85));
-  pointer-events:none;
 }
 
-.notebook-hero > *{
-  position:relative;
-  z-index:1;
-}
-
-.notebook-hero h1{
-  font-size:clamp(48px,6vw,64px);
-  letter-spacing:-0.02em;
-  margin-bottom:1.25rem;
+.notebook-scope .notebook-hero h1 {
+  font-size: clamp(44px,6vw,60px);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
   color:#fff;
 }
 
-.notebook-intro{
-  max-width:720px;
-  margin:0 auto;
-  font-size:1.1rem;
-  line-height:1.7;
+.notebook-scope .notebook-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color:#cfcfcf;
 }
 
-.notebook-intro a{
+.notebook-scope .notebook-intro a {
   color:#fff;
-  text-decoration:underline;
+  text-decoration: underline;
   text-underline-offset:3px;
 }
 
 
 /* ==========================================================================
-   RSS Section & Notebook Cards — Cleaned
+   RSS Section
    ========================================================================== */
 
-/* Notebook List — container for RSS feed */
-.notebook-list {
+.notebook-scope .notebook-list {
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  isolation: isolate;
   background: transparent;
 }
 
-/* Background image and subtle overlay for large screens */
+
+/* Background image (desktop only) */
 @media (min-width: 768px) {
-  .notebook-list {
+
+  .notebook-scope .notebook-list {
     background-image: image-set(
       url("/assets/judys-notebook.avif") type("image/avif"),
       url("/assets/judys-notebook.webp") type("image/webp"),
       url("/assets/judys-notebook.png") type("image/png")
     );
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
   }
 
-  /* Soft light overlay for contrast */
-  .notebook-list::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.55);
-    z-index: 0;
+  .notebook-scope .notebook-list::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.55);
+    z-index:0;
   }
 }
 
-/* Container ensures cards sit above overlay */
-.notebook-container {
+
+/* Container */
+.notebook-scope .notebook-container {
   position: relative;
-  z-index: 1; /* ensures cards float above ::before overlay */
+  z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5rem) 2.5rem;
+  padding: clamp(3rem,6vw,5rem) 2.5rem;
 }
 
-/* RSS Grid Layout */
-.notebook-center {
+
+/* Grid */
+.notebook-scope .notebook-center {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 3rem 2.5rem;
 }
 
 @media (max-width: 900px) {
-  .notebook-center {
+  .notebook-scope .notebook-center {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
 
-/* =========================
+
+/* ==========================================================================
    Notebook Cards
-   ========================= */
-.notebook-card {
-  position: relative; /* ensures z-index stacking context */
-  background: #fff;
-  padding: 1.6rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  z-index: 2; /* above the overlay */
-  border-radius: 6px;
+   ========================================================================== */
+
+.notebook-scope .notebook-center > * {
+  background:#fff;
+  padding:1.6rem;
+  border-radius:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:transform .25s ease, box-shadow .25s ease;
 }
 
-.notebook-card:hover {
+.notebook-scope .notebook-center > *:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  box-shadow:0 16px 40px rgba(0,0,0,0.12);
 }
 
-/* Post Title */
-.notebook-card .post-title,
-.notebook-card h2 {
-  font-size: 1.1rem; /* smaller, longform-friendly */
-  line-height: 1.35;
-  font-weight: 600;
-  margin-bottom: 0.35rem;
-  color: #222;
+
+/* Card Title */
+.notebook-scope .notebook-center h2 {
+  font-size: var(--nb-card-title);
+  font-weight:600;
+  margin-bottom:0.35rem;
+  color: var(--nb-ink);
 }
 
-/* Post Meta — harmonized with subtitles */
-.notebook-card .post-meta {
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
+
+/* Meta */
+.notebook-scope .post-meta {
+  font-size: var(--nb-meta);
+  letter-spacing:0.06em;
   text-transform: uppercase;
-  color: #555; /* match subtitle tone */
-  margin-bottom: 0.5rem;
+  color: var(--nb-soft);
+  margin-bottom:0.5rem;
 }
 
-/* Post Subtitle */
-.post-subtitle {
-  font-size: 0.92rem;
-  font-weight: 400;
-  line-height: 1.55;
-  letter-spacing: 0.01em;
-  color: #555;
-  margin-top: 0.4rem;
-  max-width: 58ch;
-}
 
-/* =========================
-   Post Subtitle
-   ========================= */
-
-.post-subtitle{
-  font-size:0.92rem;
-  font-weight:400;
+/* Subtitle */
+.notebook-scope .post-subtitle {
+  font-size: var(--nb-body);
   line-height:1.55;
-  letter-spacing:0.01em;
-  color:#555;
+  color: var(--nb-muted);
   margin-top:0.4rem;
   max-width:58ch;
 }
-
 
 /* =========================
    Footer Button
