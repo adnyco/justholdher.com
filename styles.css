@@ -937,8 +937,8 @@ figcaption{
     ),
     linear-gradient(
       180deg,
-      #0b0f1a,
-      #111827
+      #000,
+      #333
     );
 }
 
@@ -959,7 +959,7 @@ figcaption{
 }
 
 .notebook-hero h1{
-  font-size:clamp(40px,6vw,64px);
+  font-size:clamp(32px,6vw,48px);
   letter-spacing:-0.02em;
   margin-bottom:1.25rem;
   color:#fff;
@@ -1019,7 +1019,7 @@ figcaption{
 }
 
 .notebook-card {
-  background: #ffffff;
+  background: #fff;
   padding: 1.6rem;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -1148,7 +1148,7 @@ figcaption{
 }
 
 .modal-article .post-meta{
-  font-size:.85rem;
+  font-size:.80rem;
   letter-spacing:.04em;
   text-transform:uppercase;
   color:#777;
