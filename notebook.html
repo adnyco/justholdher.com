@@ -29,6 +29,75 @@
     <link rel="stylesheet" href="styles.css">
     <script src="substack.js" defer></script>
 
+    <!-- Structured Data: Notebook Page -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+    
+        {
+          "@type": "WebSite",
+          "@id": "https://justholdher.com/#website",
+          "name": "Just Hold Her",
+          "url": "https://justholdher.com/",
+          "inLanguage": "en-US"
+        },
+    
+        {
+          "@type": "WebPage",
+          "@id": "https://justholdher.com/notebook.html#webpage",
+          "url": "https://justholdher.com/notebook.html",
+          "name": "Judy’s Notebook | Reflections & Field Notes",
+          "isPartOf": {
+            "@id": "https://justholdher.com/#website"
+          },
+          "about": {
+            "@id": "https://justholdher.com/#book"
+          },
+          "inLanguage": "en-US",
+          "description": "Reflections, field notes, and excerpts from the forthcoming memoir Just Hold Her by Judy Wright."
+        },
+    
+        {
+          "@type": "Person",
+          "@id": "https://justholdher.com/#author",
+          "name": "Judy Wright",
+          "description": "Foster mother, caregiver, and memoirist writing about raising a medically fragile infant and navigating foster care and medical systems.",
+          "url": "https://justholdher.com/about-author-judy-wright.html",
+          "image": "https://justholdher.com/assets/judys-notebook-hero.png"
+        },
+    
+        {
+          "@type": "Book",
+          "@id": "https://justholdher.com/#book",
+          "name": "Just Hold Her",
+          "author": {
+            "@id": "https://justholdher.com/#author"
+          },
+          "inLanguage": "en-US",
+          "genre": [
+            "Memoir",
+            "Literary Nonfiction",
+            "Foster Care",
+            "Caregiving"
+          ],
+          "description": "Just Hold Her is a literary memoir by Judy Wright about fostering a medically fragile infant and navigating medicine, bureaucracy, and uncertainty with steadfast presence. It is a story of caregiving without guarantees, resilience under pressure, and the quiet courage required to simply stay."
+        }
+    
+      ]
+    }
+    </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCX49YFZRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CCX49YFZRQ');
+  </script>
+
+  
 </head>
 
 <body class="notebook-scope">
