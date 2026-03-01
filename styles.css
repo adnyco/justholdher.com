@@ -590,6 +590,16 @@ figcaption{
 }
 .about-actions .about-back-btn{width:auto;text-align:center}
 
+.about-back-btn,
+.section-form .form-submit {
+  color: #fff; /* ensures white text by default */
+}
+
+.about-back-btn:hover,
+.section-form .form-submit:hover {
+  color: #fff; /* reinforces hover text color */
+}
+
 /* ==========================================================================
    11) Contact Section — LIGHT, but still structured + “card” layout
    ========================================================================== */
