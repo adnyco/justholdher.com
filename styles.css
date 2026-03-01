@@ -899,6 +899,126 @@ figcaption{
   .about-body{max-width:100%}
 }
 
+/* -----------------------------
+   Hamburger button
+----------------------------- */
+.hamburger {
+  display: none; /* hidden on desktop */
+  position: relative;
+  width: 32px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.hamburger-box {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 24px;
+}
+
+.hamburger-inner {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+}
+
+.hamburger-inner::before {
+  top: -10px;
+}
+
+.hamburger-inner::after {
+  bottom: -10px;
+}
+
+/* -----------------------------
+   Toggle state (open)
+----------------------------- */
+.hamburger.active .hamburger-inner {
+  background-color: transparent;
+}
+
+.hamburger.active .hamburger-inner::before {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.active .hamburger-inner::after {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* -----------------------------
+   Mobile nav links
+----------------------------- */
+.topnav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  /* Show hamburger button */
+  .hamburger {
+    display: block;
+  }
+
+  /* Hide nav links by default */
+  .topnav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #000;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 4rem 1.5rem;
+    transition: right 0.3s ease;
+    z-index: 99;
+  }
+
+  .topnav-links a {
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  /* Active state */
+  .topnav-links.active {
+    right: 0;
+  }
+
+  /* Overlay behind menu */
+  .topnav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    z-index: 90;
+  }
+
+  .topnav-overlay.active {
+    display: block;
+  }
+}
+
 
 /* ==========================================================================
    Notebook RSS Page — Scoped & Refactored
@@ -1269,6 +1389,94 @@ figcaption{
 
 .cta-button:visited{color:#fff}
 
+/* ==========================================================================
+   .notebook-scope — Mobile Responsive (≤900px)
+   ========================================================================== */
+
+@media (max-width:900px) {
+
+  /* -----------------------------
+     Hero Section
+  ----------------------------- */
+  .notebook-scope .notebook-hero {
+    height: 92vh;
+    padding: clamp(2rem,5vw,3rem) 1.5rem;
+  }
+
+  .notebook-scope .notebook-hero h1 {
+    font-size: clamp(32px,6vw,44px);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .notebook-scope .notebook-intro {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  /* -----------------------------
+     Grid / Cards
+  ----------------------------- */
+  .notebook-scope .notebook-center {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .notebook-scope .notebook-center > * {
+    padding: 1.25rem;
+  }
+
+  /* -----------------------------
+     Sections & Media
+  ----------------------------- */
+  .notebook-scope .section-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .notebook-scope .section .section-copy {
+    max-width: 100%;
+  }
+
+  .notebook-scope .section-media img {
+    width: 100%;
+    height: auto;
+  }
+
+  .notebook-scope .s2 .section-media,
+  .notebook-scope .s3 .section-media,
+  .notebook-scope .s4 .section-media {
+    min-height: 260px;
+  }
+
+  /* -----------------------------
+     Forms / CTA Stacking
+  ----------------------------- */
+  .notebook-scope .section-form .wrap {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .notebook-scope .section-form .col-cta {
+    margin-top: 1rem;
+    align-self: auto;
+  }
+
+  .notebook-scope .section-form .contact-form {
+    height: auto;
+    padding: 1.25rem;
+  }
+
+  /* -----------------------------
+     Modals
+  ----------------------------- */
+  .notebook-scope .modal-content {
+    width: 95%;
+    margin: 5vh auto;
+    padding: 2rem 1.5rem;
+  }
+}
 
 /* =========================
    Skeleton Loader
