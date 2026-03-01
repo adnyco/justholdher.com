@@ -899,18 +899,16 @@ figcaption{
   .about-body{max-width:100%}
 }
 
-/* -----------------------------
-   Hamburger button
------------------------------ */
+/* Hamburger Button */
 .hamburger {
-  display: none; /* hidden on desktop */
+  display: none; /* desktop hidden */
   position: relative;
   width: 32px;
   height: 24px;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 100;
+  z-index: 1001;
 }
 
 .hamburger-box {
@@ -920,16 +918,7 @@ figcaption{
   height: 24px;
 }
 
-.hamburger-inner {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 2px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
+.hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
   content: '';
@@ -941,12 +930,77 @@ figcaption{
   transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
 }
 
+.hamburger-inner {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .hamburger-inner::before {
   top: -10px;
 }
 
 .hamburger-inner::after {
   bottom: -10px;
+}
+
+.hamburger.active .hamburger-inner {
+  background-color: transparent;
+}
+
+.hamburger.active .hamburger-inner::before {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.active .hamburger-inner::after {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Mobile Nav Links */
+.topnav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .hamburger { display: block; }
+
+  .topnav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: #000;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 4rem 1.5rem;
+    z-index: 1002; /* above overlay */
+    transition: right 0.35s ease;
+  }
+
+  .topnav-links.active {
+    right: 0;
+  }
+
+  .topnav-links a {
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  /* Overlay */
+  .topnav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+  }
+
+  .topnav-overlay.active {
+    display: block;
+  }
 }
 
 /* -----------------------------
