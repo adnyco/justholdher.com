@@ -289,120 +289,30 @@ figcaption{
 }
 
 /* ==========================================================================
-   5) Top Nav — Black bar (wrap-friendly)
+   5) Top Nav & Hamburger Menu
    ========================================================================== */
-.topnav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:#000;
-  color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
 
-.topnav-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:.9rem 0;
-  gap:1rem;
-}
-
-.topnav a{color:#fff;text-decoration:none}
-.topnav a:hover,
-.topnav a:focus-visible{
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
-
-.brand{
-  font-family:var(--font-head);
-  font-weight:300;
-  letter-spacing:-.03em;
-  text-transform:uppercase;
-  font-size:1.05rem;
-  white-space:nowrap;
-}
-
-.topnav-links{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-  align-items:center;
-  gap:.85rem 1rem;
-  font:500 .92rem/1.2 var(--font-body);
-}
-
-.topnav-links a{white-space:nowrap}
-.topnav-links a[aria-current="page"]{
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
-
-
-
-/* =========================
-   Hamburger Button
-========================= */
-@media (max-width: 900px){
-
-  .hamburger {
-    display: block;
-  }
-
-  .topnav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: 260px;
-    background: #000;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 5rem 1.5rem;
-    gap: 1.25rem;
-    transition: right .35s ease;
-    z-index: 1000;
-  }
-
-  .topnav-links.active {
-    right: 0;
-  }
-
-  .topnav-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.5);
-    backdrop-filter: blur(2px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity .3s ease;
-    z-index: 999;
-  }
-
-  .topnav-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-}
+/* Base Hamburger (Hidden on Desktop) */
 .hamburger {
-  display: none;
+  display: none; /* Hidden by default */
   position: relative;
-  width: 28px;
-  height: 22px;
+  width: 30px;
+  height: 24px;
   background: none;
-  border: 0;
+  border: none;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1005; /* Keep above the sidebar and overlay */
+  padding: 0;
 }
 
 .hamburger-box {
   position: relative;
+  display: block;
   width: 100%;
   height: 100%;
 }
 
+/* Hamburger Bars */
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
@@ -410,8 +320,8 @@ figcaption{
   position: absolute;
   width: 100%;
   height: 2px;
-  background: #fff;
-  transition: transform .3s ease, opacity .3s ease;
+  background-color: #fff;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .hamburger-inner {
@@ -419,28 +329,61 @@ figcaption{
   transform: translateY(-50%);
 }
 
-.hamburger-inner::before {
-  top: -8px;
-}
+.hamburger-inner::before { top: -8px; }
+.hamburger-inner::after { top: 8px; }
 
-.hamburger-inner::after {
-  top: 8px;
-}
-
-/* Active state animation */
+/* Active "X" Animation */
 .hamburger.active .hamburger-inner {
-  background: transparent;
+  background-color: transparent;
 }
-
 .hamburger.active .hamburger-inner::before {
   transform: translateY(8px) rotate(45deg);
 }
-
 .hamburger.active .hamburger-inner::after {
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* Mobile Navigation (Max-width: 900px) */
+@media (max-width: 900px) {
+  .hamburger {
+    display: block; /* Show hamburger on mobile */
+  }
 
+  .topnav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen */
+    width: 260px;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 1.5rem;
+    gap: 1.5rem;
+    z-index: 1000; /* Below hamburger */
+    transition: right 0.35s ease;
+  }
+
+  .topnav-links.active {
+    right: 0; /* Slide in */
+  }
+
+  .topnav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: opacity 0.3s ease;
+  }
+
+  .topnav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 
 /* ==========================================================================
    6) Hero — Fade-to-black on scroll (PE + fallback)
@@ -1771,67 +1714,6 @@ figcaption{
   text-underline-offset:3px;
 }
 
-/* Only one hamburger definition, minimal edits */
-.hamburger {
-  display: none;
-  position: relative;
-  width: 32px;
-  height: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 2px;
-  transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
-}
-
-/* Active toggle transforms */
-.hamburger.active .hamburger-inner { background-color: transparent; }
-.hamburger.active .hamburger-inner::before { transform: translateY(10px) rotate(45deg); }
-.hamburger.active .hamburger-inner::after { transform: translateY(-10px) rotate(-45deg); }
-
-/* Mobile nav (one clean block, no duplicates) */
-@media (max-width: 900px) {
-  .hamburger { display: block; }
-
-  .topnav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 260px;
-    height: 100vh;
-    background: #000;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 4rem 1.5rem;
-    z-index: 1002;
-    transition: right 0.35s ease;
-  }
-
-  .topnav-links.active { right: 0; }
-  .topnav-links a { color: #fff; font-size: 1rem; text-transform: uppercase; }
-
-  .topnav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(2px);
-    z-index: 1000;
-  }
-
-  .topnav-overlay.active { display: block; }
-}
 
 
 /* ==========================================================================
