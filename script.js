@@ -4,12 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Overlay element
   let overlay = document.querySelector(".topnav-overlay");
+  if (!hamburger || !navLinks) return;
   if (!overlay) {
     overlay = document.createElement("div");
     overlay.className = "topnav-overlay";
     document.body.appendChild(overlay);
   }
-
+  
   const toggleMenu = () => {
     const isActive = hamburger.classList.toggle("active");
     navLinks.classList.toggle("active");
