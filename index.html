@@ -344,10 +344,10 @@
     'use strict';
 
     // Footer year
-    document.addEventListener('DOMContentLoaded', () => {
-      const y = document.querySelector('.footer-year');
-      if (y) y.textContent = new Date().getFullYear();
-    });
+    window.addEventListener('load', () => {
+    const y = document.querySelector('.footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+  });
 
     // Hero fade fallback (for browsers without scroll-linked animations)
     const supportsScrollLinked = CSS && CSS.supports && CSS.supports('animation-timeline: auto');
