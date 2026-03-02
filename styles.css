@@ -295,7 +295,7 @@ figcaption{
   cursor:pointer;
   padding:0;
   flex-shrink:0;
-  z-index:2200;
+  z-index:3200;
   color:#fff;
 }
 
@@ -315,28 +315,28 @@ figcaption{
 
 /* ── Nav drawer — hidden by default on ALL screen sizes ── */
 .topnav-links {
-  display: flex; /* Change from none to flex */
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: min(280px, 80vw);
-  height: 100vh;
-  background: #111;
-  padding: 80px 32px 32px;
+  display:flex; /* Change from none to flex */
+  flex-direction:column;
+  position:fixed;
+  top:0;
+  right:0;
+  width:min(280px, 80vw);
+  height:100vh;
+  background:#111;
+  padding:80px 32px 32px;
   box-shadow: -4px 0 24px rgba(0,0,0,.45);
-  z-index: 2100;
-  overflow-y: auto;
+  z-index:3100;
+  overflow-y:auto;
   
   /* Use visibility and transform instead of display:none */
-  visibility: hidden; 
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0.35s;
+  visibility:hidden; 
+  transform:translateX(100%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0.35s;
 }
 
 .topnav-links.active {
-  visibility: visible;
-  transform: translateX(0);
+  visibility:visible;
+  transform:translateX(0);
 }
 
 .topnav-links a{
@@ -366,7 +366,7 @@ figcaption{
   opacity: 0;
   visibility: hidden;
   transition: all 0.35s var(--ease-out);
-  z-index: 2000; /* Set this to 2000 */
+  z-index: 3000; /* Set this to 2000 */
 }
 
 .topnav-overlay.active{display:block}
