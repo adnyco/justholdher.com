@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".topnav-links");
 
-  // Overlay element
+  // Create overlay if it doesn't exist
   let overlay = document.querySelector(".topnav-overlay");
   if (!hamburger || !navLinks) return;
+  
   if (!overlay) {
     overlay = document.createElement("div");
     overlay.className = "topnav-overlay";
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.classList.toggle("active");
     overlay.classList.toggle("active");
     hamburger.setAttribute("aria-expanded", isActive);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = isActive ? 'hidden' : '';
   };
 
   hamburger.addEventListener("click", toggleMenu);
