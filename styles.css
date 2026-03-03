@@ -630,45 +630,74 @@ figcaption{
 /* ==========================================================================
    10) CTA Buttons (restored)
    ========================================================================== */
-.center-cta{
-  display:flex;
-  justify-content:center;
-  margin-top:1.25rem;
+.center-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
 }
 
-.about-back-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:.75rem 1.15rem;
-  background:#000;
-  color:#fff;
-  border:1px solid #000;
-  border-radius:var(--radius);
-  font:600 .95rem/1.2 var(--font-body);
-  text-decoration:none;
-  transition:
+/* Base button class for Home and About */
+.about-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.15rem;
+  background: #000;
+  color: #fff !important; /* Fixed: Force white text */
+  border: 1px solid #000;
+  border-radius: var(--radius);
+  font: 600 .95rem/1.2 var(--font-body);
+  text-decoration: none;
+  transition: 
+    transform .12s var(--ease-out),
+    background-color .16s var(--ease-out),
+    border-color .16s var(--ease-out);
+}
+
+.about-back-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff !important; /* Fixed: Keep white text on hover */
+  text-decoration: none; /* Fixed: Remove underline */
+}
+
+.about-back-btn:active { transform: translateY(1px); }
+
+/* ==========================================================================
+   10b) Light Button Style (For Dark Sections)
+   ========================================================================== */
+
+.button--light,
+.button--light:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.15rem;
+  background: #fff;
+  color: #000 !important; /* Black text on white background */
+  border: 1px solid #fff;
+  border-radius: var(--radius);
+  font: 600 .95rem/1.2 var(--font-body);
+  text-decoration: none !important;
+  transition: 
     transform .12s var(--ease-out),
     background-color .16s var(--ease-out),
     color .16s var(--ease-out),
     border-color .16s var(--ease-out);
 }
 
-.about-back-btn:hover{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-  text-decoration:none;
+.button--light:hover,
+.button--light:focus {
+  background: transparent;
+  color: #fff !important; /* Flips to white text on hover */
+  border-color: #fff;
+  text-decoration: none !important;
 }
 
-.about-back-btn:active{transform:translateY(1px)}
-
-.about-actions{
-  display:flex;
-  justify-content:center;
-  margin-top:1.75rem;
+.button--light:active {
+  transform: translateY(1px);
 }
-.about-actions .about-back-btn{width:auto;text-align:center}
+
 
 /* ==========================================================================
    11) Contact Section — LIGHT, but still structured + “card” layout
@@ -782,25 +811,28 @@ figcaption{
 .section-form .form-row textarea:user-valid{border-color:#3aa76d}
 
 /* Submit button (works for any legacy forms still live) */
-.section-form .form-submit{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--font-body);
-  font-weight:600;
-  font-size:.95rem;
-  padding:.65rem 1.25rem;
-  border:0;
-  border-radius:6px;
-  background:#000;
-  color:#fff;
-  cursor:pointer;
-  transition:
-    transform .12s var(--ease-out),
-    background-color .16s var(--ease-out),
-    color .16s var(--ease-out);
+.section-form .form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .95rem;
+  padding: .65rem 1.25rem;
+  border: 0;
+  border-radius: 6px;
+  background: #000;
+  color: #fff !important; /* Fixed: Force white text */
+  cursor: pointer;
+  transition: background-color .16s var(--ease-out);
 }
-.section-form .form-submit:hover{background:var(--accent);color:#fff}
+
+.section-form .form-submit:hover {
+  background: var(--accent);
+  color: #fff !important; /* Fixed: Keep white text on hover */
+  text-decoration: none; /* Fixed: Remove underline */
+}
+
 .section-form .form-submit:active{transform:translateY(1px)}
 
 /* Form status */
@@ -1074,64 +1106,65 @@ figcaption{
 
 
 /* ==========================================================================
-   RSS Section
+   RSS Section — Layout Restored + Background Fix
    ========================================================================== */
 
 .notebook-scope .notebook-list {
   position: relative;
   isolation: isolate;
-  background: transparent;
+  background-color: #fff; /* Mobile fallback */
+  min-height: 600px;
 }
 
-
-/* Background image (desktop only) */
 @media (min-width: 768px) {
-
   .notebook-scope .notebook-list {
+    /* Try adding ../ if assets is in the root and CSS is in a subfolder */
+    background-image: url("/assets/judys-notebook.png"); 
     background-image: image-set(
-      url("/assets/judys-notebook.avif") type("image/avif"),
-      url("/assets/judys-notebook.webp") type("image/webp"),
-      url("/assets/judys-notebook.png") type("image/png")
+      url("assets/judys-notebook.avif") type("image/avif"),
+      url("assets/judys-notebook.webp") type("image/webp"),
+      url("assets/judys-notebook.png") type("image/png")
     );
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: transparent;
   }
 
   .notebook-scope .notebook-list::before {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(255,255,255,0.55);
-    z-index:0;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.55);
+    z-index: -1;
   }
 }
 
-
-/* Container */
+/* RESTORED: This is what handles your two-column layout and spacing */
 .notebook-scope .notebook-container {
   position: relative;
   z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
-  padding: clamp(3rem,6vw,5rem) 2.5rem;
+  padding: clamp(3rem, 6vw, 5rem) 2.5rem;
 }
 
-
-/* Grid */
 .notebook-scope .notebook-center {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 3rem 2.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem 2.5rem; /* This restored your card spacing */
 }
 
-@media (max-width: 900px) {
-  .notebook-scope .notebook-center {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+/* Ensure cards stay white so they pop against the background */
+.notebook-scope .notebook-center > * {
+  background: #fff;
+  padding: 1.6rem;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 2;
 }
-
 
 /* ==========================================================================
    Notebook Cards
@@ -1189,22 +1222,49 @@ figcaption{
   margin-top:3rem;
 }
 
+/* Main Notebook List Button */
 .button--dark,
-.button--dark:visited{
-  display:inline-block;
-  padding:0.65rem 1.25rem;
-  background:#000;
-  color:#fff;
-  font-weight:600;
-  border-radius:6px;
-  text-decoration:none;
-  transition:background .25s ease;
+.button--dark:visited {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  background: #000;
+  color: #fff !important; /* Fixed: Force white text */
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background .25s ease;
 }
 
 .button--dark:hover,
-.button--dark:focus{background:#222}
-.button--dark:active{background:#111}
+.button--dark:focus {
+  background: var(--accent); /* Fixed: Consistent color hover */
+  color: #fff !important;
+  text-decoration: none; /* Fixed: Remove underline */
+}
 
+/* Modal Internal CTA Button */
+.notebook-scope .cta-button,
+.notebook-scope .cta-button:visited {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  background: #000;
+  color: #fff !important; /* Forces white text over global link rules */
+  text-decoration: none !important; /* Removes the underline */
+  font-weight: 500;
+  font-size: .9rem;
+  letter-spacing: .02em;
+  border-radius: 4px; /* Optional: adjust to match your brand radius */
+  transition: background .25s ease, transform .18s ease;
+}
+
+/* 2. Consistent hover behavior (Accent color, no underline) */
+.notebook-scope .cta-button:hover,
+.notebook-scope .cta-button:focus {
+  background: var(--accent) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  transform: translateY(-1px);
+}
 
 /* =========================
    Modal
