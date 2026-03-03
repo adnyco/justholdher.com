@@ -698,17 +698,16 @@ figcaption{
 
 .button--light:hover,
 .button--light:focus {
-  background: transparent;
-  color: #fff !important; /* Flips to white text on hover */
-  border-color: #fff;
+  /* Matches .about-back-btn:hover behavior */
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff !important; /* Text flips to white to stay legible on accent color */
   text-decoration: none !important;
 }
 
 .button--light:active {
   transform: translateY(1px);
 }
-
-
 /* ==========================================================================
    11) Contact Section — LIGHT, but still structured + “card” layout
    ========================================================================== */
