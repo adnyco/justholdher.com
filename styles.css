@@ -247,42 +247,52 @@ figcaption{
 }
 
 /* ==========================================================================
-   5) Top Nav — Black bar, always-hamburger drawer
+   5) Top Nav — Black bar, Hamburgers for all
    ========================================================================== */
-.topnav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:#000;
-  color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.08);
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #000;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
-.topnav-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:relative;
-  padding:.9rem 0;
-  gap:1rem;
+.topnav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* This pushes brand left and hamburger right */
+  position: relative;
+  padding: .9rem 0;
+  gap: 1rem;
 }
 
-.topnav a{color:#fff;text-decoration:none}
-.topnav a:hover,
-.topnav a:focus-visible{
-  text-decoration:underline;
-  text-underline-offset:3px;
+/* Elegant Interaction Logic */
+.topnav-inner a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block; 
+  transition: transform 0.25s var(--ease-out), color 0.2s ease;
+  transform-origin: center;
+  backface-visibility: hidden;
 }
 
-.brand{
-  font-family:var(--font-head);
-  font-weight:300;
-  letter-spacing:-.03em;
-  text-transform:uppercase;
-  font-size:1.05rem;
-  white-space:nowrap;
+.topnav-inner a:hover,
+.topnav-inner a:focus-visible {
+  text-decoration: none;
+  transform: translateY(-2px) scale(1.05);
+  outline: none;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
+.brand {
+  font-family: var(--font-head);
+  font-weight: 300;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
 /* ── Hamburger button — always visible on every screen size ── */
 .hamburger{
   display:flex;
