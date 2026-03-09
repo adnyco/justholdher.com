@@ -1439,6 +1439,639 @@ figcaption{
   100%{background:#eee}
 }
 
+/* ==========================================================================
+   16) Buy Page — scoped to .buy-scope body class
+   ========================================================================== */
+
+/* ── Phase system ── */
+.phase-block { display: none; }
+.buy-scope.phase-preorder .phase-block--preorder { display: block; }
+.buy-scope.phase-preorder .phase-block--preorder-inline { display: inline; }
+.buy-scope.phase-ebook    .phase-block--ebook    { display: block; }
+.buy-scope.phase-ebook    .phase-block--ebook-inline { display: inline; }
+.buy-scope.phase-all      .phase-block--all      { display: block; }
+.buy-scope.phase-all      .phase-block--all-inline { display: inline; }
+
+/* ── Phase demo switcher — REMOVE BEFORE GO-LIVE ── */
+.buy-scope .phase-demo {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 9000;
+  background: #111;
+  color: #f3f3f3;
+  padding: .75rem 1rem;
+  border-radius: 6px;
+  font: 500 .72rem/1.3 var(--font-body);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+}
+.buy-scope .phase-demo label {
+  display: block;
+  opacity: .55;
+  margin-bottom: .4rem;
+}
+.buy-scope .phase-demo select {
+  background: transparent;
+  color: #f3f3f3;
+  border: 1px solid rgba(255,255,255,.25);
+  padding: .3rem .5rem;
+  font: inherit;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 3px;
+}
+
+/* ── Buy Hero ── */
+.buy-scope .buy-hero {
+  background: var(--bg-dark);
+  color: var(--fg-dark);
+  padding: var(--pad-v) 0;
+}
+
+.buy-scope .buy-hero-inner {
+  max-width: var(--max-wrap);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.buy-scope .buy-cover-col {
+  display: flex;
+  justify-content: center;
+}
+
+.buy-scope .buy-cover-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  filter: drop-shadow(0 32px 56px rgba(0,0,0,.7)) drop-shadow(0 8px 20px rgba(0,0,0,.5));
+  transition: filter .35s var(--ease-out), transform .35s var(--ease-out);
+}
+.buy-scope .buy-cover-wrap:hover {
+  filter: drop-shadow(0 40px 72px rgba(0,0,0,.8)) drop-shadow(0 12px 28px rgba(0,0,0,.55));
+  transform: translateY(-4px);
+}
+.buy-scope .buy-cover-wrap img {
+  width: 100%;
+  height: auto;
+  border-radius: 2px 4px 4px 2px;
+  display: block;
+}
+
+.buy-scope .buy-hero-kicker {
+  font: 400 .78rem/1.2 var(--font-body);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.buy-scope .buy-hero-kicker::before {
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.buy-scope .buy-hero-quote {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: clamp(26px, 3.5vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  margin: 0 0 1.25rem;
+  color: var(--fg-dark);
+}
+
+.buy-scope .buy-hero-tagline {
+  font: 400 1rem/1.6 var(--font-body);
+  color: rgba(243,243,243,.72);
+  margin: 0 0 2rem;
+  max-width: 50ch;
+  letter-spacing: -.01em;
+}
+
+/* ── Release dates ── */
+.buy-scope .release-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.buy-scope .release-label {
+  font: 400 .7rem/1.2 var(--font-body);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(243,243,243,.45);
+  margin-bottom: .2rem;
+}
+
+.buy-scope .release-date {
+  font: 400 .95rem/1.3 var(--font-body);
+  color: var(--fg-dark);
+  letter-spacing: -.01em;
+}
+
+/* ── CTA buttons row ── */
+.buy-scope .buy-cta-row {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Ghost button — dark background contexts ── */
+.buy-scope .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.15rem;
+  background: transparent;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: var(--radius);
+  font: 600 .95rem/1.2 var(--font-body);
+  text-decoration: none !important;
+  transition:
+    border-color .16s var(--ease-out),
+    background .16s var(--ease-out),
+    transform .12s var(--ease-out);
+}
+.buy-scope .btn-ghost:hover,
+.buy-scope .btn-ghost:focus {
+  border-color: #fff;
+  background: rgba(255,255,255,.08);
+  text-decoration: none !important;
+}
+.buy-scope .btn-ghost:active { transform: translateY(1px); }
+
+/* ── Retailer logos ── */
+.buy-scope .retailers-label {
+  font: 400 .7rem/1.2 var(--font-body);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(243,243,243,.45);
+  margin-bottom: .9rem;
+}
+
+.buy-scope .retailer-logos-grid {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: .85rem;
+}
+
+.buy-scope .retailer-logo-link {
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: opacity .2s var(--ease-out), transform .2s var(--ease-out);
+  flex-shrink: 0;
+  text-decoration: none !important;
+}
+.buy-scope .retailer-logo-link:hover {
+  opacity: .85;
+  transform: translateY(-2px);
+  text-decoration: none !important;
+}
+.buy-scope .retailer-logo-link img {
+  display: block;
+  height: 44px;
+  width: auto;
+  border-radius: 6px;
+}
+
+.buy-scope .retailer-icons-row {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.buy-scope .retailer-icon-link {
+  display: block;
+  transition: opacity .2s var(--ease-out), transform .2s var(--ease-out);
+  text-decoration: none !important;
+}
+.buy-scope .retailer-icon-link:hover {
+  opacity: .75;
+  transform: translateY(-2px);
+  text-decoration: none !important;
+}
+.buy-scope .retailer-icon-link img {
+  display: block;
+  height: 38px;
+  width: auto;
+}
+
+/* ── Divider rule ── */
+.buy-scope .section-rule {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,.18), transparent);
+  margin: 0;
+}
+.buy-scope .buy-dark-rule {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+}
+
+/* ── Hook band ── */
+.buy-scope .buy-hook {
+  position: relative;
+  padding: var(--pad-v) 0;
+  text-align: center;
+  background-color: #fff;
+  background-image: url("assets/judys-notebook.avif");
+  background-image: image-set(
+    url("assets/judys-notebook.avif") type("image/avif"),
+    url("assets/judys-notebook.webp") type("image/webp"),
+    url("assets/judys-notebook.png") type("image/png")
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  isolation: isolate;
+}
+
+.buy-scope .buy-hook::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.5);
+  z-index: 0;
+}
+
+.buy-scope .buy-hook::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse 700px 100% at center,
+    rgba(255,255,255,.96) 0%,
+    rgba(255,255,255,.82) 38%,
+    rgba(255,255,255,.3) 68%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.buy-scope .buy-hook-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.buy-scope .buy-hook-quote {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.35;
+  letter-spacing: -.02em;
+  margin: 0 0 1.5rem;
+  color: var(--fg);
+  text-shadow:
+    0 0 18px #fff,
+    0 0 36px rgba(255,255,255,.9),
+    0 0 56px rgba(255,255,255,.6);
+}
+.buy-scope .buy-hook-quote strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.buy-scope .buy-hook-beat {
+  font: 500 .75rem/1.2 var(--font-body);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.42);
+  margin-bottom: 2.5rem;
+  text-shadow:
+    0 0 12px #fff,
+    0 0 24px rgba(255,255,255,.85);
+}
+
+.buy-scope .buy-hook-lines {
+  font: 400 1rem/2 var(--font-body);
+  color: rgba(0,0,0,.65);
+  letter-spacing: -.01em;
+  text-shadow:
+    0 0 14px #fff,
+    0 0 28px rgba(255,255,255,.85);
+}
+.buy-scope .buy-hook-lines p { margin: 0; }
+
+.buy-scope .buy-hook-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  margin: 2rem auto;
+  opacity: .7;
+}
+
+/* ── Description split ── */
+.buy-scope .buy-desc {
+  background: var(--bg);
+  color: var(--fg);
+}
+.buy-scope .buy-desc .section-label {
+  font: 600 .72rem/1.2 var(--font-body);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.buy-scope .buy-desc .section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,.12);
+}
+.buy-scope .buy-desc .desc-pull {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.35;
+  letter-spacing: -.02em;
+  border-left: 2px solid var(--accent);
+  padding-left: 1.25rem;
+  margin: 1.75rem 0;
+  color: var(--fg);
+}
+
+/* ── Encounter section ── */
+.buy-scope .buy-encounter { background: var(--bg-gray); }
+
+.buy-scope .buy-encounter-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.buy-scope .buy-encounter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3.5rem;
+}
+.buy-scope .encounter-item-num {
+  font: 600 .7rem/1.2 var(--font-body);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.buy-scope .encounter-item-body {
+  font: 400 .95rem/1.65 var(--font-body);
+  color: #444;
+  letter-spacing: -.01em;
+}
+
+/* ── Praise section ── */
+.buy-scope .buy-praise { background: var(--bg); }
+
+.buy-scope .buy-praise-eyebrow {
+  font: 600 .72rem/1.2 var(--font-body);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.38);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.buy-scope .praise-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.buy-scope .praise-item {
+  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.buy-scope .praise-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.buy-scope .praise-text {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.55;
+  letter-spacing: -.02em;
+  color: var(--fg);
+  margin: 0 0 .85rem;
+}
+.buy-scope .praise-attr {
+  font: 400 .8rem/1.3 var(--font-body);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #777;
+}
+.buy-scope .praise-attr strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* ── Comp titles band ── */
+.buy-scope .buy-comps {
+  background: var(--bg-dark);
+  color: var(--fg-dark);
+  padding: var(--pad-v) 0;
+  text-align: center;
+}
+.buy-scope .buy-comps-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+.buy-scope .buy-comps-label {
+  font: 400 .7rem/1.2 var(--font-body);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(243,243,243,.38);
+  margin-bottom: 1.25rem;
+}
+.buy-scope .buy-comps-list {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.85;
+  letter-spacing: -.01em;
+  color: rgba(243,243,243,.8);
+}
+.buy-scope .buy-comps-list em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ── Audience section ── */
+.buy-scope .buy-audience { background: var(--bg-gray); }
+
+.buy-scope .buy-audience-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.buy-scope .audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.buy-scope .audience-card {
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.5rem;
+  transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out);
+}
+.buy-scope .audience-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.09);
+}
+.buy-scope .audience-card-label {
+  font: 600 .72rem/1.2 var(--font-body);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .6rem;
+}
+.buy-scope .audience-card-body {
+  font: 400 .95rem/1.65 var(--font-body);
+  color: #444;
+  letter-spacing: -.01em;
+}
+
+/* ── Bottom CTA ── */
+.buy-scope .buy-bottom-cta {
+  background: var(--bg-dark);
+  color: var(--fg-dark);
+  padding: var(--pad-v) 0;
+  text-align: center;
+}
+.buy-scope .buy-bottom-cta-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+.buy-scope .buy-bottom-headline {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  color: var(--fg-dark);
+}
+.buy-scope .buy-bottom-sub {
+  font: 400 .98rem/1.65 var(--font-body);
+  color: rgba(243,243,243,.65);
+  letter-spacing: -.01em;
+  margin: 0 0 2.25rem;
+  max-width: 52ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.buy-scope .buy-bottom-cta-row {
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.buy-scope .buy-bottom-retailers { margin-top: .5rem; }
+.buy-scope .buy-bottom-retailers .retailers-label {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.buy-scope .buy-bottom-logos-row {
+  display: flex;
+  justify-content: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: .75rem;
+}
+.buy-scope .buy-bottom-icons-row {
+  display: flex;
+  justify-content: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+}
+
+/* ── Held Close Books logo ── */
+.buy-scope .held-close-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.buy-scope .held-close-block img {
+  height: 36px;
+  width: auto;
+  opacity: .75;
+  transition: opacity .2s;
+}
+.buy-scope .held-close-block a:hover img { opacity: 1; }
+.buy-scope .held-close-label {
+  font: 400 .75rem/1.3 var(--font-body);
+  letter-spacing: .08em;
+  color: rgba(243,243,243,.45);
+}
+.buy-scope .held-close-label a {
+  color: rgba(243,243,243,.55);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color .2s;
+}
+.buy-scope .held-close-label a:hover { color: rgba(243,243,243,.9); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .buy-scope .buy-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .buy-scope .buy-cover-col { order: -1; }
+  .buy-scope .buy-cover-wrap { max-width: 240px; }
+  .buy-scope .buy-encounter-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .buy-scope .audience-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+  .buy-scope .buy-hook {
+    background-attachment: scroll;
+    background-image: none;
+    background-color: var(--bg-gray);
+  }
+  .buy-scope .buy-hook::before { display: none; }
+}
+
+@media (max-width: 600px) {
+  .buy-scope .release-row { gap: 1.25rem; }
+  .buy-scope .buy-cta-row { flex-direction: column; align-items: flex-start; }
+  .buy-scope .buy-bottom-cta-row { flex-direction: column; align-items: center; }
+}
+
 
 /* ==========================================================================
    15) Print — Global
