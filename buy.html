@@ -26,6 +26,98 @@
 
   <link rel="stylesheet" href="styles.css">
 
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://justholdher.com/buy",
+      "url": "https://justholdher.com/buy",
+      "name": "Buy Just Hold Her — Judy Wright",
+      "description": "Order Just Hold Her by Judy Wright. A literary memoir of foster care, medicine, and the long nights between. Available in ebook and print editions.",
+      "inLanguage": "en-US",
+      "isPartOf": { "@id": "https://justholdher.com/" },
+      "about": { "@id": "#book" },
+      "publisher": { "@id": "#author" }
+    },
+    {
+      "@type": "Book",
+      "@id": "#book",
+      "name": "Just Hold Her",
+      "alternateName": "Just Hold Her: A Foster Mother's Memoir of Medicine, Caregiving, and the Long Nights Between",
+      "author": { "@id": "#author" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Held Close Books",
+        "url": "https://heldclosebooks.com"
+      },
+      "about": "A literary memoir of foster care, medicine, and the long nights between.",
+      "genre": ["Literary Memoir", "Foster Care", "Caregiving", "Medical Memoir"],
+      "inLanguage": "en-US",
+      "image": "https://justholdher.com/assets/just-hold-her-judy-wright-ebook-cover.jpeg",
+      "bookFormat": [
+        "https://schema.org/EBook",
+        "https://schema.org/Paperback",
+        "https://schema.org/Hardcover"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Ebook",
+          "bookFormat": "https://schema.org/EBook",
+          "availability": "https://schema.org/PreOrder",
+          "availabilityStarts": "2026-04-15",
+          "url": "https://justholdher.com/buy",
+          "seller": { "@id": "#author" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Print Edition",
+          "bookFormat": "https://schema.org/Paperback",
+          "availability": "https://schema.org/PreOrder",
+          "availabilityStarts": "2026-06-01",
+          "url": "https://justholdher.com/buy",
+          "seller": { "@id": "#author" }
+        }
+      ],
+      "review": [
+        {
+          "@type": "Review",
+          "reviewBody": "A fantastic read. A true testament to modern medicine, unconditional love, and compassion. I could not put it down.",
+          "author": {
+            "@type": "Person",
+            "name": "Linda Thulin",
+            "jobTitle": "Nurse, Caregiver, Mother"
+          }
+        },
+        {
+          "@type": "Review",
+          "reviewBody": "I felt every emotion. I found myself holding my breath.",
+          "author": {
+            "@type": "Person",
+            "name": "Jeanette",
+            "jobTitle": "Medical Professional"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "#author",
+      "name": "Judy Wright",
+      "url": "https://justholdher.com/about-author-judy-wright.html",
+      "award": [
+        "Oakland County Foster Parents of the Year (2012)",
+        "Michigan Foster Parents of the Year (2012)"
+      ]
+    }
+  ]
+}
+</script>
+
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCX49YFZRQ"></script>
   <script>
@@ -208,7 +300,7 @@
 
           <div class="section-copy">
             <div class="buy-desc section-label">The Story</div>
-            <p>A two-year vigil. A hand-drawn grid. A refusal to let go.</p>
+            <p>A two-year vigil. A hand-drawn grid.<br>A refusal to let go.</p>
             <p>In the margins of those columns, where the grid ran out of room, Judy wrote what had no heading. A weight that held. A response that shouldn't have been there. The question she kept returning to, long after the institution had moved on: <strong>What about breast milk?</strong></p>
             <blockquote class="buy-desc desc-pull">
               What no notebook could contain was what happened next.
