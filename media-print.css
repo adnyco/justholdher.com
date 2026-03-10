@@ -15,11 +15,12 @@
     margin-top: 12mm;
   }
 
-  /* ── Hide all screen-only chrome ── */
+  .media-scope .media-assets,
   .media-scope .topnav,
   .media-scope .media-hero-portrait,
-  .media-scope .media-hero-actions,
-  .media-scope .media-assets,
+  .media-scope .media-hero-actions {
+    display: none !important;
+  }
   .media-scope .press-copy-tabs,
   .media-scope .copy-btn,
   .media-scope .asset-note,
@@ -191,14 +192,13 @@
      SYNOPSIS + PUBLICATION DETAILS
   ──────────────────────────────────────────────── */
   .media-scope .media-synopsis {
-    page-break-before: always !important;
-    break-before: page !important;
     padding: 0 !important;
+    margin-top: 5mm !important;
   }
   .media-scope .media-synopsis-inner {
     display: grid !important;
     grid-template-columns: 1.1fr .9fr !important;
-    gap: 10mm !important;
+    gap: 7mm !important;
     padding: 0 !important;
     max-width: none !important;
     align-items: start !important;
