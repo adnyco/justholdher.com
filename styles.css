@@ -2319,7 +2319,46 @@ figcaption{
   .media-scope .media-section-label--light::after { background: rgba(255,255,255,.12); }
 
   /* ── Downloadable Assets ── */
-  .media-scope .media-assets { background: var(--bg-gray); }
+  .media-scope .media-assets {
+    position: relative;
+    background-color: var(--bg-gray);
+    background-image: url("assets/judys-notebook.avif");
+    background-image: image-set(
+      url("assets/judys-notebook.avif") type("image/avif"),
+      url("assets/judys-notebook.webp") type("image/webp"),
+      url("assets/judys-notebook.png") type("image/png")
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    isolation: isolate;
+  }
+  .media-scope .media-assets::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.5);
+    z-index: 0;
+  }
+  .media-scope .media-assets::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 700px 100% at center,
+      rgba(255,255,255,.96) 0%,
+      rgba(255,255,255,.82) 38%,
+      rgba(255,255,255,.3) 68%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .media-scope .media-assets .wrap {
+    position: relative;
+    z-index: 1;
+  }
   .media-scope .media-assets-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2550,7 +2589,46 @@ figcaption{
   .media-scope .pub-stat-value.pending { color: #aaa; font-weight: 400; font-style: italic; }
 
   /* ── Key Facts ── */
-  .media-scope .media-facts { background: var(--bg); }
+  .media-scope .media-facts {
+    position: relative;
+    background-color: var(--bg);
+    background-image: url("assets/judys-notebook.avif");
+    background-image: image-set(
+      url("assets/judys-notebook.avif") type("image/avif"),
+      url("assets/judys-notebook.webp") type("image/webp"),
+      url("assets/judys-notebook.png") type("image/png")
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    isolation: isolate;
+  }
+  .media-scope .media-facts::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.5);
+    z-index: 0;
+  }
+  .media-scope .media-facts::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 700px 100% at center,
+      rgba(255,255,255,.96) 0%,
+      rgba(255,255,255,.82) 38%,
+      rgba(255,255,255,.3) 68%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .media-scope .media-facts .wrap {
+    position: relative;
+    z-index: 1;
+  }
   .media-scope .media-facts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2973,6 +3051,16 @@ figcaption{
     .media-scope .fact-card--wide { grid-column: span 1; grid-template-columns: 1fr; }
     .media-scope .media-award-band-inner { justify-content: space-around; gap: .75rem 0; }
     .media-scope .glance-band-item { padding: .5rem .75rem; width: 50%; }
+    /* iOS Safari: fixed background-attachment causes rendering bugs */
+    .media-scope .media-assets,
+    .media-scope .media-facts {
+      background-image: none;
+      background-color: var(--bg-gray);
+    }
+    .media-scope .media-assets::before,
+    .media-scope .media-assets::after,
+    .media-scope .media-facts::before,
+    .media-scope .media-facts::after { display: none; }
   }
   
   /* ── Review Copy Modal ── */

@@ -15,12 +15,11 @@
     margin-top: 12mm;
   }
 
-  .media-scope .media-assets,
+  /* ── Hide all screen-only chrome ── */
   .media-scope .topnav,
   .media-scope .media-hero-portrait,
-  .media-scope .media-hero-actions {
-    display: none !important;
-  }
+  .media-scope .media-hero-actions,
+  .media-scope .media-assets,
   .media-scope .press-copy-tabs,
   .media-scope .copy-btn,
   .media-scope .asset-note,
