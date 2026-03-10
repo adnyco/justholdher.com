@@ -1,0 +1,553 @@
+/* ==========================================================================
+   Print — Media Kit Page  (.media-scope)
+   8.5 × 11 in · B&W · Paste inside the existing @media print{} block
+   or append as a second @media print block in styles.css
+   ========================================================================== */
+
+@media print {
+
+  /* ── Page setup ── */
+  @page {
+    size: letter portrait;
+    margin: 16mm 18mm 18mm;
+  }
+  @page :first {
+    margin-top: 12mm;
+  }
+
+  /* ── Hide all screen-only chrome ── */
+  .media-scope .topnav,
+  .media-scope .media-hero-portrait,
+  .media-scope .media-hero-actions,
+  .media-scope .media-assets,
+  .media-scope .press-copy-tabs,
+  .media-scope .copy-btn,
+  .media-scope .asset-note,
+  .media-scope .glance-band-sep,
+  .media-scope .media-contact-left .media-cta-primary,
+  .media-scope .media-contact-left .media-cta-sub,
+  .media-scope .media-cta-primary,
+  .media-scope .about-back-btn,
+  .media-scope .rcopy-modal-overlay,
+  .media-scope .footer,
+  .skip {
+    display: none !important;
+  }
+
+  /* ── Base reset for print ── */
+  .media-scope,
+  .media-scope * {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Body typography ── */
+  .media-scope {
+    font-family: "Noto Serif", Georgia, serif !important;
+    font-size: 9.5pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* ── Suppress all URL printing for this page ── */
+  .media-scope a::after { content: none !important; }
+
+  /* ────────────────────────────────────────────────
+     REPORT HEADER  (replaces hero)
+  ──────────────────────────────────────────────── */
+  .media-scope .media-hero {
+    display: block !important;
+    padding: 0 0 5mm !important;
+    border-bottom: 2pt solid #000 !important;
+    margin-bottom: 5mm !important;
+  }
+  .media-scope .media-hero-inner {
+    display: block !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .media-scope .media-hero-kicker {
+    font: 600 7pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+    margin: 0 0 2mm !important;
+    display: block !important;
+  }
+  .media-scope .media-hero h1 {
+    font: 200 26pt/1.05 "Noto Serif", Georgia, serif !important;
+    letter-spacing: -.03em !important;
+    margin: 0 0 1mm !important;
+  }
+  .media-scope .media-hero-deck {
+    font: 400 9.5pt/1.55 "Noto Serif", Georgia, serif !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     STATS BAND  (gold bar → clean ruled figure row)
+  ──────────────────────────────────────────────── */
+  .media-scope .media-award-band {
+    display: block !important;
+    padding: 3mm 0 !important;
+    border-top: .5pt solid #000 !important;
+    border-bottom: .5pt solid #000 !important;
+    margin-bottom: 3mm !important;
+  }
+  .media-scope .media-award-band-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  .media-scope .glance-band-item {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 0 2mm !important;
+    border-right: .5pt solid #ccc !important;
+  }
+  .media-scope .glance-band-item:last-child { border-right: none !important; }
+  .media-scope .glance-band-value {
+    font: 200 16pt/1 "Noto Serif", Georgia, serif !important;
+    display: block !important;
+    letter-spacing: -.02em !important;
+    margin-bottom: .5mm !important;
+  }
+  .media-scope .glance-band-label {
+    font: 600 6pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .1em !important;
+    text-transform: uppercase !important;
+    display: block !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     REGIONAL STRIP  (inline pills → compact inline row)
+  ──────────────────────────────────────────────── */
+  .media-scope .media-glance {
+    display: block !important;
+    padding: 0 0 3mm !important;
+    border-bottom: .5pt solid #ccc !important;
+    margin-bottom: 5mm !important;
+  }
+  .media-scope .media-glance-inner { padding: 0 !important; }
+  .media-scope .glance-regional {
+    display: flex !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    gap: 4mm !important;
+  }
+  .media-scope .glance-regional-item {
+    font: 400 7.5pt/1.4 "IBM Plex Mono", monospace !important;
+    text-align: center !important;
+    flex: 1 !important;
+  }
+  .media-scope .glance-regional-item strong {
+    display: block !important;
+    font-weight: 600 !important;
+    font-size: 7.5pt !important;
+    margin-bottom: .3mm !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     PRESS COPY  — show all three panels stacked
+  ──────────────────────────────────────────────── */
+  .media-scope .media-press-copy {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .media-scope .press-copy-intro {
+    font-size: 9pt !important;
+    margin-bottom: 4mm !important;
+  }
+  /* Show all panels regardless of active state */
+  .media-scope .press-copy-panel,
+  .media-scope .press-copy-panel.active {
+    display: block !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 6mm !important;
+  }
+  .media-scope .press-word-count {
+    font: 600 7pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .1em !important;
+    text-transform: uppercase !important;
+    border-bottom: .5pt solid #000 !important;
+    padding-bottom: 1mm !important;
+    margin-bottom: 2mm !important;
+    display: block !important;
+  }
+  .media-scope .press-copy-text {
+    font: 400 9.5pt/1.6 "Noto Serif", Georgia, serif !important;
+    margin: 0 !important;
+    white-space: normal !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     SYNOPSIS + PUBLICATION DETAILS
+  ──────────────────────────────────────────────── */
+  .media-scope .media-synopsis {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .media-scope .media-synopsis-inner {
+    display: grid !important;
+    grid-template-columns: 1.1fr .9fr !important;
+    gap: 10mm !important;
+    padding: 0 !important;
+    max-width: none !important;
+    align-items: start !important;
+  }
+  .media-scope .synopsis-pull {
+    font: 200 12pt/1.35 "Noto Serif", Georgia, serif !important;
+    border-left: 2pt solid #000 !important;
+    padding-left: 4mm !important;
+    margin: 0 0 4mm !important;
+  }
+  .media-scope .synopsis-body {
+    font: 400 9pt/1.6 "Noto Serif", Georgia, serif !important;
+  }
+  .media-scope .synopsis-body p { margin: 0 0 2.5mm !important; }
+  .media-scope .pub-card {
+    border: .5pt solid #aaa !important;
+    border-radius: 0 !important;
+    padding: 3mm !important;
+    margin-bottom: 3mm !important;
+  }
+  .media-scope .pub-card-kicker {
+    font: 600 6.5pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    border-bottom: .5pt solid #ccc !important;
+    padding-bottom: 1.5mm !important;
+    margin-bottom: 2mm !important;
+  }
+  .media-scope .pub-stat {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 3mm !important;
+    padding: 1mm 0 !important;
+    border-bottom: .3pt solid #e8e8e8 !important;
+    font-size: 8pt !important;
+    line-height: 1.4 !important;
+  }
+  .media-scope .pub-stat:last-child { border-bottom: none !important; }
+  .media-scope .pub-stat-label { color: #555 !important; }
+  .media-scope .pub-stat-value { font-weight: 600 !important; text-align: right !important; }
+
+  /* ────────────────────────────────────────────────
+     KEY FACTS
+  ──────────────────────────────────────────────── */
+  .media-scope .media-facts {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .media-scope .media-facts-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4mm !important;
+    margin-top: 3mm !important;
+  }
+  .media-scope .fact-card {
+    border: .5pt solid #bbb !important;
+    padding: 3mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  /* Wide card — The Document with notebook image */
+  .media-scope .fact-card--wide {
+    grid-column: span 2 !important;
+    display: block !important; /* suppress 2-col layout, print image below text */
+  }
+  /* Hide notebook image in print — text is the document */
+  .media-scope .fact-card--wide picture { display: none !important; }
+  .media-scope .fact-label {
+    font: 600 6.5pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 1mm !important;
+    border-bottom: .3pt solid #ccc !important;
+    padding-bottom: 1mm !important;
+  }
+  .media-scope .fact-value {
+    font: 300 10pt/1.3 "Noto Serif", Georgia, serif !important;
+    margin-bottom: 1mm !important;
+    letter-spacing: -.01em !important;
+  }
+  .media-scope .fact-note {
+    font: 400 8pt/1.55 "Noto Serif", Georgia, serif !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     ABOUT THE AUTHOR
+  ──────────────────────────────────────────────── */
+  .media-scope .media-author {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .media-scope .media-author-inner {
+    display: block !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  /* Print portrait — small, floated right */
+  .media-scope .media-author-portrait {
+    float: right !important;
+    margin: 0 0 4mm 6mm !important;
+    width: 32mm !important;
+  }
+  .media-scope .media-author-portrait img {
+    width: 32mm !important;
+    height: 32mm !important;
+    object-fit: cover !important;
+    filter: grayscale(100%) !important;
+    border: .5pt solid #bbb !important;
+    display: block !important;
+  }
+  .media-scope .media-author-portrait figcaption {
+    font: 400 7pt/1.3 "IBM Plex Mono", monospace !important;
+    text-align: center !important;
+    margin-top: 1mm !important;
+  }
+  .media-scope .media-author-body {
+    font: 400 9.5pt/1.6 "Noto Serif", Georgia, serif !important;
+  }
+  .media-scope .media-author-body p { margin: 0 0 2.5mm !important; }
+  .media-scope .media-author-awards {
+    border-top: .5pt solid #000 !important;
+    margin-top: 4mm !important;
+    padding-top: 3mm !important;
+    clear: both !important;
+  }
+  .media-scope .award-item {
+    font: 400 8.5pt/1.5 "Noto Serif", Georgia, serif !important;
+    margin-bottom: 1.5mm !important;
+    padding-left: 4mm !important;
+    position: relative !important;
+  }
+  .media-scope .award-item::before {
+    content: "–" !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: #000 !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     AGENT & PUBLISHER PITCH + COMP TITLES
+  ──────────────────────────────────────────────── */
+  .media-scope .media-pitch {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .media-scope .media-pitch-inner {
+    display: grid !important;
+    grid-template-columns: 1.15fr .85fr !important;
+    gap: 10mm !important;
+    padding: 0 !important;
+    max-width: none !important;
+    align-items: start !important;
+  }
+  .media-scope .pitch-lede {
+    font: 200 12pt/1.4 "Noto Serif", Georgia, serif !important;
+    margin-bottom: 4mm !important;
+    border-left: 2pt solid #000 !important;
+    padding-left: 4mm !important;
+  }
+  .media-scope .pitch-body {
+    font: 400 9pt/1.6 "Noto Serif", Georgia, serif !important;
+  }
+  .media-scope .pitch-body p { margin: 0 0 2.5mm !important; }
+  .media-scope .comp-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .media-scope .comp-list li {
+    font: 400 9pt/1.5 "Noto Serif", Georgia, serif !important;
+    padding: 1.5mm 0 !important;
+    border-bottom: .3pt solid #ccc !important;
+    display: block !important;
+  }
+  .media-scope .comp-list li:last-child { border-bottom: none !important; }
+  .media-scope .comp-list li::before { display: none !important; }
+  .media-scope .comp-list em::before { content: "— "; }
+  .media-scope .market-card {
+    border: .5pt solid #bbb !important;
+    padding: 3mm !important;
+    margin-top: 4mm !important;
+  }
+  .media-scope .market-card-kicker {
+    font: 600 6.5pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    border-bottom: .5pt solid #ccc !important;
+    padding-bottom: 1.5mm !important;
+    margin-bottom: 2mm !important;
+    display: block !important;
+  }
+  .media-scope .market-card-kicker::before { display: none !important; }
+  .media-scope .mkt-stat {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 3mm !important;
+    padding: 1mm 0 !important;
+    border-bottom: .3pt solid #eee !important;
+    font-size: 8pt !important;
+  }
+  .media-scope .mkt-stat:last-child { border-bottom: none !important; }
+  .media-scope .mkt-label { color: #555 !important; }
+  .media-scope .mkt-value { font-weight: 600 !important; }
+
+  /* ────────────────────────────────────────────────
+     ADVANCE PRAISE
+  ──────────────────────────────────────────────── */
+  .media-scope .media-praise {
+    padding: 0 !important;
+    margin-top: 8mm !important;
+  }
+  .media-scope .praise-segment { margin-bottom: 5mm !important; }
+  .media-scope .praise-seg-label {
+    font: 600 6.5pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    border-bottom: .5pt solid #aaa !important;
+    padding-bottom: 1.5mm !important;
+    margin-bottom: 3mm !important;
+    display: block !important;
+  }
+  .media-scope .praise-seg-label::after { display: none !important; }
+  .media-scope .praise-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4mm !important;
+  }
+  .media-scope .praise-card {
+    border: .5pt solid #ccc !important;
+    padding: 3mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .media-scope .praise-card-text {
+    font: 300 9.5pt/1.55 "Noto Serif", Georgia, serif !important;
+    margin-bottom: 2mm !important;
+  }
+  .media-scope .praise-card-attr {
+    font: 600 7pt/1.3 "IBM Plex Mono", monospace !important;
+    letter-spacing: .06em !important;
+    text-transform: uppercase !important;
+  }
+  .media-scope .praise-card-attr strong { font-weight: 700 !important; }
+
+  /* ────────────────────────────────────────────────
+     CONTACT  (last page — stripped to essentials)
+  ──────────────────────────────────────────────── */
+  .media-scope .media-contact {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .media-scope .media-contact-inner {
+    display: block !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .media-scope .media-contact-left h2 {
+    font: 200 18pt/1.15 "Noto Serif", Georgia, serif !important;
+    letter-spacing: -.03em !important;
+    margin: 0 0 3mm !important;
+    border-bottom: 1pt solid #000 !important;
+    padding-bottom: 3mm !important;
+  }
+  .media-scope .media-contact-deck {
+    font: 400 9.5pt/1.6 "Noto Serif", Georgia, serif !important;
+    margin: 0 0 5mm !important;
+  }
+  .media-scope .media-contact-deck em { font-style: italic !important; }
+  /* Contact cards — print as clean address lines */
+  .media-scope .media-contact-cards {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5mm !important;
+    border: none !important;
+    margin-top: 2mm !important;
+  }
+  .media-scope .contact-card {
+    display: block !important;
+    border: .5pt solid #bbb !important;
+    padding: 3mm !important;
+    break-inside: avoid !important;
+  }
+  .media-scope .cc-type {
+    font: 600 6.5pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    border-bottom: .3pt solid #ccc !important;
+    padding-bottom: 1mm !important;
+    margin-bottom: 2mm !important;
+    display: block !important;
+  }
+  .media-scope .cc-headline {
+    font: 400 8.5pt/1.4 "Noto Serif", Georgia, serif !important;
+    margin-bottom: 1.5mm !important;
+    display: block !important;
+  }
+  .media-scope .cc-note {
+    font: 400 7.5pt/1.45 "Noto Serif", Georgia, serif !important;
+    margin-bottom: 2mm !important;
+    display: block !important;
+  }
+  .media-scope .cc-email {
+    font: 600 8pt/1.3 "IBM Plex Mono", monospace !important;
+    display: block !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     SHARED SECTION LABELS  (gold kickers → ruled)
+  ──────────────────────────────────────────────── */
+  .media-scope .media-section-label {
+    font: 600 7pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+    border-bottom: 1pt solid #000 !important;
+    padding-bottom: 1.5mm !important;
+    margin-bottom: 3mm !important;
+    display: block !important;
+    gap: 0 !important;
+  }
+  .media-scope .media-section-label::after { display: none !important; }
+
+  /* ────────────────────────────────────────────────
+     PAGE BREAK CONTROLS  — keep cards together
+  ──────────────────────────────────────────────── */
+  .media-scope .pub-card,
+  .media-scope .fact-card,
+  .media-scope .praise-card,
+  .media-scope .asset-card,
+  .media-scope .award-item,
+  .media-scope .pub-stat,
+  .media-scope .comp-list li {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ── Running footer on every page ── */
+  .media-scope .media-hero::after {
+    content: "Just Hold Her — Judy Wright — Held Close Books — press@heldclosebooks.com";
+    display: block !important;
+    font: 400 6.5pt/1.2 "IBM Plex Mono", monospace !important;
+    letter-spacing: .05em !important;
+    color: #888 !important;
+    margin-top: 3mm !important;
+    padding-top: 2mm !important;
+    border-top: .3pt solid #ccc !important;
+  }
+
+} /* end @media print */
