@@ -528,8 +528,8 @@ figcaption{
       transition: background .18s;
       text-decoration: none;
     }
-    /* All logos: white silhouette, clearly visible on gold */
-    .retailer-logo-link img {
+    /* All logos: white silhouette, visible on the gold band only */
+    .retailer-band .retailer-logo-link img {
       display: block;
       height: 28px;
       width: auto;
@@ -539,14 +539,14 @@ figcaption{
     }
     /* Hover-capable devices: lift opacity + subtle scale on :hover */
     @media (hover: hover) and (pointer: fine) {
-      .retailer-logo-link img {
+      .retailer-band .retailer-logo-link img {
         opacity: .55;
       }
-      .retailer-logo-link:hover img {
+      .retailer-band .retailer-logo-link:hover img {
         opacity: 1;
         transform: translateY(-1px);
       }
-      .retailer-logo-link:hover {
+      .retailer-band .retailer-logo-link:hover {
         background: rgba(255,255,255,.14);
       }
     }
@@ -2116,6 +2116,7 @@ figcaption{
   height: 44px;
   width: auto;
   border-radius: 6px;
+  filter: none;
 }
 
 .buy-scope .retailer-icons-row {
@@ -3772,8 +3773,8 @@ figcaption{
   transition: background .18s;
   text-decoration: none !important;
 }
-/* White silhouette — visible on gold for all devices */
-.retailer-logo-link img {
+/* White silhouette — scoped to the gold band only */
+.retailer-band .retailer-logo-link img {
   display: block;
   height: 28px;
   width: auto;
@@ -3783,9 +3784,9 @@ figcaption{
 }
 /* Hover-capable (desktop): start dimmer, restore fully on hover */
 @media (hover: hover) and (pointer: fine) {
-  .retailer-logo-link img { opacity: .55; }
-  .retailer-logo-link:hover img { opacity: 1; transform: translateY(-1px); }
-  .retailer-logo-link:hover { background: rgba(255,255,255,.14); }
+  .retailer-band .retailer-logo-link img { opacity: .55; }
+  .retailer-band .retailer-logo-link:hover img { opacity: 1; transform: translateY(-1px); }
+  .retailer-band .retailer-logo-link:hover { background: rgba(255,255,255,.14); }
 }
 .retailer-more-link {
   display: inline-flex;
