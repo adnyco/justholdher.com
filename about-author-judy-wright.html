@@ -75,10 +75,9 @@
   </script>
 </head>
 
-<body>
+<body class="phase-preorder">
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Top Navigation (matches homepage) -->
   <header class="topnav">
     <div class="wrap topnav-inner">
       <a href="index.html" class="brand">Just Hold Her</a>
@@ -87,9 +86,11 @@
       </button>
       <nav class="topnav-links" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="about-author-judy-wright.html">About the Author</a>
+        <a href="about-author-judy-wright.html" aria-current="page">About the Author</a>
         <a href="index.html#book">About the Book</a>
-        <a href="notebook.html">Judy's Notebook</a>
+        <a href="notebook.html">Judy’s Notebook</a>
+        <a href="media.html">Media &amp; Press</a>
+        <a href="buy.html" class="nav-buy-cta">Buy the Book</a>
       </nav>
     </div>
   </header>
@@ -138,88 +139,60 @@
       </div>
     </section>
 
-  <!-- CONTACT -->
-    <section class="section-form" aria-labelledby="contact-title">
-      <hr class="contact-sep" />
-      <div class="wrap">
-        <h2 id="contact-title" class="section-title">Stay Close to the Story</h2>
-
-        <!-- Left column: Subscribe card -->
-        <div class="col-form">
-          <div class="contact-form" role="form" aria-labelledby="signup-title">
-            <h3 class="form-hed" id="signup-title">Join Judy’s Notebook</h3>
-
-            <p id="form-help" class="contact-note">
-              This story unfolds in real time. <a href="https://substack.com/@judysnotebook" alt="Read Judy's Notebook on Substack" target="_blank">Read along</a> as Judy shares excerpts, field notes, and reflections on foster care, witness, and the making of <strong>Just Hold Her</strong>.
-              <br><span class="field-help">Thoughtful writing. Steady cadence. No noise.</span>
-            </p>
-
-            <div class="form-row form-row--embed">
-              <div class="substack-stage" aria-label="Subscribe to Judy’s Notebook on Substack">
-                <iframe
-                	src="https://judysnotebook.substack.com/embed"
-                	height="150"
-                	frameborder="0"
-                	scrolling="no"
-                	title="Subscribe to Judy's Notebook">
-                </iframe>
-              </div>
-            </div>
-
-            <p class="field-help">
-              Prefer to reach out directly?<br>Write to us at: 
-              <a class="agent-email" href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>.
-            </p>
-          </div>
-        </div>
-
-        <!-- Right column: Agent Snapshot (moved down from Section 4) -->
-        <aside id="agent-snapshot" class="agent-card agent-card--consolidated" aria-labelledby="agent-snapshot-title">
-          <p class="agent-card__kicker" id="agent-snapshot-title">Agent Snapshot</p>
-
-          <p class="agent-lede">
-            <strong>Just Hold Her</strong> is a completed <strong>85,000-word</strong> literary memoir at the intersection of foster care, medical complexity, and the ethics of daily caregiving. Built from contemporaneous notes kept through long nights, it moves from fear to fierce attachment… and finally, to letting go. <strong>A witness story, not a rescue story.</strong>
-          </p>
-
-          <div class="agent-rule" aria-hidden="true"></div>
-
-          <div class="agent-grid agent-grid--consolidated">
-            <div class="agent-item agent-item--wide">
-              <p class="agent-label">Comparable Titles</p>
-              <ul class="agent-comps" aria-label="Comparable titles">
-                <li><em>When Breath Becomes Air</em> (Paul Kalanithi)</li>
-                <li><em>The Bright Hour</em> (Nina Riggs)</li>
-                <li><em>Another Place at the Table</em> (Kathy Harrison)</li>
-              </ul>
-            </div>
-
-            <div class="agent-item agent-item--wide agent-contact">
-              <p class="agent-label">Seeking representation</p>
-              <p class="agent-value">
-                <a class="agent-email" href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a>
-              </p>
-            </div>
-          </div>
-        </aside>
-      </div>
-
-    <footer class="footer">
-      <p>© <span class="footer-year">2026</span> — Judy Wright — All rights reserved.</p>
-      <p>Published by <a href="https://heldclosebooks.com" target="_blank" title="Held Close Books">Held Close Books</a></p>
-    </footer>
-    </section>
   </main>
 
   <script src="script.js" defer></script>
 
-  <script defer>
-  (() => {
-    'use strict';
-    document.addEventListener('DOMContentLoaded', () => {
-      const y = document.querySelector('.footer-year');
-      if (y) y.textContent = new Date().getFullYear();
-    });
-  })();
-  </script>
+  <footer class="footer-full" aria-label="Site footer">
+    <div class="footer-full-inner">
+
+      <hr class="footer-rule">
+
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <p class="footer-col-label">The Book</p>
+          <p class="footer-col-title">Just Hold Her</p>
+          <p class="footer-col-subtitle">A Foster Mother’s Memoir of Medicine, Caregiving, and the Long Nights Between</p>
+          <p>by Judy Wright</p>
+          <p class="footer-col-pub">Published by <a href="https://heldclosebooks.com" target="_blank" rel="noopener">Held Close Books</a></p>
+          <p class="footer-col-status">
+            <span class="phase-inline phase-inline--preorder">Ebook pre-order open &mdash; April 15, 2026</span>
+            <span class="phase-inline phase-inline--ebook">Ebook available now · Print June 1</span>
+            <span class="phase-inline phase-inline--all">All formats available now</span>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-label">Navigate</p>
+          <ul class="footer-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-author-judy-wright.html">About the Author</a></li>
+            <li><a href="index.html#book">About the Book</a></li>
+            <li><a href="notebook.html">Judy’s Notebook</a></li>
+            <li><a href="media.html">Media &amp; Press</a></li>
+            <li><a href="buy.html">Buy the Book</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-label">Stay Close to the Story</p>
+          <p>Judy shares excerpts, field notes, and reflections from the making of <em>Just Hold Her</em> on Substack.</p>
+          <div class="footer-subscribe-box">
+            <span>Subscribe</span>
+            <a class="footer-subscribe-btn" href="https://judysnotebook.substack.com" target="_blank" rel="noopener">Read Judy’s Notebook</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span class="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
+        <span><a href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a></span>
+      </div>
+
+    </div>
+  </footer>
+  <script>document.querySelector('.footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
