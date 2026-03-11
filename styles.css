@@ -388,7 +388,7 @@ figcaption{
 }
 
 /* ==========================================================================
-   6) Hero — Fade-to-black on scroll (PE + fallback)
+   6) Hero
    ========================================================================== */
 .hero{
   position:relative;
@@ -410,6 +410,7 @@ figcaption{
   transform:translateZ(0);
 }
 
+/* Static bottom gradient — no scroll animation */
 .hero-shroud{
   position:absolute;
   inset:auto 0 0;
@@ -422,7 +423,6 @@ figcaption{
     rgba(0,0,0,.28) 40%,
     rgba(0,0,0,.9) 100%
   );
-  opacity:1;
 }
 
 .hero-overlay{
@@ -454,20 +454,455 @@ figcaption{
   max-width:min(46ch,92vw);
 }
 
-/* Scroll-linked enhancement */
-@supports (animation-timeline:auto){
-  .hero{
-    view-timeline-name:--hero;
-    view-timeline-axis:block;
-  }
-  .hero-shroud{
-    opacity:0;
-    animation:heroFade 1 both;
-    animation-timeline:--hero;
-    animation-range:entry 0% exit 100%;
-  }
-  @keyframes heroFade{from{opacity:0}to{opacity:1}}
-}
+    /* ── 1. Phase system ──────────────────────────────────────────────────
+       Control the entire page by changing one class on <body>:
+         phase-preorder  ebook pre-order open; print coming
+         phase-ebook     ebook live; print pre-order open
+         phase-all       all formats available
+    ─────────────────────────────────────────────────────────────────────── */
+    .phase-block          { display: none; }
+    .phase-preorder .phase-block--preorder { display: block; }
+    .phase-ebook    .phase-block--ebook    { display: block; }
+    .phase-all      .phase-block--all      { display: block; }
+
+    /* inline variants for mid-sentence phase text */
+    .phase-inline         { display: none; }
+    .phase-preorder .phase-inline--preorder { display: inline; }
+    .phase-ebook    .phase-inline--ebook    { display: inline; }
+    .phase-all      .phase-inline--all      { display: inline; }
+
+    /* ── 2. Nav buy CTA ───────────────────────────────────────────────── */
+    .nav-buy-cta {
+      background: var(--accent, #b28547);
+      color: #fff !important;
+      padding: .22rem .82rem .26rem;
+      border-radius: 2px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      transition: background .2s;
+    }
+    .nav-buy-cta:hover {
+      background: #96703a !important;
+      text-decoration: none !important;
+    }
+
+    /* ── 3. Retailer band ─────────────────────────────────────────────────
+       Gold band between hero and story section. White/muted logos
+       on all devices. Hover-capable: grayscale lifted on :hover.
+       Touch devices: always full-colour equivalent (white on gold).
+    ─────────────────────────────────────────────────────────────────────── */
+    .retailer-band {
+      background: var(--accent, #b28547);
+      width: 100%;
+      padding: 1.4rem 1.25rem 1.65rem;
+    }
+    .retailer-band-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .retailer-band-label {
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .75rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.82);
+      margin: 0;
+    }
+    .retailer-logos-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem 1.25rem;
+    }
+    .retailer-logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .3rem .45rem;
+      border-radius: 3px;
+      transition: background .18s;
+      text-decoration: none;
+    }
+    /* All logos: white silhouette, clearly visible on gold */
+    .retailer-logo-link img {
+      display: block;
+      height: 28px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: .82;
+      transition: opacity .2s, transform .2s;
+    }
+    /* Hover-capable devices: lift opacity + subtle scale on :hover */
+    @media (hover: hover) and (pointer: fine) {
+      .retailer-logo-link img {
+        opacity: .55;
+      }
+      .retailer-logo-link:hover img {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+      .retailer-logo-link:hover {
+        background: rgba(255,255,255,.14);
+      }
+    }
+    /* "More retailers" text link */
+    .retailer-more-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .74rem;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .04em;
+      padding: .38rem .65rem;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 3px;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: color .18s, border-color .18s, background .18s;
+    }
+    .retailer-more-link:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,.68);
+      background: rgba(255,255,255,.1);
+      text-decoration: none;
+    }
+
+    /* ── 4. Section 4 book CTA group ──────────────────────────────────── */
+    .book-cta-group {
+      margin-top: 1.75rem;
+    }
+    .book-release-note {
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .78rem;
+      color: rgba(255,255,255,.58);
+      line-height: 1.65;
+      margin: 0 0 .85rem;
+      text-align: center;
+    }
+    .book-release-note strong {
+      color: rgba(255,255,255,.88);
+    }
+
+    /* ── 5. Preorder card — two-column: tall cover left, content right ──── */
+    .preorder-card {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      align-items: stretch;
+      background: #111;
+      border: 1px solid #252525;
+      border-radius: var(--radius, 10px);   /* matches .contact-form */
+      overflow: hidden;
+    }
+    /* Cover: fills full height of the card */
+    .preorder-card__cover {
+      grid-row: 1 / -1;
+      background: #0a0a0a;
+    }
+    .preorder-card__cover a {
+      display: block;
+      height: 100%;
+    }
+    .preorder-card__cover img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    /* Content column */
+    .preorder-card__content {
+      padding: 1.35rem 1.25rem 1.35rem .1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      min-width: 0;
+    }
+    .preorder-card__kicker {
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .66rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent, #b28547);
+      margin: 0;
+    }
+    .preorder-card__title {
+      font-family: var(--font-head, 'Noto Serif', serif);
+      font-weight: 200;
+      font-size: 1rem;
+      color: #f3f3f3;
+      margin: 0 0 .2rem;
+      line-height: 1.25;
+    }
+    .preorder-card__byline {
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .7rem;
+      color: #555;
+      margin: 0;
+    }
+    .preorder-card__rule {
+      border: none;
+      border-top: 1px solid #1e1e1e;
+      margin: 0;
+    }
+    .preorder-card__dates {
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .72rem;
+      color: #666;
+      line-height: 1.85;
+      margin: 0;
+    }
+    .preorder-card__dates strong { color: #999; }
+    .preorder-card__body {
+      font-family: var(--font-head, 'Noto Serif', serif);
+      font-weight: 300;
+      font-size: .86rem;
+      color: #999;
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;   /* pushes button to bottom */
+    }
+    .preorder-card__btn-wrap { margin-top: auto; }
+    .preorder-card__btn {
+      display: block;
+      background: var(--accent, #b28547);
+      color: #fff !important;
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .72rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .6rem .85rem;
+      border-radius: calc(var(--radius, 10px) - 3px);
+      text-decoration: none !important;
+      text-align: center;
+      transition: background .2s;
+    }
+    .preorder-card__btn:hover { background: #96703a !important; text-decoration: none !important; }
+
+    /* ── 5b. Section 4 — book cover, floating with halo glow ────────────
+       No stage rectangle. The cover floats on the section's dark bg.
+       Glow is a pseudo-element behind the cover, sized to the image,
+       fading to transparent just beyond its edges.                     */
+    .s4-cover-col {
+      display: flex !important;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .s4-cover-stage {
+      flex: 1 1 0;
+      min-height: clamp(380px, 50vh, 560px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* No background — inherits the dark section bg (#000) */
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+    /* Halo: a blurred pseudo-element sized to the image footprint */
+    .s4-cover-stage::after {
+      content: '';
+      position: absolute;
+      /* Cover is ~236px wide at max-height 460px, centred in stage.
+         We size the glow to slightly wider/taller than the image,
+         then let filter:blur spread it to fill the black surround.    */
+      width: clamp(140px, 36%, 240px);
+      aspect-ratio: 400 / 636;   /* matches cover image ratio */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 4px;
+      background: rgba(232, 220, 200, .55);   /* warm off-white */
+      filter: blur(38px);
+      pointer-events: none;
+      z-index: 0;
+      transition: filter .38s var(--ease-out, cubic-bezier(.2,.8,.2,1)),
+                  background .38s var(--ease-out, cubic-bezier(.2,.8,.2,1));
+    }
+    .s4-cover-stage a {
+      display: block;
+      position: relative;
+      z-index: 1;
+      text-decoration: none !important;
+      transition: transform .38s var(--ease-out, cubic-bezier(.2,.8,.2,1));
+    }
+    .s4-cover-stage img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: clamp(300px, 40vh, 460px);
+      height: auto;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow:
+        0 2px  6px  rgba(0,0,0,.6),
+        0 10px 28px rgba(0,0,0,.55);
+      transition: box-shadow .38s var(--ease-out, cubic-bezier(.2,.8,.2,1));
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .s4-cover-stage a:hover {
+        transform: translateY(-6px) scale(1.015);
+      }
+      .s4-cover-stage a:hover img {
+        box-shadow:
+          0 4px  10px rgba(0,0,0,.65),
+          0 18px 44px rgba(0,0,0,.65);
+      }
+      .s4-cover-stage:hover::after {
+        background: rgba(240, 228, 210, .72);
+        filter: blur(46px);
+      }
+    }
+    /* Gold CTA centred below */
+    .s4-cta-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ── 6. Footer — universal three-column dark footer ──────────────── */
+    /*                                                                    */
+    /*  Structure:                                                        */
+    /*    <footer class="footer-full">                                    */
+    /*      <div class="footer-full-inner">                               */
+    /*        <hr class="footer-rule">          ← top separator rule     */
+    /*        <div class="footer-grid">...</div>                          */
+    /*        <div class="footer-bottom">...</div>                        */
+    /*      </div>                                                        */
+    /*    </footer>                                                       */
+    /* ------------------------------------------------------------------ */
+
+    /* Outer shell: black, no vertical padding — inner elements own that */
+    .footer-full {
+      background: #000;
+      color: #777;
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .77rem;
+      line-height: 1.75;
+      padding: 0 1.25rem;
+    }
+
+    /* Inner constraint — max-width + centred, same as .wrap */
+    .footer-full-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Top separator: full inner-column width, subtle white rule */
+    .footer-rule {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.11);
+      margin: 0;
+    }
+
+    /* Three-column grid — padded generously above and below */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1.1fr;
+      gap: 2rem 3.5rem;
+      align-items: start;
+      padding: 2.75rem 0 2rem;
+    }
+
+    /* Column typography */
+    .footer-col-label {
+      font-size: .64rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent, #b28547);
+      margin: 0 0 .55rem;
+    }
+    .footer-col-title {
+      font-family: var(--font-head, 'Noto Serif', serif);
+      font-weight: 200;
+      font-size: .98rem;
+      color: #ddd;
+      margin: 0 0 .2rem;
+      line-height: 1.35;
+    }
+    .footer-col-subtitle {
+      font-style: italic;
+      color: #444;
+      margin: 0 0 .4rem;
+    }
+    .footer-col-pub   { margin-top: .5rem; }
+    .footer-col-status { margin-top: .5rem; color: #444; }
+    .footer-col p { margin: 0 0 .35rem; }
+    .footer-col a { color: #777; text-decoration: none; transition: color .18s; }
+    .footer-col a:hover { color: #f0f0f0; }
+
+    .footer-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 .9rem;
+    }
+    .footer-nav li { margin-bottom: .25rem; }
+
+    /* Substack subscribe box */
+    .footer-subscribe-box {
+      margin-top: .65rem;
+      padding: .85rem .9rem;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius, 10px);
+    }
+    .footer-subscribe-box span {
+      display: block;
+      font-size: .62rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent, #b28547);
+      margin-bottom: .5rem;
+    }
+    .footer-subscribe-btn {
+      display: block;
+      background: var(--accent, #b28547);
+      color: #fff !important;
+      text-align: center;
+      padding: .58rem .9rem;
+      border-radius: calc(var(--radius, 10px) - 3px);
+      font-family: var(--font-body, 'IBM Plex Mono', monospace);
+      font-size: .73rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+      transition: background .2s;
+    }
+    .footer-subscribe-btn:hover {
+      background: #96703a;
+      color: #fff !important;
+      text-decoration: none !important;
+    }
+
+    /* Bottom bar: copyright + contact, separated by its own hairline */
+    .footer-bottom {
+      padding: 1.1rem 0 1.75rem;
+      border-top: 1px solid #181818;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .4rem;
+      font-size: .7rem;
+      color: #444;
+    }
+    .footer-bottom a { color: #444; text-decoration: none; transition: color .18s; }
+    .footer-bottom a:hover { color: #888; }
+
+    /* ── 7. Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .s4-cover-stage { min-height: clamp(260px, 38vh, 400px); padding: 1.75rem 1.25rem; }
+    }
+    @media (max-width: 820px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem 2.5rem; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; padding: 2.25rem 0 1.5rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .retailer-logo-link img { height: 22px; }
+      .retailer-logos-row { gap: .4rem .85rem; }
+    }
 
 /* ==========================================================================
    7) Section 2 — Warm → Black background fade
@@ -708,6 +1143,37 @@ figcaption{
 .button--light:active {
   transform: translateY(1px);
 }
+
+/* ==========================================================================
+   10c) Gold Button — primary action on dark backgrounds
+   ========================================================================== */
+.button--gold,
+.button--gold:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 2rem;
+  background: var(--accent);
+  color: #fff !important;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  font: 600 .88rem/1.2 var(--font-body);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  transition:
+    background .18s var(--ease-out),
+    border-color .18s var(--ease-out),
+    transform .12s var(--ease-out);
+}
+.button--gold:hover,
+.button--gold:focus {
+  background: #96703a;
+  border-color: #96703a;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.button--gold:active { transform: translateY(1px); }
 /* ==========================================================================
    11) Contact Section — LIGHT, but still structured + “card” layout
    ========================================================================== */
@@ -3206,6 +3672,250 @@ figcaption{
     .rcopy-modal { padding: 2rem 1.4rem 1.5rem; }
     .rcopy-form .row-two { grid-template-columns: 1fr; }
   }
+
+/* ==========================================================================
+   19) Index Page — Phase System, Retailer Band, Section 4, Preorder Card,
+       Nav Buy CTA, Footer
+   ========================================================================== */
+
+/* ── Phase system ──────────────────────────────────────────────────────────
+   Change ONE class on <body> to flip all phase-aware elements:
+     phase-preorder   ebook pre-order open; print coming
+     phase-ebook      ebook live; print pre-order open
+     phase-all        all formats available
+─────────────────────────────────────────────────────────────────────────── */
+.phase-block          { display: none; }
+.phase-preorder .phase-block--preorder { display: block; }
+.phase-ebook    .phase-block--ebook    { display: block; }
+.phase-all      .phase-block--all      { display: block; }
+
+.phase-inline         { display: none; }
+.phase-preorder .phase-inline--preorder { display: inline; }
+.phase-ebook    .phase-inline--ebook    { display: inline; }
+.phase-all      .phase-inline--all      { display: inline; }
+
+/* ── Nav "Buy the Book" CTA ────────────────────────────────────────────────
+   Inline: small gold pill. In the drawer: full-width gold block.
+─────────────────────────────────────────────────────────────────────────── */
+.nav-buy-cta {
+  background: var(--accent);
+  color: #fff !important;
+  padding: .22rem .82rem .26rem;
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: .03em;
+  transition: background .2s;
+}
+.nav-buy-cta:hover {
+  background: #96703a !important;
+  text-decoration: none !important;
+}
+/* In the slide-out drawer: full-width, generous padding */
+.topnav-links .nav-buy-cta {
+  display: block;
+  padding: 14px 20px;
+  margin-top: .75rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff !important;
+  text-align: left;
+  letter-spacing: .04em;
+  text-transform: none;
+  font-weight: 500;
+  border-bottom: none !important;  /* remove the drawer separator rule */
+  transform: none !important;      /* override topnav-inner hover lift */
+  text-shadow: none !important;
+}
+.topnav-links .nav-buy-cta:hover {
+  background: #96703a !important;
+  opacity: 1 !important;
+  text-decoration: none !important;
+}
+
+/* ── Retailer band ─────────────────────────────────────────────────────────
+   Gold bar between hero and story. Logos as white silhouettes.
+─────────────────────────────────────────────────────────────────────────── */
+.retailer-band {
+  background: var(--accent);
+  width: 100%;
+  padding: 1.4rem 1.25rem 1.65rem;
+}
+.retailer-band-inner {
+  max-width: var(--max-wrap);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.retailer-band-label {
+  font-family: var(--font-body);
+  font-size: .75rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.84);
+  margin: 0;
+}
+.retailer-logos-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem 1.25rem;
+}
+.retailer-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .3rem .45rem;
+  border-radius: 3px;
+  transition: background .18s;
+  text-decoration: none !important;
+}
+/* White silhouette — visible on gold for all devices */
+.retailer-logo-link img {
+  display: block;
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: .82;
+  transition: opacity .2s, transform .2s;
+}
+/* Hover-capable (desktop): start dimmer, restore fully on hover */
+@media (hover: hover) and (pointer: fine) {
+  .retailer-logo-link img { opacity: .55; }
+  .retailer-logo-link:hover img { opacity: 1; transform: translateY(-1px); }
+  .retailer-logo-link:hover { background: rgba(255,255,255,.14); }
+}
+.retailer-more-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: .74rem;
+  color: rgba(255,255,255,.72);
+  letter-spacing: .04em;
+  padding: .38rem .65rem;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 3px;
+  white-space: nowrap;
+  text-decoration: none !important;
+  transition: color .18s, border-color .18s, background .18s;
+}
+.retailer-more-link:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,.68);
+  background: rgba(255,255,255,.1);
+  text-decoration: none !important;
+}
+
+
+/* Book CTA group */
+.book-cta-group { flex-shrink: 0; }
+.book-release-note {
+  font-family: var(--font-body);
+  font-size: .78rem;
+  color: rgba(255,255,255,.58);
+  line-height: 1.65;
+  margin: 0 0 .85rem;
+}
+.book-release-note strong { color: rgba(255,255,255,.88); }
+
+/* ── Preorder card — two-column: tall cover left, all content right ────────
+─────────────────────────────────────────────────────────────────────────── */
+.preorder-card {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: stretch;
+  align-self: stretch;
+  background: #111;
+  border: 1px solid #252525;
+  border-radius: var(--radius);   /* matches .contact-form */
+  overflow: hidden;
+}
+.preorder-card__cover {
+  background: #0a0a0a;
+}
+.preorder-card__cover a {
+  display: block;
+  height: 100%;
+}
+.preorder-card__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.preorder-card__content {
+  padding: 1.35rem 1.25rem 1.35rem .1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  min-width: 0;
+}
+.preorder-card__kicker {
+  font-family: var(--font-body);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+.preorder-card__title {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: 1rem;
+  color: #f3f3f3;
+  margin: 0 0 .2rem;
+  line-height: 1.25;
+}
+.preorder-card__byline {
+  font-family: var(--font-body);
+  font-size: .7rem;
+  color: #555;
+  margin: 0;
+}
+.preorder-card__rule {
+  border: none;
+  border-top: 1px solid #1e1e1e;
+  margin: 0;
+}
+.preorder-card__dates {
+  font-family: var(--font-body);
+  font-size: .72rem;
+  color: #666;
+  line-height: 1.85;
+  margin: 0;
+}
+.preorder-card__dates strong { color: #999; }
+.preorder-card__body {
+  font-family: var(--font-head);
+  font-weight: 300;
+  font-size: .86rem;
+  color: #999;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+.preorder-card__btn-wrap { margin-top: auto; }
+.preorder-card__btn {
+  display: block;
+  background: var(--accent);
+  color: #fff !important;
+  font-family: var(--font-body);
+  font-size: .72rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: .6rem .85rem;
+  border-radius: calc(var(--radius) - 3px);
+  text-decoration: none !important;
+  text-align: center;
+  transition: background .2s;
+}
+.preorder-card__btn:hover {
+  background: #96703a !important;
+  text-decoration: none !important;
+}
 
 /* ==========================================================================
    18) Print — Global
