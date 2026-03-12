@@ -39,6 +39,7 @@ html{
   -webkit-text-size-adjust:100%;
   text-size-adjust:100%;
   scroll-behavior:smooth;
+  overflow-y: scroll; /* Reserve scrollbar gutter — prevents layout shift when nav opens */
 }
 
 body{
@@ -371,21 +372,25 @@ figcaption{
 .topnav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.35s var(--ease-out);
-  z-index: 3000; /* Set this to 2000 */
+  transition: opacity 0.35s var(--ease-out), visibility 0.35s, backdrop-filter 0.35s;
+  z-index: 49; /* Must be below .topnav (z-index: 50) so the nav bar stays unobscured */
 }
 
-.topnav-overlay.active{display:block}
-
-@media (max-width: 1200px hover: none) {
-  .hamburger {
-    display: flex; /* Show only on mobile */
-  }
+.topnav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  backdrop-filter: blur(8px);
 }
+/* Prevent background scroll when nav drawer is open (without scrollbar jump) */
+html.nav-open {
+  overflow: hidden;
+}
+
+
+/* Hamburger always visible — nav is always a drawer on all screen sizes */
 
 /* ==========================================================================
    6) Hero
@@ -453,228 +458,6 @@ figcaption{
   margin:0;
   max-width:min(46ch,92vw);
 }
-
-    /* ── 1. Phase system ──────────────────────────────────────────────────
-       Control the entire page by changing one class on <body>:
-         phase-preorder  ebook pre-order open; print coming
-         phase-ebook     ebook live; print pre-order open
-         phase-all       all formats available
-    ─────────────────────────────────────────────────────────────────────── */
-    .phase-block          { display: none; }
-    .phase-preorder .phase-block--preorder { display: block; }
-    .phase-ebook    .phase-block--ebook    { display: block; }
-    .phase-all      .phase-block--all      { display: block; }
-
-    /* inline variants for mid-sentence phase text */
-    .phase-inline         { display: none; }
-    .phase-preorder .phase-inline--preorder { display: inline; }
-    .phase-ebook    .phase-inline--ebook    { display: inline; }
-    .phase-all      .phase-inline--all      { display: inline; }
-
-    /* ── 2. Nav buy CTA ───────────────────────────────────────────────── */
-    .nav-buy-cta {
-      background: var(--accent, #b28547);
-      color: #fff !important;
-      padding: .22rem .82rem .26rem;
-      border-radius: 2px;
-      font-weight: 500;
-      letter-spacing: .03em;
-      transition: background .2s;
-    }
-    .nav-buy-cta:hover {
-      background: #96703a !important;
-      text-decoration: none !important;
-    }
-
-    /* ── 3. Retailer band ─────────────────────────────────────────────────
-       Gold band between hero and story section. White/muted logos
-       on all devices. Hover-capable: grayscale lifted on :hover.
-       Touch devices: always full-colour equivalent (white on gold).
-    ─────────────────────────────────────────────────────────────────────── */
-    .retailer-band {
-      background: var(--accent, #b28547);
-      width: 100%;
-      padding: 1.4rem 1.25rem 1.65rem;
-    }
-    .retailer-band-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    .retailer-band-label {
-      font-family: var(--font-body, 'IBM Plex Mono', monospace);
-      font-size: .75rem;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.82);
-      margin: 0;
-    }
-    .retailer-logos-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: .5rem 1.25rem;
-    }
-    .retailer-logo-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: .3rem .45rem;
-      border-radius: 3px;
-      transition: background .18s;
-      text-decoration: none;
-    }
-    /* All logos: white silhouette, visible on the gold band only */
-    .retailer-band .retailer-logo-link img {
-      display: block;
-      height: 28px;
-      width: auto;
-      filter: brightness(0) invert(1);
-      opacity: .9;
-      transition: opacity .2s, transform .2s;
-    }
-    /* Hover-capable devices: start muted, restore on hover */
-    @media (hover: hover) and (pointer: fine) {
-      .retailer-band .retailer-logo-link img { opacity: .6; }
-      .retailer-band .retailer-logo-link:hover img { opacity: 1; transform: translateY(-1px); }
-      .retailer-band .retailer-logo-link:hover { background: rgba(255,255,255,.14); }
-    }
-    /* "More retailers" text link */
-    .retailer-more-link {
-      display: inline-flex;
-      align-items: center;
-      font-family: var(--font-body, 'IBM Plex Mono', monospace);
-      font-size: .74rem;
-      color: rgba(255,255,255,.7);
-      letter-spacing: .04em;
-      padding: .38rem .65rem;
-      border: 1px solid rgba(255,255,255,.32);
-      border-radius: 3px;
-      white-space: nowrap;
-      text-decoration: none;
-      transition: color .18s, border-color .18s, background .18s;
-    }
-    .retailer-more-link:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,.68);
-      background: rgba(255,255,255,.1);
-      text-decoration: none;
-    }
-
-    /* ── 4. Section 4 book CTA group ──────────────────────────────────── */
-    .book-cta-group {
-      margin-top: 1.75rem;
-    }
-    .book-release-note {
-      font-family: var(--font-body, 'IBM Plex Mono', monospace);
-      font-size: .78rem;
-      color: rgba(255,255,255,.58);
-      line-height: 1.65;
-      margin: 0 0 .85rem;
-      text-align: center;
-    }
-    .book-release-note strong {
-      color: rgba(255,255,255,.88);
-    }
-
-    /* ── 5. Preorder card — two-column: tall cover left, content right ──── */
-    .preorder-card {
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      align-items: stretch;
-      background: #111;
-      border: 1px solid #252525;
-      border-radius: var(--radius, 10px);   /* matches .contact-form */
-      overflow: hidden;
-    }
-    /* Cover: fills full height of the card */
-    .preorder-card__cover {
-      grid-row: 1 / -1;
-      background: #0a0a0a;
-    }
-    .preorder-card__cover a {
-      display: block;
-      height: 100%;
-    }
-    .preorder-card__cover img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
-    /* Content column */
-    .preorder-card__content {
-      padding: 1.35rem 1.25rem 1.35rem .1rem;
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-      min-width: 0;
-    }
-    .preorder-card__kicker {
-      font-family: var(--font-body, 'IBM Plex Mono', monospace);
-      font-size: .66rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--accent, #b28547);
-      margin: 0;
-    }
-    .preorder-card__title {
-      font-family: var(--font-head, 'Noto Serif', serif);
-      font-weight: 200;
-      font-size: 1rem;
-      color: #f3f3f3;
-      margin: 0 0 .2rem;
-      line-height: 1.25;
-    }
-    .preorder-card__byline {
-      font-family: var(--font-body, 'IBM Plex Mono', monospace);
-      font-size: .7rem;
-      color: #555;
-      margin: 0;
-    }
-    .preorder-card__rule {
-      border: none;
-      border-top: 1px solid #1e1e1e;
-      margin: 0;
-    }
-    .preorder-card__dates {
-      font-family: var(--font-body, 'IBM Plex Mono', monospace);
-      font-size: .72rem;
-      color: #666;
-      line-height: 1.85;
-      margin: 0;
-    }
-    .preorder-card__dates strong { color: #999; }
-    .preorder-card__body {
-      font-family: var(--font-head, 'Noto Serif', serif);
-      font-weight: 300;
-      font-size: .86rem;
-      color: #999;
-      line-height: 1.6;
-      margin: 0;
-      flex: 1;   /* pushes button to bottom */
-    }
-    .preorder-card__btn-wrap { margin-top: auto; }
-    .preorder-card__btn {
-      display: block;
-      background: var(--accent, #b28547);
-      color: #fff !important;
-      font-family: var(--font-body, 'IBM Plex Mono', monospace);
-      font-size: .72rem;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      padding: .6rem .85rem;
-      border-radius: calc(var(--radius, 10px) - 3px);
-      text-decoration: none !important;
-      text-align: center;
-      transition: background .2s;
-    }
-    .preorder-card__btn:hover { background: #96703a !important; text-decoration: none !important; }
 
     /* ── 5b. Section 4 — book cover, floating with halo glow ────────────
        No stage rectangle. The cover floats on the section's dark bg.
@@ -1887,28 +1670,37 @@ figcaption{
 
 .skeleton-card{
   padding:1.5rem 2rem;
-  background:#eee;
-  animation:pulse 1.5s infinite ease-in-out;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  border-radius:6px;
   min-height:140px;
+  pointer-events: none;
 }
 
-@keyframes pulse{
-  0%{background:#eee}
-  50%{background:#e3e3e3}
-  100%{background:#eee}
+.skeleton-line {
+  background: linear-gradient(90deg, #e8e8e8 25%, #d8d8d8 50%, #e8e8e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+  border-radius: 3px;
+  margin-bottom: .75rem;
+}
+.skeleton-line--title  { height: 1.25rem; width: 70%; }
+.skeleton-line--meta   { height: .75rem; width: 40%; margin-bottom: 1rem; }
+.skeleton-line--body   { height: .85rem; width: 100%; }
+.skeleton-line--short  { width: 65%; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 /* ==========================================================================
    16) Buy Page — scoped to .buy-scope body class
    ========================================================================== */
 
-/* ── Phase system ── */
-.phase-block { display: none; }
-.buy-scope.phase-preorder .phase-block--preorder { display: block; }
+/* ── Phase system (inherits global .phase-block rules from top of file) ── */
 .buy-scope.phase-preorder .phase-block--preorder-inline { display: inline; }
-.buy-scope.phase-ebook    .phase-block--ebook    { display: block; }
 .buy-scope.phase-ebook    .phase-block--ebook-inline { display: inline; }
-.buy-scope.phase-all      .phase-block--all      { display: block; }
 .buy-scope.phase-all      .phase-block--all-inline { display: inline; }
 
 /* ── Phase demo switcher — REMOVE BEFORE GO-LIVE ── */
@@ -3846,15 +3638,15 @@ figcaption{
   display: block;
   height: 28px;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: .9;
+  filter: none; /* Badge PNGs have light backgrounds — invert filter makes them invisible */
+  opacity: .88;
   transition: opacity .2s, transform .2s;
 }
-/* Hover-capable (desktop): start muted, restore on hover */
+/* Hover-capable (desktop): slightly muted at rest, full opacity on hover */
 @media (hover: hover) and (pointer: fine) {
-  .retailer-band .retailer-logo-link img { opacity: .6; }
+  .retailer-band .retailer-logo-link img { opacity: .72; }
   .retailer-band .retailer-logo-link:hover img { opacity: 1; transform: translateY(-1px); }
-  .retailer-band .retailer-logo-link:hover { background: rgba(255,255,255,.14); }
+  .retailer-band .retailer-logo-link:hover { background: rgba(255,255,255,.18); }
 }
 .retailer-more-link {
   display: inline-flex;

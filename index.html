@@ -144,14 +144,14 @@
          · Hover devices: logos start muted, restore on :hover.
          · Touch devices: logos always at full white opacity.
     ══════════════════════════════════════════════════════════════════════════ -->
-    <!-- div class="retailer-band" aria-label="Where to buy Just Hold Her">
+    <div class="retailer-band" aria-label="Where to buy Just Hold Her">
       <div class="retailer-band-inner">
 
         <!-- Phase-aware label — only one shows at a time -->
         <p class="retailer-band-label phase-block phase-block--preorder">
           <a href="buy.html">Ebook pre-order open now</a> &mdash; releases April&nbsp;15, 2026
         </p>
-        <!-- p class="retailer-band-label phase-block phase-block--ebook">
+        <p class="retailer-band-label phase-block phase-block--ebook">
           Ebook available now &nbsp;&middot;&nbsp; Print editions June&nbsp;1, 2026
         </p>
         <p class="retailer-band-label phase-block phase-block--all">
@@ -217,7 +217,7 @@
 
         </div>
       </div>
-  </div-->
+  </div>
 
 
     <!-- ══ SECTION 2 — Story ══════════════════════════════════════════════════ -->
@@ -446,13 +446,18 @@
 
       <div class="footer-bottom">
         <span>&copy; <span id="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
-        <span><a href="mailto:inquiries@justholdher.com">inquiries@justholdher.com</a></span>
+        <span><a href="/cdn-cgi/l/email-protection#81e8eff0f4e8f3e8e4f2c1ebf4f2f5e9eeede5e9e4f3afe2eeec"><span class="__cf_email__" data-cfemail="fe97908f8b978c979b8dbe948b8d8a9691929a969b8cd09d9193">[email&#160;protected]</span></a></span>
       </div>
 
     </div><!-- /footer-full-inner -->
   </footer>
 
-  <script src="script.js"></script>
-  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+  <
+  <script src="script.js" defer></script>
+  <script>
+    // Footer year — also handled by script.js but kept for safety
+    const fy = document.getElementById('footer-year');
+    if (fy) fy.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
