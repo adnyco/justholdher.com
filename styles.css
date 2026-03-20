@@ -2593,6 +2593,7 @@ html.nav-open {
   }
   .media-scope a:hover { text-decoration: underline; }
   /* Exceptions: nav, all buttons, asset dl chips */
+  .media-scope .topnav-inner a,
   .media-scope .topnav-links a,
   .media-scope .about-back-btn,
   .media-scope .btn-ghost-white,
@@ -2606,6 +2607,7 @@ html.nav-open {
   .media-scope .footer-nav li a,
   .media-scope .footer-bottom a,
   .media-scope .footer-subscribe-btn { text-decoration: none !important; }
+  .media-scope .topnav-inner a:hover,
   .media-scope .topnav-links a:hover,
   .media-scope .about-back-btn:hover,
   .media-scope .btn-ghost-white:hover,
