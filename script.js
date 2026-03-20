@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
       navLinks.classList.toggle("active");
       overlay.classList.toggle("active");
       hamburger.setAttribute("aria-expanded", isActive);
-      document.body.style.overflow = isActive ? "hidden" : "";
+      // html { overflow-y: scroll } keeps scrollbar gutter reserved — no layout shift
+      document.documentElement.classList.toggle("nav-open", isActive);
     };
 
     hamburger.addEventListener("click", toggleMenu);
@@ -43,14 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- 3. PAGE SPECIFIC: Notebook / Substack RSS & Modals ---
   const rssContainer = document.getElementById("rss-container");
-  
+
   if (rssContainer) {
     const RSS_URL = "https://substack-proxy.adny.workers.dev/";
     const POST_LIMIT = 10;
     const SUBTITLE_LENGTH = 240;
     const CTA_HTML = `
       <div class="post-cta">
-        <p>Thank you for reading.<br>If you’d like to stay, please:</p>
+        <p>Thank you for reading.<br>If you'd like to stay, please:</p>
         <a href="https://judysnotebook.substack.com/subscribe" target="_blank" rel="noopener" class="cta-button">
           Subscribe →
         </a>
@@ -81,9 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const modal = document.querySelector(".notebook-modal");
       if (modal) {
         modal.classList.remove("active");
-        if (navLinks && !navLinks.classList.contains("active")) {
-          document.body.style.overflow = "";
-        }
+        document.documentElement.classList.remove("nav-open");
       }
     };
 
@@ -117,10 +116,19 @@ document.addEventListener("DOMContentLoaded", () => {
         </article>`;
 
       modal.classList.add("active");
-      document.body.style.overflow = "hidden";
+      document.documentElement.classList.add("nav-open");
     };
 
-    // Fetch Logic with full closure
+    // Inject skeleton loaders while fetch runs
+    const SKELETON_COUNT = 6;
+    rssContainer.innerHTML = Array.from({ length: SKELETON_COUNT }, () => `
+      <article class="notebook-post skeleton-card" aria-hidden="true">
+        <div class="skeleton-line skeleton-line--title"></div>
+        <div class="skeleton-line skeleton-line--meta"></div>
+        <div class="skeleton-line skeleton-line--body"></div>
+        <div class="skeleton-line skeleton-line--body skeleton-line--short"></div>
+      </article>`).join('');
+
     fetch(RSS_URL)
       .then(response => {
         if (!response.ok) throw new Error("Network error");
@@ -135,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         rssContainer.innerHTML = "";
         rssContainer.classList.add("notebook-center");
-        
+
         posts.forEach(post => {
           const article = document.createElement("article");
           article.className = "notebook-post";
@@ -172,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const hero = document.querySelector('.hero');
   const shroud = document.querySelector('.hero-shroud');
   const supportsScrollLinked = CSS && CSS.supports && CSS.supports('animation-timeline: auto');
-  
+
   if (!supportsScrollLinked && hero && shroud) {
     const thresholds = Array.from({ length: 21 }, (_, i) => i / 20);
     const io = new IntersectionObserver(([entry]) => {
@@ -185,4 +193,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
     io.observe(hero);
   }
+
+});
+
+// ==========================================================================
+// CONTACT MODAL — global, available on all pages via onclick=""
+// ==========================================================================
+function openContactModal() {
+  const modal = document.getElementById("contactModal");
+  if (!modal) return;
+  modal.classList.add("open");
+  document.documentElement.classList.add("nav-open");
+  // Focus the first input for accessibility
+  const first = modal.querySelector("input, textarea, select");
+  if (first) setTimeout(() => first.focus(), 50);
+}
+
+function closeContactModal() {
+  const modal = document.getElementById("contactModal");
+  if (!modal) return;
+  modal.classList.remove("open");
+  document.documentElement.classList.remove("nav-open");
+}
+
+// Wire up contact modal close + submit once DOM is ready
+document.addEventListener("DOMContentLoaded", function () {
+  const modal   = document.getElementById("contactModal");
+  if (!modal) return;
+
+  // Close on backdrop click
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeContactModal();
+  });
+
+  // Close on Escape (supplement — nav Escape is handled above)
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeContactModal();
+  });
+
+  // Formspree AJAX submit
+  const form    = document.getElementById("contactForm");
+  const success = document.getElementById("contactSuccess");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const btn = form.querySelector(".rcopy-submit");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { "Accept": "application/json" }
+    })
+    .then(function (r) {
+      if (r.ok) {
+        form.style.display = "none";
+        if (success) success.style.display = "block";
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Send Message";
+        alert("Something went wrong. Please try again or email Judy directly.");
+      }
+    })
+    .catch(function () {
+      btn.disabled = false;
+      btn.textContent = "Send Message";
+      alert("Something went wrong. Please check your connection and try again.");
+    });
+  });
 });
