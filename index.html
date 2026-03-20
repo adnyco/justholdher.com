@@ -451,7 +451,7 @@
 
       <div class="footer-bottom">
         <span>&copy; <span id="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
-        <span><a href="/cdn-cgi/l/email-protection#81e8eff0f4e8f3e8e4f2c1ebf4f2f5e9eeede5e9e4f3afe2eeec"><span class="__cf_email__" data-cfemail="fe97908f8b978c979b8dbe948b8d8a9691929a969b8cd09d9193">[email&#160;protected]</span></a></span>
+        <button class="footer-contact-link" onclick="openContactModal()">Contact</button>
       </div>
 
     </div><!-- /footer-full-inner -->
@@ -464,5 +464,41 @@
     const fy = document.getElementById('footer-year');
     if (fy) fy.textContent = new Date().getFullYear();
   </script>
-</body>
-</html>
+
+  <!-- Contact Modal — shared across all pages, driven by script.js -->
+  <div class="rcopy-modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="rcopy-modal">
+      <button class="rcopy-modal-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
+      <p class="rcopy-modal-kicker">Just Hold Her</p>
+      <h2 id="contact-modal-title">Get in Touch</h2>
+      <p class="rcopy-modal-deck">Questions, speaking inquiries, or just a note — Judy reads every message.</p>
+      <form class="rcopy-form" id="contactForm" action="https://formspree.io/f/mpqynrkv" method="POST">
+        <div class="field">
+          <label for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" name="name" required placeholder="Full name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" name="email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="contact-subject">Subject</label>
+          <select id="contact-subject" name="subject">
+            <option value="">Select one&hellip;</option>
+            <option value="General Inquiry">General Inquiry</option>
+            <option value="Speaking or Events">Speaking or Events</option>
+            <option value="Book Club or Reading Group">Book Club or Reading Group</option>
+            <option value="Permissions or Rights">Permissions or Rights</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" required placeholder="What&#8217;s on your mind&#8230;"></textarea>
+        </div>
+        <button type="submit" class="rcopy-submit">Send Message</button>
+        <p class="rcopy-modal-direct">Or email Judy directly at <a href="/cdn-cgi/l/email-protection#bbd1cec8cfd3d4d7dfd3dec9cfd3ded9d4d4d0fbdcd6dad2d795d8d4d6"><span class="__cf_email__" data-cfemail="345e4147405c5b58505c5146405c51565b5b5f745359555d581a575b59">[email&#160;protected]</span></a></p>
+      </form>
+      <div class="rcopy-form-success" id="contactSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/
