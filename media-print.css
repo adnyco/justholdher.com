@@ -339,73 +339,6 @@
   }
 
   /* ────────────────────────────────────────────────
-     AGENT & PUBLISHER PITCH + COMP TITLES
-  ──────────────────────────────────────────────── */
-  .media-scope .media-pitch {
-    page-break-before: always !important;
-    break-before: page !important;
-    padding: 0 !important;
-  }
-  .media-scope .media-pitch-inner {
-    display: grid !important;
-    grid-template-columns: 1.15fr .85fr !important;
-    gap: 10mm !important;
-    padding: 0 !important;
-    max-width: none !important;
-    align-items: start !important;
-  }
-  .media-scope .pitch-lede {
-    font: 200 12pt/1.4 "Noto Serif", Georgia, serif !important;
-    margin-bottom: 4mm !important;
-    border-left: 2pt solid #000 !important;
-    padding-left: 4mm !important;
-  }
-  .media-scope .pitch-body {
-    font: 400 9pt/1.6 "Noto Serif", Georgia, serif !important;
-  }
-  .media-scope .pitch-body p { margin: 0 0 2.5mm !important; }
-  .media-scope .comp-list {
-    list-style: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .media-scope .comp-list li {
-    font: 400 9pt/1.5 "Noto Serif", Georgia, serif !important;
-    padding: 1.5mm 0 !important;
-    border-bottom: .3pt solid #ccc !important;
-    display: block !important;
-  }
-  .media-scope .comp-list li:last-child { border-bottom: none !important; }
-  .media-scope .comp-list li::before { display: none !important; }
-  .media-scope .comp-list em::before { content: "— "; }
-  .media-scope .market-card {
-    border: .5pt solid #bbb !important;
-    padding: 3mm !important;
-    margin-top: 4mm !important;
-  }
-  .media-scope .market-card-kicker {
-    font: 600 6.5pt/1.2 "IBM Plex Mono", monospace !important;
-    letter-spacing: .12em !important;
-    text-transform: uppercase !important;
-    border-bottom: .5pt solid #ccc !important;
-    padding-bottom: 1.5mm !important;
-    margin-bottom: 2mm !important;
-    display: block !important;
-  }
-  .media-scope .market-card-kicker::before { display: none !important; }
-  .media-scope .mkt-stat {
-    display: flex !important;
-    justify-content: space-between !important;
-    gap: 3mm !important;
-    padding: 1mm 0 !important;
-    border-bottom: .3pt solid #eee !important;
-    font-size: 8pt !important;
-  }
-  .media-scope .mkt-stat:last-child { border-bottom: none !important; }
-  .media-scope .mkt-label { color: #555 !important; }
-  .media-scope .mkt-value { font-weight: 600 !important; }
-
-  /* ────────────────────────────────────────────────
      ADVANCE PRAISE
   ──────────────────────────────────────────────── */
   .media-scope .media-praise {
@@ -503,9 +436,22 @@
     margin-bottom: 2mm !important;
     display: block !important;
   }
-  .media-scope .cc-email {
+  /* Hide screen CTA arrow; show the plain email address */
+  .media-scope .cc-email { display: none !important; }
+  .media-scope .cc-print-email {
     font: 600 8pt/1.3 "IBM Plex Mono", monospace !important;
     display: block !important;
+    margin-top: 1mm !important;
+  }
+  /* Reset button to look like the former <a> card */
+  .media-scope button.contact-card {
+    background: none !important;
+    border: .5pt solid #bbb !important;
+    padding: 3mm !important;
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+    font: inherit !important;
   }
 
   /* ────────────────────────────────────────────────

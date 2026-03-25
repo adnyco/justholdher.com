@@ -2094,7 +2094,46 @@ html.nav-open {
 }
 
 /* ── Praise section ── */
-.buy-scope .buy-praise { background: var(--bg); }
+.buy-scope .buy-praise {
+  position: relative;
+  background-color: var(--bg);
+  background-image: url("assets/judys-notebook.avif");
+  background-image: image-set(
+    url("assets/judys-notebook.avif") type("image/avif"),
+    url("assets/judys-notebook.webp") type("image/webp"),
+    url("assets/judys-notebook.png") type("image/png")
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  isolation: isolate;
+}
+.buy-scope .buy-praise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.5);
+  z-index: 0;
+}
+.buy-scope .buy-praise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse 700px 100% at center,
+    rgba(255,255,255,.96) 0%,
+    rgba(255,255,255,.82) 38%,
+    rgba(255,255,255,.3) 68%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+.buy-scope .buy-praise .wrap {
+  position: relative;
+  z-index: 1;
+}
 
 .buy-scope .buy-praise-eyebrow {
   font: 600 .72rem/1.2 var(--font-body);
@@ -2376,12 +2415,15 @@ html.nav-open {
 }
 
 @media (max-width: 767px) {
-  .buy-scope .buy-hook {
+  .buy-scope .buy-hook,
+  .buy-scope .buy-praise {
     background-attachment: scroll;
     background-image: none;
     background-color: var(--bg-gray);
   }
-  .buy-scope .buy-hook::before { display: none; }
+  .buy-scope .buy-hook::before,
+  .buy-scope .buy-praise::before,
+  .buy-scope .buy-praise::after { display: none; }
 }
 
 @media (max-width: 600px) {
@@ -2778,6 +2820,20 @@ html.nav-open {
     letter-spacing: -.01em;
   }
   .media-scope .asset-note a { color: var(--accent); }
+  .media-scope .asset-note-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: color .15s;
+  }
+  .media-scope .asset-note-btn:hover { color: #96703a; }
 
   /* ── Press Copy ── */
   .media-scope .media-press-copy { background: var(--bg); }
@@ -3213,7 +3269,46 @@ html.nav-open {
   .media-scope .mkt-value { font: 600 .85rem/1.3 var(--font-body); color: var(--fg); text-align: right; }
 
   /* ── Praise — segmented ── */
-  .media-scope .media-praise { background: var(--bg-gray); }
+  .media-scope .media-praise {
+    position: relative;
+    background-color: var(--bg);
+    background-image: url("assets/judys-notebook.avif");
+    background-image: image-set(
+      url("assets/judys-notebook.avif") type("image/avif"),
+      url("assets/judys-notebook.webp") type("image/webp"),
+      url("assets/judys-notebook.png") type("image/png")
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    isolation: isolate;
+  }
+  .media-scope .media-praise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.5);
+    z-index: 0;
+  }
+  .media-scope .media-praise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 700px 100% at center,
+      rgba(255,255,255,.96) 0%,
+      rgba(255,255,255,.82) 38%,
+      rgba(255,255,255,.3) 68%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .media-scope .media-praise .wrap {
+    position: relative;
+    z-index: 1;
+  }
   .media-scope .praise-segment { margin-bottom: 3rem; }
   .media-scope .praise-segment:last-child { margin-bottom: 0; }
   .media-scope .praise-seg-label {
@@ -3310,19 +3405,27 @@ html.nav-open {
   .media-scope .media-contact-cards {
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: var(--radius);
-    overflow: hidden;
+    gap: .25rem;
   }
   .media-scope .contact-card {
     display: block;
     background: rgba(255,255,255,.03);
     padding: 1.4rem 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,.06);
     text-decoration: none !important;
     transition: background .2s;
+    border-radius: calc(var(--radius) - 2px);
   }
-  .media-scope .contact-card:last-child { border-bottom: none; }
+  /* contact-card as <button>: reset only browser-specific button defaults;
+     visual properties (padding, background, border) come from .contact-card */
+  .media-scope button.contact-card {
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   .media-scope .contact-card:hover { background: rgba(255,255,255,.07); text-decoration: none !important; }
   .media-scope .cc-type {
     font: 600 .62rem/1.2 var(--font-body);
@@ -3344,6 +3447,9 @@ html.nav-open {
     color: rgba(243,243,243,.35);
     letter-spacing: -.01em;
   }
+  /* Print-only email address — hidden on screen, shown in print via media-print.css */
+  .media-scope .cc-print-email { display: none; }
+
   .media-scope .cc-email {
     margin-top: .5rem;
     font: 600 .75rem/1.3 var(--font-body);
@@ -3382,14 +3488,17 @@ html.nav-open {
     .media-scope .glance-band-item { padding: .5rem .75rem; width: 50%; }
     /* iOS Safari: fixed background-attachment causes rendering bugs */
     .media-scope .media-assets,
-    .media-scope .media-facts {
+    .media-scope .media-facts,
+    .media-scope .media-praise {
       background-image: none;
       background-color: var(--bg-gray);
     }
     .media-scope .media-assets::before,
     .media-scope .media-assets::after,
     .media-scope .media-facts::before,
-    .media-scope .media-facts::after { display: none; }
+    .media-scope .media-facts::after,
+    .media-scope .media-praise::before,
+    .media-scope .media-praise::after { display: none; }
   }
   
   /* ── Review Copy Modal ── */

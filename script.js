@@ -199,9 +199,14 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==========================================================================
 // CONTACT MODAL — global, available on all pages via onclick=""
 // ==========================================================================
-function openContactModal() {
+function openContactModal(subject) {
   const modal = document.getElementById("contactModal");
   if (!modal) return;
+  // Pre-select subject dropdown if a category is passed
+  if (subject) {
+    const select = modal.querySelector("#contact-subject");
+    if (select) select.value = subject;
+  }
   modal.classList.add("open");
   document.documentElement.classList.add("nav-open");
   // Focus the first input for accessibility
