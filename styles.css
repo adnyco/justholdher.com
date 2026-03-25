@@ -3411,19 +3411,25 @@ html.nav-open {
     display: block;
     background: rgba(255,255,255,.03);
     padding: 1.4rem 1.5rem;
+    border-radius: calc(var(--radius) - 2px);
     text-decoration: none !important;
     transition: background .2s;
-    border-radius: calc(var(--radius) - 2px);
   }
-  /* contact-card as <button>: reset only browser-specific button defaults;
-     visual properties (padding, background, border) come from .contact-card */
+  /* button.contact-card: override global button{} defaults fully */
   .media-scope button.contact-card {
     width: 100%;
     text-align: left;
     cursor: pointer;
     font: inherit;
+    background: rgba(255,255,255,.03);
+    border: none;
+    outline: none;
+    color: inherit;
     -webkit-appearance: none;
     appearance: none;
+    padding: 1.4rem 1.5rem;
+    border-radius: calc(var(--radius) - 2px);
+    transition: background .2s;
   }
 
   .media-scope .contact-card:hover { background: rgba(255,255,255,.07); text-decoration: none !important; }
