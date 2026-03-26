@@ -26,14 +26,14 @@
   <!-- Media & Press -->
   <url>
     <loc>https://justholdher.com/media.html</loc>
-    <lastmod>2026-03-24/lastmod>
+    <lastmod>2026-03-26/lastmod>
     <priority>0.7</priority>
   </url>
 
   <!-- Judy's Notebook — updated frequently -->
   <url>
     <loc>https://justholdher.com/notebook.html</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

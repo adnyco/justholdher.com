@@ -304,8 +304,9 @@
   }
   .media-scope .media-author-portrait img {
     width: 32mm !important;
-    height: 32mm !important;
+    height: 48mm !important;
     object-fit: cover !important;
+    object-position: center top !important;
     filter: grayscale(100%) !important;
     border: .5pt solid #bbb !important;
     display: block !important;
