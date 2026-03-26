@@ -1310,28 +1310,59 @@ html.nav-open {
   text-align: center;
   padding: clamp(3rem,6vw,4rem) 1.5rem;
   overflow: hidden;
+  background: #000; /* fallback while image loads */
+}
 
+/* Full-bleed background image */
+.notebook-scope .notebook-hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.notebook-scope .notebook-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Dark overlay — preserves the original gradient mood over the photo */
+.notebook-scope .notebook-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   background:
     radial-gradient(
       1200px 650px at 50% 18%,
-      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.05),
       transparent 62%
     ),
     linear-gradient(
       180deg,
-      #000,
-      #222
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.35) 50%,
+      rgba(0,0,0,0.72) 100%
     );
 }
 
+/* Bottom fade into the RSS section */
 .notebook-scope .notebook-hero::after {
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:12%;
-  background:linear-gradient(to bottom,transparent,rgba(0,0,0,0.85));
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 18%;
+  z-index: 2;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.9));
+}
+
+/* Content above image and overlays */
+.notebook-scope .notebook-hero .wrap {
+  position: relative;
+  z-index: 3;
 }
 
 .notebook-scope .notebook-hero h1 {
