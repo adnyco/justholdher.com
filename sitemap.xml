@@ -5,35 +5,35 @@
   <!-- Homepage -->
   <url>
     <loc>https://justholdher.com/</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-04-07</lastmod>
     <priority>1.0</priority>
   </url>
 
   <!-- Buy the Book — highest commercial intent after homepage -->
   <url>
     <loc>https://justholdher.com/buy.html</loc>
-    <lastmod>2026-03-24</lastmod>
+    <lastmod>2026-04-07</lastmod>
     <priority>0.9</priority>
   </url>
 
   <!-- About the Author -->
   <url>
     <loc>https://justholdher.com/about-author-judy-wright.html</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-04-07</lastmod>
     <priority>0.8</priority>
   </url>
 
   <!-- Media & Press -->
   <url>
     <loc>https://justholdher.com/media.html</loc>
-    <lastmod>2026-03-26/lastmod>
+    <lastmod>2026-04-07</lastmod>
     <priority>0.7</priority>
   </url>
 
   <!-- Judy's Notebook — updated frequently -->
   <url>
     <loc>https://justholdher.com/notebook.html</loc>
-    <lastmod>2026-03-26</lastmod>
+    <lastmod>2026-04-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
