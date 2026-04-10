@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Launch | Just Hold Her</title>
+  <meta name="description" content="Buy Just Hold Her and subscribe to Judy's Notebook. A focused event landing page for readers ready to take the story home.">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Judy Wright">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://justholdher.com/launch">
+
+  <meta property="og:title" content="Just Hold Her | Buy the Book">
+  <meta property="og:description" content="Buy Just Hold Her now and subscribe to Judy's Notebook.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Just Hold Her">
+  <meta property="og:url" content="https://justholdher.com/launch">
+  <meta property="og:image" content="https://justholdher.com/assets/just-hold-her-judy-wright-ebook-cover.jpeg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Just Hold Her | Buy the Book">
+  <meta name="twitter:description" content="Buy Just Hold Her now and subscribe to Judy's Notebook.">
+  <meta name="twitter:image" content="https://justholdher.com/assets/just-hold-her-judy-wright-ebook-cover.jpeg">
+
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .launch-scope {
+      background: #000;
+    }
+
+    .launch-scope main {
+      background: #000;
+    }
+
+    .launch-scope .launch-panel {
+      position: relative;
+      min-height: calc(100svh - 62px);
+      display: flex;
+      align-items: center;
+      scroll-margin-top: 88px;
+      overflow: hidden;
+    }
+
+    .launch-scope .launch-panel--buy {
+      background:
+        radial-gradient(circle at 72% 35%, rgba(178,133,71,.22), transparent 24%),
+        linear-gradient(180deg, #070707 0%, #000 100%);
+      color: #f3f3f3;
+    }
+
+    .launch-scope .launch-panel--notebook {
+      background-color: #e8e8e8;
+      background-image: url("assets/just-hold-her-judys-notebook-header.avif");
+      background-image: image-set(
+        url("assets/just-hold-her-judys-notebook-header.avif") type("image/avif"),
+        url("assets/just-hold-her-judys-notebook-header.webp") type("image/webp"),
+        url("assets/just-hold-her-judys-notebook-header.png") type("image/png")
+      );
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #111;
+      isolation: isolate;
+    }
+
+    .launch-scope .launch-panel--notebook::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.88) 0%, rgba(255,255,255,.78) 100%);
+      z-index: 0;
+    }
+
+    .launch-scope .launch-panel-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 5rem) 1.25rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 420px);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .launch-scope .launch-panel--notebook .launch-panel-inner {
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    }
+
+    .launch-scope .launch-kicker {
+      font: 600 .72rem/1.2 var(--font-body);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .launch-scope .launch-kicker::before {
+      content: "";
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .launch-scope .launch-headline {
+      font-family: var(--font-head);
+      font-weight: 200;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+    }
+
+    .launch-scope .launch-subhead {
+      font: 400 1rem/1.6 var(--font-body);
+      letter-spacing: -.02em;
+      max-width: 32ch;
+      margin: 0 0 1.8rem;
+    }
+
+    .launch-scope .launch-actions {
+      display: flex;
+      gap: .85rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 0 0 1.25rem;
+    }
+
+    .launch-scope .launch-button-primary,
+    .launch-scope .launch-button-primary:visited {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      padding: .9rem 1.3rem;
+      background: var(--accent);
+      color: #fff !important;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      font: 600 .86rem/1.2 var(--font-body);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+      transition: background .16s var(--ease-out), border-color .16s var(--ease-out), transform .12s var(--ease-out);
+    }
+
+    .launch-scope .launch-button-primary:hover,
+    .launch-scope .launch-button-primary:focus-visible {
+      background: #96703a;
+      border-color: #96703a;
+      text-decoration: none !important;
+    }
+
+    .launch-scope .launch-button-primary:active { transform: translateY(1px); }
+
+    .launch-scope .launch-button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      padding: .9rem 1.3rem;
+      background: transparent;
+      color: inherit;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: var(--radius);
+      font: 600 .86rem/1.2 var(--font-body);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color .16s var(--ease-out), background .16s var(--ease-out), transform .12s var(--ease-out);
+    }
+
+    .launch-scope .launch-panel--notebook .launch-button-secondary {
+      border-color: rgba(0,0,0,.18);
+    }
+
+    .launch-scope .launch-button-secondary:hover,
+    .launch-scope .launch-button-secondary:focus-visible {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.45);
+      text-decoration: none !important;
+    }
+
+    .launch-scope .launch-panel--notebook .launch-button-secondary:hover,
+    .launch-scope .launch-panel--notebook .launch-button-secondary:focus-visible {
+      background: rgba(0,0,0,.04);
+      border-color: rgba(0,0,0,.3);
+    }
+
+    .launch-scope .launch-button-secondary:active { transform: translateY(1px); }
+
+    .launch-scope .launch-support {
+      font: 400 .78rem/1.4 var(--font-body);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: rgba(243,243,243,.48);
+      margin: 0;
+    }
+
+    .launch-scope .launch-panel--notebook .launch-support {
+      color: rgba(0,0,0,.45);
+    }
+
+    .launch-scope .launch-cover {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .launch-scope .launch-cover picture,
+    .launch-scope .launch-cover img {
+      display: block;
+    }
+
+    .launch-scope .launch-cover img {
+      width: min(100%, 360px);
+      height: auto;
+      border-radius: 4px;
+      box-shadow:
+        0 8px 18px rgba(0,0,0,.52),
+        0 24px 64px rgba(0,0,0,.62);
+    }
+
+    .launch-scope .launch-retailers {
+      margin-top: 1rem;
+      max-width: 540px;
+      display: none;
+    }
+
+    .launch-scope .launch-retailers[hidden] {
+      display: none !important;
+    }
+
+    .launch-scope .launch-retailers.is-open {
+      display: block;
+    }
+
+    .launch-scope .launch-retailers-label {
+      font: 600 .68rem/1.2 var(--font-body);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(243,243,243,.42);
+      margin: 0 0 .85rem;
+    }
+
+    .launch-scope .launch-retailers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .launch-scope .launch-retailer-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .85rem .9rem;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 8px;
+      color: #f3f3f3 !important;
+      font: 500 .82rem/1.2 var(--font-body);
+      letter-spacing: .02em;
+      text-decoration: none !important;
+      transition: background .16s var(--ease-out), border-color .16s var(--ease-out), transform .12s var(--ease-out);
+    }
+
+    .launch-scope .launch-retailer-link:hover,
+    .launch-scope .launch-retailer-link:focus-visible {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.28);
+      transform: translateY(-1px);
+      text-decoration: none !important;
+    }
+
+    .launch-scope .launch-portrait {
+      display: flex;
+      justify-content: center;
+    }
+
+    .launch-scope .launch-portrait-figure {
+      margin: 0;
+      width: min(100%, 320px);
+      text-align: center;
+    }
+
+    .launch-scope .launch-portrait img {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--radius);
+      filter: grayscale(100%);
+      box-shadow: 0 18px 48px rgba(0,0,0,.18);
+    }
+
+    .launch-scope .launch-portrait figcaption {
+      display: block;
+      margin-top: .65rem;
+      font: 400 .72rem/1.3 var(--font-body);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.46);
+    }
+
+    .launch-scope .launch-substack-shell {
+      max-width: 520px;
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 16px 42px rgba(0,0,0,.08);
+    }
+
+    .launch-scope .launch-substack-shell iframe {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-height: 150px;
+      border: 1px solid #EEE !important;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .launch-scope .launch-section-rule {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: min(90vw, 1100px);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+    }
+
+    .launch-scope .launch-panel--notebook .launch-section-rule {
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,.09), transparent);
+    }
+
+    .launch-scope .footer-contact-link {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+    }
+
+    @media (max-width: 900px) {
+      .launch-scope .launch-panel-inner,
+      .launch-scope .launch-panel--notebook .launch-panel-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .launch-scope .launch-cover,
+      .launch-scope .launch-portrait {
+        order: -1;
+      }
+
+      .launch-scope .launch-cover img {
+        width: min(100%, 250px);
+      }
+
+      .launch-scope .launch-portrait-figure {
+        width: min(100%, 240px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .launch-scope .launch-panel {
+        min-height: auto;
+      }
+
+      .launch-scope .launch-panel-inner {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+      }
+
+      .launch-scope .launch-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .launch-scope .launch-button-primary,
+      .launch-scope .launch-button-secondary {
+        width: 100%;
+      }
+
+      .launch-scope .launch-retailers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://justholdher.com/launch",
+        "url": "https://justholdher.com/launch",
+        "name": "Launch | Just Hold Her",
+        "description": "Buy Just Hold Her and subscribe to Judy's Notebook.",
+        "inLanguage": "en-US",
+        "isPartOf": { "@id": "https://justholdher.com/" }
+      },
+      {
+        "@type": "Book",
+        "name": "Just Hold Her",
+        "author": {
+          "@type": "Person",
+          "name": "Judy Wright"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Held Close Books",
+          "url": "https://heldclosebooks.com"
+        },
+        "image": "https://justholdher.com/assets/just-hold-her-judy-wright-ebook-cover.jpeg",
+        "bookFormat": [
+          "https://schema.org/EBook",
+          "https://schema.org/Paperback",
+          "https://schema.org/Hardcover"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCX49YFZRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CCX49YFZRQ');
+  </script>
+</head>
+
+<body class="launch-scope phase-ebook">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topnav">
+    <div class="wrap topnav-inner">
+      <a href="index.html" class="brand">Just Hold Her</a>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="topnav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about-author-judy-wright.html">About the Author</a>
+        <a href="notebook.html">Judy’s Notebook</a>
+        <a href="media.html">Media &amp; Press</a>
+        <a href="buy.html" class="nav-buy-cta">Buy the Book</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="buy" class="launch-panel launch-panel--buy" aria-labelledby="launch-buy-title">
+      <div class="launch-panel-inner">
+        <div class="launch-copy">
+          <p class="launch-kicker">Just Hold Her</p>
+          <h1 id="launch-buy-title" class="launch-headline">Buy the Book</h1>
+          <p class="launch-subhead">Take the story home now.</p>
+
+          <div class="launch-actions">
+            <a class="launch-button-primary" href="https://www.amazon.com/dp/B0GRKVF8MV" target="_blank" rel="noopener">Buy on Amazon</a>
+            <button class="launch-button-secondary" type="button" id="more-retailers-toggle" aria-expanded="false" aria-controls="more-retailers-panel">More Retailers</button>
+          </div>
+
+          <p class="launch-support">Ebook available now · Print pre-order open</p>
+
+          <div id="more-retailers-panel" class="launch-retailers" hidden>
+            <p class="launch-retailers-label">More Retailers</p>
+            <div class="launch-retailers-grid">
+              <a class="launch-retailer-link" href="https://www.barnesandnoble.com/w/just-hold-her-judy-wright/1149657455" target="_blank" rel="noopener">Barnes &amp; Noble</a>
+              <a class="launch-retailer-link" href="https://bookshop.org/p/books/just-hold-her-judy-wright/cbf9cef7bc2d4b22" target="_blank" rel="noopener">Bookshop.org</a>
+              <a class="launch-retailer-link" href="https://books.apple.com/us/book/just-hold-her/id6760304846" target="_blank" rel="noopener">Apple Books</a>
+              <a class="launch-retailer-link" href="https://www.kobo.com/us/en/ebook/just-hold-her" target="_blank" rel="noopener">Rakuten Kobo</a>
+              <a class="launch-retailer-link" href="https://play.google.com/store/books/details?id=YR3IEQAAQBAJ&rdid=book-YR3IEQAAQBAJ" target="_blank" rel="noopener">Google Play Books</a>
+              <a class="launch-retailer-link" href="https://books2read.com/justholdher" target="_blank" rel="noopener">All Retailers</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="launch-cover" aria-hidden="true">
+          <picture>
+            <source srcset="assets/just-hold-her-judy-wright-ebook-cover.avif" type="image/avif">
+            <source srcset="assets/just-hold-her-judy-wright-ebook-cover.webp" type="image/webp">
+            <img src="assets/just-hold-her-judy-wright-ebook-cover.jpeg" alt="Just Hold Her by Judy Wright book cover" width="1410" height="2250" loading="eager" decoding="async" fetchpriority="high">
+          </picture>
+        </div>
+      </div>
+      <div class="launch-section-rule" aria-hidden="true"></div>
+    </section>
+
+    <section id="notebook" class="launch-panel launch-panel--notebook" aria-labelledby="launch-notebook-title">
+      <div class="launch-panel-inner">
+        <div class="launch-copy">
+          <p class="launch-kicker">Judy’s Notebook</p>
+          <h2 id="launch-notebook-title" class="launch-headline">Subscribe</h2>
+          <p class="launch-subhead">Get new writing from Judy in your inbox.</p>
+
+          <div class="launch-substack-shell">
+            <iframe src="https://judysnotebook.substack.com/embed" width="480" height="150" style="border: 1px solid #EEE; background: white" frameborder="0" scrolling="no"></iframe>
+          </div>
+        </div>
+
+        <div class="launch-portrait">
+          <figure class="launch-portrait-figure">
+            <picture>
+              <source srcset="assets/judy-wright-headshot/judy-wright-headshot-1-A-600x900.avif" type="image/avif">
+              <source srcset="assets/judy-wright-headshot/judy-wright-headshot-1-A-600x900.webp" type="image/webp">
+              <img src="assets/judy-wright-headshot/judy-wright-headshot-1-A-600x900.jpeg" alt="Judy Wright" width="600" height="900" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>Judy Wright</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="launch-section-rule" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer class="footer-full" aria-label="Site footer">
+    <div class="footer-full-inner">
+      <hr class="footer-rule">
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-col-label">The Book</p>
+          <p class="footer-col-title">Just Hold Her</p>
+          <p class="footer-col-subtitle">A Foster Mother’s Memoir of Medicine, Caregiving, and the Long Nights Together</p>
+          <p>by Judy Wright</p>
+          <p class="footer-col-pub">Published by <a href="https://heldclosebooks.com" target="_blank" rel="noopener">Held Close Books</a></p>
+          <p class="footer-col-status">
+            <span class="phase-inline phase-inline--preorder">Ebook pre-order open &mdash; April&nbsp;15, 2026</span>
+            <span class="phase-inline phase-inline--ebook">Ebook available now · Print June&nbsp;1</span>
+            <span class="phase-inline phase-inline--all">All formats available now</span>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-label">Navigate</p>
+          <ul class="footer-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-author-judy-wright.html">About the Author</a></li>
+            <li><a href="notebook.html">Judy’s Notebook</a></li>
+            <li><a href="media.html">Media &amp; Press</a></li>
+            <li><a href="buy.html">Buy the Book</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-label">Stay Close to the Story</p>
+          <p>Judy shares excerpts, field notes, and reflections from the making of <em>Just Hold Her</em> on Substack.</p>
+          <div class="footer-subscribe-box">
+            <span>Subscribe</span>
+            <a class="footer-subscribe-btn" href="https://judysnotebook.substack.com" target="_blank" rel="noopener">Read Judy’s Notebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span class="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
+        <button class="footer-contact-link" onclick="openContactModal()">Contact</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="rcopy-modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="rcopy-modal">
+      <button class="rcopy-modal-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
+      <p class="rcopy-modal-kicker">Just Hold Her</p>
+      <h2 id="contact-modal-title">Get in Touch</h2>
+      <p class="rcopy-modal-deck">Questions, speaking inquiries, or just a note — Judy reads every message.</p>
+      <form class="rcopy-form" id="contactForm" action="https://formspree.io/f/mpqynrkv" method="POST">
+        <div class="field">
+          <label for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" name="name" required placeholder="Full name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" name="email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="contact-subject">Subject</label>
+          <select id="contact-subject" name="subject">
+            <option value="">Select one&hellip;</option>
+            <option value="General Inquiry">General Inquiry</option>
+            <option value="Speaking or Events">Speaking or Events</option>
+            <option value="Book Club or Reading Group">Book Club or Reading Group</option>
+            <option value="Permissions or Rights">Permissions or Rights</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" required placeholder="What&#8217;s on your mind&#8230;"></textarea>
+        </div>
+        <button type="submit" class="rcopy-submit">Send Message</button>
+        <p class="rcopy-modal-direct">Or email Judy directly at <a href="/cdn-cgi/l/email-protection#412b343235292e2d25292433352924232e2e2a01262c20282d6f222e2c"><span class="__cf_email__" data-cfemail="ff958a8c8b9790939b979a8d8b979a9d909094bf98929e9693d19c9092">[email&#160;protected]</span></a></p>
+      </form>
+      <div class="rcopy-form-success" id="contactSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p><strong>Message received.</strong><br>Judy will be in touch soon.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+  <script>
+    document.querySelector('.footer-year').textContent = new Date().getFullYear();
+
+    const retailerToggle = document.getElementById('more-retailers-toggle');
+    const retailerPanel = document.getElementById('more-retailers-panel');
+
+    if (retailerToggle && retailerPanel) {
+      retailerToggle.addEventListener('click', () => {
+        const expanded = retailerToggle.getAttribute('aria-expanded') === 'true';
+        retailerToggle.setAttribute('aria-expanded', String(!expanded));
+        retailerPanel.hidden = expanded;
+        retailerPanel.classList.toggle('is-open', !expanded);
+        retailerToggle.textContent = expanded ? 'More Retailers' : 'Hide Retailers';
+      });
+    }
+
+    if (window.location.hash === '#buy' || window.location.hash === '#notebook') {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        requestAnimationFrame(() => {
+          target.scrollIntoView({ block: 'start' });
+        });
+      }
+    }
+  </script>
+</body>
+</html>
