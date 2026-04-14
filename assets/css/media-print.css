@@ -1,0 +1,444 @@
+/* ==========================================================================
+   Print — Media Kit Page (.page-media)
+   8.5 × 11 in · B&W
+   Separate file: linked only from media.html
+   ========================================================================== */
+
+@media print {
+
+  /* ── Page setup ── */
+  @page {
+    size: letter portrait;
+    margin: 16mm 18mm 18mm;
+  }
+  @page :first {
+    margin-top: 12mm;
+  }
+
+  /* ── Hide all screen-only chrome ── */
+  .page-media .skip-link,
+  .page-media header[role="banner"],
+  .page-media .nav-overlay,
+  .page-media .media-hero-portrait,
+  .page-media .media-hero-actions,
+  .page-media .media-assets,
+  .page-media .press-tabs,
+  .page-media .copy-btn,
+  .page-media .asset-note,
+  .page-media .media-contact-left .btn,
+  .page-media .media-contact-left .media-cta-sub,
+  .page-media .cta-row,
+  .page-media .modal-overlay,
+  .page-media .quote-banner,
+  .page-media footer[role="contentinfo"] {
+    display: none !important;
+  }
+
+  /* ── Base reset for print ── */
+  .page-media,
+  .page-media * {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Body typography ── */
+  .page-media {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 9.5pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* ── Suppress all URL printing ── */
+  .page-media a::after { content: none !important; }
+
+  /* ────────────────────────────────────────────────
+     REPORT HEADER (replaces hero)
+  ──────────────────────────────────────────────── */
+  .page-media .media-hero {
+    display: block !important;
+    padding: 0 0 5mm !important;
+    border-bottom: 2pt solid #000 !important;
+    margin-bottom: 5mm !important;
+  }
+  .page-media .media-hero-inner {
+    display: block !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .page-media .media-kicker {
+    font: 500 7pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+    margin: 0 0 2mm !important;
+    display: block !important;
+  }
+  .page-media .media-hero h1 {
+    font: 300 26pt/1.05 'Cormorant Garamond', Georgia, serif !important;
+    letter-spacing: -.03em !important;
+    margin: 0 0 1mm !important;
+  }
+  .page-media .media-hero-deck {
+    font: 400 9.5pt/1.55 'Cormorant Garamond', Georgia, serif !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     AWARDS BAND (bronze bar → clean ruled strip)
+  ──────────────────────────────────────────────── */
+  .page-media .awards-band {
+    display: block !important;
+    padding: 3mm 0 !important;
+    border-top: .5pt solid #000 !important;
+    border-bottom: .5pt solid #000 !important;
+    margin-bottom: 5mm !important;
+  }
+  .page-media .awards-band-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 0 !important;
+    gap: 4mm !important;
+    flex-wrap: nowrap !important;
+  }
+  .page-media .awards-item {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 0 2mm !important;
+    border-right: .5pt solid #ccc !important;
+  }
+  .page-media .awards-item:last-child { border-right: none !important; }
+  .page-media .awards-title {
+    font: 300 italic 8pt/1.3 'Cormorant Garamond', Georgia, serif !important;
+    display: block !important;
+    margin-bottom: .3mm !important;
+  }
+  .page-media .awards-source {
+    font: 500 5.5pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+    display: block !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     SYNOPSIS + PUBLICATION DETAILS
+  ──────────────────────────────────────────────── */
+  .page-media .media-synopsis {
+    padding: 0 !important;
+    margin-top: 5mm !important;
+  }
+  .page-media .media-synopsis-inner {
+    display: grid !important;
+    grid-template-columns: 1.1fr .9fr !important;
+    gap: 7mm !important;
+    padding: 0 !important;
+    max-width: none !important;
+    align-items: start !important;
+  }
+  .page-media .synopsis-pull {
+    font: 300 italic 12pt/1.35 'Cormorant Garamond', Georgia, serif !important;
+    border-left: 2pt solid #000 !important;
+    padding-left: 4mm !important;
+    margin: 0 0 4mm !important;
+  }
+  .page-media .synopsis-body {
+    font: 400 9pt/1.6 'Cormorant Garamond', Georgia, serif !important;
+  }
+  .page-media .synopsis-body p { margin: 0 0 2.5mm !important; }
+  .page-media .pub-card {
+    border: .5pt solid #aaa !important;
+    border-radius: 0 !important;
+    padding: 3mm !important;
+    margin-bottom: 3mm !important;
+  }
+  .page-media .pub-card-kicker {
+    font: 500 6.5pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    border-bottom: .5pt solid #ccc !important;
+    padding-bottom: 1.5mm !important;
+    margin-bottom: 2mm !important;
+  }
+  .page-media .pub-stat {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 3mm !important;
+    padding: 1mm 0 !important;
+    border-bottom: .3pt solid #e8e8e8 !important;
+    font-size: 8pt !important;
+    line-height: 1.4 !important;
+  }
+  .page-media .pub-stat:last-child { border-bottom: none !important; }
+  .page-media .pub-stat-label { color: #555 !important; }
+  .page-media .pub-stat-value { font-weight: 600 !important; text-align: right !important; }
+
+  /* ────────────────────────────────────────────────
+     KEY FACTS
+  ──────────────────────────────────────────────── */
+  .page-media .media-facts {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .page-media .media-facts-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4mm !important;
+    margin-top: 3mm !important;
+  }
+  .page-media .fact-card {
+    border: .5pt solid #bbb !important;
+    padding: 3mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .page-media .fact-card--wide {
+    grid-column: span 2 !important;
+    display: block !important;
+  }
+  .page-media .fact-card--wide picture { display: none !important; }
+  .page-media .fact-label {
+    font: 500 6.5pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 1mm !important;
+    border-bottom: .3pt solid #ccc !important;
+    padding-bottom: 1mm !important;
+  }
+  .page-media .fact-value {
+    font: 300 10pt/1.3 'Cormorant Garamond', Georgia, serif !important;
+    margin-bottom: 1mm !important;
+    letter-spacing: -.01em !important;
+  }
+  .page-media .fact-note {
+    font: 400 8pt/1.55 'Cormorant Garamond', Georgia, serif !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     PRESS COPY — show all three panels stacked
+  ──────────────────────────────────────────────── */
+  .page-media .media-press-copy {
+    padding: 0 !important;
+    margin-top: 6mm !important;
+  }
+  .page-media .press-copy-intro {
+    font-size: 9pt !important;
+    margin-bottom: 4mm !important;
+  }
+  .page-media .press-panel,
+  .page-media .press-panel.active {
+    display: block !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 6mm !important;
+  }
+  .page-media .press-word-count {
+    font: 500 7pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .1em !important;
+    text-transform: uppercase !important;
+    border-bottom: .5pt solid #000 !important;
+    padding-bottom: 1mm !important;
+    margin-bottom: 2mm !important;
+    display: block !important;
+  }
+  .page-media .press-text {
+    font: 400 9.5pt/1.6 'Cormorant Garamond', Georgia, serif !important;
+    margin: 0 !important;
+    white-space: normal !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     ABOUT THE AUTHOR
+  ──────────────────────────────────────────────── */
+  .page-media .media-author {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .page-media .media-author-inner {
+    display: block !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .page-media .media-author-portrait {
+    float: right !important;
+    margin: 0 0 4mm 6mm !important;
+    width: 32mm !important;
+  }
+  .page-media .media-author-portrait img {
+    width: 32mm !important;
+    height: 48mm !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    filter: grayscale(100%) !important;
+    border: .5pt solid #bbb !important;
+    display: block !important;
+  }
+  .page-media .media-author-body {
+    font: 400 9.5pt/1.6 'Cormorant Garamond', Georgia, serif !important;
+  }
+  .page-media .media-author-body p { margin: 0 0 2.5mm !important; }
+  .page-media .media-author-awards {
+    border-top: .5pt solid #000 !important;
+    margin-top: 4mm !important;
+    padding-top: 3mm !important;
+    clear: both !important;
+  }
+  .page-media .award-item {
+    font: 400 8.5pt/1.5 'Cormorant Garamond', Georgia, serif !important;
+    margin-bottom: 1.5mm !important;
+    padding-left: 4mm !important;
+    position: relative !important;
+  }
+  .page-media .award-item::before {
+    content: '–' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: #000 !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     ADVANCE PRAISE
+  ──────────────────────────────────────────────── */
+  .page-media .media-praise {
+    padding: 0 !important;
+    margin-top: 8mm !important;
+  }
+  .page-media .praise-segment { margin-bottom: 5mm !important; }
+  .page-media .praise-seg-label {
+    font: 500 6.5pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    border-bottom: .5pt solid #aaa !important;
+    padding-bottom: 1.5mm !important;
+    margin-bottom: 3mm !important;
+    display: block !important;
+  }
+  .page-media .praise-seg-label::after { display: none !important; }
+  .page-media .praise-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4mm !important;
+  }
+  .page-media .praise-card {
+    border: .5pt solid #ccc !important;
+    padding: 3mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .page-media .praise-text {
+    font: 300 italic 9.5pt/1.55 'Cormorant Garamond', Georgia, serif !important;
+    margin-bottom: 2mm !important;
+  }
+  .page-media .praise-attr {
+    font: 500 7pt/1.3 'IBM Plex Mono', monospace !important;
+    letter-spacing: .06em !important;
+    text-transform: uppercase !important;
+  }
+
+  /* ────────────────────────────────────────────────
+     CONTACT (last page — stripped to essentials)
+  ──────────────────────────────────────────────── */
+  .page-media .media-contact {
+    page-break-before: always !important;
+    break-before: page !important;
+    padding: 0 !important;
+  }
+  .page-media .media-contact-inner {
+    display: block !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .page-media .media-contact-left h2 {
+    font: 300 18pt/1.15 'Cormorant Garamond', Georgia, serif !important;
+    letter-spacing: -.03em !important;
+    margin: 0 0 3mm !important;
+    border-bottom: 1pt solid #000 !important;
+    padding-bottom: 3mm !important;
+  }
+  .page-media .media-contact-deck {
+    font: 400 9.5pt/1.6 'Cormorant Garamond', Georgia, serif !important;
+    margin: 0 0 5mm !important;
+  }
+  .page-media .media-contact-cards {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 5mm !important;
+    border: none !important;
+    margin-top: 2mm !important;
+  }
+  .page-media .contact-card {
+    display: block !important;
+    border: .5pt solid #bbb !important;
+    padding: 3mm !important;
+    break-inside: avoid !important;
+    text-align: left !important;
+    width: 100% !important;
+    font: inherit !important;
+  }
+  .page-media .cc-type {
+    font: 500 6.5pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    border-bottom: .3pt solid #ccc !important;
+    padding-bottom: 1mm !important;
+    margin-bottom: 2mm !important;
+    display: block !important;
+  }
+  .page-media .cc-headline {
+    font: 400 8.5pt/1.4 'Cormorant Garamond', Georgia, serif !important;
+    margin-bottom: 1.5mm !important;
+    display: block !important;
+  }
+  .page-media .cc-note {
+    font: 400 7.5pt/1.45 'Cormorant Garamond', Georgia, serif !important;
+    margin-bottom: 2mm !important;
+    display: block !important;
+  }
+  .page-media .cc-email { display: none !important; }
+
+  /* ────────────────────────────────────────────────
+     SHARED SECTION LABELS
+  ──────────────────────────────────────────────── */
+  .page-media .media-section-label {
+    font: 500 7pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+    border-bottom: 1pt solid #000 !important;
+    padding-bottom: 1.5mm !important;
+    margin-bottom: 3mm !important;
+    display: block !important;
+    gap: 0 !important;
+  }
+  .page-media .media-section-label::after { display: none !important; }
+
+  /* ────────────────────────────────────────────────
+     PAGE BREAK CONTROLS
+  ──────────────────────────────────────────────── */
+  .page-media .pub-card,
+  .page-media .fact-card,
+  .page-media .praise-card,
+  .page-media .asset-card,
+  .page-media .award-item,
+  .page-media .pub-stat {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ── Running footer on first page ── */
+  .page-media .media-hero::after {
+    content: 'Just Hold Her — Judy Wright — Held Close Books — press@heldclosebooks.com';
+    display: block !important;
+    font: 400 6.5pt/1.2 'IBM Plex Mono', monospace !important;
+    letter-spacing: .05em !important;
+    color: #888 !important;
+    margin-top: 3mm !important;
+    padding-top: 2mm !important;
+    border-top: .3pt solid #ccc !important;
+  }
+
+} /* end @media print */

@@ -1,88 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 — Not Found | Just Hold Her</title>
-  <meta name="description" content="The page you’re looking for has moved on, but we’re still here — quiet, steady, waiting.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found &#8212; Just Hold Her</title>
+  <meta name="description" content="The page you were looking for isn't here. Return home to Just Hold Her by Judy Wright.">
   <meta name="robots" content="noindex,follow">
-  <meta name="theme-color" content="#000000">
 
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* Minimal self-contained styles for the 404 page */
-    body {
+    .error-page {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      background: var(--bg-dark, #000);
-      color: var(--fg-dark, #f3f3f3);
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      margin: 0;
+      min-height: 70vh;
       text-align: center;
+      padding: var(--space-xl) var(--space-md);
+      position: relative;
+      overflow: hidden;
     }
-    main {
-      max-width: 800px;
-      padding: 2rem;
-    }
-    h1 {
-      font-family: "Noto Serif", Georgia, serif;
-      font-weight: 200;
-      font-size: clamp(64px, 12vw, 120px);
+    .error-page::before {
+      content: '404';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(20rem, 55vw, 48rem);
       line-height: 1;
+      color: rgba(122, 74, 26, 0.08);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+      z-index: 0;
+    }
+    .error-page-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 36rem;
+    }
+    .error-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin: 0 0 1rem;
+      color: var(--color-text-muted);
+      margin: 0 0 var(--space-sm);
     }
-    h2 {
-      font-family: "Noto Serif", Georgia, serif;
-      font-weight: 200;
-      font-size: clamp(24px, 4vw, 40px);
-      margin: 0 0 0.25rem;
+    .error-page h1 {
+      font-size: clamp(var(--text-xl), 5vw, var(--text-3xl));
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.2;
+      margin: 0 0 var(--space-sm);
     }
-    h3 {
-      font-family: "IBM Plex Mono", monospace;
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #aaa;
-      margin: 0 0 2rem;
-      letter-spacing: 0.01em;
-    }
-    p {
-      margin: 1rem 0;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-    button {
-      margin-top: 2rem;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 1rem;
-      font-weight: 600;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      padding: 0.75rem 1.5rem;
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
-    }
-    button:hover {
-      background: #b28547;
-      color: #fff;
-    }
-    button:active {
-      transform: translateY(1px);
+    .error-page p {
+      color: var(--color-text-muted);
+      max-width: 32ch;
+      margin: 0 auto var(--space-md);
+      line-height: 1.6;
     }
   </style>
 </head>
+
 <body>
-  <main>
-    <h1>404</h1>
-    <h2>Not Found. But Still Here.</h2>
-    <p>Looks like the page you’re searching for has moved on.<br>Maybe it found a new home.</p>
-    <p>Ours is still here — quiet, steady, waiting.</p>
-    <button onclick="window.location.href='/'">Return Home</button>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ══ NAVIGATION ════════════════════════════════════════════════════════ -->
+  <header role="banner">
+    <div class="nav-inner wrap">
+      <a href="index.html" class="nav-brand">Just Hold Her</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="nav-menu" class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about-author-judy-wright.html">About the Author</a>
+        <a href="notebook.html">Judy&#8217;s Notebook</a>
+        <a href="media.html">Media &amp; Press</a>
+        <a href="buy.html" class="nav-cta">Buy the Book</a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay" aria-hidden="true"></div>
+
+  <main id="main-content">
+    <div class="error-page">
+      <div class="error-page-inner">
+        <p class="error-code">404 &#183; Page Not Found</p>
+        <h1>Not found.<br>But still here.</h1>
+        <p>The page you were looking for has moved on.<br>The story is still here.</p>
+        <a class="btn btn--accent" href="index.html">Return Home</a>
+      </div>
+    </div>
   </main>
+
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="footer-inner wrap">
+      <hr class="footer-rule">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-label">The Book</p>
+          <p class="footer-title">Just Hold Her</p>
+          <p class="footer-subtitle">A Foster Mother&#8217;s Memoir of Medicine, Caregiving,<br>and the Long Nights Together</p>
+          <p>by Judy Wright</p>
+          <p class="footer-pub">Published by <a href="https://heldclosebooks.com" target="_blank" rel="noopener noreferrer">Held Close Books<span class="sr-only"> (opens in new tab)</span></a></p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-label">Navigate</p>
+          <ul class="footer-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-author-judy-wright.html">About the Author</a></li>
+            <li><a href="notebook.html">Judy&#8217;s Notebook</a></li>
+            <li><a href="media.html">Media &amp; Press</a></li>
+            <li><a href="buy.html">Buy the Book</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-label">Subscribe to Judy&#8217;s Notebook</p>
+          <p>Receive new writing from Judy&#8217;s Notebook in your inbox.</p>
+          <div class="footer-subscribe">
+            <a class="btn btn--outline btn--sm" href="notebook.html#subscribe">Subscribe by Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
+        <button class="footer-contact-btn" type="button">Contact</button>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ══ CONTACT MODAL ═════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="modal">
+      <button class="modal-close" type="button" aria-label="Close contact form">&times;</button>
+      <p class="modal-kicker">Just Hold Her</p>
+      <h2 id="contact-modal-title">Get in Touch</h2>
+      <p class="modal-deck">Questions, speaking inquiries, or just a note &#8212; Judy reads every message.</p>
+      <form class="modal-form" id="contactForm" action="https://formspree.io/f/mpqynrkv" method="POST">
+        <div class="field"><label for="contact-name">Your Name (required)</label><input type="text" id="contact-name" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="contact-email">Email Address (required)</label><input type="email" id="contact-email" name="email" required autocomplete="email"></div>
+        <div class="field"><label for="contact-subject">Subject</label><select id="contact-subject" name="subject"><option value="">Select one&#8230;</option><option value="General Inquiry">General Inquiry</option><option value="Speaking or Events">Speaking or Events</option><option value="Book Club or Reading Group">Book Club or Reading Group</option><option value="Permissions or Rights">Permissions or Rights</option><option value="Other">Other</option></select></div>
+        <div class="field"><label for="contact-message">Message (required)</label><textarea id="contact-message" name="message" required></textarea></div>
+        <button type="submit" class="btn btn--submit">Send Message</button>
+      </form>
+      <div class="modal-success" id="contactSuccess"><div class="modal-success-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div><p><strong>Message sent.</strong></p><p>Thank you &#8212; Judy will be in touch.</p></div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
