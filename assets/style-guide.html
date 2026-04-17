@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Just Hold Her - Visual Style Guide</title>
+  <meta name="description" content="A one-page visual style guide summarizing the Just Hold Her aesthetic, palette, typography, section rhythm, and signature interface patterns." />
+  <style>
+    :root {
+      --color-bg-primary: #0d0d0d;
+      --color-bg-surface: #1c1c1c;
+      --color-bg-deep: #2a1f14;
+      --color-light-bg: #f0e8d8;
+      --color-light-bg-deep: #ede4d2;
+      --color-light-card: rgba(255,255,255,0.88);
+      --color-text-primary: #ffffff;
+      --color-text-body: #f0e8d8;
+      --color-text-muted: #b8a898;
+      --color-light-text: #2a2018;
+      --color-light-text-mid: #4a4035;
+      --color-light-text-muted: #6a5a4a;
+      --color-accent: #e8950a;
+      --color-accent-hover: #f0b84c;
+      --color-accent-subtle: #7a4a1a;
+      --color-light-rule: rgba(13,13,13,0.15);
+      --color-secondary-muted: #2e3d4a;
+      --font-display: Georgia, 'Times New Roman', serif;
+      --font-body: Georgia, 'Times New Roman', serif;
+      --font-mono: 'Courier New', Courier, monospace;
+      --radius: 2px;
+    }
+
+    @page { size: 17in 11in; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(122,74,26,.22), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(240,184,76,.08), transparent 22%),
+        var(--color-bg-primary);
+      color: var(--color-text-body);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    h1, h2, h3, h4, p { margin: 0; }
+
+    .board {
+      position: relative;
+      width: 17in;
+      height: 11in;
+      margin: 0 auto;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,0)),
+        radial-gradient(circle at 82% 14%, rgba(240,184,76,.06), transparent 18%);
+    }
+
+    .panel {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(16,16,16,.82);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 40px rgba(0,0,0,.28);
+      overflow: hidden;
+      padding: .18in;
+    }
+    .panel-deep {
+      background: linear-gradient(180deg, rgba(42,31,20,.98), rgba(34,25,17,.98));
+      border-color: rgba(232,149,10,.18);
+    }
+    .panel-paper {
+      color: var(--color-light-text);
+      border-color: rgba(13,13,13,.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.64)),
+        linear-gradient(135deg, rgba(237,228,210,.95), rgba(240,232,216,.98));
+    }
+
+    .masthead { left: .50in; top: .44in; width: 16in; height: 1.72in; padding: .22in .28in; }
+    .palette  { left: .50in; top: 2.38in; width: 4.00in; height: 4.02in; }
+    .type     { left: 4.72in; top: 2.38in; width: 4.62in; height: 4.02in; }
+    .patterns { left: 9.56in; top: 2.38in; width: 6.94in; height: 4.02in; }
+    .rhythm   { left: .50in; top: 6.62in; width: 8.96in; height: 3.88in; }
+    .footer-card { left: 9.68in; top: 6.62in; width: 6.82in; height: 3.88in; }
+
+    .eyebrow, .section-kicker, .meta, .token, .button, .foot-label, .footer-link, .usage-label {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+
+    .eyebrow,
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: .10in;
+      color: var(--color-text-muted);
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+    .eyebrow::after,
+    .section-kicker::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(232,149,10,.55), rgba(255,255,255,.10));
+    }
+    .panel-paper .section-kicker {
+      color: var(--color-accent-subtle);
+    }
+    .panel-paper .section-kicker::after {
+      background: linear-gradient(90deg, rgba(122,74,26,.45), rgba(13,13,13,.10));
+    }
+
+    .section-title {
+      margin-top: .10in;
+      font-family: var(--font-display);
+      font-size: 27px;
+      line-height: .98;
+      letter-spacing: -.03em;
+      font-weight: 300;
+      color: var(--color-text-primary);
+      text-wrap: pretty;
+    }
+    .panel-paper .section-title { color: var(--color-light-text); }
+
+    .section-note {
+      margin-top: .04in;
+      font-size: 12px;
+      line-height: 1.28;
+      color: var(--color-text-muted);
+      text-wrap: pretty;
+    }
+    .panel-paper .section-note { color: var(--color-light-text-muted); }
+
+    .mast-title {
+      margin-top: .12in;
+      width: 11.2in;
+      font-family: var(--font-display);
+      font-size: 43px;
+      line-height: .94;
+      letter-spacing: -.045em;
+      font-weight: 300;
+      color: var(--color-text-primary);
+    }
+    .mast-title span {
+      display: block;
+      margin-top: .06in;
+      font-size: .43em;
+      font-style: italic;
+      letter-spacing: .01em;
+      color: var(--color-text-muted);
+    }
+    .mast-deck {
+      margin-top: .12in;
+      width: 9.1in;
+      font-size: 15px;
+      line-height: 1.34;
+      color: rgba(240,232,216,.86);
+      text-wrap: pretty;
+    }
+    .mast-pills {
+      margin-top: .13in;
+      display: flex;
+      gap: .07in;
+      flex-wrap: wrap;
+      width: 11.3in;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: .055in .09in;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      line-height: 1;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .mast-book {
+      position: absolute;
+      right: .36in;
+      top: .28in;
+      width: 1.26in;
+      height: 1.82in;
+      border-radius: 2px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.03)),
+        linear-gradient(180deg, #8f7f63, #715f43 54%, #121212 100%);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 20px 56px rgba(0,0,0,.38), 0 0 44px rgba(232,200,160,.14);
+      overflow: hidden;
+    }
+    .mast-book::after {
+      content: 'JUST\A HOLD\A HER';
+      white-space: pre;
+      position: absolute;
+      left: .12in;
+      top: .15in;
+      font-family: var(--font-display);
+      font-size: 23px;
+      line-height: .9;
+      letter-spacing: -.03em;
+      color: rgba(255,255,255,.95);
+      font-weight: 300;
+    }
+
+    .color-grid {
+      margin-top: .15in;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .08in;
+    }
+    .color-card {
+      min-height: .86in;
+      padding: .10in;
+      border: 1px solid rgba(255,255,255,.07);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    .color-card.light {
+      border-color: rgba(13,13,13,.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    }
+    .token {
+      font-size: 8px;
+      line-height: 1.2;
+      letter-spacing: .10em;
+      opacity: .82;
+    }
+    .hex {
+      margin: .03in 0 .04in;
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: .96;
+      letter-spacing: -.025em;
+      font-weight: 300;
+    }
+    .stack {
+      display: grid;
+      gap: 1px;
+      font-size: 10px;
+      line-height: 1.24;
+      opacity: .94;
+    }
+
+    .type-box {
+      margin-top: .08in;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      padding: .09in .11in;
+    }
+    .meta {
+      font-size: 8px;
+      line-height: 1.2;
+      letter-spacing: .12em;
+      color: var(--color-text-muted);
+      margin-bottom: .04in;
+    }
+    .hero-spec {
+      font-family: var(--font-display);
+      font-size: 40px;
+      line-height: .93;
+      letter-spacing: -.045em;
+      font-weight: 300;
+      color: var(--color-text-primary);
+    }
+    .section-spec {
+      font-family: var(--font-display);
+      font-size: 21px;
+      line-height: 1.02;
+      letter-spacing: -.03em;
+      font-weight: 300;
+      color: var(--color-text-primary);
+    }
+    .body-spec {
+      font-size: 15px;
+      line-height: 1.46;
+      letter-spacing: -.01em;
+      color: var(--color-text-body);
+      text-wrap: pretty;
+    }
+    .quote-spec {
+      font-family: var(--font-display);
+      font-size: 20px;
+      line-height: 1.12;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--color-text-primary);
+      text-wrap: pretty;
+    }
+    .mono-spec {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      line-height: 1.52;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .scale {
+      margin-top: .08in;
+      padding-top: .08in;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: grid;
+      grid-template-columns: .92in .82in 1fr;
+      gap: .03in .08in;
+      align-items: baseline;
+    }
+    .scale div:nth-child(3n+1) {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--color-accent-hover);
+    }
+    .scale div:nth-child(3n+2) { font-size: 12px; color: var(--color-text-primary); }
+    .scale div:nth-child(3n) { font-size: 11px; color: var(--color-text-muted); }
+
+    .pattern-grid {
+      margin-top: .14in;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .09in;
+    }
+    .demo {
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      padding: .11in;
+      min-height: 1.42in;
+    }
+    .demo.paper {
+      background: linear-gradient(180deg, rgba(237,228,210,.96), rgba(240,232,216,.96));
+      border-color: rgba(13,13,13,.10);
+      color: var(--color-light-text);
+    }
+    .demo-title {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      line-height: 1.2;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: inherit;
+      opacity: .72;
+      margin-bottom: .08in;
+    }
+    .rule-kicker {
+      display: flex;
+      align-items: center;
+      gap: .08in;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: .08in;
+    }
+    .rule-kicker::after { content: ''; flex: 1; height: 1px; background: var(--color-accent-subtle); }
+    .button-row { display: flex; gap: .08in; flex-wrap: wrap; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.60in;
+      padding: .085in .11in;
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: .08em;
+      font-weight: 500;
+      color: var(--color-bg-primary);
+      background: var(--color-accent);
+      border: 1px solid var(--color-accent);
+    }
+    .button.secondary {
+      color: var(--color-text-body);
+      background: transparent;
+      border-color: var(--color-accent-subtle);
+    }
+    .quote-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 1.18in;
+    }
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: 19px;
+      line-height: 1.12;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--color-accent-subtle);
+      text-wrap: pretty;
+    }
+    .quote-meta {
+      margin-top: .08in;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .08in;
+    }
+    .quote-attr {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      line-height: 1.2;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--color-light-text-muted);
+    }
+    .dots { display: flex; gap: .04in; }
+    .dot { width: .08in; height: .08in; border-radius: 50%; border: 1px solid currentColor; opacity: .42; }
+    .dot.active { opacity: 1; background: currentColor; }
+    .frost-stage {
+      padding: .09in;
+      background:
+        linear-gradient(180deg, rgba(237,228,210,.92), rgba(240,232,216,.96)),
+        repeating-linear-gradient(0deg, rgba(122,74,26,.06) 0, rgba(122,74,26,.06) 1px, transparent 1px, transparent 17px);
+      border: 1px solid rgba(13,13,13,.08);
+    }
+    .frost-card {
+      background: var(--color-light-card);
+      border: 1px solid rgba(13,13,13,.08);
+      padding: .10in;
+      box-shadow: 0 8px 20px rgba(13,13,13,.08);
+    }
+    .frost-head {
+      font-family: var(--font-display);
+      font-size: 18px;
+      line-height: 1.0;
+      letter-spacing: -.03em;
+      font-weight: 300;
+      color: var(--color-light-text);
+      margin-bottom: .04in;
+    }
+    .frost-copy { font-size: 12px; line-height: 1.26; color: var(--color-light-text-mid); }
+    .halo-row {
+      display: grid;
+      grid-template-columns: .88in 1fr;
+      gap: .12in;
+      align-items: center;
+      min-height: 1.18in;
+    }
+    .book-wrap {
+      position: relative;
+      width: .72in;
+      height: 1.12in;
+      margin-left: .02in;
+    }
+    .book-wrap::before {
+      content: '';
+      position: absolute;
+      inset: .06in;
+      background: rgba(240,220,180,.78);
+      filter: blur(18px);
+      opacity: .78;
+    }
+    .book-mock {
+      position: relative;
+      width: .70in;
+      height: 1.10in;
+      border-radius: 2px;
+      background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.03)), linear-gradient(180deg, #7a4a1a, #24180f 70%, #0d0d0d);
+      box-shadow: 0 2px 6px rgba(0,0,0,.55), 0 12px 24px rgba(0,0,0,.35), 0 0 24px rgba(232,200,160,.12);
+    }
+    .book-mock::after {
+      content: 'JUST\A HOLD\A HER';
+      white-space: pre;
+      position: absolute;
+      inset: .10in .06in;
+      font-family: var(--font-display);
+      font-size: 13px;
+      line-height: .92;
+      letter-spacing: -.03em;
+      color: rgba(255,255,255,.92);
+      font-weight: 300;
+    }
+    .halo-head {
+      font-family: var(--font-display);
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: -.03em;
+      font-weight: 300;
+      color: var(--color-text-primary);
+      margin-bottom: .03in;
+    }
+    .halo-copy { font-size: 12px; line-height: 1.24; color: var(--color-text-muted); }
+
+    .band-row {
+      margin-top: .14in;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .09in;
+    }
+    .band {
+      min-height: 1.18in;
+      padding: .10in;
+      border: 1px solid rgba(255,255,255,.07);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .band.paper {
+      border-color: rgba(13,13,13,.08);
+      color: var(--color-light-text);
+      background:
+        linear-gradient(180deg, rgba(237,228,210,.96), rgba(240,232,216,.96)),
+        repeating-linear-gradient(0deg, rgba(122,74,26,.05) 0, rgba(122,74,26,.05) 1px, transparent 1px, transparent 16px);
+    }
+    .band.black { background: var(--color-bg-primary); color: var(--color-text-body); }
+    .band.deep { background: var(--color-bg-deep); color: var(--color-text-body); }
+    .band.bronze { background: var(--color-accent-subtle); color: var(--color-text-primary); }
+    .band-name {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      line-height: 1.2;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      opacity: .78;
+    }
+    .band-copy {
+      font-family: var(--font-display);
+      font-size: 17px;
+      line-height: 1.04;
+      letter-spacing: -.02em;
+      font-weight: 300;
+      text-wrap: pretty;
+    }
+    .principle-grid {
+      margin-top: .10in;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: .09in;
+    }
+    .principle {
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      padding: .09in;
+      min-height: .88in;
+    }
+    .principle h4 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      line-height: 1;
+      letter-spacing: -.025em;
+      font-weight: 300;
+      color: var(--color-text-primary);
+      margin-bottom: .04in;
+    }
+    .principle p { font-size: 12px; line-height: 1.25; color: var(--color-text-muted); text-wrap: pretty; }
+
+    .footer-shell {
+      margin-top: .13in;
+      border: 1px solid rgba(255,255,255,.08);
+      background: var(--color-bg-primary);
+      color: var(--color-text-body);
+      padding: .11in;
+    }
+    .footer-rule { height: 1px; background: var(--color-accent-subtle); margin-bottom: .10in; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .90fr 1.10fr;
+      gap: .10in;
+      align-items: start;
+    }
+    .foot-label { font-size: 8px; line-height: 1.2; letter-spacing: .14em; color: var(--color-text-muted); margin-bottom: .03in; }
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      line-height: 1.04;
+      letter-spacing: -.02em;
+      font-weight: 300;
+    }
+    .footer-subtitle { margin-top: .03in; font-size: 12px; line-height: 1.22; font-style: italic; color: var(--color-text-muted); }
+    .footer-link { font-size: 9px; line-height: 1.2; letter-spacing: .05em; color: var(--color-text-muted); margin-top: .03in; }
+    .footer-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: .06in;
+      padding: .08in .10in;
+      border: 1px solid var(--color-accent);
+      background: var(--color-accent);
+      color: var(--color-bg-primary);
+      font-family: var(--font-mono);
+      font-size: 8px;
+      line-height: 1;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: .08in;
+      padding-top: .07in;
+      border-top: 1px solid var(--color-secondary-muted);
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: 8px;
+      line-height: 1.2;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .usage-list {
+      margin-top: .12in;
+      display: grid;
+      gap: .07in;
+    }
+    .usage {
+      display: grid;
+      grid-template-columns: .72in 1fr;
+      gap: .10in;
+      padding-top: .06in;
+      border-top: 1px solid rgba(13,13,13,.10);
+    }
+    .usage:first-child { padding-top: 0; border-top: 0; }
+    .usage-label {
+      font-size: 8px;
+      line-height: 1.2;
+      letter-spacing: .10em;
+      color: var(--color-accent-subtle);
+    }
+    .usage-copy { font-size: 12px; line-height: 1.24; color: var(--color-light-text-mid); text-wrap: pretty; }
+    strong em { font-style: italic; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="board" aria-label="Just Hold Her visual style guide">
+    <section class="panel masthead">
+      <div class="eyebrow">Held Close Books • justholdher.com • visual style guide</div>
+      <h1 class="mast-title">Just Hold Her<span>Book-led. Literary. Quietly premium.</span></h1>
+      <p class="mast-deck">A restrained system built from near-black depth, warm paper contrast, amber discipline, and editorial typography. The book leads. The imprint frames.</p>
+      <div class="mast-pills">
+        <span class="pill">serif-led hierarchy</span>
+        <span class="pill">mono for utility</span>
+        <span class="pill">warm halo</span>
+        <span class="pill">frosted paper cards</span>
+        <span class="pill">text-wrap: pretty</span>
+      </div>
+      <div class="mast-book" aria-hidden="true"></div>
+    </section>
+
+    <section class="panel palette">
+      <div class="section-kicker">Color grid</div>
+      <h2 class="section-title">Surface + type pairings</h2>
+      <p class="section-note">Hex codes and live reading combinations.</p>
+      <div class="color-grid">
+        <div class="color-card" style="background:#0d0d0d;color:#f0e8d8;"><div class="token">primary background</div><div class="hex">#0d0d0d</div><div class="stack"><span>background #0d0d0d</span><span>header #ffffff</span><span>body #f0e8d8</span></div></div>
+        <div class="color-card" style="background:#1c1c1c;color:#f0e8d8;"><div class="token">surface / modal</div><div class="hex">#1c1c1c</div><div class="stack"><span>background #1c1c1c</span><span>header #ffffff</span><span>body #f0e8d8</span></div></div>
+        <div class="color-card" style="background:#2a1f14;color:#f0e8d8;"><div class="token">deep brown</div><div class="hex">#2a1f14</div><div class="stack"><span>background #2a1f14</span><span>header #ffffff</span><span>body #f0e8d8</span></div></div>
+        <div class="color-card" style="background:#7a4a1a;color:#ffffff;"><div class="token">bronze band</div><div class="hex">#7a4a1a</div><div class="stack"><span>background #7a4a1a</span><span>header #ffffff</span><span>body #ffffff</span></div></div>
+        <div class="color-card light" style="background:#f0e8d8;color:#2a2018;"><div class="token">light background</div><div class="hex">#f0e8d8</div><div class="stack"><span>background #f0e8d8</span><span>header #2a2018</span><span>body #2a2018</span></div></div>
+        <div class="color-card light" style="background:#ede4d2;color:#2a2018;"><div class="token">notebook base</div><div class="hex">#ede4d2</div><div class="stack"><span>background #ede4d2</span><span>header #2a2018</span><span>body #4a4035</span></div></div>
+        <div class="color-card light" style="background:rgba(255,255,255,.88);color:#2a2018;"><div class="token">frosted card</div><div class="hex">rgba(255,255,255,.88)</div><div class="stack"><span>card rgba(255,255,255,.88)</span><span>header #2a2018</span><span>body #4a4035</span></div></div>
+        <div class="color-card light" style="background:#e8950a;color:#0d0d0d;"><div class="token">accent / CTA</div><div class="hex">#e8950a</div><div class="stack"><span>accent #e8950a</span><span>hover #f0b84c</span><span>text #0d0d0d</span></div></div>
+      </div>
+    </section>
+
+    <section class="panel type">
+      <div class="section-kicker">Typography</div>
+      <h2 class="section-title">Serif for feeling. Mono for function.</h2>
+      <p class="section-note">Cormorant + IBM Plex Mono in spirit and hierarchy.</p>
+      <div class="type-box"><div class="meta">display / hero</div><div class="hero-spec">Just Hold Her</div></div>
+      <div class="type-box"><div class="meta">section heading</div><div class="section-spec">A witness story. Not a rescue story.</div></div>
+      <div class="type-box"><div class="meta">body copy</div><div class="body-spec">Spacious, tactile, literary. In running copy, <strong><em>Just Hold Her</em></strong> reads as both title and emphasis.</div></div>
+      <div class="type-box"><div class="meta">pull quote</div><div class="quote-spec">“The smallest changes begin to carry the weight of hope.”</div></div>
+      <div class="type-box"><div class="meta">utility / functional mono</div><div class="mono-spec">buy the book • media &amp; press • notebook • award source • form label • publication detail</div></div>
+      <div class="scale">
+        <div>--text-sm</div><div>15px</div><div>labels, captions, meta</div>
+        <div>--text-base</div><div>19px</div><div>body copy minimum</div>
+        <div>--text-lg</div><div>24px</div><div>subheads, award titles</div>
+        <div>--text-xl</div><div>30px</div><div>section headings</div>
+        <div>--text-2xl</div><div>44px</div><div>large headings</div>
+        <div>--text-3xl</div><div>60px</div><div>display numbers</div>
+        <div>--text-4xl</div><div>64–112px</div><div>hero H1</div>
+      </div>
+    </section>
+
+    <section class="panel panel-deep patterns">
+      <div class="section-kicker">Signature patterns</div>
+      <h2 class="section-title">The atmosphere lives in the details.</h2>
+      <p class="section-note">Four recurring moves.</p>
+      <div class="pattern-grid">
+        <div class="demo">
+          <div class="demo-title">section label + CTA</div>
+          <div class="rule-kicker">Section label</div>
+          <div class="button-row"><span class="button">Buy the book</span><span class="button secondary">Media page</span></div>
+        </div>
+        <div class="demo paper">
+          <div class="demo-title">quote banner</div>
+          <div class="quote-box">
+            <div class="quote-text">“It is the story of what happens when love arrives before certainty.”</div>
+            <div class="quote-meta"><div class="quote-attr">6s rotation</div><div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div></div>
+          </div>
+        </div>
+        <div class="demo paper">
+          <div class="demo-title">frosted card</div>
+          <div class="frost-stage"><div class="frost-card"><div class="frost-head">Frosted card on notebook texture</div><div class="frost-copy">Softens dense content without losing contrast.</div></div></div>
+        </div>
+        <div class="demo">
+          <div class="demo-title">cover halo</div>
+          <div class="halo-row"><div class="book-wrap"><div class="book-mock"></div></div><div><div class="halo-head">Warm glow</div><div class="halo-copy">Present at rest. Fuller bloom on hover.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel rhythm">
+      <div class="section-kicker">Section rhythm</div>
+      <h2 class="section-title">Alternation creates pacing.</h2>
+      <p class="section-note">Dark for gravity. Paper for breath. Bronze for punctuation.</p>
+      <div class="band-row">
+        <div class="band black"><div class="band-name">primary black</div><div class="band-copy">Hero and story-driven dark sections.</div></div>
+        <div class="band deep"><div class="band-name">warm brown</div><div class="band-copy">Author sections and closing CTAs.</div></div>
+        <div class="band paper"><div class="band-name">notebook texture</div><div class="band-copy">Praise, notebook, and lighter exhale moments.</div></div>
+        <div class="band bronze"><div class="band-name">bronze band</div><div class="band-copy">Awards, release, and retailer strips.</div></div>
+      </div>
+      <div class="principle-grid">
+        <div class="principle"><h4>Editorial spacing</h4><p>Long line-height, strong margins, no cramped blocks.</p></div>
+        <div class="principle"><h4>Accent discipline</h4><p>Amber belongs to action, hover, and emphasis.</p></div>
+        <div class="principle"><h4>Functional mono</h4><p>Utility stays crisp, documentary, and small.</p></div>
+        <div class="principle"><h4>Readable texture</h4><p>Texture sits behind cards, not behind dense prose.</p></div>
+      </div>
+    </section>
+
+    <section class="panel panel-paper footer-card">
+      <div class="section-kicker">Footer + usage</div>
+      <h2 class="section-title">Quiet, structured endings.</h2>
+      <div class="footer-shell">
+        <div class="footer-rule"></div>
+        <div class="footer-grid">
+          <div>
+            <div class="foot-label">Publisher</div>
+            <div class="footer-title">Held Close Books</div>
+            <div class="footer-subtitle">A quiet, refined imprint presence</div>
+          </div>
+          <div>
+            <div class="foot-label">Navigation</div>
+            <div class="footer-link">Home</div>
+            <div class="footer-link">About Judy</div>
+            <div class="footer-link">Media &amp; Press</div>
+          </div>
+          <div>
+            <div class="foot-label">Judy’s Notebook</div>
+            <div class="footer-subtitle">New writing from Judy in your inbox</div>
+            <div class="footer-button">Subscribe by Email</div>
+          </div>
+        </div>
+        <div class="footer-bottom"><span>copyright 2026</span><span>brand line + bottom bar separated</span></div>
+      </div>
+      <div class="usage-list">
+        <div class="usage"><div class="usage-label">Do</div><div class="usage-copy">Default paragraphs to <span style="font-family:var(--font-mono);font-size:10px;color:var(--color-accent-subtle);text-transform:uppercase;letter-spacing:.08em;">text-wrap: pretty</span> for calmer line endings.</div></div>
+        <div class="usage"><div class="usage-label">Do</div><div class="usage-copy">Keep corners tight, spacing generous, and chrome restrained.</div></div>
+        <div class="usage"><div class="usage-label">Avoid</div><div class="usage-copy">Loud saturation, rounded SaaS UI, or generic ecommerce styling.</div></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
