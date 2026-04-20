@@ -97,6 +97,7 @@
         <a href="about-author-judy-wright.html" aria-current="page">About the Author</a>
         <a href="notebook.html">Judy&#8217;s Notebook</a>
         <a href="media.html">Media &amp; Press</a>
+        <a href="contact.html">Contact</a>
         <a href="buy.html" class="nav-cta">Buy the Book</a>
       </nav>
     </div>
@@ -125,7 +126,6 @@
         <p class="about-hero-sub">Mother, foster mother, and advocate.<br>Author of <em>Just Hold Her</em>.</p>
       </div>
     </section>
-
 
     <!-- ══ BIO + AWARDS SIDEBAR ════════════════════════════════════════════ -->
     <section class="section about-bio" aria-labelledby="bio-heading">
@@ -189,8 +189,6 @@
       </div>
     </section>
 
-
-
     <!-- ══ BOTTOM CTA ══════════════════════════════════════════════════════ -->
     <section class="section about-bottom" aria-label="Continue exploring">
       <div class="wrap" style="text-align:center;">
@@ -202,7 +200,6 @@
     </section>
 
   </main>
-
 
   <!-- ══ FOOTER ════════════════════════════════════════════════════════════ -->
   <footer role="contentinfo">
@@ -222,7 +219,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about-author-judy-wright.html">About the Author</a></li>
             <li><a href="notebook.html">Judy&#8217;s Notebook</a></li>
-            <li><a href="media.html">Media &amp; Press</a></li>
+            <li><a href="media.html">Media &amp; Press</a></li><li><a href="contact.html">Contact</a></li>
             <li><a href="buy.html">Buy the Book</a></li>
           </ul>
         </div>
@@ -236,29 +233,10 @@
       </div>
       <div class="footer-bottom">
         <span>&copy; <span id="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
-        <button class="footer-contact-btn" type="button">Contact</button>
+        <a class="footer-contact-link" href="contact.html">Contact</a>
       </div>
     </div>
   </footer>
-
-
-  <!-- ══ CONTACT MODAL ═════════════════════════════════════════════════════ -->
-  <div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
-    <div class="modal">
-      <button class="modal-close" type="button" aria-label="Close contact form">&times;</button>
-      <p class="modal-kicker">Just Hold Her</p>
-      <h2 id="contact-modal-title">Get in Touch</h2>
-      <p class="modal-deck">For reader notes, book club requests, speaking invitations, or media inquiries, send a message here.</p>
-      <form class="modal-form" id="contactForm" action="https://formspree.io/f/mpqynrkv" method="POST">
-        <div class="field"><label for="contact-name">Your Name (required)</label><input type="text" id="contact-name" name="name" required autocomplete="name"></div>
-        <div class="field"><label for="contact-email">Email Address (required)</label><input type="email" id="contact-email" name="email" required autocomplete="email"></div>
-        <div class="field"><label for="contact-subject">Subject</label><select id="contact-subject" name="subject"><option value="">Select one&#8230;</option><option value="General Inquiry">General Inquiry</option><option value="Speaking or Events">Speaking or Events</option><option value="Book Club or Reading Group">Book Club or Reading Group</option><option value="Permissions or Rights">Permissions or Rights</option><option value="Other">Other</option></select></div>
-        <div class="field"><label for="contact-message">Message (required)</label><textarea id="contact-message" name="message" required></textarea></div>
-        <button type="submit" class="btn btn--submit">Send Message</button>
-      </form>
-      <div class="modal-success" id="contactSuccess"><div class="modal-success-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div><p><strong>Message sent.</strong></p><p>Thank you &#8212; we&#8217;ll be in touch soon.</p></div>
-    </div>
-  </div>
 
   <script src="assets/js/main.js" defer></script>
 </body>
