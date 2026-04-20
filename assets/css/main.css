@@ -956,18 +956,14 @@ footer[role="contentinfo"] {
   color: var(--color-text-muted);
 }
 
-.footer-contact-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
+.footer-contact-link {
   font-size: 0.75rem;
   color: var(--color-text-muted);
-  cursor: pointer;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.footer-contact-btn:hover {
+.footer-contact-link:hover {
   color: var(--color-text-body);
   text-decoration: underline;
 }
@@ -1407,18 +1403,13 @@ footer[role="contentinfo"] {
   border-radius: var(--border-radius);
 }
 
-.asset-note-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
+.asset-note-link {
   color: var(--color-accent-subtle);
-  cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.asset-note-btn:hover {
+.asset-note-link:hover {
   color: var(--color-bg-primary);
 }
 
@@ -1853,9 +1844,8 @@ footer[role="contentinfo"] {
   border: 1px solid var(--color-accent-subtle);
   border-radius: var(--border-radius);
   padding: 1.5rem;
-  cursor: pointer;
-  font: inherit;
   color: inherit;
+  text-decoration: none;
   transition: border-color 0.3s ease;
 }
 
