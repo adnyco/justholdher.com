@@ -92,11 +92,23 @@
   <main id="main-content">
 
     <!-- ══ HERO ═════════════════════════════════════════════════════════════ -->
-    <section class="section contact-hero" aria-labelledby="contact-h1">
-      <div class="wrap">
-        <p class="media-kicker">Just Hold Her</p>
+    <section class="contact-hero page-hero" aria-labelledby="contact-h1">
+      <picture>
+        <source srcset="assets/img/just-hold-her-judys-notebook-header.avif" type="image/avif">
+        <source srcset="assets/img/just-hold-her-judys-notebook-header.webp" type="image/webp">
+        <img class="contact-hero-img page-hero-img"
+             src="assets/img/just-hold-her-judys-notebook-header.png"
+             alt=""
+             aria-hidden="true"
+             decoding="async"
+             loading="eager"
+             fetchpriority="high"
+             width="1920" height="1080">
+      </picture>
+      <div class="contact-hero-fade page-hero-fade" aria-hidden="true"></div>
+      <div class="contact-hero-content page-hero-content wrap">
         <h1 id="contact-h1">Get in Touch</h1>
-        <p class="contact-hero-deck">If the book moved you, reminded you of someone, or made you want to reach out, you&#8217;re welcome here.</p>
+        <p class="contact-hero-sub">If the book moved you, reminded you of someone,<br>or made you want to reach out, you&#8217;re welcome here.</p>
       </div>
     </section>
 
@@ -121,8 +133,8 @@
                 <label for="cp-subject">Subject</label>
                 <select id="cp-subject" name="subject">
                   <option value="">Select one&#8230;</option>
-                  <option value="General Inquiry">General Inquiry</option>
-                  <option value="Press &amp; Media">Press &amp; Media</option>
+                  <option value="General Note">General Note</option>
+                  <option value="Press &amp; Interviews">Press &amp; Interviews</option>
                   <option value="Speaking or Events">Speaking or Events</option>
                   <option value="Book Club or Reading Group">Book Club or Reading Group</option>
                   <option value="Permissions or Rights">Permissions or Rights</option>
@@ -151,11 +163,11 @@
             <div class="contact-sidebar-block">
               <p class="media-section-label">Write Directly</p>
               <div class="contact-email-card">
-                <p class="contact-email-label">General Inquiries</p>
+                <p class="contact-email-label">General Notes</p>
                 <a href="mailto:judy@justholdher.com" class="contact-email-link">judy@justholdher.com</a>
               </div>
               <div class="contact-email-card">
-                <p class="contact-email-label">Press &amp; Media</p>
+                <p class="contact-email-label">Press &amp; Interviews</p>
                 <a href="mailto:press@justholdher.com" class="contact-email-link">press@justholdher.com</a>
                 <p class="contact-email-note">For interviews, review coverage, and media requests. <a href="media.html">Visit the press kit</a> for downloadable assets.</p>
               </div>
@@ -163,7 +175,7 @@
 
             <!-- Social -->
             <div class="contact-sidebar-block">
-              <p class="media-section-label">Find Judy Elsewhere</p>
+              <p class="media-section-label">Follow Along</p>
               <ul class="contact-social-list">
                 <li>
                   <a href="https://judysnotebook.substack.com/" target="_blank" rel="noopener noreferrer" class="contact-social-link">
@@ -198,7 +210,7 @@
 
             <!-- Publisher -->
             <div class="contact-sidebar-block">
-              <p class="media-section-label">Publisher</p>
+              <p class="media-section-label">Published by</p>
               <div class="contact-publisher">
                 <a href="https://heldclosebooks.com" target="_blank" rel="noopener noreferrer" class="contact-publisher-link">
                   <picture>
