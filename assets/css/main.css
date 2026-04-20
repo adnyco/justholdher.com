@@ -15,7 +15,7 @@
    12. Footer
    13. Contact Modal
    14. Phase System
-   15. Page-Specific: Media, About, Notebook, Buy
+   15. Page-Specific: Media, About, Notebook, Buy, Contact
        — Shared: page-hero, awards-band, quote-banner, gallery
    16. Scroll Animations
    17. Reduced Motion
@@ -2975,6 +2975,296 @@ footer[role="contentinfo"] {
 
 
 /* ================================================================
+   15d. CONTACT PAGE (.contact-*)
+   ================================================================ */
+
+/* ── Contact Hero — extends page-hero ── */
+.contact-hero {
+  height: 65vh;
+  min-height: 24rem;
+  max-height: 40rem;
+}
+
+.contact-hero-content {
+  justify-content: flex-start;
+  padding-top: 12vh;
+  padding-bottom: 0;
+}
+
+.contact-hero-sub {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  margin: 0.5rem 0 0;
+  max-width: 44ch;
+}
+
+/* ── Main two-column layout (form + sidebar) ── */
+.contact-main {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-xl);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+}
+
+.contact-form-col {
+  min-width: 0; /* prevent long words/URLs from blowing out the grid cell */
+  background: var(--color-light-card);
+  border-radius: var(--border-radius);
+  padding: var(--space-md);
+}
+
+/* ── Inline contact form (light-surface treatment) ── */
+.contact-page-form .field {
+  margin-bottom: 1.25rem;
+}
+
+.contact-page-form label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-light-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.contact-page-form input,
+.contact-page-form textarea,
+.contact-page-form select {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-light-text);
+  background: #ffffff;
+  border: 1px solid rgba(122, 74, 26, 0.35);
+  border-radius: var(--border-radius);
+  padding: 0.7rem 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-appearance: none;
+}
+
+.contact-page-form textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.contact-page-form input:focus,
+.contact-page-form textarea:focus,
+.contact-page-form select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(232, 149, 10, 0.15);
+}
+
+.btn--contact-submit {
+  margin-top: 0.5rem;
+}
+
+.contact-page-success {
+  display: none;
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+.contact-page-success .modal-success-icon {
+  margin: 0 auto var(--space-sm);
+}
+
+.contact-page-success p {
+  margin: 0.25rem 0;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: var(--color-light-text);
+}
+
+.contact-page-success strong {
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ── Sidebar ── */
+.contact-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background: var(--color-light-card);
+  border-radius: var(--border-radius);
+  padding: var(--space-md);
+}
+
+.contact-sidebar-block .media-section-label {
+  margin-bottom: var(--space-sm);
+}
+
+/* ── Email cards (minimal stack — no boxes) ── */
+.contact-email-card {
+  margin-bottom: var(--space-md);
+}
+
+.contact-email-card:last-child {
+  margin-bottom: 0;
+}
+
+.contact-email-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-light-text-muted);
+  margin: 0 0 0.25rem;
+}
+
+.contact-email-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-light-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent-subtle);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-email-link:hover {
+  color: var(--color-accent-subtle);
+  border-bottom-color: var(--color-accent);
+}
+
+.contact-email-note {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-light-text-mid);
+  margin: 0.5rem 0 0;
+}
+
+.contact-email-note a {
+  color: var(--color-accent-subtle);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-email-note a:hover {
+  color: var(--color-accent);
+}
+
+/* ── Social list (icon + label + handle) ── */
+.contact-social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.contact-social-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.5rem 0;
+  color: var(--color-light-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-social-link:hover {
+  color: var(--color-accent-subtle);
+}
+
+.contact-social-link:hover .contact-social-icon {
+  background: var(--color-accent-subtle);
+  color: #ffffff;
+}
+
+.contact-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: #ffffff;
+  border: 1px solid var(--color-accent-subtle);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-accent-subtle);
+  line-height: 1;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.contact-social-link > span:nth-child(2) {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: var(--color-light-text);
+}
+
+.contact-social-handle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-light-text-muted);
+}
+
+/* ── Publisher block ── */
+.contact-publisher {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.contact-publisher-link {
+  display: block;
+}
+
+.contact-publisher-link img {
+  display: block;
+  width: 4.5rem;
+  height: auto;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.contact-publisher-link:hover img {
+  opacity: 1;
+}
+
+.contact-publisher p {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-light-text-mid);
+  margin: 0;
+}
+
+.contact-publisher p + p {
+  margin-top: 0.35rem;
+}
+
+.contact-publisher a {
+  color: var(--color-accent-subtle);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-publisher a:hover {
+  color: var(--color-accent);
+}
+
+
+
+
+/* ================================================================
    16. SCROLL ANIMATIONS
    ================================================================ */
 
@@ -3101,6 +3391,16 @@ footer[role="contentinfo"] {
 
   .praise-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-hero {
+    height: 45vh;
+    min-height: 18rem;
+  }
+
+  .contact-form-col,
+  .contact-sidebar {
+    padding: var(--space-sm);
   }
 
   .media-contact-inner {
@@ -3256,5 +3556,10 @@ footer[role="contentinfo"] {
 
   .section-media img {
     min-height: clamp(21.25rem, 42vh, 35rem);
+  }
+
+  .contact-grid {
+    grid-template-columns: 70fr 30fr;
+    gap: var(--space-lg);
   }
 }
