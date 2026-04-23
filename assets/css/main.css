@@ -1255,14 +1255,14 @@ footer[role="contentinfo"] {
   justify-content: center;
   align-items: center;
   gap: 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .awards-item {
   text-align: center;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.25rem;
   border-right: 1px solid rgba(255, 255, 255, 0.18);
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-width: 0;
 }
 
@@ -1275,11 +1275,13 @@ footer[role="contentinfo"] {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 300;
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   line-height: 1.25;
   color: var(--color-text-primary);
   letter-spacing: -0.01em;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .awards-source {
@@ -1291,6 +1293,9 @@ footer[role="contentinfo"] {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
   margin-top: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ── Downloadable Assets — frosted cards on notebook texture ── */
@@ -2090,6 +2095,198 @@ footer[role="contentinfo"] {
 .quote-dot.active {
   background: var(--color-accent-subtle);
   border-color: var(--color-accent-subtle);
+}
+
+
+/* ── In the News — coverage list ────────────────────────────────── */
+.media-coverage {
+  /* section-level spacing inherited from .section */
+}
+
+.coverage-list {
+  max-width: 52rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Card — solid cream panel behind each entry.
+   Same token as notebook cards / contact panels so the site has one
+   surface vocabulary for content-on-notebook-texture. */
+.coverage-item {
+  background: var(--color-light-card);
+  border-radius: var(--border-radius);
+  padding: var(--space-md) var(--space-md);
+}
+
+/* Featured treatment — applied when there's a single entry (or any entry
+   flagged for prominence). Slightly more generous padding, bigger title. */
+.coverage-item--featured {
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* Meta line — date · host · episode · duration · outlet · format */
+.coverage-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-light-text-muted);
+  margin: 0 0 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+
+/* Tighten meta→links when no title/description sits between them */
+.coverage-meta + .coverage-links {
+  margin-top: 0.35rem;
+}
+
+.coverage-meta em {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.coverage-outlet {
+  color: var(--color-light-text-mid);
+}
+
+.coverage-sep {
+  color: var(--color-light-rule);
+}
+
+/* Format glyph driven off data-format attribute on the <article> */
+.coverage-item[data-format="podcast"] .coverage-format::before { content: "\266A  "; }
+.coverage-item[data-format="video"]   .coverage-format::before { content: "\25B6  "; }
+.coverage-item[data-format="article"] .coverage-format::before { content: "\270E  "; }
+
+.coverage-format::before {
+  color: var(--color-accent-subtle);
+  margin-right: 0.1em;
+}
+
+/* Title — larger on featured entries */
+.coverage-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-lg);
+  line-height: 1.3;
+  color: var(--color-light-text);
+  margin: 0 0 0.6rem;
+}
+
+.coverage-item--featured .coverage-title {
+  font-size: var(--text-xl);
+  margin-bottom: 0.75rem;
+}
+
+.coverage-title em {
+  font-style: italic;
+}
+
+/* Description */
+.coverage-description {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--color-light-text-mid);
+  margin: 0 0 1rem;
+  max-width: 62ch;
+}
+
+/* ── Link hierarchy ──
+   Primary link gets btn-treatment weight. Secondary links group under
+   "Also on:" prefix with quieter styling. */
+.coverage-actions {
+  margin: var(--space-sm) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.coverage-primary {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-bg-primary);
+  background: var(--color-accent);
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.coverage-primary:hover,
+.coverage-primary:focus-visible {
+  background: var(--color-accent-hover);
+  color: var(--color-bg-primary);
+  text-decoration: none;
+}
+
+.coverage-primary:focus-visible {
+  outline: 2px solid var(--color-bg-primary);
+  outline-offset: 2px;
+}
+
+.coverage-secondary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-light-text-muted);
+}
+
+.coverage-secondary-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  color: var(--color-light-text-muted);
+}
+
+.coverage-secondary a {
+  color: var(--color-accent-subtle);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  padding-bottom: 1px;
+}
+
+.coverage-secondary a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ── Legacy flat link row — kept for minimal entries (no primary). ── */
+.coverage-links {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.coverage-links a {
+  color: var(--color-accent-subtle);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  padding-bottom: 1px;
+}
+
+.coverage-links a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
 }
 
 
@@ -3393,6 +3590,36 @@ footer[role="contentinfo"] {
     grid-template-columns: 1fr;
   }
 
+  .coverage-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .coverage-meta .coverage-sep {
+    display: none;
+  }
+
+  .coverage-item {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .coverage-item--featured {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .coverage-title {
+    font-size: var(--text-lg);
+  }
+
+  .coverage-item--featured .coverage-title {
+    font-size: var(--text-lg);
+  }
+
+  .coverage-actions {
+    gap: 0.65rem 1rem;
+  }
+
   .contact-hero {
     height: 45vh;
     min-height: 18rem;
@@ -3407,18 +3634,33 @@ footer[role="contentinfo"] {
     grid-template-columns: 1fr;
   }
 
-  .awards-item {
-    padding: 0.5rem 0.75rem;
-    flex: 1 1 40%;
+  .awards-band-inner {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .awards-item:nth-child(2) {
+  .awards-item {
+    padding: 0.85rem 0.75rem;
+    flex: 0 0 auto;
     border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .awards-item:last-child {
+    border-bottom: none;
   }
 
   .awards-title {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .awards-source {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
   }
 
   .press-tabs {
