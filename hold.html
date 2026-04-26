@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Just Hold Her — Judy Wright</title>
+  <meta name="description" content="A foster mother said yes. She wrote down what happened next. Just Hold Her, by Judy Wright.">
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#f0e8d8">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+  <!-- Font: Cormorant Garamond only (the one weight/style this page uses) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Preload the cover (the one image above the fold) -->
+  <link rel="preload" as="image" href="assets/img/just-hold-her-judy-wright-ebook-cover.webp" type="image/webp" fetchpriority="high">
+
+  <style>
+    :root {
+      --bg:        #f0e8d8;
+      --ink:       #1a1a1a;
+      --ink-muted: rgba(26, 26, 26, 0.68);
+      --accent:    #e8950a;
+      --accent-hover: #c97a05;
+      --rule:      rgba(26, 26, 26, 0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh; /* dynamic viewport — accounts for mobile browser chrome */
+      display: flex;
+      flex-direction: column;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+    }
+    .skip-link:focus {
+      left: 0;
+      top: 0;
+      padding: 0.5rem 1rem;
+      background: var(--ink);
+      color: var(--bg);
+      z-index: 10;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem 1.25rem 1rem;
+      text-align: center;
+      max-width: 28rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero {
+      margin: 0 0 1.25rem;
+    }
+
+    .hero-hook {
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.4rem, 5.5vw, 1.85rem);
+      line-height: 1.25;
+      letter-spacing: -0.005em;
+      margin: 0 0 0.85rem;
+      max-width: 22ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-response {
+      font-size: clamp(1rem, 4vw, 1.15rem);
+      font-weight: 500;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .hero-premise {
+      font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+      color: var(--ink-muted);
+      line-height: 1.5;
+      margin: 0.35rem 0 0;
+    }
+
+    .cover {
+      display: block;
+      margin: 0.25rem auto 1.1rem;
+      width: auto;
+      max-height: 14rem;
+      max-width: 60vw;
+      height: auto;
+      box-shadow: 0 6px 18px rgba(26, 26, 26, 0.18);
+      border-radius: 2px;
+    }
+
+    .credibility {
+      font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin: 0 0 1.25rem;
+    }
+
+    .cta {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.95rem 1.25rem;
+      font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: var(--ink);
+      border: 1px solid var(--accent);
+    }
+
+    .btn--primary:hover,
+    .btn--primary:focus-visible {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: var(--ink);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid rgba(26, 26, 26, 0.45);
+    }
+
+    .btn--secondary:hover,
+    .btn--secondary:focus-visible {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .btn:focus-visible {
+      outline-offset: 2px;
+    }
+
+    .footer {
+      flex: 0 0 auto;
+      padding: 1rem 1.25rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+    }
+
+    .footer-link {
+      font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover,
+    .footer-link:focus-visible {
+      color: var(--ink);
+    }
+
+    .footer-arrow { display: inline-block; transition: transform 0.2s ease; }
+    .footer-link:hover .footer-arrow,
+    .footer-link:focus-visible .footer-arrow { transform: translateX(2px); }
+
+    /* Desktop / wider viewports — let the buttons sit side-by-side */
+    @media (min-width: 480px) {
+      .cta {
+        flex-direction: row;
+      }
+      .btn { flex: 1 1 0; }
+    }
+
+    /* Very tall content on small phones — keep above the fold honest */
+    @media (max-height: 640px) {
+      .cover { max-height: 11rem; }
+      .hero-hook { font-size: 1.3rem; margin-bottom: 0.6rem; }
+      .credibility { margin-bottom: 0.85rem; }
+      main { padding-top: 1rem; padding-bottom: 0.5rem; }
+    }
+
+    /* Respect users who ask for reduced motion — kill the only transition that pulses */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+
+  <!-- Google Analytics — same property as the rest of the site -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCX49YFZRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CCX49YFZRQ');
+  </script>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <main id="main-content">
+
+    <div class="hero">
+      <p class="hero-hook">&ldquo;Would you, please&hellip; just hold her until she dies?&rdquo;</p>
+      <p class="hero-response">A foster mother said yes.</p>
+      <p class="hero-premise">She wrote down what happened next.</p>
+    </div>
+
+    <picture>
+      <source srcset="assets/img/just-hold-her-judy-wright-ebook-cover.avif" type="image/avif">
+      <source srcset="assets/img/just-hold-her-judy-wright-ebook-cover.webp" type="image/webp">
+      <img class="cover"
+           src="assets/img/just-hold-her-judy-wright-ebook-cover.jpeg"
+           alt="Just Hold Her book cover — a nursery mobile silhouetted against a warm golden sunrise through a rain-streaked window"
+           width="600" height="900"
+           decoding="async"
+           loading="eager"
+           fetchpriority="high">
+    </picture>
+
+    <p class="credibility">674 days recorded in spiral notebooks.</p>
+
+    <nav class="cta" aria-label="Buy the book">
+      <a id="btn-amazon" class="btn btn--primary"
+         href="https://www.amazon.com/dp/B0GRKVF8MV"
+         rel="noopener">Buy on<br>Amazon</a>
+      <a id="btn-apple" class="btn btn--secondary"
+         href="https://books.apple.com/us/book/just-hold-her/id6760304846"
+         rel="noopener">Buy on<br>Apple Books</a>
+    </nav>
+
+  </main>
+
+  <footer class="footer">
+    <a id="link-more" class="footer-link" href="/buy.html">More Retailers <span class="footer-arrow" aria-hidden="true">&rarr;</span></a>
+  </footer>
+
+  <script>
+    (function () {
+      // Read ?src= from the URL — used both for analytics and for retailer URL passthrough
+      var params = new URLSearchParams(window.location.search);
+      var src = (params.get('src') || '').trim().toLowerCase();
+
+      // Sanitize: only allow simple alphanumerics and dashes
+      if (!/^[a-z0-9\-]{1,40}$/.test(src)) src = '';
+
+      // Fire a page-level event so the QR source is captured even if the user doesn't click
+      if (window.gtag) {
+        gtag('event', 'hold_landing_view', {
+          qr_source: src || '(none)',
+          page_path: window.location.pathname + window.location.search
+        });
+      }
+
+      // Append source as UTM params to outbound retailer links
+      function addUtm(href) {
+        if (!src) return href;
+        var sep = href.indexOf('?') === -1 ? '?' : '&';
+        return href + sep + 'utm_source=' + encodeURIComponent(src) + '&utm_medium=qr&utm_campaign=hold-bookmark';
+      }
+
+      var amazon = document.getElementById('btn-amazon');
+      var apple  = document.getElementById('btn-apple');
+      var more   = document.getElementById('link-more');
+
+      if (amazon) amazon.href = addUtm(amazon.href);
+      if (apple)  apple.href  = addUtm(apple.href);
+      // 'More' is internal; pass through src for the buy.html page if it ever reads it
+      if (more && src) {
+        more.href = '/buy.html?src=' + encodeURIComponent(src);
+      }
+
+      // Fire conversion-intent events on tap
+      function track(name) {
+        return function () {
+          if (window.gtag) {
+            gtag('event', name, {
+              qr_source: src || '(none)'
+            });
+          }
+        };
+      }
+      if (amazon) amazon.addEventListener('click', track('purchase_intent_amazon'));
+      if (apple)  apple.addEventListener('click',  track('purchase_intent_apple'));
+      if (more)   more.addEventListener('click',   track('more_retailers_click'));
+    })();
+  </script>
+</body>
+</html>
