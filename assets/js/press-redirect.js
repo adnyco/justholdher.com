@@ -1,44 +1,66 @@
+/**
+ * Cloudflare Worker — Permanent vanity-URL aliases
+ *
+ * Routes canonical short paths to their permanent destinations.
+ * Status code: 301 (permanent). These aliases are stable infrastructure;
+ * search engines should consolidate ranking onto the canonical URLs.
+ *
+ * Distinct from qr-worker.js, which handles temporary campaign tracking.
+ */
+
+const ORIGIN = "https://justholdher.com";
+
+const REDIRECTS = {
+  // Media & Press → media.html
+  "/pr":          `${ORIGIN}/media.html`,
+  "/press":       `${ORIGIN}/media.html`,
+  "/media":       `${ORIGIN}/media.html`,
+  "/presskit":    `${ORIGIN}/media.html`,
+  "/press-kit":   `${ORIGIN}/media.html`,
+  "/mediakit":    `${ORIGIN}/media.html`,
+  "/media-kit":   `${ORIGIN}/media.html`,
+  "/agents":      `${ORIGIN}/media.html`,
+  "/publishers":  `${ORIGIN}/media.html`,
+
+  // Buy & Order → buy.html
+  "/buy":           `${ORIGIN}/buy.html`,
+  "/buynow":        `${ORIGIN}/buy.html`,
+  "/order":         `${ORIGIN}/buy.html`,
+  "/book":          `${ORIGIN}/buy.html`,
+  "/purchase":      `${ORIGIN}/buy.html`,
+  "/where-to-buy":  `${ORIGIN}/buy.html`,
+  "/buyitnow":      `${ORIGIN}/buy.html`,
+  "/buy-now":       `${ORIGIN}/buy.html`,
+  "/buy-it-now":    `${ORIGIN}/buy.html`,
+
+  // Notebook → notebook.html
+  "/notebook":         `${ORIGIN}/notebook.html`,
+  "/judysnotebook":    `${ORIGIN}/notebook.html`,
+  "/judys-notebook":   `${ORIGIN}/notebook.html`,
+  "/notes":            `${ORIGIN}/notebook.html`,
+  "/spiralnotebook":   `${ORIGIN}/notebook.html`,
+  "/spiral-notebook":  `${ORIGIN}/notebook.html`,
+};
+
 export default {
   async fetch(request) {
     const url = new URL(request.url);
-    // Standardize the path: lowercase and remove trailing slash
-    const pathname = url.pathname.toLowerCase().replace(/\/$/, "");
 
-    // 1. Media & Press Redirects -> media.html
-    const mediaPaths = new Set([
-      "/pr", "/press", "/media", "/presskit", "/press-kit", 
-      "/mediakit", "/media-kit", "/agents", "/publishers"
-    ]);
+    // Normalize path: lowercase, strip trailing slashes
+    const path = url.pathname.toLowerCase().replace(/\/+$/, "") || "/";
 
-    if (mediaPaths.has(pathname)) {
-      return Response.redirect("https://justholdher.com/media.html", 301);
+    const target = REDIRECTS[path];
+    if (!target) {
+      return fetch(request);
     }
 
-    // 2. Buy & Order Redirects -> buy.html
-    const buyPaths = new Set([
-      "/buy", "/buynow", "/order", "/book", "/purchase", 
-      "/where-to-buy", "/buyitnow", "/buy-now", "/buy-it-now"
-    ]);
-
-    if (buyPaths.has(pathname)) {
-      return Response.redirect("https://justholdher.com/buy.html", 301);
-    }
-
-    // 3. Notebook Redirects -> notebook.html
-    const notebookPaths = new Set([
-      "/notebook", 
-      "/judysnotebook", 
-      "/judys-notebook", 
-      "/notes", 
-      "/spiralnotebook", 
-      "/spiral-notebook"
-    ]);
-
-    if (notebookPaths.has(pathname)) {
-      return Response.redirect("https://justholdher.com/notebook.html", 301);
-    }
-
-    // 4. Fallback: If no match, continue to the site normally
-    return fetch(request);
+    return new Response(null, {
+      status: 301,
+      headers: {
+        "Location": target,
+        // 301s are permanent — cache for a year on the edge and in browsers
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    });
   }
 };
