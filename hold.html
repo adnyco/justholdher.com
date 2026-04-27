@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#f0e8d8">
 
   <!-- Favicon -->
-  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
 
   <!-- Font: Cormorant Garamond only (the one weight/style this page uses) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 
   <!-- Preload the cover (the one image above the fold) -->
-  <link rel="preload" as="image" href="/assets/img/just-hold-her-judy-wright-ebook-cover.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/just-hold-her-judy-wright-ebook-cover.webp" type="image/webp" fetchpriority="high">
 
   <style>
     :root {
@@ -260,10 +260,10 @@
     </div>
 
     <picture>
-      <source srcset="/assets/img/just-hold-her-judy-wright-ebook-cover.avif" type="image/avif">
-      <source srcset="/assets/img/just-hold-her-judy-wright-ebook-cover.webp" type="image/webp">
+      <source srcset="assets/img/just-hold-her-judy-wright-ebook-cover.avif" type="image/avif">
+      <source srcset="assets/img/just-hold-her-judy-wright-ebook-cover.webp" type="image/webp">
       <img class="cover"
-           src="/assets/img/just-hold-her-judy-wright-ebook-cover.jpeg"
+           src="assets/img/just-hold-her-judy-wright-ebook-cover.jpeg"
            alt="Just Hold Her book cover — a nursery mobile silhouetted against a warm golden sunrise through a rain-streaked window"
            width="600" height="900"
            decoding="async"
@@ -271,15 +271,15 @@
            fetchpriority="high">
     </picture>
 
-    <p class="credibility">Not recalled. Recorded.</p>
+    <p class="credibility">674 days recorded in spiral notebooks.</p>
 
     <nav class="cta" aria-label="Buy the book">
       <a id="btn-amazon" class="btn btn--primary"
          href="https://www.amazon.com/dp/B0GRKVF8MV"
-         rel="noopener">Buy on Amazon</a>
+         rel="noopener">Buy on<br>Amazon</a>
       <a id="btn-apple" class="btn btn--secondary"
          href="https://books.apple.com/us/book/just-hold-her/id6760304846"
-         rel="noopener">Buy on Apple Books</a>
+         rel="noopener">Buy on<br>Apple Books</a>
     </nav>
 
   </main>
@@ -305,21 +305,11 @@
         });
       }
 
-      // Append batch-level UTM to outbound retailer links.
-      //
-      // Division of responsibility:
-      //   The Cloudflare worker (qr-worker.js, /hold route) owns the
-      //   campaign-level UTM (utm_source=bookmark, utm_medium=qr,
-      //   utm_campaign=book_launch) — applied at redirect time, before
-      //   the page even loads.
-      //
-      //   This page only adds utm_content=<src> for per-batch / per-region
-      //   attribution drill-down. The worker sets the campaign; the page
-      //   adds the variant. This keeps the two systems from competing.
+      // Append source as UTM params to outbound retailer links
       function addUtm(href) {
         if (!src) return href;
         var sep = href.indexOf('?') === -1 ? '?' : '&';
-        return href + sep + 'utm_source=bookmark&utm_medium=qr&utm_campaign=book_launch&utm_content=' + encodeURIComponent(src);
+        return href + sep + 'utm_source=' + encodeURIComponent(src) + '&utm_medium=qr&utm_campaign=hold-bookmark';
       }
 
       var amazon = document.getElementById('btn-amazon');
