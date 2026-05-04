@@ -3544,6 +3544,104 @@ footer[role="contentinfo"] {
   color: var(--color-accent-subtle);
 }
 
+/* ── Hero bridge — emotional context below the hero ── */
+.signed-bridge-body {
+  max-width: 42ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.signed-bridge-body p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  color: var(--color-light-text-mid);
+  margin: 0 0 1.1rem;
+}
+
+.signed-bridge-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Cover anchor — visual anchor between bridge and intro ── */
+.signed-cover-anchor {
+  padding: 0 var(--space-md) var(--space-lg);
+  text-align: center;
+}
+
+.signed-cover-img {
+  display: block;
+  margin: 0 auto;
+  max-height: 18rem;
+  width: auto;
+  max-width: 55vw;
+  box-shadow:
+    0 2px 6px rgba(26, 26, 26, 0.10),
+    0 8px 24px rgba(26, 26, 26, 0.12);
+  border-radius: 1px;
+}
+
+/* ── "What this is" clarification block ── */
+.signed-whatitis-body {
+  max-width: 32ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.signed-whatitis-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-light-text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.signed-whatitis-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.signed-whatitis-list li {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-light-text);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.signed-whatitis-list li::before {
+  content: '\2014'; /* em dash */
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-subtle);
+}
+
+/* ── Pre-CTA emotional bridge ── */
+.signed-precta {
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  text-align: center;
+}
+
+.signed-precta-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--color-light-text-mid);
+  margin: 0 auto;
+  max-width: 36ch;
+}
+
 /* ── Hero (non-page-hero — solid cream, prose-led) ── */
 .signed-hero,
 .thanks-hero {
@@ -3603,7 +3701,16 @@ footer[role="contentinfo"] {
   text-align: center;
 }
 
-.signed-intro-body p,
+.signed-intro-body p {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-light-text-mid);
+  margin: 0 0 1rem;
+}
+
 .signed-finepoint-body p,
 .thanks-note-body p {
   font-family: var(--font-display);
@@ -3629,6 +3736,15 @@ footer[role="contentinfo"] {
   margin-top: var(--space-sm) !important;
   font-size: var(--text-sm) !important;
   color: var(--color-light-text-mid) !important;
+}
+
+.signed-finepoint-gratitude {
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--text-lg) !important;
+  color: var(--color-light-text-mid) !important;
+  margin-top: var(--space-md) !important;
+  margin-bottom: var(--space-sm) !important;
 }
 
 .signed-finepoint-body a {
