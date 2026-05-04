@@ -3466,15 +3466,15 @@ footer[role="contentinfo"] {
    15e. SIGNED BOOKS — order page + thank-you page
    ================================================================ */
 
-/* ── Page-level: minimal chrome (no global nav/footer) ── */
+/* ─── Page shell ─────────────────────────────────────────────── */
 .signed-page {
   background: var(--color-light-bg-deep);
+  color: var(--color-light-text);
 }
 
-/* ── Solid cream utility (no notebook texture image) ── */
+/* ─── Utility: solid cream (no notebook texture) ─────────────── */
 .bg-cream {
   background: var(--color-light-bg-deep);
-  color: var(--color-bg-primary);
 }
 
 .bg-cream .media-section-label {
@@ -3485,20 +3485,20 @@ footer[role="contentinfo"] {
   background: var(--color-light-rule);
 }
 
-/* ── Minimal identity strip (replaces nav) ── */
+/* ─── Identity strip ─────────────────────────────────────────── */
 .signed-id-strip {
-  padding: var(--space-sm) var(--space-md);
+  padding: 0.9rem var(--space-md);
   text-align: center;
   border-bottom: 1px solid var(--color-light-rule);
 }
 
 .signed-id-link {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-light-text-mid);
+  color: var(--color-light-text-muted);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -3507,7 +3507,7 @@ footer[role="contentinfo"] {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-transform: none;
   letter-spacing: 0;
 }
@@ -3517,16 +3517,255 @@ footer[role="contentinfo"] {
   color: var(--color-light-text);
 }
 
-/* ── Minimal footer (replaces global footer) ── */
+/* ─── Hero ───────────────────────────────────────────────────── */
+.signed-hero,
+.thanks-hero {
+  padding: clamp(2rem, 6vw, 4rem) var(--space-md) clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+  background: var(--color-light-bg-deep);
+}
+
+.signed-hero-kicker,
+.thanks-hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent-subtle);
+  margin: 0 0 0.65rem;
+}
+
+.signed-hero h1,
+.thanks-hero h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--color-light-text);
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.015em;
+}
+
+.signed-hero-sub,
+.thanks-hero-sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--color-light-text-mid);
+  margin: 0 auto;
+  max-width: 34ch;
+}
+
+/* ─── Order cards grid ───────────────────────────────────────── */
+.signed-options {
+  background: var(--color-light-bg-deep);
+}
+
+.signed-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+/* Desktop: side by side — only for devices with fine pointer + hover
+   (i.e., mouse/trackpad). High-res phones in landscape will NOT
+   trigger this because they lack hover capability. */
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .signed-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ─── Individual card ────────────────────────────────────────── */
+.signed-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--color-light-rule);
+  /* No border-radius — squared edges match the Square button + editorial register */
+}
+
+.signed-card-inner {
+  flex: 1;
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--color-light-rule);
+}
+
+.signed-card-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-subtle);
+  margin: 0 0 0.6rem;
+  line-height: 1.4;
+}
+
+.signed-card-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  color: var(--color-light-text);
+  margin: 0 0 0.75rem;
+}
+
+.signed-card-title em {
+  font-style: italic;
+  color: var(--color-light-text-mid);
+  font-size: 0.9em;
+}
+
+.signed-card-body {
+  font-family: var(--font-display);
+  font-size: 0.975rem;
+  line-height: 1.65;
+  color: var(--color-light-text-mid);
+  margin: 0;
+}
+
+/* ─── Buy zone ───────────────────────────────────────────────── */
+.signed-card-buy {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.signed-card-price {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-light-text);
+  margin: 0 0 0.2rem;
+  line-height: 1;
+}
+
+.signed-card-shipping {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-light-text-muted);
+  margin: 0 0 1rem;
+  line-height: 1.3;
+}
+
+/* ─── Square Buy Button ──────────────────────────────────────── */
+/* Amber (#e8950a = --color-accent). Dark text on amber: ~8.1:1 AAA.
+   Hover darkens to #c97a05, verified at ~5.8:1, passes AA.
+   No border-radius — intentional, matches squared card edges. */
+.square-button {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-bg-primary);
+  background: var(--color-accent);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.square-button:hover {
+  background: #c97a05;
+  color: var(--color-bg-primary);
+  text-decoration: none;
+}
+
+.square-button:focus-visible {
+  background: #c97a05;
+  color: var(--color-bg-primary);
+  text-decoration: none;
+  outline: 2px solid var(--color-bg-primary);
+  outline-offset: -3px; /* inset on a dark button bg */
+}
+
+/* ─── QR slot (reserved, not yet active) ─────────────────────── */
+.signed-card-qr {
+  /* takes no space until populated */
+}
+
+.signed-card-qr:not(:empty) {
+  padding: 0.75rem 1.5rem 1rem;
+  border-top: 1px solid var(--color-light-rule);
+  text-align: center;
+}
+
+.signed-card-qr img {
+  display: block;
+  margin: 0 auto;
+  max-width: 7rem;
+  height: auto;
+}
+
+/* ─── Closing strip ──────────────────────────────────────────── */
+.signed-closing {
+  padding: clamp(1.5rem, 4vw, 2.5rem) var(--space-md);
+  text-align: center;
+  background: var(--color-light-bg-deep);
+  border-top: 1px solid var(--color-light-rule);
+}
+
+.signed-closing-main {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--color-light-text-mid);
+  margin: 0 auto 0.75rem;
+  max-width: 46ch;
+}
+
+.signed-closing-sub {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-light-text-muted);
+  margin: 0 auto;
+}
+
+.signed-closing-sub a {
+  color: var(--color-accent-subtle);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent-subtle);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.signed-closing-sub a:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ─── Minimal footer ─────────────────────────────────────────── */
 .signed-mini-footer {
-  padding: var(--space-md) var(--space-md) var(--space-lg);
+  padding: 1.1rem var(--space-md) 1.75rem;
   text-align: center;
   border-top: 1px solid var(--color-light-rule);
 }
 
 .signed-mini-footer p {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
   color: var(--color-light-text-muted);
   margin: 0;
@@ -3544,376 +3783,46 @@ footer[role="contentinfo"] {
   color: var(--color-accent-subtle);
 }
 
-/* ── Hero bridge — emotional context below the hero ── */
-.signed-bridge-body {
-  max-width: 42ch;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.signed-bridge-body p {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: var(--text-lg);
-  line-height: 1.7;
-  color: var(--color-light-text-mid);
-  margin: 0 0 1.1rem;
-}
-
-.signed-bridge-body p:last-child {
-  margin-bottom: 0;
-}
-
-/* ── Cover anchor — visual anchor between bridge and intro ── */
-.signed-cover-anchor {
-  padding: 0 var(--space-md) var(--space-lg);
-  text-align: center;
-}
-
-.signed-cover-img {
-  display: block;
-  margin: 0 auto;
-  max-height: 18rem;
-  width: auto;
-  max-width: 55vw;
-  box-shadow:
-    0 2px 6px rgba(26, 26, 26, 0.10),
-    0 8px 24px rgba(26, 26, 26, 0.12);
-  border-radius: 1px;
-}
-
-/* ── "What this is" clarification block ── */
-.signed-whatitis-body {
-  max-width: 32ch;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.signed-whatitis-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-light-text-muted);
-  margin: 0 0 0.75rem;
-}
-
-.signed-whatitis-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.signed-whatitis-list li {
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  line-height: 1.5;
-  color: var(--color-light-text);
-  padding-left: 1.25rem;
-  position: relative;
-}
-
-.signed-whatitis-list li::before {
-  content: '\2014'; /* em dash */
-  position: absolute;
-  left: 0;
-  color: var(--color-accent-subtle);
-}
-
-/* ── Pre-CTA emotional bridge ── */
-.signed-precta {
-  padding: var(--space-md) var(--space-md) var(--space-sm);
-  text-align: center;
-}
-
-.signed-precta-text {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: var(--text-lg);
-  line-height: 1.6;
-  color: var(--color-light-text-mid);
-  margin: 0 auto;
-  max-width: 36ch;
-}
-
-/* ── Hero (non-page-hero — solid cream, prose-led) ── */
-.signed-hero,
-.thanks-hero {
-  padding: var(--space-xl) var(--space-md) var(--space-md);
-  text-align: center;
-  background: var(--color-light-bg-deep);
-}
-
-.signed-hero-kicker,
-.thanks-hero-kicker {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-accent-subtle);
-  margin: 0 0 0.6rem;
-}
-
-.signed-hero h1,
-.thanks-hero h1 {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(var(--text-2xl), 5.5vw, var(--text-3xl));
-  line-height: var(--leading-display);
-  color: var(--color-light-text);
-  margin: 0 0 var(--space-sm);
-  letter-spacing: -0.01em;
-}
-
-.signed-hero h1 em,
-.thanks-hero h1 em {
-  font-style: italic;
-}
-
-.signed-hero-sub,
-.thanks-hero-sub {
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  line-height: 1.5;
-  color: var(--color-light-text-mid);
-  margin: 0 auto;
-  max-width: 38ch;
-}
-
-.thanks-hero-sub em {
-  font-style: italic;
-}
-
-/* ── Intro / Fine-print body text on cream sections ── */
-.signed-intro-body,
-.signed-finepoint-body,
+/* ─── Thank-you page ─────────────────────────────────────────── */
 .thanks-note-body {
-  max-width: 50ch;
+  max-width: 46ch;
   margin: 0 auto;
   text-align: center;
 }
 
-.signed-intro-body p {
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-style: italic;
-  font-weight: 300;
-  line-height: 1.7;
-  color: var(--color-light-text-mid);
-  margin: 0 0 1rem;
-}
-
-.signed-finepoint-body p,
 .thanks-note-body p {
   font-family: var(--font-display);
-  font-size: var(--text-base);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--text-lg);
   line-height: 1.7;
-  color: var(--color-light-text);
+  color: var(--color-light-text-mid);
   margin: 0 0 1rem;
 }
 
-.signed-intro-body p:last-child,
-.signed-finepoint-body p:last-child,
 .thanks-note-body p:last-child {
   margin-bottom: 0;
 }
 
-.signed-intro-note {
-  font-size: var(--text-sm) !important;
-  color: var(--color-light-text-mid) !important;
-  font-style: italic;
-}
-
-.signed-finepoint-closing {
-  margin-top: var(--space-sm) !important;
-  font-size: var(--text-sm) !important;
-  color: var(--color-light-text-mid) !important;
-}
-
-.signed-finepoint-gratitude {
-  font-style: italic;
-  font-weight: 300;
-  font-size: var(--text-lg) !important;
-  color: var(--color-light-text-mid) !important;
-  margin-top: var(--space-md) !important;
-  margin-bottom: var(--space-sm) !important;
-}
-
-.signed-finepoint-body a {
-  color: var(--color-accent-subtle);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.signed-finepoint-body a:hover {
-  color: var(--color-accent);
-}
-
-/* ── Order Options grid ── */
-.signed-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-md);
-  max-width: var(--max-width-wide);
-  margin: 0 auto;
-}
-
-/* ── Signed Card — one per purchase option ── */
-.signed-card {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid var(--color-light-rule);
-  padding: var(--space-md);
-  display: flex;
-  flex-direction: column;
-}
-
-.signed-card-kicker {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-accent-subtle);
-  margin: 0 0 0.6rem;
-  line-height: 1.4;
-}
-
-.signed-card-title {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--text-xl);
-  line-height: 1.2;
-  color: var(--color-light-text);
-  margin: 0 0 0.85rem;
-}
-
-.signed-card-title em {
-  font-style: italic;
-}
-
-.signed-card-body {
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  line-height: 1.6;
-  color: var(--color-light-text-mid);
-  margin: 0 0 1rem;
-}
-
-/* ── Buy slot: price + Square button ── */
-.signed-card-buy {
-  margin-top: auto; /* push to bottom of flex card so all three cards align */
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--color-light-rule);
-  text-align: center;
-}
-
-.signed-card-price {
-  font-family: var(--font-mono);
-  font-size: var(--text-lg);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--color-light-text);
-  margin: 0 0 0.6rem;
-  line-height: 1;
-}
-
-/* Shipping line — quiet annotation directly under the price (direct-ship card).
-   When present, it tightens the price's bottom margin so they read as a unit. */
-.signed-card-price + .signed-card-shipping {
-  margin-top: -0.4rem;
-}
-
-.signed-card-shipping {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--color-light-text-muted);
-  margin: 0 0 0.7rem;
-  line-height: 1.2;
-}
-
-/* QR slot — empty by default; reserved for future per-option QR display */
-.signed-card-qr {
-  /* Reserves no vertical space until populated */
-}
-
-.signed-card-qr:not(:empty) {
-  margin-top: var(--space-sm);
-  text-align: center;
-}
-
-.signed-card-qr img {
-  display: block;
-  margin: 0 auto;
-  max-width: 8rem;
-  height: auto;
-}
-
-/* ── Square Buy Button — restyled to site palette ──
-   Color #e8950a (--color-accent). Dark text on amber: ~8.1:1 (AAA).
-   Hover darkens to #c97a05; verified at ~5.8:1, still AA. */
-.square-button-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 0;
-}
-
-.square-button {
-  display: inline-block;
-  width: 100%;
-  max-width: 16rem;
-  padding: 0.85rem 1.25rem;
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-align: center;
-  text-decoration: none;
-  color: var(--color-bg-primary);
-  background-color: var(--color-accent);
-  border: 1px solid var(--color-accent);
-  border-radius: 0;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.square-button:hover {
-  background-color: #c97a05;
-  border-color: #c97a05;
-  color: var(--color-bg-primary);
-  text-decoration: none;
-}
-
-.square-button:focus-visible {
-  background-color: #c97a05;
-  border-color: #c97a05;
-  color: var(--color-bg-primary);
-  text-decoration: none;
-  outline: 2px solid var(--color-bg-primary);
-  outline-offset: 2px;
-}
-
-/* ── Thank-you: What Happens Next steps grid ── */
 .thanks-next-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
-  max-width: var(--max-width-wide);
+  gap: 1.25rem;
+  max-width: 64rem;
   margin: 0 auto;
 }
 
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .thanks-next-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
 .thanks-next-step {
-  background: rgba(255, 255, 255, 0.6);
+  background: #ffffff;
   border: 1px solid var(--color-light-rule);
-  padding: var(--space-md);
+  padding: 1.5rem;
 }
 
 .thanks-step-num {
@@ -3943,7 +3852,6 @@ footer[role="contentinfo"] {
   margin: 0;
 }
 
-/* ── Thank-you: Followup CTA section ── */
 .thanks-followup h2 {
   font-style: italic;
   font-weight: 300;
@@ -4296,24 +4204,6 @@ footer[role="contentinfo"] {
     grid-template-columns: 1fr;
   }
 
-  /* Signed Books / Thank-you pages mobile */
-  .signed-hero,
-  .thanks-hero {
-    padding: var(--space-lg) var(--space-md) var(--space-md);
-  }
-
-  .signed-card,
-  .thanks-next-step {
-    padding: var(--space-sm);
-  }
-
-  .signed-card-title {
-    font-size: var(--text-lg);
-  }
-
-  .thanks-step-num {
-    font-size: 2rem;
-  }
 }
 
 @media (min-width: 600px) and (max-width: 899px) {
@@ -4326,10 +4216,6 @@ footer[role="contentinfo"] {
     gap: 1.75rem 2.5rem;
   }
 
-  .signed-grid,
-  .thanks-next-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 @media (min-width: 900px) {
@@ -4348,8 +4234,4 @@ footer[role="contentinfo"] {
     gap: var(--space-lg);
   }
 
-  .signed-grid,
-  .thanks-next-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 }
