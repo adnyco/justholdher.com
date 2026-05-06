@@ -4106,7 +4106,7 @@ footer[role="contentinfo"] {
 
 /* Integrated narrative prose within the trust section */
 .visit-trust-narrative {
-  max-width: 32rem;
+  max-width: 29rem;
   margin: 0 auto var(--space-lg);
   text-align: left;
 }
