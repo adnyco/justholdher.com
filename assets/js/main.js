@@ -173,6 +173,10 @@
     btn.addEventListener('click', function () { openModal('rcopyModal', btn); });
   });
 
+  document.querySelectorAll('#openVisitModal, #openVisitModal2').forEach(function (btn) {
+    btn.addEventListener('click', function () { openModal('visitModal', btn); });
+  });
+
 
   /* ──────────────────────────────────────────────────────────────
      4. FORMSPREE AJAX SUBMISSION
