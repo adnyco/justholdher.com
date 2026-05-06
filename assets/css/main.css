@@ -4106,7 +4106,7 @@ footer[role="contentinfo"] {
 
 /* Integrated narrative prose within the trust section */
 .visit-trust-narrative {
-  max-width: 29rem;
+  max-width: 32rem;
   margin: 0 auto var(--space-lg);
   text-align: left;
 }
@@ -4371,6 +4371,23 @@ footer[role="contentinfo"] {
   margin: 0 0 var(--space-md);
 }
 
+/* Three-column panel: buttons left third, empty middle, preview right third */
+.visit-downloads-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .visit-downloads-panel {
+    grid-template-columns: minmax(24rem, 1fr) 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+}
+
+/* Stacked download buttons — occupies left third at desktop */
 .visit-downloads-list {
   list-style: none;
   padding: 0;
@@ -4426,6 +4443,30 @@ a.visit-download-link:focus-visible {
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
+
+/* PDF preview — hidden on mobile, right third at desktop.
+   grid-column: 3 places it in the right third, leaving col 2 empty. */
+.visit-downloads-preview {
+  display: none;
+}
+
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .visit-downloads-preview {
+    display: block;
+    grid-column: 3;
+  }
+}
+
+.visit-downloads-preview img {
+  display: block;
+  width: 75%;
+  height: auto;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    0 8px 20px rgba(0, 0, 0, 0.20);
+  border-radius: 2px;
+}
+
 
 
 /* ================================================================
