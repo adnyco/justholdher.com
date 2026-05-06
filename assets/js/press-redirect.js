@@ -40,6 +40,12 @@ const REDIRECTS = {
   "/notes":            `${ORIGIN}/notebook.html`,
   "/spiralnotebook":   `${ORIGIN}/notebook.html`,
   "/spiral-notebook":  `${ORIGIN}/notebook.html`,
+
+  // Author Visits → visit.html
+  // /speaking is printed on outreach flyers and email signatures;
+  // redirect to /visit.html (the warmer, less transactional URL).
+  "/visit":     `${ORIGIN}/visit.html`,
+  "/speaking":  `${ORIGIN}/visit.html`,
 };
 
 export default {
