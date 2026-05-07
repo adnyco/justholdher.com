@@ -2470,6 +2470,19 @@ footer[role="contentinfo"] {
 }
 
 
+/* ── Speaking & Visits promo — reuses visit-action* classes from speaking page.
+   Overrides: text bottom-aligned within white card. */
+.about-speaking {
+  overflow: hidden;
+}
+
+.about-speaking .visit-cta-panel {
+  justify-content: flex-end;
+  border-top: none;
+  border-left: 1px solid var(--color-light-rule);
+}
+
+
 /* ── Page bottom CTA (shared: index, about, notebook, buy) ── */
 .page-bottom-cta,
 .about-bottom {
@@ -4262,6 +4275,15 @@ footer[role="contentinfo"] {
 .visit-about-link:focus-visible {
   color: var(--color-accent);
   border-color: var(--color-accent);
+}
+
+/* media-section-label on white CTA card — override dark-surface defaults */
+.visit-cta-panel .media-section-label {
+  color: var(--color-accent-subtle);
+}
+
+.visit-cta-panel .media-section-label::after {
+  background: var(--color-light-rule);
 }
 
 .visit-cta-panel {
