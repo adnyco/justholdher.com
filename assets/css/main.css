@@ -557,7 +557,7 @@ html.scroll-locked {
 }
 
 .section--author .section-media img {
-  max-height: 38rem;
+  max-height: 48rem;
   object-fit: cover;
   object-position: top center;
 }
