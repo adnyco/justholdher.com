@@ -2,8 +2,8 @@
  * Cloudflare Worker — Permanent vanity-URL aliases
  *
  * Routes canonical short paths to their permanent destinations.
- * Status code: 301 (permanent). These aliases are stable infrastructure;
- * search engines should consolidate ranking onto the canonical URLs.
+ * Status: 301 (permanent). Search engines should consolidate ranking
+ * onto the canonical URLs.
  *
  * Distinct from qr-worker.js, which handles temporary campaign tracking.
  */
@@ -42,33 +42,41 @@ const REDIRECTS = {
   "/spiral-notebook":  `${ORIGIN}/notebook.html`,
 
   // Speaking & Visits → speaking.html
-  // /speaking is printed on outreach flyers and email signatures;
-  // redirect to /speaking.html (the warmer, less transactional URL).
-  "/visit":     `${ORIGIN}/speaking.html`,
-  "/visits":     `${ORIGIN}/speaking.html`,
-  "/speaking":  `${ORIGIN}/speaking.html`,
+  // /speaking is printed on outreach flyers and email signatures.
+  "/visit":    `${ORIGIN}/speaking.html`,
+  "/visits":   `${ORIGIN}/speaking.html`,
+  "/speaking": `${ORIGIN}/speaking.html`,
   "/speaker":  `${ORIGIN}/speaking.html`,
 };
+
+// Permanent redirect response — cached for one year on edge and in browsers
+function redirect301(location) {
+  return new Response(null, {
+    status: 301,
+    headers: {
+      "Location": location,
+      "Cache-Control": "public, max-age=31536000, immutable",
+    },
+  });
+}
 
 export default {
   async fetch(request) {
     const url = new URL(request.url);
 
-    // Normalize path: lowercase, strip trailing slashes
+    // Normalize: lowercase, strip trailing slashes
     const path = url.pathname.toLowerCase().replace(/\/+$/, "") || "/";
 
-    const target = REDIRECTS[path];
-    if (!target) {
-      return fetch(request);
+    // Signed edition closed — redirect all /books/* to the sold-out page
+    if (path === "/books" || path.startsWith("/books/")) {
+      return redirect301(`${ORIGIN}/books/sold-out.html`);
     }
 
-    return new Response(null, {
-      status: 301,
-      headers: {
-        "Location": target,
-        // 301s are permanent — cache for a year on the edge and in browsers
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    });
-  }
+    const target = REDIRECTS[path];
+    if (target) {
+      return redirect301(target);
+    }
+
+    return fetch(request);
+  },
 };
