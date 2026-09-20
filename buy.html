@@ -61,8 +61,8 @@
         "datePublished": "2026-04-15",
         "url": "https://justholdher.com/buy.html",
         "offers": [
-          { "@type": "Offer", "name": "Ebook", "bookFormat": "https://schema.org/EBook", "availability": "https://schema.org/PreOrder", "availabilityStarts": "2026-04-15" },
-          { "@type": "Offer", "name": "Print Edition", "bookFormat": "https://schema.org/Paperback", "availability": "https://schema.org/PreOrder", "availabilityStarts": "2026-06-01" }
+          { "@type": "Offer", "name": "Ebook", "bookFormat": "https://schema.org/EBook", "availability": "https://schema.org/InStock" },
+          { "@type": "Offer", "name": "Print Edition", "bookFormat": "https://schema.org/Paperback", "availability": "https://schema.org/InStock" }
         ],
         "review": [
           { "@type": "Review", "reviewBody": "A fantastic read. A true testament to modern medicine, unconditional love, and compassion.", "author": { "@type": "Person", "name": "Linda Thulin" } },
@@ -137,14 +137,15 @@
           <h1 id="buy-h1"><em>&#8220;Would you, please&#8230;<br>just hold her<br>until she dies?&#8221;</em></h1>
           <p class="buy-hero-tagline">A literary memoir of foster care, medical bureaucracy, and the quiet defiance of staying.</p>
 
-          <div class="phase-block phase-block--preorder">
-            <p class="buy-phase-note">Pre-order the ebook now &#183; Paperback and hardcover available June 1, 2026</p>
-          </div>
-          <div class="phase-block phase-block--ebook">
-            <p class="buy-phase-note">Ebook available now &#183; Paperback and hardcover available June 1, 2026</p>
-          </div>
-          <div class="phase-block phase-block--all">
-            <p class="buy-phase-note">Available now in ebook, paperback, and hardcover</p>
+          <p class="buy-phase-note">Available now in ebook, paperback, and hardcover.</p>
+
+          <!-- Direct purchasing through IngramSpark Share & Sell. -->
+          <div class="buy-direct" aria-label="Buy print editions directly">
+            <p class="buy-direct-label">Buy directly</p>
+            <div class="buy-direct-actions">
+              <a class="btn btn-primary" href="https://shop.ingramspark.com/b/084?params=CZnO7pdV09ct8MkGZOAiZYkIEOkM151cJpvMnMT7nQG" target="_blank" rel="noopener noreferrer">Paperback</a>
+              <a class="btn btn-primary" href="https://shop.ingramspark.com/b/084?params=67CsnvzLZlPMxv2UCuLAdNgVo7tFGI3yq91dV0RBNji" target="_blank" rel="noopener noreferrer">Hardcover</a>
+            </div>
           </div>
 
           <!-- ── Retailer Logos (inline) ─────────────────────────────── -->
@@ -187,19 +188,6 @@
       </div>
     </section>
 
-    <!-- ══ RELEASE DATE BANNER (remove after June 1, 2026) ═════════════════ -->
-    <div class="release-banner" aria-label="Release dates">
-      <div class="release-banner-inner wrap">
-        <div class="release-banner-item">
-          <span class="release-banner-label">Ebook</span>
-          <span class="release-banner-date">April 15, 2026</span>
-        </div>
-        <div class="release-banner-item">
-          <span class="release-banner-label">Print Edition</span>
-          <span class="release-banner-date">June 1, 2026</span>
-        </div>
-      </div>
-    </div>
 
     <!-- ══ THE STORY ═══════════════════════════════════════════════════════ -->
     <section class="section buy-story bg-notebook" aria-labelledby="buy-story-title">
@@ -351,23 +339,10 @@
 
         <h2>The story is here.<br>Take it home.</h2>
 
-        <div class="phase-block phase-block--preorder">
-          <p>Pre-order the ebook now.<br>Paperback and hardcover available June 1, 2026.</p>
-          <div class="cta-row cta-row--center">
-            <a href="#retailers" class="btn btn--accent">Pre-order the Book</a>
-          </div>
-        </div>
-        <div class="phase-block phase-block--ebook">
-          <p>The ebook is available now.<br>Paperback and hardcover available June 1, 2026.</p>
-          <div class="cta-row cta-row--center">
-            <a href="#retailers" class="btn btn--accent">Buy the Ebook</a>
-          </div>
-        </div>
-        <div class="phase-block phase-block--all">
-          <p>Available now in ebook, paperback, and hardcover.</p>
-          <div class="cta-row cta-row--center">
-            <a href="#retailers" class="btn btn--accent">Pre-order the Book</a>
-          </div>
+        <p>Available now in ebook, paperback, and hardcover.</p>
+        <div class="cta-row cta-row--center">
+          <a href="https://shop.ingramspark.com/b/084?params=CZnO7pdV09ct8MkGZOAiZYkIEOkM151cJpvMnMT7nQG" class="btn btn--accent" target="_blank" rel="noopener noreferrer">Buy Paperback</a>
+          <a href="https://shop.ingramspark.com/b/084?params=67CsnvzLZlPMxv2UCuLAdNgVo7tFGI3yq91dV0RBNji" class="btn btn--accent" target="_blank" rel="noopener noreferrer">Buy Hardcover</a>
         </div>
 
       </div>
