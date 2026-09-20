@@ -88,18 +88,18 @@
       <div class="notebook-hero-content page-hero-content wrap">
         <h1 id="notebook-h1">Judy&#8217;s Notebook</h1>
         <p class="notebook-hero-sub">Moments from a life in foster care.<br>Written slowly. Shared carefully.</p>
-        <div class="notebook-hero-actions" id="subscribe">
-          <a href="#subscribe" class="btn btn--outline btn--light" id="notebook-subscribe-btn">Subscribe</a>
+        <div class="notebook-hero-actions" id="subscribe" aria-label="Newsletter subscription">
+          <a href="#subscribe" class="btn btn--outline btn--light" id="notebook-subscribe-btn" aria-controls="subscribe-drawer">Subscribe</a>
         </div>
       </div>
     </section>
 
     <!-- ══ SUBSCRIBE DRAWER ════════════════════════════════════════════════ -->
-    <div class="subscribe-drawer" id="subscribe-drawer" aria-label="Subscribe to Judy&#8217;s Notebook">
+    <div class="subscribe-drawer" id="subscribe-drawer" role="region" aria-label="Subscribe to Judy&#8217;s Notebook">
       <div class="subscribe-drawer-inner wrap">
         <p class="subscribe-drawer-text">Receive new writing from Judy&#8217;s Notebook in your inbox.</p>
         <div class="subscribe-drawer-embed">
-          <p class="subscribe-drawer-loading">Loading&#8230;</p>
+          <p class="subscribe-drawer-loading" aria-live="polite">Loading subscription form&#8230;</p>
           <iframe src="https://judysnotebook.substack.com/embed" width="480" height="160" title="Subscribe to Judy&#8217;s Notebook on Substack" loading="lazy" style="border:1px solid #e8950a; background:white; border-radius:6px; max-width:100%;"></iframe>
         </div>
       </div>
@@ -109,7 +109,7 @@
     <section class="section notebook-posts bg-notebook" aria-label="Recent writing">
       <div class="wrap">
         <div class="notebook-feed" id="rss-container" aria-live="polite">
-          <p class="notebook-loading">Loading posts&#8230;</p>
+          <p class="notebook-loading" aria-live="polite">Loading recent writing&#8230;</p>
         </div>
         <div class="notebook-archive">
           <a href="https://judysnotebook.substack.com"
@@ -161,7 +161,7 @@
           <p class="footer-label">Subscribe to Judy&#8217;s Notebook</p>
           <p>Receive new writing from Judy&#8217;s Notebook in your inbox.</p>
           <div class="footer-subscribe">
-            <a class="btn btn--outline btn--sm" href="#subscribe" id="footer-subscribe-btn">Subscribe by Email</a>
+            <a class="btn btn--outline btn--sm" href="#subscribe" id="footer-subscribe-btn" aria-controls="subscribe-drawer">Subscribe by Email</a>
           </div>
         </div>
       </div>

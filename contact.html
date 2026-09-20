@@ -121,18 +121,19 @@
           <!-- Form column -->
           <div class="contact-form-col">
             <h2 class="sr-only" id="contact-form-title">Send a Message</h2>
-            <form class="contact-page-form" id="contactPageForm" action="https://formspree.io/f/mpqynrkv" method="POST">
+            <p class="sr-only" id="contact-form-note">Use this form for general notes, press inquiries, speaking requests, book clubs, permissions, or other questions.</p>
+            <form class="contact-page-form" id="contactPageForm" action="https://formspree.io/f/mpqynrkv" method="POST" aria-describedby="contact-form-note">
               <div class="field">
-                <label for="cp-name">Your Name (required)</label>
+                <label for="cp-name">Your Name <span aria-hidden="true">(required)</span><span class="sr-only"> required</span></label>
                 <input type="text" id="cp-name" name="name" required autocomplete="name">
               </div>
               <div class="field">
-                <label for="cp-email">Email Address (required)</label>
+                <label for="cp-email">Email Address <span aria-hidden="true">(required)</span><span class="sr-only"> required</span></label>
                 <input type="email" id="cp-email" name="email" required autocomplete="email">
               </div>
               <div class="field">
                 <label for="cp-subject">Subject</label>
-                <select id="cp-subject" name="subject">
+                <select id="cp-subject" name="subject" aria-describedby="cp-subject-note">
                   <option value="">Select one&#8230;</option>
                   <option value="General Note">General Note</option>
                   <option value="Press &amp; Interviews">Press &amp; Interviews</option>
@@ -141,10 +142,11 @@
                   <option value="Permissions or Rights">Permissions or Rights</option>
                   <option value="Other">Other</option>
                 </select>
+                <p class="field-note" id="cp-subject-note">Choose the topic that best describes your message.</p>
               </div>
               <div class="field">
-                <label for="cp-message">Message (required)</label>
-                <textarea id="cp-message" name="message" required rows="6"></textarea>
+                <label for="cp-message">Message <span aria-hidden="true">(required)</span><span class="sr-only"> required</span></label>
+                <textarea id="cp-message" name="message" required rows="6" autocomplete="off"></textarea>
               </div>
               <button type="submit" class="btn btn--accent btn--contact-submit">Send Your Note</button>
             </form>

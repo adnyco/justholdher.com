@@ -107,8 +107,7 @@
             <p class="media-section-label" id="visit-details-title">What a Visit Includes</p>
             <ul class="visit-list">
               <li>An hour &mdash; a reading, conversation, and questions</li>
-              <li>Signed copies available for attendees</li>
-              <li>Discussion questions provided for book clubs or group programs</li>
+                <li>Discussion questions provided for book clubs or group programs</li>
               <li>Flexible scheduling &mdash; mornings, afternoons, or evenings</li>
               <li>No fee. Judy volunteers her time.</li>
             </ul>
@@ -329,7 +328,7 @@
 
   <!-- ══ VISIT REQUEST MODAL ═══════════════════════════════════════════════
        Triggered by #openVisitModal (CTA panel) and #openVisitModal2 (hero).
-       Both wired in main.js. Formspree endpoint: replace VISIT_FORM_ID.
+       Both wired in main.js. Speaking inquiries use the shared Formspree endpoint pending a dedicated routing decision.
   ═══════════════════════════════════════════════════════════════════════ -->
   <div class="modal-overlay" id="visitModal" role="dialog" aria-modal="true" aria-labelledby="visit-modal-title">
     <div class="modal">
@@ -337,7 +336,7 @@
       <p class="modal-kicker">Author Visits &middot; Just Hold Her</p>
       <h2 id="visit-modal-title">Request a Visit</h2>
       <p class="modal-deck">Judy responds personally. Include a note about your organization and what would make this visit meaningful.</p>
-      <form class="modal-form" id="visitForm" action="https://formspree.io/f/VISIT_FORM_ID" method="POST">
+      <form class="modal-form" id="visitForm" action="https://formspree.io/f/mpqynrkv" method="POST">
         <div class="field"><label for="visit-name">Your Name (required)</label><input type="text" id="visit-name" name="name" required autocomplete="name"></div>
         <div class="field"><label for="visit-email">Email Address (required)</label><input type="email" id="visit-email" name="email" required autocomplete="email"></div>
         <div class="field"><label for="visit-org">Organization Name and Type (required)</label><input type="text" id="visit-org" name="organization" required></div>
