@@ -88,6 +88,20 @@
     gtag('js', new Date());
     gtag('config', 'G-CCX49YFZRQ');
   </script>
+
+  <style>
+    /* Buy-page purchase hierarchy. Keep primary editions equal in width. */
+    .buy-actions { margin-top: var(--space-md); max-width: 560px; }
+    .buy-actions-primary, .buy-actions-secondary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+    .buy-actions-secondary { margin-top: .75rem; }
+    .buy-action { width: 100%; min-height: 3.25rem; display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+    .buy-retailers-drawer { margin-top: var(--space-md); max-width: 560px; }
+    .buy-retailers-drawer[hidden] { display: none !important; }
+    .buy-retailers-drawer-label { margin: 0 0 .75rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-text-muted); }
+    .buy-retailers-drawer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+    .buy-retailers-drawer-grid a { display: flex; align-items: center; justify-content: center; padding: .8rem; border: 1px solid rgba(255,255,255,.12); border-radius: var(--border-radius); text-align: center; text-decoration: none; }
+    @media (max-width: 480px) { .buy-actions-primary, .buy-actions-secondary, .buy-retailers-drawer-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 
 <body class="phase-all">
@@ -137,49 +151,27 @@
           <h1 id="buy-h1"><em>&#8220;Would you, please&#8230;<br>just hold her<br>until she dies?&#8221;</em></h1>
           <p class="buy-hero-tagline">A literary memoir of foster care, medical bureaucracy, and the quiet defiance of staying.</p>
 
-          <p class="buy-phase-note">Available now in ebook, paperback, and hardcover.</p>
-
-          <!-- Direct purchasing through IngramSpark Share & Sell. -->
-          <div class="buy-direct" aria-label="Buy print editions directly">
-            <p class="buy-direct-label">Buy directly</p>
-            <div class="buy-direct-actions">
-              <a class="btn btn-primary" href="https://shop.ingramspark.com/b/084?params=CZnO7pdV09ct8MkGZOAiZYkIEOkM151cJpvMnMT7nQG" target="_blank" rel="noopener noreferrer">Paperback</a>
-              <a class="btn btn-primary" href="https://shop.ingramspark.com/b/084?params=67CsnvzLZlPMxv2UCuLAdNgVo7tFGI3yq91dV0RBNji" target="_blank" rel="noopener noreferrer">Hardcover</a>
+          <!-- Purchase options: direct IngramSpark links first. -->
+          <div class="buy-actions" aria-label="Purchase options">
+            <div class="buy-actions-primary">
+              <a class="btn btn--accent buy-action" href="https://shop.ingramspark.com/b/084?params=CZnO7pdV09ct8MkGZOAiZYkIEOkM151cJpvMnMT7nQG" target="_blank" rel="noopener noreferrer">Buy Paperback</a>
+              <a class="btn btn--accent buy-action" href="https://shop.ingramspark.com/b/084?params=67CsnvzLZlPMxv2UCuLAdNgVo7tFGI3yq91dV0RBNji" target="_blank" rel="noopener noreferrer">Buy Hardcover</a>
+            </div>
+            <div class="buy-actions-secondary">
+              <a class="btn btn--outline buy-action" href="https://www.amazon.com/dp/B0GRKVF8MV" target="_blank" rel="noopener noreferrer">Amazon</a>
+              <button class="btn btn--outline buy-action" type="button" id="more-retailers-toggle" aria-expanded="false" aria-controls="more-retailers-panel">More Retailers</button>
             </div>
           </div>
 
-          <!-- ── Retailer Logos (inline) ─────────────────────────────── -->
-          <div class="buy-retailers" id="retailers" aria-label="Where to buy Just Hold Her">
-            <div class="buy-retailer-row" role="list">
-              <a href="https://www.amazon.com/dp/B0GRKVF8MV" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-amazon.png" alt="Buy on Amazon" width="420" height="180" loading="eager">
-              </a>
-              <a href="https://www.barnesandnoble.com/w/just-hold-her-judy-wright/1149910008?ean=9798995225126" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-barnes-&-noble.png" alt="Buy on Barnes &amp; Noble" width="420" height="180" loading="eager">
-              </a>
-              <a href="https://bookshop.org/p/books/just-hold-her-judy-wright/cbf9cef7bc2d4b22" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-bookshop.png" alt="Buy on Bookshop.org" width="420" height="180" loading="eager">
-              </a>
-              <a href="https://www.kobo.com/us/en/ebook/just-hold-her" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-rakuten-kobo.png" alt="Read on Kobo" width="250" height="250" loading="eager">
-              </a>
-            </div>
-            <div class="buy-retailer-row" role="list">
-              <a href="https://www.amazon.com/dp/B0GRKVF8MV" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-kindle.png" alt="Read on Kindle" width="250" height="250" loading="eager">
-              </a>
-              <a href="https://books.apple.com/us/book/just-hold-her/id6760304846" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-apple-books.png" alt="Buy on Apple Books" width="420" height="180" loading="eager">
-              </a>
-              <a href="https://www.barnesandnoble.com/w/just-hold-her-judy-wright/1149657455" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-nook.png" alt="Read on Nook" width="250" height="250" loading="eager">
-              </a>
-              <a href="https://play.google.com/store/books/details?id=YR3IEQAAQBAJ&rdid=book-YR3IEQAAQBAJ" class="retailer-logo-link" role="listitem" target="_blank" rel="noopener noreferrer">
-                <img src="assets/img/book-stores/just-hold-her_book-google-play.png" alt="Buy on Google Play Books" width="250" height="250" loading="eager">
-              </a>
-              <a href="https://books2read.com/justholdher" class="retailer-more" role="listitem" target="_blank" rel="noopener noreferrer">
-                More retailers &#8594;<span class="sr-only"> (opens in new tab)</span>
-			</a>
+          <div id="more-retailers-panel" class="buy-retailers-drawer" hidden>
+            <p class="buy-retailers-drawer-label">More ways to buy</p>
+            <div class="buy-retailers-drawer-grid">
+              <a href="https://www.barnesandnoble.com/w/just-hold-her-judy-wright/1149910008?ean=9798995225126" target="_blank" rel="noopener noreferrer">Barnes &amp; Noble</a>
+              <a href="https://bookshop.org/p/books/just-hold-her-judy-wright/cbf9cef7bc2d4b22" target="_blank" rel="noopener noreferrer">Bookshop.org</a>
+              <a href="https://books.apple.com/us/book/just-hold-her/id6760304846" target="_blank" rel="noopener noreferrer">Apple Books</a>
+              <a href="https://www.kobo.com/us/en/ebook/just-hold-her" target="_blank" rel="noopener noreferrer">Rakuten Kobo</a>
+              <a href="https://play.google.com/store/books/details?id=YR3IEQAAQBAJ&amp;rdid=book-YR3IEQAAQBAJ" target="_blank" rel="noopener noreferrer">Google Play Books</a>
+              <a href="https://books2read.com/justholdher" target="_blank" rel="noopener noreferrer">All Retailers</a>
             </div>
           </div>
 
@@ -187,7 +179,6 @@
 
       </div>
     </section>
-
 
     <!-- ══ THE STORY ═══════════════════════════════════════════════════════ -->
     <section class="section buy-story bg-notebook" aria-labelledby="buy-story-title">
@@ -338,11 +329,6 @@
       <div class="buy-bottom-inner wrap">
 
         <h2>The story is here.<br>Take it home.</h2>
-
-        <p>Available now in ebook, paperback, and hardcover.</p>
-        <div class="cta-row cta-row--center">
-          <a href="https://shop.ingramspark.com/b/084?params=CZnO7pdV09ct8MkGZOAiZYkIEOkM151cJpvMnMT7nQG" class="btn btn--accent" target="_blank" rel="noopener noreferrer">Buy Paperback</a>
-          <a href="https://shop.ingramspark.com/b/084?params=67CsnvzLZlPMxv2UCuLAdNgVo7tFGI3yq91dV0RBNji" class="btn btn--accent" target="_blank" rel="noopener noreferrer">Buy Hardcover</a>
         </div>
 
       </div>
@@ -390,5 +376,19 @@
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('more-retailers-toggle');
+      var panel = document.getElementById('more-retailers-panel');
+      if (!toggle || !panel) return;
+      toggle.addEventListener('click', function () {
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        panel.hidden = expanded;
+        toggle.textContent = expanded ? 'More Retailers' : 'Hide Retailers';
+      });
+    }());
+  </script>
 </body>
 </html>
