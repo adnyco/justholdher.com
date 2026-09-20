@@ -17,20 +17,7 @@
 
 (function () {
 
-  /* ──────────────────────────────────────────────────────────────
-     PHASE DATE FALLBACK
-     Safety net: auto-corrects the body phase class if the manual
-     switchover hasn't happened yet. Remove this block once
-     phase-all is committed and the release banner is cleaned up.
-  ────────────────────────────────────────────────────────────── */
-  var now = new Date();
-  var body = document.body;
-  if (now >= new Date('2026-06-01T00:00:00-04:00')) {
-    body.className = body.className.replace('phase-preorder', 'phase-all').replace('phase-ebook', 'phase-all');
-  } else if (now >= new Date('2026-04-15T00:00:00-04:00')) {
-    body.className = body.className.replace('phase-preorder', 'phase-ebook');
-  }
-
+  /* Phase-date fallback removed. Release state is now managed in page markup. */
 
   /* ──────────────────────────────────────────────────────────────
      SCROLL LOCK UTILITY
