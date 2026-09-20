@@ -126,6 +126,30 @@
         0 0 3rem 0.5rem rgba(232, 200, 160, 0.15);
     }
 
+    /* Purchase hierarchy: two prominent primary CTAs, with secondary actions below. */
+    .launch-purchase-actions {
+      display: grid;
+      gap: 0.7rem;
+      max-width: 540px;
+    }
+
+    .launch-purchase-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .launch-purchase-row .btn {
+      width: 100%;
+      min-width: 0;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .launch-purchase-row--secondary {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     /* Retailers expandable */
     .launch-retailers {
       margin-top: var(--space-md);
@@ -311,6 +335,12 @@
       }
     }
 
+    @media (max-width: 480px) {
+      .launch-purchase-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 640px) {
       .launch-panel {
         min-height: auto;
@@ -359,12 +389,18 @@
           <h1 id="launch-buy-title" class="launch-headline">Take the Story Home</h1>
           <p class="launch-subhead">A true story of holding on.<br>And letting go.</p>
 
-          <div class="cta-row">
-            <a class="btn btn--accent" href="https://www.amazon.com/dp/B0GRKVF8MV" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
-            <button class="btn btn--outline" type="button" id="more-retailers-toggle" aria-expanded="false" aria-controls="more-retailers-panel">More Retailers</button>
+          <div class="launch-purchase-actions" aria-label="Purchase options">
+            <div class="launch-purchase-row launch-purchase-row--primary">
+              <a class="btn btn--accent" href="https://shop.ingramspark.com/b/084?params=CZnO7pdV09ct8MkGZOAiZYkIEOkM151cJpvMnMT7nQG" target="_blank" rel="noopener noreferrer">Buy Paperback</a>
+              <a class="btn btn--accent" href="https://shop.ingramspark.com/b/084?params=67CsnvzLZlPMxv2UCuLAdNgVo7tFGI3yq91dV0RBNji" target="_blank" rel="noopener noreferrer">Buy Hardcover</a>
+            </div>
+            <div class="launch-purchase-row launch-purchase-row--secondary">
+              <a class="btn btn--outline" href="https://www.amazon.com/dp/B0GRKVF8MV" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+              <button class="btn btn--outline" type="button" id="more-retailers-toggle" aria-expanded="false" aria-controls="more-retailers-panel">More Retailers</button>
+            </div>
           </div>
 
-          <p class="launch-support">Ebook available now &#183; Print pre-order open</p>
+          <p class="launch-support">Paperback and hardcover available now &#183; Direct purchase supports the publisher</p>
 
           <div id="more-retailers-panel" class="launch-retailers" hidden>
             <p class="launch-retailers-label">More Retailers</p>
