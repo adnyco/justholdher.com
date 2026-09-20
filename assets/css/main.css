@@ -4838,3 +4838,108 @@ a.visit-download-link:focus-visible {
   }
 
 }
+
+/* ================================================================
+   19. INTERACTION CONSISTENCY
+   Added during the 2026 post-launch maintenance pass.
+   These rules strengthen shared controls without changing page layout.
+   ================================================================ */
+
+button,
+.btn {
+  min-height: 2.75rem;
+}
+
+button:disabled,
+.btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+button:focus-visible,
+.btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 3px;
+}
+
+/* Keep long purchase labels from forcing horizontal overflow. */
+.btn {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  button,
+  a {
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+}
+
+/* ================================================================
+   20. PURCHASE CTA CONSISTENCY
+   Shared layout rules for the post-launch purchase hierarchy.
+   ================================================================ */
+
+.buy-actions,
+.launch-actions {
+  width: 100%;
+  max-width: 35rem;
+}
+
+.buy-actions-primary,
+.buy-actions-secondary,
+.launch-actions-primary,
+.launch-actions-secondary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.buy-actions-secondary,
+.launch-actions-secondary {
+  margin-top: 0.75rem;
+}
+
+.buy-action,
+.launch-action {
+  width: 100%;
+  min-width: 0;
+  min-height: 3.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.buy-retailers-drawer,
+.launch-retailers-drawer {
+  margin-top: var(--space-md);
+  max-width: 35rem;
+}
+
+.buy-retailers-drawer-grid,
+.launch-retailers-drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.buy-retailers-drawer-grid a,
+.launch-retailers-drawer-grid a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .buy-actions-primary,
+  .buy-actions-secondary,
+  .launch-actions-primary,
+  .launch-actions-secondary,
+  .buy-retailers-drawer-grid,
+  .launch-retailers-drawer-grid {
+    grid-template-columns: 1fr;
+  }
+}
