@@ -2088,21 +2088,23 @@ footer[role="contentinfo"] {
 }
 
 .quote-dot {
+  /* Override shared button sizing so indicators remain circular. */
+  flex: 0 0 0.4rem;
   width: 0.4rem;
   height: 0.4rem;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  display: block;
   border-radius: 50%;
   border: 1px solid var(--color-light-text-muted);
   background: none;
   padding: 0;
+  line-height: 0;
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
-.quote-dot.active {
-  background: var(--color-accent-subtle);
-  border-color: var(--color-accent-subtle);
-}
-
 
 /* ── In the News — coverage list ────────────────────────────────── */
 .media-coverage {
