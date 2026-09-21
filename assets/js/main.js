@@ -17,20 +17,7 @@
 
 (function () {
 
-  /* ──────────────────────────────────────────────────────────────
-     PHASE DATE FALLBACK
-     Safety net: auto-corrects the body phase class if the manual
-     switchover hasn't happened yet. Remove this block once
-     phase-all is committed and the release banner is cleaned up.
-  ────────────────────────────────────────────────────────────── */
-  var now = new Date();
-  var body = document.body;
-  if (now >= new Date('2026-06-01T00:00:00-04:00')) {
-    body.className = body.className.replace('phase-preorder', 'phase-all').replace('phase-ebook', 'phase-all');
-  } else if (now >= new Date('2026-04-15T00:00:00-04:00')) {
-    body.className = body.className.replace('phase-preorder', 'phase-ebook');
-  }
-
+  /* Phase-date fallback removed. Release state is now managed in page markup. */
 
   /* ──────────────────────────────────────────────────────────────
      SCROLL LOCK UTILITY
@@ -179,36 +166,54 @@
 
 
   /* ──────────────────────────────────────────────────────────────
-     4. FORMSPREE AJAX SUBMISSION
+     4. FORMSPREE SUBMISSION
+     Uses AJAX so visitors remain on the page and receive a clear
+     success or error state. Applies to standalone and modal forms.
   ────────────────────────────────────────────────────────────── */
-  document.querySelectorAll('.modal-form').forEach(function (form) {
+  document.querySelectorAll('form[action*="formspree.io"]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = form.querySelector('[type="submit"]');
+      if (!btn || btn.disabled) return;
+
       var originalText = btn.textContent;
-      btn.textContent = 'Sending\u2026';
+      var status = form.parentElement.querySelector('.form-status');
+      if (!status) {
+        status = document.createElement('div');
+        status.className = 'form-status';
+        status.setAttribute('role', 'status');
+        status.setAttribute('aria-live', 'polite');
+        form.insertAdjacentElement('afterend', status);
+      }
+
+      status.hidden = true;
+      status.className = 'form-status';
+      btn.textContent = 'Sending…';
       btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
 
       fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       }).then(function (res) {
-        if (res.ok) {
-          form.style.display = 'none';
-          var success = form.parentElement.querySelector('.modal-success');
-          if (success) success.style.display = 'block';
-        } else {
-          btn.textContent = originalText;
-          btn.disabled = false;
-        }
+        if (!res.ok) throw new Error('Form submission failed.');
+        form.hidden = true;
+        status.hidden = false;
+        status.classList.add('form-status--success');
+        status.textContent = 'Thank you. Your message has been sent successfully.';
+        status.setAttribute('tabindex', '-1');
+        status.focus();
       }).catch(function () {
+        status.hidden = false;
+        status.classList.add('form-status--error');
+        status.textContent = 'We couldn’t send your message. Please try again or email us directly.';
         btn.textContent = originalText;
         btn.disabled = false;
+        btn.removeAttribute('aria-busy');
       });
     });
   });
-
 
   /* ──────────────────────────────────────────────────────────────
      5. PRESS COPY TABS + CLIPBOARD
@@ -479,46 +484,6 @@
           '<a href="https://judysnotebook.substack.com" target="_blank" rel="noopener noreferrer">Visit Substack directly</a>.</p>';
         console.error('RSS fetch error:', err);
       });
-  }
-
-
-  /* ──────────────────────────────────────────────────────────────
-     9. NOTEBOOK: SUBSCRIBE DRAWER
-  ────────────────────────────────────────────────────────────── */
-  var subscribeDrawer = document.getElementById('subscribe-drawer');
-  var subscribeAnchor = document.getElementById('subscribe');
-  var subscribeBtn = document.getElementById('notebook-subscribe-btn');
-
-  function openSubscribeDrawer() {
-    if (subscribeDrawer) {
-      subscribeDrawer.classList.add('is-open');
-    }
-    if (subscribeAnchor) {
-      subscribeAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  if (subscribeBtn) {
-    subscribeBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      openSubscribeDrawer();
-      history.replaceState(null, '', '#subscribe');
-    });
-  }
-
-  var footerSubscribeBtn = document.getElementById('footer-subscribe-btn');
-  if (footerSubscribeBtn) {
-    footerSubscribeBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      openSubscribeDrawer();
-      history.replaceState(null, '', '#subscribe');
-    });
-  }
-
-  // Auto-open if URL hash is #subscribe
-  if (window.location.hash === '#subscribe') {
-    // Small delay to let page render first
-    setTimeout(openSubscribeDrawer, 300);
   }
 
 
