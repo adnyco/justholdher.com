@@ -17,7 +17,20 @@
 
 (function () {
 
-  /* Phase-date fallback removed. Release state is now managed in page markup. */
+  /* ──────────────────────────────────────────────────────────────
+     PHASE DATE FALLBACK
+     Safety net: auto-corrects the body phase class if the manual
+     switchover hasn't happened yet. Remove this block once
+     phase-all is committed and the release banner is cleaned up.
+  ────────────────────────────────────────────────────────────── */
+  var now = new Date();
+  var body = document.body;
+  if (now >= new Date('2026-06-01T00:00:00-04:00')) {
+    body.className = body.className.replace('phase-preorder', 'phase-all').replace('phase-ebook', 'phase-all');
+  } else if (now >= new Date('2026-04-15T00:00:00-04:00')) {
+    body.className = body.className.replace('phase-preorder', 'phase-ebook');
+  }
+
 
   /* ──────────────────────────────────────────────────────────────
      SCROLL LOCK UTILITY
@@ -168,42 +181,30 @@
   /* ──────────────────────────────────────────────────────────────
      4. FORMSPREE AJAX SUBMISSION
   ────────────────────────────────────────────────────────────── */
-  document.querySelectorAll('.modal-form, .contact-page-form').forEach(function (form) {
+  document.querySelectorAll('.modal-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = form.querySelector('[type="submit"]');
-      if (!btn || btn.disabled) return;
-
       var originalText = btn.textContent;
-      var success = form.parentElement.querySelector('.modal-success, .contact-page-success');
-      var error = form.parentElement.querySelector('.form-error');
-
-      if (error) error.hidden = true;
       btn.textContent = 'Sending\u2026';
       btn.disabled = true;
-      btn.setAttribute('aria-busy', 'true');
 
       fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       }).then(function (res) {
-        if (!res.ok) throw new Error('Form submission failed.');
-        form.hidden = true;
-        if (success) {
-          success.hidden = false;
-          success.style.display = 'block';
-          success.setAttribute('tabindex', '-1');
-          success.focus();
+        if (res.ok) {
+          form.style.display = 'none';
+          var success = form.parentElement.querySelector('.modal-success');
+          if (success) success.style.display = 'block';
+        } else {
+          btn.textContent = originalText;
+          btn.disabled = false;
         }
       }).catch(function () {
-        if (error) {
-          error.hidden = false;
-          error.textContent = 'We couldn\'t send your message. Please try again or email us directly.';
-        }
         btn.textContent = originalText;
         btn.disabled = false;
-        btn.removeAttribute('aria-busy');
       });
     });
   });
