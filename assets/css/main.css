@@ -1129,20 +1129,6 @@ footer[role="contentinfo"] {
 
 
 /* ================================================================
-   14. PHASE SYSTEM
-   ================================================================ */
-.phase-block           { display: none; }
-.phase-preorder .phase-block--preorder { display: block; }
-.phase-ebook    .phase-block--ebook    { display: block; }
-.phase-all      .phase-block--all      { display: block; }
-
-.phase-inline          { display: none; }
-.phase-preorder .phase-inline--preorder { display: inline; }
-.phase-ebook    .phase-inline--ebook    { display: inline; }
-.phase-all      .phase-inline--all      { display: inline; }
-
-
-/* ================================================================
    15. MEDIA PAGE (.page-media)
    ================================================================ */
 
@@ -2106,6 +2092,12 @@ footer[role="contentinfo"] {
   transition: background 0.3s ease;
 }
 
+.quote-dot.active {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent-subtle);
+}
+
+
 /* ── In the News — coverage list ────────────────────────────────── */
 .media-coverage {
   /* section-level spacing inherited from .section */
@@ -2939,15 +2931,6 @@ footer[role="contentinfo"] {
   margin: 0 0 var(--space-md);
   max-width: 48ch;
   line-height: 1.5;
-}
-
-.buy-phase-note {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-  margin: 0 0 var(--space-sm);
 }
 
 
