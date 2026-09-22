@@ -41,9 +41,164 @@
     gtag('js', new Date());
     gtag('config', 'G-CCX49YFZRQ');
   </script>
+
+  <style>
+    /* Speaking page: scoped refinements, intentionally kept local until the
+       page pattern is proven and can be consolidated into main.css. */
+    .speaking-intro {
+      max-width: 48rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .speaking-intro h2 {
+      margin-bottom: 1rem;
+    }
+    .speaking-intro p {
+      max-width: 42rem;
+      margin-inline: auto;
+    }
+    .speaking-anchor-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .55rem 1.25rem;
+      margin-top: 1.75rem;
+      font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+      font-size: .72rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .speaking-anchor-nav a { text-decoration: none; }
+    .speaking-programs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 3rem;
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(0,0,0,.12);
+    }
+    .speaking-program {
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      background: rgba(255,255,255,.96);
+    }
+    .speaking-program-label,
+    .speaking-eyebrow {
+      margin: 0 0 .8rem;
+      font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .speaking-program h3 { margin: 0 0 .7rem; }
+    .speaking-program p:last-child { margin-bottom: 0; }
+    .speaking-section { scroll-margin-top: 5.5rem; }
+    .speaking-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.75rem;
+    }
+    .speaking-fact {
+      padding-top: 1.1rem;
+      border-top: 1px solid currentColor;
+    }
+    .speaking-fact strong {
+      display: block;
+      font-family: var(--font-display, 'Cormorant Garamond', serif);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: .45rem;
+    }
+    .speaking-story {
+      max-width: 48rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .speaking-story p {
+      margin-inline: auto;
+      max-width: 38rem;
+    }
+    .speaking-story .speaking-quote {
+      margin: 2rem auto;
+      font-family: var(--font-display, 'Cormorant Garamond', serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.08;
+      font-weight: 300;
+    }
+    .speaking-action {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: 3rem;
+      align-items: stretch;
+    }
+    .speaking-action-image { min-height: 30rem; }
+    .speaking-action-image img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .speaking-action-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: 1rem;
+    }
+    .speaking-action-copy h2 { margin-bottom: .5rem; }
+    .speaking-cta {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,.18);
+    }
+    .speaking-cta .btn { margin-top: .75rem; }
+    .speaking-availability {
+      margin-top: .9rem;
+      font-size: .92rem;
+    }
+    .speaking-downloads { background: var(--cream, #f4efe6); }
+    .speaking-download-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .speaking-download-link {
+      display: flex;
+      min-height: 5.5rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid rgba(0,0,0,.16);
+      background: rgba(255,255,255,.86);
+      text-decoration: none;
+    }
+    .speaking-download-link:hover { background: #fff; }
+    .speaking-download-name { font-family: var(--font-display, 'Cormorant Garamond', serif); font-size: 1.35rem; }
+    .speaking-download-type {
+      flex: 0 0 auto;
+      font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+      font-size: .65rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .speaking-final {
+      text-align: center;
+      max-width: 42rem;
+      margin-inline: auto;
+    }
+    .speaking-final h2 { margin-bottom: .75rem; }
+    .speaking-final .btn { margin-top: 1.25rem; }
+    @media (max-width: 800px) {
+      .speaking-programs,
+      .speaking-download-grid { grid-template-columns: 1fr; }
+      .speaking-facts { grid-template-columns: 1fr; gap: 1rem; }
+      .speaking-action { grid-template-columns: 1fr; gap: 1.5rem; }
+      .speaking-action-image { min-height: 22rem; }
+    }
+  </style>
+
 </head>
 
-<body class="phase-all">
+<body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ══ NAVIGATION ════════════════════════════════════════════════════════ -->
@@ -68,199 +223,164 @@
 
   <main id="main-content">
 
-    <!-- ══ 1. HERO ════════════════════════════════════════════════════════════
-         Text anchored bottom-left via base .page-hero-content pattern,
-         consistent with notebook.html and about-author-judy-wright.html.
-         Hero button opens visitModal via main.js trigger (#openVisitModal2).
-    ═══════════════════════════════════════════════════════════════════════ -->
-    <section class="visit-hero page-hero" aria-labelledby="visit-h1">
+    <!-- ══ HERO ════════════════════════════════════════════════════════════ -->
+    <section class="visit-hero page-hero speaking-section" id="top" aria-labelledby="visit-h1">
       <picture>
         <source srcset="assets/img/judy-wright-author-speaker.avif" type="image/avif">
         <source srcset="assets/img/judy-wright-author-speaker.webp" type="image/webp">
         <img class="page-hero-img"
              src="assets/img/judy-wright-author-speaker.jpeg"
-             alt="Author and speaker Judy Wright shares stories from her book with a group of foster mothers, breast milk donors, and caregivers."
-             aria-hidden="true"
-             decoding="async"
-             loading="eager"
-             fetchpriority="high"
-             width="1920" height="1080">
+             alt="Judy Wright speaking with a group of foster mothers, breast milk donors, and caregivers."
+             decoding="async" loading="eager" fetchpriority="high" width="1920" height="1080">
       </picture>
       <div class="page-hero-fade" aria-hidden="true"></div>
       <div class="page-hero-content wrap">
-        <p class="visit-hero-tag">Free &middot; In Person or Virtual</p>
+        <p class="visit-hero-tag">Free · In Person or Virtual</p>
         <h1 id="visit-h1">Invite Judy to Speak</h1>
-        <p class="visit-hero-sub">Readings, conversations, and quiet discussions<br>about caregiving, endurance, and what it means to stay.</p>
+        <p class="visit-hero-sub">Readings, conversations, and quiet discussions about caregiving, foster care, and the work of staying.</p>
         <div class="visit-hero-actions">
-          <button class="btn btn--accent" id="openVisitModal2" type="button">Request a Visit</button>
-          <p class="visit-hero-email">speaking@justholdher.com</p>
+          <a class="btn btn--accent" href="#request">Request a Visit</a>
+          <p class="visit-hero-email"><a href="mailto:speaking@justholdher.com">speaking@justholdher.com</a></p>
         </div>
       </div>
     </section>
 
-    <!-- ══ 2. WHAT A VISIT INCLUDES ══════════════════════════════════════════ -->
-    <section class="section visit-details bg-notebook" aria-labelledby="visit-details-title">
+    <!-- ══ INTRO / AUDIENCE ════════════════════════════════════════════════ -->
+    <section class="section speaking-section" id="about-visits" aria-labelledby="about-visits-title">
+      <div class="wrap">
+        <div class="speaking-intro">
+          <p class="speaking-eyebrow">Speaking &amp; Visits</p>
+          <h2 id="about-visits-title">A conversation about the work of caring.</h2>
+          <p>Judy Wright offers free author visits for libraries, senior communities, foster care organizations, caregiving groups, and other communities interested in the questions at the heart of <em>Just Hold Her</em>.</p>
+          <nav class="speaking-anchor-nav" aria-label="Speaking page sections">
+            <a href="#programs">Programs</a>
+            <a href="#story">The Story</a>
+            <a href="#judy">About Judy</a>
+            <a href="#materials">Materials</a>
+            <a href="#request">Request a Visit</a>
+          </nav>
+        </div>
+
+        <div class="speaking-programs" id="programs">
+          <article class="speaking-program">
+            <p class="speaking-program-label">Libraries &amp; Book Clubs</p>
+            <h3>Reading &amp; conversation</h3>
+            <p>A reading from <em>Just Hold Her</em>, followed by conversation and questions about the book, foster care, and caregiving.</p>
+          </article>
+          <article class="speaking-program">
+            <p class="speaking-program-label">Foster Care &amp; Caregiving</p>
+            <h3>The work no one sees</h3>
+            <p>A conversation about medically fragile children, advocacy, attachment, routines, and what it means to keep showing up.</p>
+          </article>
+          <article class="speaking-program">
+            <p class="speaking-program-label">Senior Communities &amp; Groups</p>
+            <h3>Stories about staying</h3>
+            <p>A quieter conversation about family, responsibility, endurance, and the ordinary acts of care that accumulate over a life.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ WHAT A VISIT INCLUDES ═══════════════════════════════════════════ -->
+    <section class="section visit-details speaking-section" id="details" aria-labelledby="visit-details-title">
       <div class="wrap">
         <div class="section-grid visit-details-grid">
-
           <div class="visit-detail-card">
             <p class="media-section-label" id="visit-details-title">What a Visit Includes</p>
             <ul class="visit-list">
-              <li>An hour &mdash; a reading, conversation, and questions</li>
-                <li>Discussion questions provided for book clubs or group programs</li>
-              <li>Flexible scheduling &mdash; mornings, afternoons, or evenings</li>
+              <li>An hour: a reading, conversation, and questions</li>
+              <li>Discussion questions for book clubs or group programs</li>
+              <li>Flexible scheduling: mornings, afternoons, or evenings</li>
               <li>No fee. Judy volunteers her time.</li>
             </ul>
           </div>
-
           <div class="visit-detail-card">
             <p class="media-section-label" id="visit-themes-title">Conversation May Include</p>
             <ul class="visit-themes" aria-labelledby="visit-themes-title">
               <li>The middle-of-the-night work no one sees</li>
               <li>What it means to keep showing up when nothing changes</li>
               <li>Fostering medically fragile infants</li>
-              <li>The network of care &mdash; donor milk, nurses, and the mothers who made it possible</li>
+              <li>The network of care: donor milk, nurses, and the mothers who made it possible</li>
               <li>How small routines carry a life</li>
             </ul>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ══ 3. BRING THIS STORY — integrated narrative moment ══════════════
-         Combines: story, trust framing, pull quote.
-         Dark background. Single continuous voice.
-    ═══════════════════════════════════════════════════════════════════════ -->
-    <section class="visit-trust" aria-labelledby="visit-trust-title">
+    <!-- ══ STORY ══════════════════════════════════════════════════════════ -->
+    <section class="visit-trust speaking-section" id="story" aria-labelledby="story-title">
       <div class="wrap">
-        <p class="media-section-label" id="visit-trust-title">Bring This Story to Your Community</p>
-
-        <div class="visit-trust-narrative">
+        <div class="speaking-story">
+          <p class="media-section-label" id="story-title">The Story Behind the Conversation</p>
           <p>They were asked to take in a baby not expected to survive.</p>
-          <p><em>&#8220;Would you, please&#8230; just hold her until she dies.&#8221;</em></p>
-          <p>What followed was not dramatic. It was routine.</p>
-          <p>Every two hours. Through the night. For months.</p>
-          <p><em>Just Hold Her</em> is a story about the quiet work of caregiving,<br>and what it means to stay.</p>
-          <p>Judy offers these visits to communities where this kind of work<br>is already understood&hellip; or quietly lived.</p>
+          <p class="speaking-quote"><em>“Would you, please… just hold her until she dies?”</em></p>
+          <p>What followed was not dramatic. It was routine. Every two hours. Through the night. For months.</p>
+          <p><em>Just Hold Her</em> is a story about the quiet work of caregiving, and what it means to stay.</p>
+          <p>Judy offers these visits to communities where this kind of work is already understood, or quietly lived.</p>
         </div>
-
-        <!--blockquote class="visit-trust-quote">
-          <p>&#8220;It is not a story of rescue.<br>It is a story of witness.&#8221;</p>
-      </blockquote-->
-
       </div>
     </section>
 
-    <!-- ══ 4. ABOUT + REQUEST A VISIT ════════════════════════════════════════
-         Asymmetric 40/60 layout on bg-notebook. Left: full-height image.
-         Right: author brief (cream) stacked over CTA panel (white).
-         CTA button opens visitModal via main.js trigger (#openVisitModal).
-    ═══════════════════════════════════════════════════════════════════════ -->
-    <section class="visit-action bg-notebook" aria-label="About Judy Wright and scheduling a visit">
+    <!-- ══ JUDY / REQUEST ═════════════════════════════════════════════════ -->
+    <section class="section speaking-section" id="request" aria-labelledby="request-title">
       <div class="wrap">
-        <div class="visit-action-grid">
-
-          <!-- Left 40%: full-height image anchor -->
-          <div class="visit-action-image" aria-hidden="true">
+        <div class="speaking-action">
+          <div class="speaking-action-image" aria-hidden="true">
             <picture>
               <source srcset="assets/img/about-author-judy-wright-speaker.avif" type="image/avif">
               <source srcset="assets/img/about-author-judy-wright-speaker.webp" type="image/webp">
-              <img src="assets/img/about-author-judy-wright-speaker.jpeg"
-                   alt=""
-                   width="600" height="900"
-                   loading="lazy" decoding="async">
+              <img src="assets/img/about-author-judy-wright-speaker.jpeg" alt="" width="600" height="900" loading="lazy" decoding="async">
             </picture>
           </div>
-
-          <!-- Right 60%: author brief stacked above dominant CTA -->
-          <div class="visit-action-right">
-
-            <!-- Author brief — cream card -->
-            <div class="visit-about-brief">
-              <h2 id="visit-about-title">Judy Wright</h2>
-              <p class="visit-about-credential">Foster Parent &middot; Author</p>
-              <p>Over twelve years, Judy and her husband, John, fostered fifty-five children, many of them medically fragile. They were recognized as Michigan Foster Parents of the Year in 2012.</p>
-              <p>She now lives in Raleigh, North Carolina.</p>
-              <a class="visit-about-link" href="about-author-judy-wright.html">Judy&#8217;s biography &rarr;</a>
+          <div class="speaking-action-copy" id="judy">
+            <p class="speaking-eyebrow">About Judy</p>
+            <h2 id="request-title">Judy Wright</h2>
+            <p>Foster parent and author. Over twelve years, Judy and her husband, John, fostered fifty-five children, many of them medically fragile. They were recognized as Michigan Foster Parents of the Year in 2012.</p>
+            <p>She now lives in Raleigh, North Carolina and continues to write about caregiving, memory, and the ordinary work of staying.</p>
+            <p><a href="about-author-judy-wright.html">Read Judy’s full biography →</a></p>
+            <div class="speaking-cta">
+              <h3>Request a Visit</h3>
+              <p>If this would be meaningful for your group, Judy would be glad to hear from you.</p>
+              <p><strong>There is no fee.</strong></p>
+              <button class="btn btn--accent" id="openVisitModal" type="button">Request a Visit</button>
+              <p class="speaking-availability">In person: Triangle (NC), Hampton Roads (VA), Atlanta (GA). Virtual visits are available anywhere.</p>
             </div>
-
-            <!-- CTA panel — white card, dominant -->
-            <div class="visit-cta-panel" aria-labelledby="visit-cta-title">
-              <h3 class="visit-cta-heading" id="visit-cta-title">Request a Visit</h3>
-              <p class="visit-cta-permission">If this would be meaningful for your group&hellip;<br>Judy would be glad to hear from you.</p>
-              <p class="visit-cta-no-fee">There is no fee.</p>
-              <button class="btn btn--accent visit-cta-btn" id="openVisitModal" type="button">Request a Visit</button>
-              <p class="visit-cta-fallback">Or email <a href="mailto:speaking@justholdher.com">speaking@justholdher.com</a></p>
-              <p class="visit-cta-close">Judy reads every message and responds personally.</p>
-              <div class="visit-cta-geo">
-                <p>In-person: Triangle (NC), Hampton Roads (VA), Atlanta (GA).<br>Virtual visits available anywhere.</p>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ 5. DOWNLOADABLE RESOURCES ═════════════════════════════════════════
-         All three PDFs now live. Paths confirmed.
-    ═══════════════════════════════════════════════════════════════════════ -->
-    <section class="section visit-downloads" aria-labelledby="visit-downloads-title">
+    <!-- ══ MATERIALS ══════════════════════════════════════════════════════ -->
+    <section class="section speaking-downloads speaking-section" id="materials" aria-labelledby="materials-title">
       <div class="wrap">
-        <p class="media-section-label" id="visit-downloads-title">Share with Your Team</p>
-        <p class="visit-downloads-intro">A one-page overview for your programming director, activities team, or reading group coordinator.</p>
+        <p class="media-section-label" id="materials-title">Share with Your Team</p>
+        <p class="visit-downloads-intro">One-page overviews for programming directors, activities teams, foster care organizations, and reading group coordinators.</p>
+        <div class="speaking-download-grid">
+          <a class="speaking-download-link" href="assets/pdf/just-hold-her-community-visit-flyer.pdf" target="_blank" rel="noopener noreferrer">
+            <span class="speaking-download-name">Libraries &amp; Senior Communities</span>
+            <span class="speaking-download-type">PDF<span class="sr-only">, opens in new tab</span></span>
+          </a>
+          <a class="speaking-download-link" href="assets/pdf/just-hold-her-foster-visit-flyer.pdf" target="_blank" rel="noopener noreferrer">
+            <span class="speaking-download-name">Foster Care Organizations</span>
+            <span class="speaking-download-type">PDF<span class="sr-only">, opens in new tab</span></span>
+          </a>
+          <a class="speaking-download-link" href="assets/pdf/just-hold-her-nicu-breastmilk-visit-flyer.pdf" target="_blank" rel="noopener noreferrer">
+            <span class="speaking-download-name">NICU &amp; Milk Bank Communities</span>
+            <span class="speaking-download-type">PDF<span class="sr-only">, opens in new tab</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-        <div class="visit-downloads-panel">
-
-          <!-- Left: stacked download buttons -->
-          <ul class="visit-downloads-list">
-            <li>
-              <a class="visit-download-link"
-                 href="assets/pdf/just-hold-her-community-visit-flyer.pdf"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="Download community visit flyer for libraries and senior communities (PDF, opens in new tab)">
-                <span class="visit-download-icon" aria-hidden="true">&#8595;</span>
-                <span class="visit-download-label">Libraries &amp; Senior Communities</span>
-                <span class="visit-download-format">PDF<span class="sr-only"> (opens in new tab)</span></span>
-              </a>
-            </li>
-            <li>
-              <a class="visit-download-link"
-                 href="assets/pdf/just-hold-her-foster-visit-flyer.pdf"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="Download visit flyer for foster care organizations (PDF, opens in new tab)">
-                <span class="visit-download-icon" aria-hidden="true">&#8595;</span>
-                <span class="visit-download-label">Foster Care Organizations</span>
-                <span class="visit-download-format">PDF<span class="sr-only"> (opens in new tab)</span></span>
-              </a>
-            </li>
-            <li>
-              <a class="visit-download-link"
-                 href="assets/pdf/just-hold-her-nicu-breastmilk-visit-flyer.pdf"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="Download visit flyer for NICU and breast milk bank donor communities (PDF, opens in new tab)">
-                <span class="visit-download-icon" aria-hidden="true">&#8595;</span>
-                <span class="visit-download-label">NICU &amp; Milk Bank Communities</span>
-                <span class="visit-download-format">PDF<span class="sr-only"> (opens in new tab)</span></span>
-              </a>
-            </li>
-          </ul>
-
-          <!-- Right: document preview image
-               NOTE: JPEG fallback uses the community flyer .webp until the
-               correct .jpeg asset arrives. Replace src when available. -->
-          <!--div class="visit-downloads-preview" aria-hidden="true">
-            <picture>
-              <source srcset="assets/img/pdf-preview/just-hold-her-community-visit-flyer-preview.avif" type="image/avif">
-              <source srcset="assets/img/pdf-preview/just-hold-her-community-visit-flyer-preview.webp" type="image/webp">
-              <img src="assets/img/pdf-preview/speaker-judy-wright-community-visits-preview.jpeg"
-                   alt=""
-                   width="460" height="595"
-                   loading="lazy" decoding="async">
-            </picture>
-        </div-->
-
+    <!-- ══ FINAL CTA ═══════════════════════════════════════════════════════ -->
+    <section class="section speaking-section" aria-labelledby="final-speaking-title">
+      <div class="wrap">
+        <div class="speaking-final">
+          <p class="speaking-eyebrow">Bring Judy to Your Community</p>
+          <h2 id="final-speaking-title">Have a group in mind?</h2>
+          <p>Tell Judy a little about your organization, your audience, and what you hope the conversation might hold.</p>
+          <a class="btn btn--accent" href="#request">Request a Visit</a>
         </div>
       </div>
     </section>
@@ -328,18 +448,18 @@
 
   <!-- ══ VISIT REQUEST MODAL ═══════════════════════════════════════════════
        Triggered by #openVisitModal (CTA panel) and #openVisitModal2 (hero).
-       Both wired in main.js. Speaking inquiries use the shared Formspree endpoint pending a dedicated routing decision.
+       Both wired in main.js. Formspree endpoint: replace VISIT_FORM_ID.
   ═══════════════════════════════════════════════════════════════════════ -->
   <div class="modal-overlay" id="visitModal" role="dialog" aria-modal="true" aria-labelledby="visit-modal-title">
     <div class="modal">
       <button class="modal-close" type="button" aria-label="Close visit request form">&times;</button>
       <p class="modal-kicker">Author Visits &middot; Just Hold Her</p>
       <h2 id="visit-modal-title">Request a Visit</h2>
-      <p class="modal-deck">Judy responds personally. Include a note about your organization and what would make this visit meaningful.</p>
+      <p class="modal-deck">Judy responds personally. Tell Judy about your organization, your audience, and what would make the visit meaningful.</p>
       <form class="modal-form" id="visitForm" action="https://formspree.io/f/mpqynrkv" method="POST">
         <div class="field"><label for="visit-name">Your Name (required)</label><input type="text" id="visit-name" name="name" required autocomplete="name"></div>
         <div class="field"><label for="visit-email">Email Address (required)</label><input type="email" id="visit-email" name="email" required autocomplete="email"></div>
-        <div class="field"><label for="visit-org">Organization Name and Type (required)</label><input type="text" id="visit-org" name="organization" required></div>
+        <div class="field"><label for="visit-org">Organization Name and Type (required)</label><input type="text" id="visit-org" name="organization" required autocomplete="organization"></div>
         <div class="field"><label for="visit-format">Format</label><select id="visit-format" name="format"><option value="">Select one&hellip;</option><option value="In-Person">In-Person</option><option value="Virtual">Virtual</option><option value="Either works">Either works</option></select></div>
         <div class="field"><label for="visit-timing">Preferred Timing <span class="label-optional">(optional)</span></label><input type="text" id="visit-timing" name="timing" placeholder="e.g. April mornings, flexible"></div>
         <div class="field"><label for="visit-message">Anything else to share <span class="label-optional">(optional)</span></label><textarea id="visit-message" name="message"></textarea></div>

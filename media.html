@@ -121,10 +121,26 @@
   .media-v2-more[open] > summary::after { content: ' −'; }
   .media-v2-more > summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
   .media-v2-more .coverage-list { padding-bottom: .5rem; }
-  /* Keep text-bearing sections on a stable surface rather than over a photographic/textured background. */
-  .media-v2-recognition, .media-v2-response { background: rgba(255, 255, 255, .92); color: #281f18; }
-  .media-v2-recognition { padding: clamp(1.5rem, 3vw, 2.5rem); }
-  .media-v2-response { max-width: 820px; margin: 0 auto; padding: clamp(1.5rem, 3vw, 2.5rem); text-align: center; }
+  /* Recognition and reader response deliberately use open space, not the notebook texture. */
+  .media-v2-recognition-section, .media-v2-response-section {
+    background: #f5f0e8;
+    color: #281f18;
+  }
+  .media-v2-recognition-section {
+    padding-block: clamp(4.5rem, 9vw, 8rem);
+  }
+  .media-v2-recognition {
+    padding: 0;
+  }
+  .media-v2-response-section {
+    padding-block: clamp(4.5rem, 10vw, 8.5rem);
+  }
+  .media-v2-response {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+  }
   .media-v2-response .media-section-label span { background: transparent !important; }
   .media-v2-testimonials { position: relative; min-height: 9rem; display: grid; place-items: center; }
   .media-v2-testimonial { width: 100%; }
@@ -254,7 +270,7 @@
     </section>
 
     <!-- ══ RECOGNITION ════════════════════════════════════════════════════ -->
-    <section class="section bg-notebook" aria-labelledby="recognition-title" id="recognition">
+    <section class="section media-v2-recognition-section" aria-labelledby="recognition-title" id="recognition">
       <div class="wrap">
         <p class="media-section-label" id="recognition-title"><span style="background: rgba(237, 228, 210, 0.92);">Recognition</span></p>
         <div class="media-v2-recognition">
@@ -431,28 +447,32 @@ Just Hold Her is Judy Wright&#8217;s debut memoir. Published by Held Close Books
 
 
     <!-- ══ READER RESPONSE ═══════════════════════════════════════════════ -->
-    <section class="section bg-notebook" aria-labelledby="response-title" id="reader-response">
+    <section class="section media-v2-response-section" aria-labelledby="response-title" id="reader-response">
       <div class="wrap media-v2-response">
         <p class="media-section-label" id="response-title"><span>A Reader&#8217;s Response</span></p>
         <div class="media-v2-testimonials" data-media-testimonials>
           <div class="media-v2-testimonial is-active" data-testimonial="0">
             <blockquote>&#8220;This isn&#8217;t written as a hero&#8217;s journey. It&#8217;s a story about staying.&#8221;</blockquote>
-            <cite>Casey W · Amazon reader review · August 25, 2026</cite>
+            <cite>Casey Wright · Amazon reader review · August 25, 2026</cite>
           </div>
           <div class="media-v2-testimonial" data-testimonial="1" hidden>
-            <blockquote>&#8220;Beautifully written and deeply moving.&#8221;</blockquote>
+            <blockquote>&#8220;A story that will stay with you.&#8221;</blockquote>
             <cite>Carrie C · Amazon reader review · June 9, 2026</cite>
           </div>
           <div class="media-v2-testimonial" data-testimonial="2" hidden>
+            <blockquote>&#8220;Beautifully written and deeply moving.&#8221;</blockquote>
+            <cite>Carrie C · Amazon reader review · June 9, 2026</cite>
+          </div>
+          <div class="media-v2-testimonial" data-testimonial="3" hidden>
             <blockquote>&#8220;Emotional and brave.&#8221;</blockquote>
-            <cite>Kelly P · Amazon reader review · May 28, 2026</cite>
+            <cite>Kelly Jabour Pramberger · Amazon reader review · May 28, 2026</cite>
           </div>
         </div>
         <div class="media-v2-testimonial-dots" role="tablist" aria-label="Reader responses">
           <button type="button" role="tab" aria-selected="true" aria-label="Reader response 1" data-testimonial-dot="0"></button>
           <button type="button" role="tab" aria-selected="false" aria-label="Reader response 2" data-testimonial-dot="1"></button>
           <button type="button" role="tab" aria-selected="false" aria-label="Reader response 3" data-testimonial-dot="2"></button>
-          <!--button type="button" role="tab" aria-selected="false" aria-label="Reader response 4" data-testimonial-dot="3"></button-->
+          <button type="button" role="tab" aria-selected="false" aria-label="Reader response 4" data-testimonial-dot="3"></button>
         </div>
       </div>
     </section>
