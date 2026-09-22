@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Press &amp; Media &#8212; Just Hold Her by Judy Wright</title>
-  <meta name="description" content="Press kit for Just Hold Her by Judy Wright &#8212; a literary memoir of foster care, medical bureaucracy, and the quiet defiance of staying. Download assets and request a review copy.">
+  <meta name="description" content="Press and media resources for Just Hold Her by Judy Wright. Request interviews, podcasts, features, review copies, and other press inquiries.">
   <link rel="canonical" href="https://justholdher.com/media.html">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Press &amp; Media &#8212; Just Hold Her by Judy Wright">
-  <meta property="og:description" content="Press materials, downloadable assets, and media contact for Just Hold Her by Judy Wright.">
+  <meta property="og:description" content="Press materials, media coverage, downloadable assets, and contact information for Just Hold Her by Judy Wright.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Just Hold Her">
   <meta property="og:locale" content="en_US">
@@ -21,7 +21,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Press &amp; Media &#8212; Just Hold Her by Judy Wright">
-  <meta name="twitter:description" content="Press kit, downloadable assets, and inquiry contact for Just Hold Her &#8212; a Michigan foster care memoir.">
+  <meta name="twitter:description" content="Press and media resources for Just Hold Her &#8212; Judy Wright's memoir of foster care, caregiving, and the long nights together.">
   <meta name="twitter:image" content="https://justholdher.com/assets/img/author-judy-wright-about-hero.jpeg">
 
   <!-- Favicon -->
@@ -92,6 +92,63 @@
     gtag('js', new Date());
     gtag('config', 'G-CCX49YFZRQ');
   </script>
+
+<style id="media-redesign">
+  /* Media page v2: editorial hierarchy, expandable coverage, and press-first CTA. */
+  .media-v2-intro { max-width: 760px; margin: 0 auto; text-align: center; }
+  .media-v2-intro p:last-child { margin-bottom: 0; }
+  .media-v2-lead { font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.55; }
+  .media-v2-cta { margin-top: 1.75rem; }
+  .media-v2-quiet { margin-top: .75rem; font-size: .88rem; opacity: .78; }
+  .media-v2-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .media-v2-copy p { max-width: 68ch; }
+  .media-v2-subhead { margin-top: .35rem; }
+  .media-v2-callout { border-left: 2px solid currentColor; padding: 1.1rem 0 1.1rem 1.4rem; }
+  .media-v2-callout p { margin: 0; }
+  .media-v2-callout .media-v2-callout-label { margin-bottom: .65rem; font: 500 .72rem/1.3 'IBM Plex Mono', monospace; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+  .media-v2-recognition { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 2rem; align-items: center; }
+  .media-v2-recognition-quote { margin: 0; font: 400 clamp(1.6rem, 3vw, 2.45rem)/1.12 'Cormorant Garamond', serif; }
+  .media-v2-recognition-source { margin: .8rem 0 0; font: 500 .72rem/1.5 'IBM Plex Mono', monospace; letter-spacing: .04em; text-transform: uppercase; }
+  .media-v2-recognition-facts { display: grid; gap: .8rem; }
+  .media-v2-fact { padding: .95rem 1rem; border: 1px solid rgba(40, 31, 24, .16); background: rgba(255,255,255,.32); }
+  .media-v2-fact strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; }
+  .media-v2-fact span { display: block; margin-top: .2rem; font: .72rem/1.45 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .04em; opacity: .72; }
+  .media-v2-featured { display: grid; gap: 1rem; }
+  .media-v2-more { margin-top: 1rem; border-top: 1px solid rgba(40,31,24,.2); }
+  .media-v2-more > summary { cursor: pointer; list-style: none; padding: 1.2rem 0; font: 500 .78rem/1.4 'IBM Plex Mono', monospace; letter-spacing: .06em; text-transform: uppercase; }
+  .media-v2-more > summary::-webkit-details-marker { display: none; }
+  .media-v2-more > summary::after { content: ' +'; }
+  .media-v2-more[open] > summary::after { content: ' −'; }
+  .media-v2-more > summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .media-v2-more .coverage-list { padding-bottom: .5rem; }
+  /* Keep text-bearing sections on a stable surface rather than over a photographic/textured background. */
+  .media-v2-recognition, .media-v2-response { background: rgba(255, 255, 255, .92); color: #281f18; }
+  .media-v2-recognition { padding: clamp(1.5rem, 3vw, 2.5rem); }
+  .media-v2-response { max-width: 820px; margin: 0 auto; padding: clamp(1.5rem, 3vw, 2.5rem); text-align: center; }
+  .media-v2-response .media-section-label span { background: transparent !important; }
+  .media-v2-testimonials { position: relative; min-height: 9rem; display: grid; place-items: center; }
+  .media-v2-testimonial { width: 100%; }
+  .media-v2-testimonial[hidden] { display: none; }
+  .media-v2-response blockquote { margin: 0; font: 400 clamp(1.65rem, 3vw, 2.5rem)/1.12 'Cormorant Garamond', serif; }
+  .media-v2-response cite { display: block; margin-top: 1rem; font: 500 .72rem/1.4 'IBM Plex Mono', monospace; font-style: normal; letter-spacing: .05em; text-transform: uppercase; opacity: .82; }
+  .media-v2-testimonial-dots { display: flex; justify-content: center; gap: .55rem; margin-top: 1.5rem; }
+  .media-v2-testimonial-dots button { width: .58rem; height: .58rem; min-width: .58rem; min-height: .58rem; padding: 0; border: 1px solid #281f18; border-radius: 50%; background: transparent; cursor: pointer; }
+  .media-v2-testimonial-dots button[aria-selected="true"] { background: #281f18; }
+  .media-v2-testimonial-dots button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .media-v2-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.4rem; }
+  .media-v2-links a { font: 500 .76rem/1.4 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .04em; }
+  .media-v2-materials-note { max-width: 680px; margin: 1.5rem auto 0; text-align: center; opacity: .78; }
+  .media-v2-final { text-align: center; max-width: 760px; margin: 0 auto; }
+  .media-v2-final h2 { margin-bottom: .8rem; }
+  @media (max-width: 760px) {
+    .media-v2-grid, .media-v2-recognition { grid-template-columns: 1fr; }
+    .media-v2-recognition-facts { margin-top: .25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .media-v2-more > summary { scroll-behavior: auto; }
+  }
+</style>
+
 </head>
 
 <body class="page-media phase-all">
@@ -119,52 +176,154 @@
   <main id="main-content">
 
     <!-- ══ MEDIA HERO ══════════════════════════════════════════════════════ -->
-    <section class="media-hero" aria-labelledby="media-h1">
+    <section class="media-hero" aria-labelledby="media-h1" id="press">
       <div class="media-hero-inner wrap">
         <div class="media-hero-copy">
-          <p class="media-kicker">Press Kit &amp; Media Resources</p>
+          <p class="media-kicker">Press &amp; Media</p>
           <h1 id="media-h1">Just Hold Her</h1>
-          <p class="media-hero-deck">A literary memoir of foster care, medical bureaucracy, and the quiet defiance of staying. Built from the spiral notebooks kept across a two-year medical vigil. A witness story, not a rescue story.</p>
+          <p class="media-hero-deck">Judy Wright is available for interviews, podcasts, features, and conversations about foster care, caregiving, medically fragile children, and the work of staying present when there are no easy answers.</p>
           <div class="media-hero-actions">
-            <button type="button" class="btn btn--outline btn--light" id="openReviewModal">Request Review Copy</button>
+            <button type="button" class="btn btn--outline btn--light" id="openReviewModal">Press &amp; Media Request</button>
           </div>
+          <p class="media-v2-quiet">Review copies are available upon request.</p>
         </div>
         <div class="media-hero-portrait">
           <figure>
             <picture>
               <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.avif" type="image/avif">
               <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.webp" type="image/webp">
-              <img src="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.jpeg"
-                   alt="Judy Wright, author of Just Hold Her &#8212; Michigan foster mother and debut memoirist."
-                   loading="eager" decoding="async" width="600" height="900">
+              <img src="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.jpeg" alt="Judy Wright, author of Just Hold Her." loading="eager" decoding="async" width="600" height="900">
             </picture>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- ══ AWARDS BAND ══════════════════════════════════════════════════════ -->
-    <section class="awards-band" aria-label="Recognition and legacy">
-      <div class="awards-band-inner wrap">
-        <div class="awards-item">
-          <span class="awards-title">Foster Parents of the Year</span>
-          <span class="awards-source">Michigan Supreme Court &#183; 2012</span>
-        </div>
-        <div class="awards-item">
-          <span class="awards-title">Proclamation Honoring Judy &amp; John Wright</span>
-          <span class="awards-source">Oakland County Board of Commissioners &#183; 2013</span>
-        </div>
-        <div class="awards-item">
-          <span class="awards-title">John &amp; Judy Wright Scholarship</span>
-          <span class="awards-source">Ennis Center for Children</span>
+    <!-- ══ ABOUT JUDY ═════════════════════════════════════════════════════ -->
+    <section class="section media-author" aria-labelledby="media-author-title" id="about-judy">
+      <div class="media-author-inner wrap">
+        <figure class="media-author-portrait">
+          <picture>
+            <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.avif" type="image/avif">
+            <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.webp" type="image/webp">
+            <img src="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.jpeg" alt="Judy Wright, author of Just Hold Her." loading="lazy" decoding="async" width="600" height="900">
+          </picture>
+        </figure>
+        <div class="media-v2-copy">
+          <p class="media-section-label" id="media-author-title">About Judy</p>
+          <h2>Judy Wright</h2>
+          <p class="media-v2-lead">Judy Wright is a foster mother, caregiver, and advocate whose life has been shaped by the demanding, ordinary work of staying.</p>
+          <p>After raising four children, Judy and her now-late husband John entered Michigan&#8217;s foster care system. Over twelve years, their home became a place of readiness for fifty-five children, many of them medically fragile. Judy learned to advocate inside systems that often failed to see children clearly, and to love without guarantees.</p>
+          <p>In 2012, they were named Michigan Foster Parents of the Year by the Michigan Supreme Court. Their work continues through the John and Judy Wright Scholarship for Foster Children, established with the Ennis Center to support vulnerable infants in need of specialized care.</p>
+          <p><em>Just Hold Her</em> is her debut memoir, drawn directly from the spiral notebooks kept during a two-year medical vigil. A portion of the book&#8217;s proceeds supports their legacy scholarship. She writes regularly at <a href="https://judysnotebook.substack.com/" target="_blank" rel="noopener noreferrer">Judy&#8217;s Notebook on Substack<span class="sr-only"> (opens in new tab)</span></a>.</p>
+          <div class="cta-row cta-row--center">
+            <a class="btn btn--outline" href="about-author-judy-wright.html">Full Biography<span class="sr-only"> of Judy Wright</span></a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ DOWNLOADABLE ASSETS ═════════════════════════════════════════════ -->
-    <section class="section media-assets bg-notebook" aria-labelledby="assets-title">
+    <!-- ══ THE BOOK ═══════════════════════════════════════════════════════ -->
+    <section class="section media-synopsis" aria-labelledby="book-title" id="book">
+      <div class="media-synopsis-inner wrap">
+        <div class="media-v2-copy">
+          <p class="media-section-label" id="book-title">The Book</p>
+          <h2><em>Just Hold Her</em></h2>
+          <p class="media-v2-subhead"><strong>A Foster Mother&#8217;s Memoir of Medicine, Caregiving, and the Long Nights Together</strong></p>
+          <p>When Judy Wright was asked to take in a medically fragile infant not expected to survive, she began a vigil she documented in spiral notebooks over 674 days. <em>Just Hold Her</em> reconstructs that experience from the record she kept in real time, tracing the collision between daily caregiving, medical authority, foster care, and the ordinary work of remaining present.</p>
+          <div class="media-v2-callout">
+            <p class="media-v2-callout-label">For interviews and features</p>
+            <p>Judy can speak about foster care, medically complex caregiving, attachment, advocacy inside institutions, the documentary role of personal notebooks, and what happens when a caregiver stays after everyone else has stopped expecting a child to live.</p>
+          </div>
+        </div>
+        <div>
+          <p class="media-section-label">Publication Details</p>
+          <div class="pub-card">
+            <p class="pub-card-kicker">Book Information</p>
+            <div class="pub-stat"><span class="pub-stat-label">Author</span><span class="pub-stat-value">Judy Wright</span></div>
+            <div class="pub-stat"><span class="pub-stat-label">Publisher</span><span class="pub-stat-value">Held Close Books</span></div>
+            <div class="pub-stat"><span class="pub-stat-label">Category</span><span class="pub-stat-value">Literary Memoir</span></div>
+            <div class="pub-stat"><span class="pub-stat-label">Formats</span><span class="pub-stat-value">Ebook · Paperback · Hardcover</span></div>
+            <div class="pub-stat"><span class="pub-stat-label">Ebook Release</span><span class="pub-stat-value">April 15, 2026</span></div>
+            <div class="pub-stat"><span class="pub-stat-label">Print Release</span><span class="pub-stat-value">June 1, 2026</span></div>
+            <div class="pub-stat"><span class="pub-stat-label">Ebook ISBN</span><span class="pub-stat-value">979-8-9952251-0-2</span></div>
+            <div class="pub-stat"><span class="pub-stat-label">Paperback ISBN</span><span class="pub-stat-value">979-8-9952251-1-9</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ RECOGNITION ════════════════════════════════════════════════════ -->
+    <section class="section bg-notebook" aria-labelledby="recognition-title" id="recognition">
       <div class="wrap">
-        <p class="media-section-label" id="assets-title"><span style="background: rgba(237, 228, 210, 0.92);">Downloadable Press Assets</span></p>
+        <p class="media-section-label" id="recognition-title"><span style="background: rgba(237, 228, 210, 0.92);">Recognition</span></p>
+        <div class="media-v2-recognition">
+          <div>
+            <p class="media-v2-recognition-quote">&#8220;Personal and touching memoir about parenting.&#8221;</p>
+            <p class="media-v2-recognition-source">Multnomah County Library · Library Writers Project Selection 2026</p>
+          </div>
+          <div class="media-v2-recognition-facts">
+            <div class="media-v2-fact"><strong>Michigan Foster Parents of the Year</strong><span>Michigan Supreme Court · 2012</span></div>
+            <div class="media-v2-fact"><strong>Fifty-five foster placements over twelve years</strong><span>Many medically fragile</span></div>
+            <div class="media-v2-fact"><strong>John &amp; Judy Wright Scholarship for Foster Children</strong><span>Established with the Ennis Center for Children</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ IN THE NEWS ════════════════════════════════════════════════════ -->
+    <section class="section media-coverage" aria-labelledby="coverage-title" id="news">
+      <div class="wrap">
+        <p class="media-section-label" id="coverage-title">In the News</p>
+        <p class="media-v2-lead">Selected interviews, podcasts, and features about Judy Wright and <em>Just Hold Her</em>.</p>
+        <div class="media-v2-featured">
+          <div class="coverage-list">
+            <article class="coverage-item coverage-item--featured" data-format="podcast">
+              <p class="coverage-meta"><time datetime="2026-09-09">September 9, 2026</time><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-outlet"><em>Foster Parent Well</em></span><span class="coverage-sep" aria-hidden="true">·</span><span>with Nicole Barlow</span><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-format">Podcast</span></p>
+              <h3 class="coverage-title"><em>The Impact of Saying Yes with Judy Wright</em></h3>
+              <p class="coverage-description">Judy Wright joins host Nicole Barlow on the Foster Parent Well podcast to talk about the impact of saying yes, drawn from her experience fostering Jayden and her memoir, <em>Just Hold Her</em>.</p>
+              <div class="coverage-actions"><a class="coverage-primary" href="https://fosterparentwell.buzzsprout.com/2319348/episodes/19778405-the-impact-of-saying-yes-with-judy-wright" target="_blank" rel="noopener noreferrer">Listen on Buzzsprout<span class="sr-only"> (opens in new tab)</span> →</a><span class="coverage-secondary"><span class="coverage-secondary-label">Also on:</span><a href="https://open.spotify.com/episode/6a5SANbLN61LOTRNm3OhOj?si=ad514e7f2f1449c1" target="_blank" rel="noopener noreferrer">Spotify<span class="sr-only"> (opens in new tab)</span></a><a href="https://podcasts.apple.com/us/podcast/the-impact-of-saying-yes-with-judy-wright/id1732063106?i=1000788673310" target="_blank" rel="noopener noreferrer">Apple Podcasts<span class="sr-only"> (opens in new tab)</span></a></span></div>
+            </article>
+            <article class="coverage-item coverage-item--featured" data-format="podcast">
+              <p class="coverage-meta"><time datetime="2026-08-05">August 5, 2026</time><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-outlet"><em>Foster Friendly Podcast</em>, America&#8217;s Kids Belong</span><span class="coverage-sep" aria-hidden="true">·</span><span>with Courtney Williams &amp; Travis Vangsnes</span><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-format">Podcast</span></p>
+              <h3 class="coverage-title"><em>How Loving Beyond Fears Changed the Life of a Medically Fragile Child with Judy Wright</em></h3>
+              <p class="coverage-description">Judy Wright joins hosts Courtney Williams and Travis Vangsnes to tell the story of fostering Jayden, a two-month-old medically fragile baby not expected to survive, and the role of love, attachment, and advocacy in fostering.</p>
+              <div class="coverage-actions"><a class="coverage-primary" href="https://www.youtube.com/watch?v=y0zSLWEC7G0" target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only"> (opens in new tab)</span> →</a><span class="coverage-secondary"><span class="coverage-secondary-label">Also on:</span><a href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=1755210067&amp;i=1000780023369" target="_blank" rel="noopener noreferrer">Apple Podcasts<span class="sr-only"> (opens in new tab)</span></a><a href="https://open.spotify.com/episode/1F0m2u3KfpW6uQhPjARTiL?si=84e089fa6b804aec" target="_blank" rel="noopener noreferrer">Spotify<span class="sr-only"> (opens in new tab)</span></a><a href="https://americaskidsbelong.org/blog/how-loving-beyond-fears-changed-the-life-of-a-medically-fragile-child-with-judy-wright/" target="_blank" rel="noopener noreferrer">Read on America&#8217;s Kids Belong<span class="sr-only"> (opens in new tab)</span></a></span></div>
+            </article>
+            <article class="coverage-item coverage-item--featured" data-format="video">
+              <p class="coverage-meta"><time datetime="2026-05-18">May 18, 2026</time><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-outlet"><em>FOX32 Good Day Chicago</em></span><span class="coverage-sep" aria-hidden="true">·</span><span>with Sylvia Perez &amp; Terrance Lee</span><span class="coverage-sep" aria-hidden="true">·</span><span>6 min</span><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-format">Interview</span></p>
+              <h3 class="coverage-title"><em>Judy Wright on Foster Care, Medical Motherhood, and the Story Behind Just Hold Her</em></h3>
+              <p class="coverage-description">Judy Wright joins FOX32 Good Day Chicago to discuss her debut memoir and the true story of caring for a medically fragile infant doctors did not expect to survive.</p>
+              <div class="coverage-actions"><a class="coverage-primary" href="https://youtu.be/WfhU8A7ErgY" target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only"> (opens in new tab)</span> →</a></div>
+            </article>
+          </div>
+        </div>
+
+        <details class="media-v2-more">
+          <summary>More media mentions <span class="sr-only">, including additional interviews and podcasts</span></summary>
+          <div class="coverage-list">
+            <article class="coverage-item" data-format="article">
+              <p class="coverage-meta"><time datetime="2026-05-07">May 7, 2026</time><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-outlet"><em>Authority Magazine</em></span><span class="coverage-sep" aria-hidden="true">·</span><span>25 min read</span><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-format">Article</span></p>
+              <h3 class="coverage-title"><em>Chosen Families: Judy Wright of Just Hold Her On Why Adoption and Foster Parenting Matter More Than Ever</em></h3>
+              <p class="coverage-description">A long-form interview with Judy Wright on foster parenting, chosen family, and what she wishes more people understood about the work.</p>
+              <div class="coverage-actions"><a class="coverage-primary" href="https://medium.com/authority-magazine/chosen-families-judy-wright-of-just-hold-her-on-why-adoption-and-foster-parenting-matter-more-than-ccc76c7652fa" target="_blank" rel="noopener noreferrer">Read on Authority Magazine<span class="sr-only"> (opens in new tab)</span> →</a><span class="coverage-secondary"><span class="coverage-secondary-label">Video:</span><a href="https://www.youtube.com/watch?v=IP5gCcgA4Pc" target="_blank" rel="noopener noreferrer">5 Things I Wish More People Knew About Foster Parenting<span class="sr-only"> (opens in new tab)</span></a></span></div>
+            </article>
+            <article class="coverage-item" data-format="podcast">
+              <p class="coverage-meta"><time datetime="2026-04-15">April 15, 2026</time><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-outlet"><em>The Alter Eagle</em>, Butler Eagle</span><span class="coverage-sep" aria-hidden="true">·</span><span>with Laura Crago</span><span class="coverage-sep" aria-hidden="true">·</span><span>S2 E93</span><span class="coverage-sep" aria-hidden="true">·</span><span>1h 7m</span><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-format">Podcast</span></p>
+              <h3 class="coverage-title"><em>Just Hold Her: A Foster Mother&#8217;s Story of Care, Faith, and Letting Go</em></h3>
+              <p class="coverage-description">A long-form conversation with Judy Wright on foster care, documentary writing, and caregiving without the certainty of a good outcome.</p>
+              <div class="coverage-actions"><a class="coverage-primary" href="https://www.youtube.com/watch?v=LMLleVeM5kM&amp;list=PLd_xAxBZGlrCZOUR6Gep_NRm-ax47j7NM" target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only"> (opens in new tab)</span> →</a><span class="coverage-secondary"><span class="coverage-secondary-label">Also on:</span><a href="https://podcasts.apple.com/us/podcast/just-hold-her-a-foster-mothers-story-of-care/id1725313168?i=1000761508035" target="_blank" rel="noopener noreferrer">Apple Podcasts<span class="sr-only"> (opens in new tab)</span></a><a href="https://open.spotify.com/episode/3JGGNzSXy3ECI4ipCLOz9J" target="_blank" rel="noopener noreferrer">Spotify<span class="sr-only"> (opens in new tab)</span></a></span></div>
+            </article>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ══ PRESS MATERIALS ════════════════════════════════════════════════ -->
+    <!-- ══ PRESS MATERIALS ═════════════════════════════════════════════ -->
+    <section class="section media-assets bg-notebook" aria-labelledby="assets-title" id="materials">
+      <div class="wrap">
+        <p class="media-section-label" id="assets-title"><span style="background: rgba(237, 228, 210, 0.92);">Press Materials</span></p>
         <div class="media-assets-grid">
 
           <div class="asset-card">
@@ -228,94 +387,8 @@
       </div>
     </section>
 
-    <!-- ══ SYNOPSIS + PUB DETAILS ══════════════════════════════════════════ -->
-    <section class="section media-synopsis" aria-labelledby="synopsis-title">
-      <div class="media-synopsis-inner wrap">
-        <div>
-          <p class="media-section-label" id="synopsis-title">The Story</p>
-          <blockquote class="synopsis-pull"><em>&#8220;Would you, please&#8230; just hold her until she dies?&#8221;</em></blockquote>
-          <div class="synopsis-body">
-            <p>That was the call.</p>
-            <p>The baby was two months old. Four pounds. Blind, deaf, insulin-dependent, and tethered to monitors. She arrived with twenty-seven diagnoses and no plan beyond placement.</p>
-            <p>They did not ask Judy Wright to save her.</p>
-            <p>They asked her to stay.</p>
-            <p><strong><em>Just Hold Her</em></strong> is the true story of what followed: a long medical vigil inside Michigan&#8217;s foster care system, reconstructed from the spiral notebooks Judy kept in real time as she tracked feedings, glucose readings, injections, alarms, and the changing patterns of a medically fragile child&#8217;s body.</p>
-            <p>At the center of the memoir is one persistent question:</p><p><strong><em>What about breast milk?</em></strong></p>
-            <p>What begins as emergency foster care becomes a sustained witness to the collision of maternal attention, medical authority, and institutional decision-making.</p><p>This is not a rescue story.<br>It is a witness story.</p>
-          </div>
-        </div>
-        <div>
-          <p class="media-section-label">Publication Details</p>
-          <div class="pub-card">
-            <p class="pub-card-kicker">Book Information</p>
-            <div class="pub-stat"><span class="pub-stat-label">Title</span><span class="pub-stat-value">Just Hold Her</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Author</span><span class="pub-stat-value">Judy Wright</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Publisher</span><span class="pub-stat-value">Held Close Books</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Category</span><span class="pub-stat-value">Literary Memoir</span></div>
-            <!--div class="pub-stat"><span class="pub-stat-label">Word Count</span><span class="pub-stat-value">90,000 words</span></div-->
-            <div class="pub-stat"><span class="pub-stat-label">Ebook Release</span><span class="pub-stat-value">April 15, 2026</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Print Editions</span><span class="pub-stat-value">Paperback &amp; Hardcover</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Formats</span><span class="pub-stat-value">Ebook &#183; Paperback &#183; Hardcover</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Ebook ISBN</span><span class="pub-stat-value">979-8-9952251-0-2</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Paperback ISBN</span><span class="pub-stat-value">979-8-9952251-1-9</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Hardcover ISBN</span><span class="pub-stat-value">979-8-9952251-2-6</span></div>
-          </div>
-          <div class="pub-card">
-            <p class="pub-card-kicker">BISAC Classification</p>
-            <div class="pub-stat"><span class="pub-stat-label">Primary</span><span class="pub-stat-value">BIO026000 &#8212; Memoirs</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Secondary</span><span class="pub-stat-value">FAM004000 &#8212; Adoption &amp; Fostering</span></div>
-            <div class="pub-stat"><span class="pub-stat-label">Tertiary</span><span class="pub-stat-value">MED011000 &#8212; Caregiving</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ KEY FACTS ═══════════════════════════════════════════════════════ -->
-    <section class="section media-facts bg-notebook" aria-labelledby="facts-title">
-      <div class="wrap">
-        <p class="media-section-label" id="facts-title"><span style="background: rgba(237, 228, 210, 0.92);">Key Facts for Press</span></p>
-        <div class="media-facts-grid">
-          <div class="fact-card fact-card--wide">
-            <div>
-              <p class="fact-label">The Document</p>
-              <p class="fact-value">Spiral notebooks kept in real time</p>
-              <p class="fact-note">The memoir is built from spiral notebooks containing hand-drawn grids of feedings, glucose readings, insulin doses, oxygen data, and care notes recorded across 674 days. The notebook is not a retrospective device. It is the book&#8217;s primary documentary source and central visual motif.</p>
-              <blockquote class="fact-quote">&#8220;It was noted in the nomination form that for this one child they attended 495&nbsp;medical appointments in an 18-month time period.&#8221;<cite>&#8212; Chuck Ludwig, Director of CARE House</cite></blockquote>
-            </div>
-            <div>
-              <picture>
-                <source srcset="assets/img/pages-from-judys-notebook.avif" type="image/avif">
-                <source srcset="assets/img/pages-from-judys-notebook.webp" type="image/webp">
-                <img src="assets/img/pages-from-judys-notebook.png" alt="Pages from Judy Wright's spiral notebook showing hand-drawn medical tracking grids." loading="lazy" decoding="async" width="800" height="600">
-              </picture>
-            </div>
-          </div>
-          <div class="fact-card">
-            <p class="fact-label">The Placement</p>
-            <p class="fact-value">Michigan foster care, high medical acuity</p>
-            <p class="fact-note">The child arrived with twenty-seven diagnoses, including congenital syphilis, insulin dependence, blindness, deafness, and failure to thrive. The medical system had prepared for death. There was no plan beyond placement.</p>
-          </div>
-          <div class="fact-card">
-            <p class="fact-label">The Conflict</p>
-            <p class="fact-value">A mother&#8217;s witness versus protocol</p>
-            <p class="fact-note">At the center of the book is a practical medical question Judy refused to stop asking: &#8220;What about breast milk?&#8221; That question brought her into repeated conflict with institutional authority and became one of the memoir&#8217;s defining tensions.</p>
-          </div>
-          <div class="fact-card">
-            <p class="fact-label">The Recognition</p>
-            <p class="fact-value">Michigan Supreme Court, 2012</p>
-            <p class="fact-note">Judy and John Wright were named Michigan&#8217;s Foster Parents of the Year after twelve years and fifty-five foster placements, many of them medically fragile.</p>
-          </div>
-          <div class="fact-card">
-            <p class="fact-label">The Legacy</p>
-            <p class="fact-value">John and Judy Wright Scholarship</p>
-            <p class="fact-note">Their years of foster care and advocacy later inspired the John &amp; Judy Wright Scholarship for Foster Children, created with the Ennis Center for Children to support foster youth pursuing higher education.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ══ PRESS COPY ══════════════════════════════════════════════════════ -->
-    <section class="section media-press-copy" aria-labelledby="press-copy-title">
+    <section class="section media-press-copy" aria-labelledby="press-copy-title" id="press-copy">
       <div class="wrap">
         <p class="media-section-label" id="press-copy-title">Ready-to-Use Press Copy</p>
         <p class="press-copy-intro">These summaries are cleared for editorial use. Please retain title and author name.</p>
@@ -349,213 +422,57 @@ This is not a rescue story. It is a witness story &#8212; a literary memoir abou
 
 Judy and her late husband, John, fostered fifty-five children over twelve years in Michigan, many of them medically fragile. In 2012, they were recognized as Michigan Foster Parents of the Year by the Michigan Supreme Court. Their legacy also includes the John &amp; Judy Wright Scholarship for Foster Children.
 
-Just Hold Her is Judy Wright&#8217;s debut memoir. Published by Held Close Books. Available in ebook, paperback, and hardcover.</p>
+Just Hold Her is Judy Wright&#8217;s debut memoir. Published by Held Close Books. Ebook release April 15, 2026. Print release June 1, 2026.</p>
             <button class="copy-btn" type="button" data-copy="copy-text-250"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy Text</span></button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ IN THE NEWS ═════════════════════════════════════════════════════ -->
-    <section class="section media-coverage bg-notebook" aria-labelledby="coverage-title" id="news">
-      <div class="wrap">
-        <p class="media-section-label" id="coverage-title"><span style="background: rgba(237, 228, 210, 0.92);">In the News</span></p>
 
-        <div class="coverage-list">
-
-          <article class="coverage-item coverage-item--featured" data-format="podcast">
-            <p class="coverage-meta">
-              <time datetime="2026-09-09">September 9, 2026</time>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-outlet"><em>Foster Parent Well</em></span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span>with Nicole Barlow</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-format">Podcast</span>
-            </p>
-            <h3 class="coverage-title"><em>The Impact of Saying Yes with Judy Wright</em></h3>
-            <p class="coverage-description">Judy Wright joins host Nicole Barlow on the Foster Parent Well podcast to talk about the impact of saying yes, drawn from her experience fostering Jayden and her memoir, Just Hold Her.</p>
-            <div class="coverage-actions">
-              <a class="coverage-primary" href="https://fosterparentwell.buzzsprout.com/2319348/episodes/19778405-the-impact-of-saying-yes-with-judy-wright" target="_blank" rel="noopener noreferrer">Listen on Buzzsprout<span class="sr-only"> (opens in new tab)</span> &rarr;</a>
-              <span class="coverage-secondary">
-                <span class="coverage-secondary-label">Also on:</span>
-                <a href="https://open.spotify.com/episode/6a5SANbLN61LOTRNm3OhOj?si=ad514e7f2f1449c1" target="_blank" rel="noopener noreferrer">Spotify<span class="sr-only"> (opens in new tab)</span></a>
-                <a href="https://podcasts.apple.com/us/podcast/the-impact-of-saying-yes-with-judy-wright/id1732063106?i=1000788673310" target="_blank" rel="noopener noreferrer">Apple Podcasts<span class="sr-only"> (opens in new tab)</span></a>
-              </span>
-            </div>
-          </article>
-
-          <article class="coverage-item coverage-item--featured" data-format="podcast">
-            <p class="coverage-meta">
-              <time datetime="2026-08-05">August 5, 2026</time>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-outlet"><em>Foster Friendly Podcast</em>, America&#8217;s Kids Belong</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span>with Courtney Williams &amp; Travis Vangsnes</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-format">Podcast</span>
-            </p>
-            <h3 class="coverage-title"><em>How Loving Beyond Fears Changed the Life of a Medically Fragile Child with Judy Wright</em></h3>
-            <p class="coverage-description">Judy Wright joins hosts Courtney Williams and Travis Vangsnes to tell the story of fostering Jayden, a two-month-old medically fragile baby not expected to survive, and the role of love, attachment, and advocacy in fostering.</p>
-            <div class="coverage-actions">
-              <a class="coverage-primary" href="https://www.youtube.com/watch?v=y0zSLWEC7G0" target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only"> (opens in new tab)</span> &rarr;</a>
-              <span class="coverage-secondary">
-                <span class="coverage-secondary-label">Also on:</span>
-                <a href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=1755210067&amp;i=1000780023369" target="_blank" rel="noopener noreferrer">Apple Podcasts<span class="sr-only"> (opens in new tab)</span></a>
-                <a href="https://open.spotify.com/episode/1F0m2u3KfpW6uQhPjARTiL?si=84e089fa6b804aec" target="_blank" rel="noopener noreferrer">Spotify<span class="sr-only"> (opens in new tab)</span></a>
-                <a href="https://americaskidsbelong.org/blog/how-loving-beyond-fears-changed-the-life-of-a-medically-fragile-child-with-judy-wright/" target="_blank" rel="noopener noreferrer">Read on America&#8217;s Kids Belong<span class="sr-only"> (opens in new tab)</span></a>
-              </span>
-            </div>
-          </article>
-
-          <article class="coverage-item coverage-item--featured" data-format="video">
-            <p class="coverage-meta">
-              <time datetime="2026-05-07">May 18, 2026</time>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-outlet"><em>FOX32 Good Day Chicago</em></span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span>with Sylvia Perez & Terrance Lee</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-               <span>6 MIN</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-format">Interview</span>
-            </p>
-            <h3 class="coverage-title"><em>Judy Wright on Foster Care, Medical Motherhood, and the Story Behind Just&nbsp;Hold&nbsp;Her</em></h3>
-            <p class="coverage-description">Judy Wright joins FOX32 Good Day Chicago to discuss her debut memoir, Just Hold Her, and the extraordinary true story of caring for a medically fragile infant doctors did not expect to survive.</p>
-            <div class="coverage-actions">
-              <a class="coverage-primary" href="https://youtu.be/WfhU8A7ErgY" target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only"> (opens in new tab)</span> &rarr;</a>
-              <!--span class="coverage-secondary">
-                <span class="coverage-secondary-label">Video:</span>
-                <a href="https://youtu.be/WfhU8A7ErgY" target="_blank" rel="noopener noreferrer">Judy Wright on FOX32 Chicago Now | Just Hold Her | Foster Care, Survival & Motherhood<span class="sr-only"> (opens in new tab)</span></a>
-              </span-->
-            </div>
-          </article>
-
-          <article class="coverage-item coverage-item--featured" data-format="article">
-            <p class="coverage-meta">
-              <time datetime="2026-05-07">May 7, 2026</time>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-outlet"><em>Authority Magazine</em></span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-             <span>25 min read</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-format">Article</span>
-            </p>
-            <h3 class="coverage-title"><em>Chosen Families: Judy Wright of Just Hold Her On Why Adoption and Foster Parenting Matter More Than Ever</em></h3>
-            <p class="coverage-description">A long-form interview with Judy Wright on foster parenting, chosen family, and what she wishes more people understood about the work.</p>
-            <div class="coverage-actions">
-              <a class="coverage-primary" href="https://medium.com/authority-magazine/chosen-families-judy-wright-of-just-hold-her-on-why-adoption-and-foster-parenting-matter-more-than-ccc76c7652fa" target="_blank" rel="noopener noreferrer">Read on Authority Magazine<span class="sr-only"> (opens in new tab)</span> &rarr;</a>
-              <span class="coverage-secondary">
-                <span class="coverage-secondary-label">Video:</span>
-                <a href="https://www.youtube.com/watch?v=IP5gCcgA4Pc" target="_blank" rel="noopener noreferrer">5 Things I Wish More People Knew About Foster Parenting<span class="sr-only"> (opens in new tab)</span></a>
-              </span>
-            </div>
-          </article>
-
-          <article class="coverage-item coverage-item--featured" data-format="podcast">
-            <p class="coverage-meta">
-              <time datetime="2026-04-15">April 15, 2026</time>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-outlet"><em>The Alter Eagle</em>, Butler Eagle</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span>with Laura Crago</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span>S2 E93</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span>1h 7m</span>
-              <span class="coverage-sep" aria-hidden="true">&middot;</span>
-              <span class="coverage-format">Podcast</span>
-            </p>
-            <h3 class="coverage-title"><em>Just Hold Her: A Foster Mother&#8217;s Story of Care, Faith, and Letting Go</em></h3>
-            <p class="coverage-description">A long-form conversation with Judy Wright on foster care, documentary writing, and caregiving without the certainty of a good outcome.</p>
-            <div class="coverage-actions">
-              <a class="coverage-primary" href="https://www.youtube.com/watch?v=LMLleVeM5kM&amp;list=PLd_xAxBZGlrCZOUR6Gep_NRm-ax47j7NM" target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only"> (opens in new tab)</span> &rarr;</a>
-              <span class="coverage-secondary">
-                <span class="coverage-secondary-label">Also on:</span>
-                <a href="https://podcasts.apple.com/us/podcast/just-hold-her-a-foster-mothers-story-of-care/id1725313168?i=1000761508035" target="_blank" rel="noopener noreferrer">Apple Podcasts<span class="sr-only"> (opens in new tab)</span></a>
-                <a href="https://open.spotify.com/episode/3JGGNzSXy3ECI4ipCLOz9J" target="_blank" rel="noopener noreferrer">Spotify<span class="sr-only"> (opens in new tab)</span></a>
-              </span>
-            </div>
-          </article>
-
+    <!-- ══ READER RESPONSE ═══════════════════════════════════════════════ -->
+    <section class="section bg-notebook" aria-labelledby="response-title" id="reader-response">
+      <div class="wrap media-v2-response">
+        <p class="media-section-label" id="response-title"><span>A Reader&#8217;s Response</span></p>
+        <div class="media-v2-testimonials" data-media-testimonials>
+          <div class="media-v2-testimonial is-active" data-testimonial="0">
+            <blockquote>&#8220;This isn&#8217;t written as a hero&#8217;s journey. It&#8217;s a story about staying.&#8221;</blockquote>
+            <cite>Casey Wright · Amazon reader review · August 25, 2026</cite>
+          </div>
+          <div class="media-v2-testimonial" data-testimonial="1" hidden>
+            <blockquote>&#8220;A story that will stay with you.&#8221;</blockquote>
+            <cite>Carrie C · Amazon reader review · June 9, 2026</cite>
+          </div>
+          <div class="media-v2-testimonial" data-testimonial="2" hidden>
+            <blockquote>&#8220;Beautifully written and deeply moving.&#8221;</blockquote>
+            <cite>Carrie C · Amazon reader review · June 9, 2026</cite>
+          </div>
+          <div class="media-v2-testimonial" data-testimonial="3" hidden>
+            <blockquote>&#8220;Emotional and brave.&#8221;</blockquote>
+            <cite>Kelly Jabour Pramberger · Amazon reader review · May 28, 2026</cite>
+          </div>
+        </div>
+        <div class="media-v2-testimonial-dots" role="tablist" aria-label="Reader responses">
+          <button type="button" role="tab" aria-selected="true" aria-label="Reader response 1" data-testimonial-dot="0"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="Reader response 2" data-testimonial-dot="1"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="Reader response 3" data-testimonial-dot="2"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="Reader response 4" data-testimonial-dot="3"></button>
         </div>
       </div>
     </section>
 
-    <!-- ══ ABOUT THE AUTHOR ════════════════════════════════════════════════ -->
-    <section class="section media-author" aria-labelledby="media-author-title">
-      <div class="media-author-inner wrap">
-        <figure class="media-author-portrait">
-          <picture>
-            <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.avif" type="image/avif">
-            <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.webp" type="image/webp">
-            <img src="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.jpeg" alt="Judy Wright, author of Just Hold Her." loading="lazy" decoding="async" width="600" height="900">
-          </picture>
-        </figure>
-        <div>
-          <p class="media-section-label" id="media-author-title">About the Author</p>
-          <h2>Judy Wright</h2>
-          <div class="media-author-body">
-            <p>Judy Wright is, above all else, a mother.</p>
-            <p>Alongside her late husband, John &#8212; a Vietnam veteran and corporate pilot &#8212; she built a household shaped by the daily work of caring for children. After raising four children of their own, Judy and John entered Michigan&#8217;s foster care system, where over twelve years they fostered fifty-five children, many of them medically fragile.</p>
-            <p>Their home became a place of readiness: bassinets brought up in the night, appointments folded into the week, and children held without guarantees. That work made Judy an advocate when she needed to be, and a writer only because some things she witnessed demanded a record.</p>
-            <p>In 2012, Judy and John were recognized as Oakland County Foster Parents of the Year and Michigan Foster Parents of the Year. Their legacy also includes the John &amp; Judy Wright Scholarship for Foster Children, created with the Ennis Center for Children.</p><p><em>Just Hold Her</em> is Judy Wright&#8217;s debut memoir, drawn from the spiral notebooks she kept during a two-year medical vigil inside Michigan&#8217;s foster care system.</p>
-          </div>
-          <div class="media-author-awards">
-            <div class="award-item">Honorable Joan E. Young Award for Commitment to Children &#8212; Oakland County Board of Commissioners (2012)</div>
-            <div class="award-item">Oakland County Foster Parents of the Year &#8212; Oakland County Board of Commissioners (2012)</div>
-            <div class="award-item">Michigan Foster Parents of the Year &#8212; Recognized by the Michigan Supreme Court (2012)</div>
-            <div class="award-item">Judy Wright Volunteer of the Year Award &#8212; Muskego High School Music Program</div>
-            <div class="award-item">John and Judy Wright Scholarship for Foster Children &#8212; Ennis Center for Children</div>
-          </div>
-          <div class="cta-row cta-row--center">
-            <a class="btn btn--outline" href="about-author-judy-wright.html">About Judy Wright<span class="sr-only"> &#8212; full biography</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ ADVANCE PRAISE ══════════════════════════════════════════════════ -->
-    <section class="section media-praise bg-notebook" aria-labelledby="praise-title">
-      <div class="wrap">
-        <p class="media-section-label" id="praise-title"><span style="background: rgba(237, 228, 210, 0.92);">Selected Praise</span></p>
-        <div class="praise-segment">
-          <p class="praise-seg-label"><span style="background: rgba(237, 228, 210, 0.92);">Recognition</span></p>
-          <div class="praise-grid">
-            <div class="praise-card"><p class="praise-text">&#8220;Michigan Foster Parents of the Year &#8212; for sustained commitment to medically fragile and high-need children in Oakland County, Michigan.&#8221;</p><p class="praise-attr"><strong>Michigan Supreme Court</strong> &#8212; State Award, 2012</p></div>
-            <div class="praise-card"><p class="praise-text">&#8220;Oakland County Foster Parents of the Year &#8212; recognizing twelve years of exceptional service to children in Michigan&#8217;s foster care system.&#8221;</p><p class="praise-attr"><strong>Oakland County Board of Commissioners</strong> &#8212; County Award, 2012</p></div>
-          </div>
-        </div>
-        <div class="praise-segment">
-          <p class="praise-seg-label"><span style="background: rgba(237, 228, 210, 0.92);">Medical &amp; Caregiving Professionals</span></p>
-          <div class="praise-grid">
-            <div class="praise-card"><p class="praise-text">&#8220;A fantastic read. A true testament to modern medicine, unconditional love, and compassion. I could not put it down.&#8221;</p><p class="praise-attr"><strong>Linda Thulin</strong> &#8212; Nurse, Caregiver, Mother</p></div>
-            <div class="praise-card"><p class="praise-text">&#8220;You feel every emotion in this book. I found myself holding my breath at times. I had tears at times. This is a wonderful read.&#8221;</p><p class="praise-attr"><strong>Jeannette Cunningham</strong> &#8212; Medical Professional, Mother</p></div>
-          </div>
-        </div>
-        <div class="praise-segment">
-          <p class="praise-seg-label"><span style="background: rgba(237, 228, 210, 0.92);">Early Reader Response</span></p>
-          <div class="praise-grid">
-            <div class="praise-card"><p class="praise-text">&#8220;Such an amazing story.&#8221;</p><p class="praise-attr"><strong>Nichole Wardell</strong> &#8212; Mother, Caregiver</p></div>
-            <div class="praise-card"><p class="praise-text">&#8220;I&#8217;ve loved reading every word and look forward to more!&#8221;</p><p class="praise-attr"><strong>Whitney Mannering</strong> &#8212; Educator</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ CONTACT ═════════════════════════════════════════════════════════ -->
-    <section class="section media-contact" aria-labelledby="media-contact-title">
+    <!-- ══ CONTACT ═══════════════════════════════════════════════════════ -->
+    <section class="section media-contact" aria-labelledby="media-contact-title" id="contact">
       <div class="media-contact-inner wrap">
         <div class="media-contact-left">
-          <p class="media-section-label media-section-label--light">Get in Touch</p>
-          <h2 id="media-contact-title">For interviews, features, review coverage, or podcast inquiries, begin here.</h2>
-          <p class="media-contact-deck">Judy Wright can speak to the making of Just Hold Her, the documentary role of the spiral notebooks, foster care and medical caregiving, and the lived tension between household witness and institutional authority.</p>
-          <button type="button" class="btn btn--accent" id="openReviewModal2">Request Review Copy</button>
-          <p class="media-cta-sub">Available to qualified press in advance of release. Please include your outlet, role, and intended coverage.</p>
+          <p class="media-section-label media-section-label--light">Press &amp; Media</p>
+          <h2 id="media-contact-title">Have an interview, feature, podcast, or review in mind?</h2>
+          <p class="media-contact-deck">Send the outlet, your role, the kind of coverage you&#8217;re considering, and any timing that matters. Review copies are available as part of the same request.</p>
+          <button type="button" class="btn btn--accent" id="openReviewModal2">Press &amp; Media Request</button>
         </div>
         <div class="media-contact-cards">
-          <a class="contact-card" href="contact.html"><p class="cc-type">Press &amp; Media</p><p class="cc-headline">Interview requests, review coverage, and editorial inquiries</p><p class="cc-note">For reporters, editors, producers, and podcast hosts.</p><p class="cc-email">Get in Touch &#8594;</p></a>
-          <a class="contact-card" href="contact.html"><p class="cc-type">Speaking &amp; Events</p><p class="cc-headline">Panels, readings, book clubs, and invited conversations</p><p class="cc-note">For literary, caregiving, foster-care, medical, and faith-adjacent audiences.</p><p class="cc-email">Get in Touch &#8594;</p></a>
+          <a class="contact-card" href="contact.html"><p class="cc-type">General Contact</p><p class="cc-headline">Other questions about the book, Judy, or Held Close Books</p><p class="cc-note">For readers, organizations, and general inquiries.</p><p class="cc-email">Get in Touch →</p></a>
+          <a class="contact-card" href="speaking.html"><p class="cc-type">Speaking &amp; Events</p><p class="cc-headline">Panels, readings, book clubs, and invited conversations</p><p class="cc-note">For literary, caregiving, foster-care, and medical audiences.</p><p class="cc-email">Speaking &amp; Visits →</p></a>
         </div>
       </div>
     </section>
@@ -608,18 +525,18 @@ Just Hold Her is Judy Wright&#8217;s debut memoir. Published by Held Close Books
     </div>
   </div>
 
-  <!-- ══ REVIEW COPY MODAL ═════════════════════════════════════════════════ -->
+  <!-- ══ PRESS & MEDIA REQUEST MODAL ═══════════════════════════════════════ -->
   <div class="modal-overlay" id="rcopyModal" role="dialog" aria-modal="true" aria-labelledby="rcopy-modal-title">
     <div class="modal">
-      <button class="modal-close" type="button" aria-label="Close review copy form">&times;</button>
+      <button class="modal-close" type="button" aria-label="Close press and media request form">&times;</button>
       <p class="modal-kicker">Media &amp; Press</p>
-      <h2 id="rcopy-modal-title">Request a Review Copy</h2>
-      <p class="modal-deck">Available to qualified press, reviewers, and media. Please include your outlet, role, and the kind of coverage you&#8217;re considering.</p>
+      <h2 id="rcopy-modal-title">Press &amp; Media Request</h2>
+      <p class="modal-deck">For interviews, podcasts, features, review copies, and other editorial inquiries. Please include your outlet, role, and what you&#8217;re working on.</p>
       <form class="modal-form" id="rcopyForm" action="https://formspree.io/f/xbdzdngw" method="POST">
         <div class="field"><label for="rcopy-name">Your Name (required)</label><input type="text" id="rcopy-name" name="name" required autocomplete="name"></div>
         <div class="field"><label for="rcopy-email">Email Address (required)</label><input type="email" id="rcopy-email" name="email" required autocomplete="email"></div>
         <div class="field"><label for="rcopy-outlet">Publication or Outlet</label><input type="text" id="rcopy-outlet" name="outlet"></div>
-        <div class="field"><label for="rcopy-type">Inquiry Type</label><select id="rcopy-type" name="inquiry_type"><option value="">Select one&#8230;</option><option value="Review Copy">Review Copy</option><option value="Interview Request">Interview Request</option><option value="Story / Feature">Story / Feature</option><option value="Podcast">Podcast</option><option value="Other">Other</option></select></div>
+        <div class="field"><label for="rcopy-type">Inquiry Type</label><select id="rcopy-type" name="inquiry_type"><option value="">Select one&#8230;</option><option value="Interview Request">Interview Request</option><option value="Podcast">Podcast</option><option value="Story / Feature">Story / Feature</option><option value="Review Copy">Review Copy</option><option value="Other">Other</option></select></div>
         <div class="field"><label for="rcopy-message">Message <span class="label-optional">(optional)</span></label><textarea id="rcopy-message" name="message"></textarea></div>
         <button type="submit" class="btn btn--submit">Send Request</button>
       </form>
@@ -656,5 +573,39 @@ Just Hold Her is Judy Wright&#8217;s debut memoir. Published by Held Close Books
 
   <script src="assets/js/main.js" defer></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"9b1ad9b8f73d4f4c9221b74e1d9b200e","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<script>
+(function () {
+  const root = document.querySelector('[data-media-testimonials]');
+  if (!root) return;
+  const slides = Array.from(root.querySelectorAll('[data-testimonial]'));
+  const dots = Array.from(document.querySelectorAll('[data-testimonial-dot]'));
+  if (slides.length < 2 || dots.length !== slides.length) return;
+  let current = 0;
+  let timer;
+
+  function show(index, userInitiated) {
+    current = index;
+    slides.forEach((slide, i) => {
+      slide.hidden = i !== current;
+      slide.classList.toggle('is-active', i === current);
+    });
+    dots.forEach((dot, i) => {
+      dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+    if (userInitiated) restart();
+  }
+
+  function restart() {
+    clearInterval(timer);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    timer = setInterval(() => show((current + 1) % slides.length, false), 6500);
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => show(i, true)));
+  show(0, false);
+  restart();
+})();
+</script>
 </body>
 </html>
