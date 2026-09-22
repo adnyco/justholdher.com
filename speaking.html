@@ -44,26 +44,63 @@
 
 
   <style>
-    /* Page-specific layout only. Typography, buttons, cards, downloads, and
-       surfaces intentionally reuse the site's established visit styles. */
-    .visit-audience-list {
+    /* Page-specific layout only. Keep the page on the site's established visual system. */
+    .visit-program-list {
       margin-top: var(--space-lg);
       border-top: 1px solid var(--color-light-rule);
     }
-    .visit-audience {
+    .visit-program {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(18rem, .65fr);
+      grid-template-columns: minmax(0, 1.45fr) minmax(17rem, .55fr);
       gap: var(--space-xl);
       align-items: center;
-      padding: var(--space-xl) 0;
+      padding: clamp(2rem, 5vw, 3.5rem) 0;
       border-bottom: 1px solid var(--color-light-rule);
     }
-    .visit-audience h2 { margin: 0 0 .5rem; }
-    .visit-audience .visit-hero-tag { margin-bottom: .65rem; }
-    .visit-audience .media-section-label { margin-bottom: .7rem; }
-    .visit-audience .visit-download-link { width: 100%; }
+    .visit-program-index {
+      margin: 0 0 .65rem;
+      font: 500 .72rem/1 var(--font-mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .visit-program h2 { margin: 0 0 .65rem; }
+    .visit-program .visit-hero-tag { margin-bottom: .5rem; }
+    .visit-program-copy { max-width: 42rem; }
+    .visit-hero-credibility {
+      max-width: 34rem;
+      margin: 1.1rem 0 0;
+      font-size: .95rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,.86);
+    }
+    .visit-program-download {
+      padding-top: .25rem;
+    }
+    .visit-program-download .media-section-label { margin-bottom: .65rem; }
+    .visit-program-download a {
+      display: inline-flex;
+      align-items: baseline;
+      gap: .55rem;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      line-height: 1.5;
+      letter-spacing: .02em;
+      color: var(--color-text);
+      text-decoration-thickness: 1px;
+      text-underline-offset: .25em;
+    }
+    .visit-program-download a::after { content: '\2192'; }
+    .visit-program-download a:hover { text-decoration-thickness: 2px; }
+    .visit-availability {
+      margin: var(--space-lg) 0 0;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-light-rule);
+      font-size: .95rem;
+    }
     @media (max-width: 800px) {
-      .visit-audience { grid-template-columns: 1fr; gap: var(--space-md); }
+      .visit-program { grid-template-columns: 1fr; gap: var(--space-md); }
+      .visit-program-download { padding-top: 0; }
     }
   </style>
 
@@ -109,6 +146,7 @@
         <p class="visit-hero-tag">Free · In Person or Virtual</p>
         <h1 id="visit-h1">Invite Judy to Speak</h1>
         <p class="visit-hero-sub">Readings, conversations, and quiet discussions about caregiving, foster care, and the work of staying.</p>
+        <p class="visit-hero-credibility">Over twelve years, Judy and her husband, John, fostered fifty-five children, many of them medically fragile.</p>
         <div class="visit-hero-actions">
           <button class="btn btn--accent" id="openVisitModal2" type="button">Request a Visit</button>
           <p class="visit-hero-email"><a href="mailto:speaking@justholdher.com">speaking@justholdher.com</a></p>
@@ -120,57 +158,49 @@
     <section class="section" id="programs" aria-labelledby="programs-title">
       <div class="wrap">
         <p class="media-section-label" id="programs-title">Programs &amp; Audiences</p>
-        <div class="visit-audience-list">
+        <div class="visit-program-list">
 
-          <article class="visit-audience">
-            <div>
+          <article class="visit-program">
+            <div class="visit-program-copy">
+              <p class="visit-program-index">01</p>
               <p class="visit-hero-tag">Libraries &amp; Book Clubs</p>
               <h2>Reading &amp; conversation</h2>
               <p>A reading from <em>Just Hold Her</em>, followed by conversation and questions about the book, foster care, and caregiving.</p>
             </div>
-            <div>
+            <div class="visit-program-download">
               <p class="media-section-label">For your team</p>
-              <a class="visit-download-link" href="assets/pdf/just-hold-her-community-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the libraries and senior communities visit flyer (PDF, opens in new tab)">
-                <span class="visit-download-icon" aria-hidden="true">&#8595;</span>
-                <span class="visit-download-label">Libraries &amp; Senior Communities</span>
-                <span class="visit-download-format">PDF<span class="sr-only"> (opens in new tab)</span></span>
-              </a>
+              <a href="assets/pdf/just-hold-her-community-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the libraries and senior communities visit flyer (PDF, opens in new tab)">Libraries &amp; Senior Communities <span class="sr-only">PDF, opens in new tab</span></a>
             </div>
           </article>
 
-          <article class="visit-audience">
-            <div>
+          <article class="visit-program">
+            <div class="visit-program-copy">
+              <p class="visit-program-index">02</p>
               <p class="visit-hero-tag">Foster Care &amp; Caregiving</p>
               <h2>The work no one sees</h2>
               <p>A conversation about medically fragile children, advocacy, attachment, routines, and what it means to keep showing up.</p>
             </div>
-            <div>
+            <div class="visit-program-download">
               <p class="media-section-label">For your team</p>
-              <a class="visit-download-link" href="assets/pdf/just-hold-her-foster-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the foster care organizations visit flyer (PDF, opens in new tab)">
-                <span class="visit-download-icon" aria-hidden="true">&#8595;</span>
-                <span class="visit-download-label">Foster Care Organizations</span>
-                <span class="visit-download-format">PDF<span class="sr-only"> (opens in new tab)</span></span>
-              </a>
+              <a href="assets/pdf/just-hold-her-foster-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the foster care organizations visit flyer (PDF, opens in new tab)">Foster Care Organizations <span class="sr-only">PDF, opens in new tab</span></a>
             </div>
           </article>
 
-          <article class="visit-audience">
-            <div>
+          <article class="visit-program">
+            <div class="visit-program-copy">
+              <p class="visit-program-index">03</p>
               <p class="visit-hero-tag">NICU &amp; Milk Bank Communities</p>
               <h2>The network of care</h2>
               <p>A conversation about medically fragile infants, donor milk, nurses, mothers, and the people whose ordinary acts of care can carry a child through the night.</p>
             </div>
-            <div>
+            <div class="visit-program-download">
               <p class="media-section-label">For your team</p>
-              <a class="visit-download-link" href="assets/pdf/just-hold-her-nicu-breastmilk-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the NICU and milk bank communities visit flyer (PDF, opens in new tab)">
-                <span class="visit-download-icon" aria-hidden="true">&#8595;</span>
-                <span class="visit-download-label">NICU &amp; Milk Bank Communities</span>
-                <span class="visit-download-format">PDF<span class="sr-only"> (opens in new tab)</span></span>
-              </a>
+              <a href="assets/pdf/just-hold-her-nicu-breastmilk-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the NICU and milk bank communities visit flyer (PDF, opens in new tab)">NICU &amp; Milk Bank Communities <span class="sr-only">PDF, opens in new tab</span></a>
             </div>
           </article>
 
         </div>
+        <p class="visit-availability"><strong>Visit format:</strong> In person in the Triangle (NC), Hampton Roads (VA), and Atlanta (GA). Virtual visits are available anywhere.</p>
       </div>
     </section>
 
@@ -240,26 +270,12 @@
               <button class="btn btn--accent visit-cta-btn" id="openVisitModal" type="button">Request a Visit</button>
               <p class="visit-cta-fallback">Or email <a href="mailto:speaking@justholdher.com">speaking@justholdher.com</a></p>
               <p class="visit-cta-close">Judy reads every message and responds personally.</p>
-              <div class="visit-cta-geo">
-                <p>In person: Triangle (NC), Hampton Roads (VA), Atlanta (GA).<br>Virtual visits available anywhere.</p>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <section class="section" aria-labelledby="final-speaking-title">
-      <div class="wrap">
-        <div class="visit-story-copy" style="text-align:center; max-width:42rem;">
-          <p class="media-section-label">Speaking &amp; Visits</p>
-          <h2 id="final-speaking-title">Have a group in mind?</h2>
-          <p>Tell Judy a little about your organization, your audience, and what you hope the conversation might hold.</p>
-          <p><a class="btn btn--accent" href="#request">Request a Visit</a></p>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -323,7 +339,7 @@
 
   <!-- ══ VISIT REQUEST MODAL ═══════════════════════════════════════════════
        Triggered by #openVisitModal (CTA panel) and #openVisitModal2 (hero).
-       Both wired in main.js. Formspree endpoint: replace VISIT_FORM_ID.
+       Both wired in main.js.
   ═══════════════════════════════════════════════════════════════════════ -->
   <div class="modal-overlay" id="visitModal" role="dialog" aria-modal="true" aria-labelledby="visit-modal-title">
     <div class="modal">
