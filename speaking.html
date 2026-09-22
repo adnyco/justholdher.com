@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Public Speaking &amp; Author Visits &mdash; Judy Wright | Just Hold Her</title>
-  <meta name="description" content="Judy Wright offers free author visits — readings, conversations, and Q&As — for senior communities, libraries, foster care organizations, and caregiving support groups. Contact speaking@justholdher.com.">
+  <meta name="description" content="Judy Wright offers author visits — readings, conversations, and Q&As — for senior communities, libraries, foster care organizations, and caregiving support groups. Contact speaking@justholdher.com.">
   <link rel="canonical" href="https://justholdher.com/speaking.html">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Invite Judy Wright to Speak | Just Hold Her">
-  <meta property="og:description" content="Free author visits for libraries, senior communities, foster care organizations, and caregiving groups. speaking@justholdher.com">
+  <meta property="og:description" content="Author visits for libraries, senior communities, foster care organizations, and caregiving groups. speaking@justholdher.com">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Just Hold Her">
   <meta property="og:locale" content="en_US">
@@ -19,7 +19,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Invite Judy Wright to Speak">
-  <meta name="twitter:description" content="Free author visits for libraries, senior communities, and caregiving organizations.">
+  <meta name="twitter:description" content="Author visits for libraries, senior communities, and caregiving organizations.">
   <meta name="twitter:image" content="https://justholdher.com/assets/img/judy-wright-author-speaker.jpeg">
 
   <!-- Favicon -->
@@ -45,30 +45,42 @@
 
   <style>
     /* Page-specific layout only. Keep the page on the site's established visual system. */
+    .visit-hero-credibility {
+      max-width: 48ch;
+    }
     .visit-program-list {
       margin-top: var(--space-lg);
       border-top: 1px solid var(--color-light-rule);
     }
     .visit-program {
       display: grid;
-      grid-template-columns: minmax(15rem, .8fr) minmax(0, 1.25fr) minmax(11rem, .55fr);
-      gap: var(--space-xl);
-      align-items: center;
-      padding: clamp(2.25rem, 5vw, 3.75rem) 0;
+      grid-template-columns: minmax(14rem, .72fr) minmax(0, 1.28fr);
+      column-gap: clamp(2rem, 7vw, 6.5rem);
+      align-items: start;
+      padding: clamp(2.75rem, 6vw, 4.75rem) 0;
       border-bottom: 1px solid var(--color-light-rule);
     }
     .visit-program h2 {
       margin: 0;
-      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      line-height: 1.05;
     }
-    .visit-program .visit-hero-tag { margin-bottom: .55rem; }
-    .visit-program-copy { max-width: 34rem; }
-    .visit-program-copy > p:last-child { margin-bottom: 0; }
+    .visit-program .visit-hero-tag {
+      margin-bottom: .65rem;
+    }
+    .visit-program-copy > p:last-child {
+      margin-bottom: 0;
+    }
+    .visit-program-detail {
+      max-width: 40rem;
+    }
     .visit-program-download {
-      justify-self: end;
-      text-align: right;
+      margin-top: 1.25rem;
     }
     .visit-program-download a {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
       font-family: var(--font-mono);
       font-size: .72rem;
       font-weight: 500;
@@ -77,7 +89,7 @@
       color: var(--color-text);
       text-decoration: none;
       border-bottom: 1px solid var(--color-accent-subtle);
-      padding-bottom: .15rem;
+      padding-bottom: .2rem;
       transition: color .2s ease, border-color .2s ease;
     }
     .visit-program-download a:hover,
@@ -85,36 +97,38 @@
       color: var(--color-accent);
       border-color: var(--color-accent);
     }
+    .visit-program-download svg {
+      width: .9rem;
+      height: .9rem;
+      flex: 0 0 auto;
+    }
     .visit-program-cta {
-      margin: var(--space-lg) 0 0;
+      margin: var(--space-xl) auto 0;
+      max-width: 42rem;
       text-align: center;
+      font-family: var(--font-mono);
+      font-size: .76rem;
+      line-height: 1.7;
+      letter-spacing: .025em;
     }
     .visit-program-cta a {
-      font-family: var(--font-mono);
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
       color: var(--color-text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--color-accent-subtle);
-      padding-bottom: .15rem;
-      transition: color .2s ease, border-color .2s ease;
+      text-decoration-color: var(--color-accent-subtle);
+      text-underline-offset: .2em;
+      transition: color .2s ease, text-decoration-color .2s ease;
     }
     .visit-program-cta a:hover,
     .visit-program-cta a:focus-visible {
       color: var(--color-accent);
-      border-color: var(--color-accent);
+      text-decoration-color: var(--color-accent);
     }
     @media (max-width: 800px) {
       .visit-program {
         grid-template-columns: 1fr;
-        gap: var(--space-sm);
+        row-gap: .9rem;
       }
       .visit-program-download {
-        justify-self: start;
-        text-align: left;
-        margin-top: .4rem;
+        margin-top: .45rem;
       }
     }
   </style>
@@ -158,7 +172,7 @@
       </picture>
       <div class="page-hero-fade" aria-hidden="true"></div>
       <div class="page-hero-content wrap">
-        <p class="visit-hero-tag">Free · In Person or Virtual</p>
+        <p class="visit-hero-tag">In Person · Virtual</p>
         <h1 id="visit-h1">Invite Judy to Speak</h1>
         <p class="visit-hero-sub">Readings, conversations, and quiet discussions about caregiving, foster care, and the work of staying.</p>
         <p class="visit-hero-credibility">Over twelve years, Judy and her husband, John, fostered fifty-five children, many of them medically fragile.</p>
@@ -172,7 +186,7 @@
     <!-- PROGRAMS / AUDIENCES -->
     <section class="section" id="programs" aria-labelledby="programs-title">
       <div class="wrap">
-        <p class="media-section-label" id="programs-title">Programs &amp; Audiences</p>
+        <p class="media-section-label" id="programs-title">Programs</p>
         <div class="visit-program-list">
 
           <article class="visit-program">
@@ -180,11 +194,14 @@
               <p class="visit-hero-tag">Libraries &amp; Book Clubs</p>
               <h2>Reading &amp; conversation</h2>
             </div>
-            <div class="visit-program-copy">
+            <div class="visit-program-detail">
               <p>A reading from <em>Just Hold Her</em>, followed by conversation and questions about the book, foster care, and caregiving.</p>
-            </div>
-            <div class="visit-program-download">
-              <a href="assets/pdf/just-hold-her-community-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the libraries and senior communities visit flyer (PDF, opens in new tab)">Download flyer (PDF) <span class="sr-only">opens in new tab</span></a>
+              <div class="visit-program-download">
+                <a href="assets/pdf/just-hold-her-community-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the libraries and senior communities visit flyer (PDF, opens in new tab)">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3.5h8l4 4V20.5H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 3.5v4h4M9 14h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span>Flyer (PDF)</span><span class="sr-only">opens in new tab</span>
+                </a>
+              </div>
             </div>
           </article>
 
@@ -193,11 +210,14 @@
               <p class="visit-hero-tag">Foster Care &amp; Caregiving</p>
               <h2>The work no one sees</h2>
             </div>
-            <div class="visit-program-copy">
+            <div class="visit-program-detail">
               <p>A conversation about medically fragile children, advocacy, attachment, routines, and what it means to keep showing up.</p>
-            </div>
-            <div class="visit-program-download">
-              <a href="assets/pdf/just-hold-her-foster-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the foster care organizations visit flyer (PDF, opens in new tab)">Download flyer (PDF) <span class="sr-only">opens in new tab</span></a>
+              <div class="visit-program-download">
+                <a href="assets/pdf/just-hold-her-foster-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the foster care organizations visit flyer (PDF, opens in new tab)">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3.5h8l4 4V20.5H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 3.5v4h4M9 14h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span>Flyer (PDF)</span><span class="sr-only">opens in new tab</span>
+                </a>
+              </div>
             </div>
           </article>
 
@@ -206,16 +226,19 @@
               <p class="visit-hero-tag">NICU &amp; Milk Bank Communities</p>
               <h2>The network of care</h2>
             </div>
-            <div class="visit-program-copy">
+            <div class="visit-program-detail">
               <p>A conversation about medically fragile infants, donor milk, nurses, mothers, and the people whose ordinary acts of care can carry a child through the night.</p>
-            </div>
-            <div class="visit-program-download">
-              <a href="assets/pdf/just-hold-her-nicu-breastmilk-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the NICU and milk bank communities visit flyer (PDF, opens in new tab)">Download flyer (PDF) <span class="sr-only">opens in new tab</span></a>
+              <div class="visit-program-download">
+                <a href="assets/pdf/just-hold-her-nicu-breastmilk-visit-flyer.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download the NICU and milk bank communities visit flyer (PDF, opens in new tab)">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3.5h8l4 4V20.5H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 3.5v4h4M9 14h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span>Flyer (PDF)</span><span class="sr-only">opens in new tab</span>
+                </a>
+              </div>
             </div>
           </article>
 
         </div>
-        <p class="visit-program-cta"><a href="#request">Virtual visits anywhere. In-person visits can be arranged. Contact us to discuss&nbsp;→</a></p>
+        <p class="visit-program-cta"><a href="#request">Virtual visits are available anywhere. In-person visits can be arranged. Contact us to discuss&nbsp;→</a></p>
       </div>
     </section>
 
@@ -229,7 +252,6 @@
               <li>An hour: a reading, conversation, and questions</li>
               <li>Discussion questions for book clubs or group programs</li>
               <li>Flexible scheduling: mornings, afternoons, or evenings</li>
-              <li>No fee. Judy volunteers her time.</li>
             </ul>
           </div>
           <div class="visit-detail-card">
@@ -281,10 +303,9 @@
             <div class="visit-cta-panel" aria-labelledby="visit-cta-title">
               <p class="media-section-label">Request a Visit</p>
               <h3 class="visit-cta-heading" id="visit-cta-title">If this would be meaningful for your group, Judy would be glad to hear from you.</h3>
-              <p class="visit-cta-no-fee">There is no fee.</p>
               <button class="btn btn--accent visit-cta-btn" id="openVisitModal" type="button">Request a Visit</button>
               <p class="visit-cta-fallback">Or email <a href="mailto:speaking@justholdher.com">speaking@justholdher.com</a></p>
-              <p class="visit-cta-close">Judy reads every message and responds personally.</p>
+              <p class="visit-cta-close">Judy reads every message personally, and we will follow up with you.</p>
             </div>
           </div>
         </div>
@@ -361,7 +382,7 @@
       <button class="modal-close" type="button" aria-label="Close visit request form">&times;</button>
       <p class="modal-kicker">Author Visits &middot; Just Hold Her</p>
       <h2 id="visit-modal-title">Request a Visit</h2>
-      <p class="modal-deck">Judy responds personally. Tell Judy about your organization, your audience, and what would make the visit meaningful.</p>
+      <p class="modal-deck">Judy reads every message personally. Tell us about your organization, your audience, and what would make the visit meaningful.</p>
       <form class="modal-form" id="visitForm" action="https://formspree.io/f/mpqynrkv" method="POST">
         <div class="field"><label for="visit-name">Your Name (required)</label><input type="text" id="visit-name" name="name" required autocomplete="name"></div>
         <div class="field"><label for="visit-email">Email Address (required)</label><input type="email" id="visit-email" name="email" required autocomplete="email"></div>
@@ -374,7 +395,7 @@
       <div class="modal-success" id="visitSuccess">
         <div class="modal-success-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
         <p><strong>Request received.</strong></p>
-        <p>Judy will be in touch personally.</p>
+        <p>We will be in touch soon.</p>
       </div>
     </div>
   </div>
