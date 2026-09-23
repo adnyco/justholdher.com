@@ -3898,6 +3898,10 @@ footer[role="contentinfo"] {
    ================================================================ */
 
 /* ─── Hero ───────────────────────────────────────────────── */
+.visit-hero-credibility {
+  max-width: 48ch;
+}
+
 .visit-hero {
   height: 80vh;
   min-height: 32rem;
@@ -3951,6 +3955,106 @@ footer[role="contentinfo"] {
   letter-spacing: 0.08em;
   color: var(--color-text-muted);
   margin: 0;
+}
+
+/* ─── Programs ───────────────────────────────────────────── */
+.visit-program-list {
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--color-light-rule);
+}
+
+.visit-program {
+  display: grid;
+  grid-template-columns: minmax(14rem, .72fr) minmax(0, 1.28fr);
+  column-gap: clamp(2rem, 7vw, 6.5rem);
+  align-items: start;
+  padding: clamp(2.75rem, 6vw, 4.75rem) 0;
+  border-bottom: 1px solid var(--color-light-rule);
+}
+
+.visit-program h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height: 1.05;
+}
+
+.visit-program .visit-hero-tag {
+  margin-bottom: .65rem;
+}
+
+.visit-program-copy > p:last-child {
+  margin-bottom: 0;
+}
+
+.visit-program-detail {
+  max-width: 40rem;
+}
+
+.visit-program-download {
+  margin-top: 1.25rem;
+}
+
+.visit-program-download a {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-body);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent-subtle);
+  padding-bottom: .2rem;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.visit-program-download a:hover,
+.visit-program-download a:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.visit-program-download svg {
+  width: .9rem;
+  height: .9rem;
+  flex: 0 0 auto;
+}
+
+.visit-program-cta {
+  margin: var(--space-xl) auto 0;
+  max-width: 42rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  line-height: 1.7;
+  letter-spacing: .025em;
+}
+
+.visit-program-cta a {
+  color: var(--color-text-body);
+  text-decoration-color: var(--color-accent-subtle);
+  text-underline-offset: .2em;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+
+.visit-program-cta a:hover,
+.visit-program-cta a:focus-visible {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+
+@media (max-width: 800px) {
+  .visit-program {
+    grid-template-columns: 1fr;
+    row-gap: .9rem;
+  }
+
+  .visit-program-download {
+    margin-top: .45rem;
+  }
 }
 
 /* ─── Story ───────────────────────────────────────────────── */
