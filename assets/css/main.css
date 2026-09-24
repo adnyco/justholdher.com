@@ -237,6 +237,13 @@ strong {
   padding: var(--space-xl) 0;
 }
 
+/* Sits directly beneath .awards-band, which already carries its own
+   vertical rhythm — trims the top so the two don't stack full section
+   spacing against each other. */
+.section--reader-notes {
+  padding-top: var(--space-lg);
+}
+
 .section-copy {
   max-width: var(--max-width);
 }
@@ -479,8 +486,10 @@ html.scroll-locked {
    ================================================================ */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 32rem;
+  /* min-height, not a fixed height: the hero now carries the purchase
+     CTA and ratings, so on a short viewport it must be free to grow
+     rather than clip that content under overflow:hidden below. */
+  min-height: max(32rem, 100vh);
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
   overflow: hidden;
@@ -535,6 +544,119 @@ html.scroll-locked {
   color: rgba(240, 232, 216, 0.85);
   margin: 0;
   max-width: min(38ch, 90vw);
+}
+
+/* ── Hero content stack ──
+   Sequence is deliberate: what the book is (h1 + hero-sub) → why it
+   matters (hero-pitch) → action (buttons) → the quiet accommodation
+   for other retailers → reader proof (ratings, then a few quiet
+   voices) → institutional recognition, last and quietest. Visual
+   weight steps down as the list goes on so the page reads as one
+   confident statement followed by evidence, not a stack of equally
+   loud claims. .hero-content is a flex column with its own gap, so
+   each rule below only adds the *extra* space a group needs beyond
+   that base rhythm, rather than setting margin top-to-bottom by hand. */
+.hero-pitch {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  max-width: min(46ch, 88vw);
+  margin: 0.5rem 0 0;
+}
+
+/* Extra top space ahead of the buttons — this is the one deliberate
+   pause in the sequence, marking the shift from pitch to action. */
+.hero-actions.cta-row {
+  margin-top: 1rem;
+  row-gap: 0.85rem;
+}
+
+.hero-actions .btn {
+  padding-block: 0.95rem;
+}
+
+.hero-retailer-note {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  margin: 0.15rem 0 0;
+}
+
+.hero-retailer-note a {
+  color: rgba(240, 232, 216, 0.75);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+  text-decoration: underline;
+  text-decoration-color: rgba(240, 232, 216, 0.35);
+  text-underline-offset: 3px;
+}
+
+.hero-retailer-note a:hover,
+.hero-retailer-note a:focus-visible {
+  color: var(--color-text-primary);
+  text-decoration-color: currentColor;
+}
+
+.hero-ratings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: rgba(240, 232, 216, 0.92);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+  margin: 1.5rem 0 0;
+}
+
+.hero-ratings strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.hero-ratings .stars {
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+/* Quiet reader voices — deliberately unattributed here (the full,
+   named reviews are one scroll down); this is texture, not proof. */
+.hero-quotes {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hero-quotes li {
+  font-style: italic;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: rgba(240, 232, 216, 0.62);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Institutional recognition — quietest tier of the stack by design;
+   mono/caps for the same reason .awards-source uses it elsewhere on
+   the site: it reads as a citation, not a claim. */
+.hero-recognition {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hero-recognition li {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(240, 232, 216, 0.48);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
 }
 
 
