@@ -237,13 +237,6 @@ strong {
   padding: var(--space-xl) 0;
 }
 
-/* Sits directly beneath .awards-band, which already carries its own
-   vertical rhythm — trims the top so the two don't stack full section
-   spacing against each other. */
-.section--reader-notes {
-  padding-top: var(--space-lg);
-}
-
 .section-copy {
   max-width: var(--max-width);
 }
@@ -520,6 +513,22 @@ html.scroll-locked {
   );
 }
 
+/* Mobile portrait, touch-only ("no pointing device detected" — the
+   precise CSS mapping for that is hover:none, coarse pointer, not a
+   width breakpoint, so this holds regardless of phone screen size).
+   The hero's text stack is long enough now that it needs to grow
+   past 100vh on a phone; a busy photo scrolling behind that much
+   text reads as noisy rather than warm at this size. .hero's own
+   solid background (--color-bg-primary) shows through cleanly once
+   these are hidden — no gap to fill in behind them. */
+@media (orientation: portrait) and (hover: none) and (pointer: coarse) {
+  .hero picture,
+  .hero .hero-img,
+  .hero-fade {
+    display: none;
+  }
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -619,8 +628,9 @@ html.scroll-locked {
   letter-spacing: 0.05em;
 }
 
-/* Quiet reader voices — deliberately unattributed here (the full,
-   named reviews are one scroll down); this is texture, not proof. */
+/* Quiet reader voices — deliberately unattributed here; the full,
+   named reviews live on buy.html's praise segments. This is texture,
+   not proof. */
 .hero-quotes {
   list-style: none;
   margin: 0.85rem 0 0;
@@ -638,27 +648,6 @@ html.scroll-locked {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* Institutional recognition — quietest tier of the stack by design;
-   mono/caps for the same reason .awards-source uses it elsewhere on
-   the site: it reads as a citation, not a claim. */
-.hero-recognition {
-  list-style: none;
-  margin: 1.5rem 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.hero-recognition li {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(240, 232, 216, 0.48);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-}
-
 
 /* ================================================================
    8. SECTIONS
@@ -669,8 +658,16 @@ html.scroll-locked {
   background: #000000;
 }
 
-.section--story .section-media img {
-  object-position: top left;
+/* Single column since the section-media image was removed — same
+   scoped-override pattern .buy-story already uses for its own
+   section-grid, rather than a new layout primitive. */
+.section--story .section-grid {
+  grid-template-columns: 1fr;
+}
+
+.section--story .section-copy {
+  max-width: 62ch;
+  margin-inline: auto;
 }
 
 /* Author section — the ONE light section */
