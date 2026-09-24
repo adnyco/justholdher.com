@@ -557,7 +557,7 @@ html.scroll-locked {
    each rule below only adds the *extra* space a group needs beyond
    that base rhythm, rather than setting margin top-to-bottom by hand. */
 .hero-pitch {
-  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
   font-weight: 400;
   font-style: italic;
   line-height: 1.5;
