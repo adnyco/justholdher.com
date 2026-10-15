@@ -5181,16 +5181,51 @@ a:focus-visible {
   .media-v2-more[open] > summary::after { content: ' −'; }
   .media-v2-more > summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
   .media-v2-more .coverage-list { padding-bottom: .5rem; }
-  /* Recognition and reader response deliberately use open space, not the notebook texture. */
-  .media-v2-recognition-section, .media-v2-response-section {
-    background: #f5f0e8;
-    color: #281f18;
-  }
+  /* Recognition stays on the dark editorial surface; keep every element legible. */
   .media-v2-recognition-section {
+    background: var(--color-bg-primary, #171614);
+    color: #f5f0e8;
     padding-block: clamp(4.5rem, 9vw, 8rem);
+  }
+  .media-v2-recognition-section .media-section-label {
+    color: #e7d8bd;
+  }
+  .media-v2-recognition-section .media-section-label::after {
+    background: rgba(231, 216, 189,  0.42);
   }
   .media-v2-recognition {
     padding: 0;
+  }
+  .media-v2-recognition-quote {
+    color: #f5f0e8;
+  }
+  .media-v2-recognition-source {
+    color: #d4c7b2;
+  }
+  .media-v2-recognition-facts {
+    gap: 0;
+    border-top: 1px solid rgba(245, 240, 232, 0.24);
+  }
+  .media-v2-recognition-facts .media-v2-fact {
+    padding: 1rem 0;
+    border: 0;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.24);
+    background: transparent;
+    color: #f5f0e8;
+  }
+  .media-v2-recognition-facts .media-v2-fact strong {
+    color: #f5f0e8;
+    line-height: 1.35;
+  }
+  .media-v2-recognition-facts .media-v2-fact span {
+    color: #d4c7b2;
+    opacity: 1;
+    line-height: 1.55;
+  }
+  /* Reader response is intentionally light and remains separate. */
+  .media-v2-response-section {
+    background: #f5f0e8;
+    color: #281f18;
   }
   .media-v2-response-section {
     padding-block: clamp(4.5rem, 10vw, 8.5rem);
