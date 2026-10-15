@@ -93,77 +93,7 @@
     gtag('config', 'G-CCX49YFZRQ');
   </script>
 
-<style id="media-redesign">
-  /* Media page v2: editorial hierarchy, expandable coverage, and press-first CTA. */
-  .media-v2-intro { max-width: 760px; margin: 0 auto; text-align: center; }
-  .media-v2-intro p:last-child { margin-bottom: 0; }
-  .media-v2-lead { font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.55; }
-  .media-v2-cta { margin-top: 1.75rem; }
-  .media-v2-quiet { margin-top: .75rem; font-size: .88rem; opacity: .78; }
-  .media-v2-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
-  .media-v2-copy p { max-width: 68ch; }
-  .media-v2-subhead { margin-top: .35rem; }
-  .media-v2-callout { border-left: 2px solid currentColor; padding: 1.1rem 0 1.1rem 1.4rem; }
-  .media-v2-callout p { margin: 0; }
-  .media-v2-callout .media-v2-callout-label { margin-bottom: .65rem; font: 500 .72rem/1.3 'IBM Plex Mono', monospace; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
-  .media-v2-recognition { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 2rem; align-items: center; }
-  .media-v2-recognition-quote { margin: 0; font: 400 clamp(1.6rem, 3vw, 2.45rem)/1.12 'Cormorant Garamond', serif; }
-  .media-v2-recognition-source { margin: .8rem 0 0; font: 500 .72rem/1.5 'IBM Plex Mono', monospace; letter-spacing: .04em; text-transform: uppercase; }
-  .media-v2-recognition-facts { display: grid; gap: .8rem; }
-  .media-v2-fact { padding: .95rem 1rem; border: 1px solid rgba(40, 31, 24, .16); background: rgba(255,255,255,.32); }
-  .media-v2-fact strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; }
-  .media-v2-fact span { display: block; margin-top: .2rem; font: .72rem/1.45 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .04em; opacity: .72; }
-  .media-v2-featured { display: grid; gap: 1rem; }
-  .media-v2-more { margin-top: 1rem; border-top: 1px solid rgba(40,31,24,.2); }
-  .media-v2-more > summary { cursor: pointer; list-style: none; padding: 1.2rem 0; font: 500 .78rem/1.4 'IBM Plex Mono', monospace; letter-spacing: .06em; text-transform: uppercase; }
-  .media-v2-more > summary::-webkit-details-marker { display: none; }
-  .media-v2-more > summary::after { content: ' +'; }
-  .media-v2-more[open] > summary::after { content: ' −'; }
-  .media-v2-more > summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-  .media-v2-more .coverage-list { padding-bottom: .5rem; }
-  /* Recognition and reader response deliberately use open space, not the notebook texture. */
-  .media-v2-recognition-section, .media-v2-response-section {
-    background: #f5f0e8;
-    color: #281f18;
-  }
-  .media-v2-recognition-section {
-    padding-block: clamp(4.5rem, 9vw, 8rem);
-  }
-  .media-v2-recognition {
-    padding: 0;
-  }
-  .media-v2-response-section {
-    padding-block: clamp(4.5rem, 10vw, 8.5rem);
-  }
-  .media-v2-response {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-  }
-  .media-v2-response .media-section-label span { background: transparent !important; }
-  .media-v2-testimonials { position: relative; min-height: 9rem; display: grid; place-items: center; }
-  .media-v2-testimonial { width: 100%; }
-  .media-v2-testimonial[hidden] { display: none; }
-  .media-v2-response blockquote { margin: 0; font: 400 clamp(1.65rem, 3vw, 2.5rem)/1.12 'Cormorant Garamond', serif; }
-  .media-v2-response cite { display: block; margin-top: 1rem; font: 500 .72rem/1.4 'IBM Plex Mono', monospace; font-style: normal; letter-spacing: .05em; text-transform: uppercase; opacity: .82; }
-  .media-v2-testimonial-dots { display: flex; justify-content: center; gap: .55rem; margin-top: 1.5rem; }
-  .media-v2-testimonial-dots button { width: .58rem; height: .58rem; min-width: .58rem; min-height: .58rem; padding: 0; border: 1px solid #281f18; border-radius: 50%; background: transparent; cursor: pointer; }
-  .media-v2-testimonial-dots button[aria-selected="true"] { background: #281f18; }
-  .media-v2-testimonial-dots button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-  .media-v2-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.4rem; }
-  .media-v2-links a { font: 500 .76rem/1.4 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .04em; }
-  .media-v2-materials-note { max-width: 680px; margin: 1.5rem auto 0; text-align: center; opacity: .78; }
-  .media-v2-final { text-align: center; max-width: 760px; margin: 0 auto; }
-  .media-v2-final h2 { margin-bottom: .8rem; }
-  @media (max-width: 760px) {
-    .media-v2-grid, .media-v2-recognition { grid-template-columns: 1fr; }
-    .media-v2-recognition-facts { margin-top: .25rem; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .media-v2-more > summary { scroll-behavior: auto; }
-  }
-</style>
+<!-- Media page styles are maintained in assets/css/main.css. -->
 
 </head>
 
@@ -208,7 +138,7 @@
             <picture>
               <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.avif" type="image/avif">
               <source srcset="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.webp" type="image/webp">
-              <img src="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900" alt="Judy Wright, author of Just Hold Her." loading="eager" decoding="async" width="600" height="900">
+              <img src="assets/img/judy-wright-headshot/judy-wright-headshot-2-B-600x900.jpeg" alt="Judy Wright, author of Just Hold Her." loading="eager" decoding="async" width="600" height="900">
             </picture>
           </figure>
         </div>
@@ -295,7 +225,15 @@
         <div class="media-v2-featured">
           <div class="coverage-list">
             <article class="coverage-item coverage-item--featured" data-format="article">
-              <p class="coverage-meta"><time datetime="2026-10-13">October 13, 2026</time><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-outlet"><em>HuffPost Personal</em>, HuffPost</span><span class="coverage-sep" aria-hidden="true">·</span><span>8 min read</span><span class="coverage-sep" aria-hidden="true"><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-format">Essay</span></p>
+              <p class="coverage-meta">
+                <time datetime="2026-10-13">October 13, 2026</time>
+                <span class="coverage-sep" aria-hidden="true">·</span>
+                <span class="coverage-outlet"><em>HuffPost Personal</em>, HuffPost</span>
+                <span class="coverage-sep" aria-hidden="true">·</span>
+                <span>8 min read</span>
+                <span class="coverage-sep" aria-hidden="true">·</span>
+                <span class="coverage-format">Essay</span>
+              </p>
               <h3 class="coverage-title"><em>They Asked Me To Hold Her Until She Died. Today, She Turns 17.</em></h3>
               <p class="coverage-description">“A small shape lay wrapped tightly in a faded hospital blanket. Wires slipped out from beneath the folds.”</p>
               <div class="coverage-actions"><a class="coverage-primary" href="https://www.huffpost.com/entry/baby-nicu-hold-foster-parent_n_6a9f32c4e4b06fa65f9b95de" target="_blank" rel="noopener noreferrer">Read on HuffPost<span class="sr-only"> (opens in new tab)</span> →</a></div>
@@ -318,7 +256,28 @@
         <details class="media-v2-more">
           <summary>More media mentions <span class="sr-only">, including additional interviews and podcasts</span></summary>
           <div class="coverage-list">
-            <article class="coverage-item coverage-item--featured" data-format="podcast">
+            <article class="coverage-item" data-format="podcast">
+              <p class="coverage-meta">
+                <time datetime="2026-10-15">October 15, 2026</time>
+                <span class="coverage-sep" aria-hidden="true">·</span>
+                <span class="coverage-outlet"><em>The F Word: America’s Foster Care Crisis</em></span>
+                <span class="coverage-sep" aria-hidden="true">·</span>
+                <span>with Rob Scheer</span>
+                <span class="coverage-sep" aria-hidden="true">·</span>
+                <span class="coverage-format">Podcast</span>
+              </p>
+              <h3 class="coverage-title"><em>Why Do Foster Families Leave?</em></h3>
+              <p class="coverage-description">America needs more foster families. It also needs to listen to experienced families who are leaving the system. What does foster parenting ask of them, and what would help them stay? In Episode 3 of <em>The F Word: America’s Foster Care Crisis</em>, host Rob Scheer speaks with Judy Wright about the joy, grief, and exhaustion of fostering.</p>
+              <div class="coverage-actions">
+                <a class="coverage-primary" href="https://www.youtube.com/watch?v=LMLleVeM5kM&amp;list=PLd_xAxBZGlrCZOUR6Gep_NRm-ax47j7NM" target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only"> (opens in new tab)</span> →</a>
+                <span class="coverage-secondary">
+                  <span class="coverage-secondary-label">Also on:</span>
+                  <a href="https://open.spotify.com/episode/4Qydc5X3UlgfpGaccbtuzy?si=v3msuYFtREO-_tJRNADBDQ" target="_blank" rel="noopener noreferrer">Spotify<span class="sr-only"> (opens in new tab)</span></a>
+                  <a class="coverage-secondary-label" href="https://comfortcases.org/podcasts/the-f-word-americas-foster-care-crisis-episode-3-judy-wright-and-dr-yvette-jackson/" target="_blank" rel="noopener noreferrer">Comfort Cases<span class="sr-only"> (opens in new tab)</span></a>
+                </span>
+              </div>
+            </article>
+            <article class="coverage-item" data-format="podcast">
               <p class="coverage-meta"><time datetime="2026-09-09">September 9, 2026</time><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-outlet"><em>Foster Parent Well</em></span><span class="coverage-sep" aria-hidden="true">·</span><span>with Nicole Barlow</span><span class="coverage-sep" aria-hidden="true">·</span><span class="coverage-format">Podcast</span></p>
               <h3 class="coverage-title"><em>The Impact of Saying Yes with Judy Wright</em></h3>
               <p class="coverage-description">Judy Wright joins host Nicole Barlow on the Foster Parent Well podcast to talk about the impact of saying yes, drawn from her experience fostering Jayden and her memoir, <em>Just Hold Her</em>.</p>
@@ -586,8 +545,15 @@ Just Hold Her is Judy Wright&#8217;s debut memoir. Published by Held Close Books
         </div>
         
         <div class="footer-col">
-          <p class="footer-label">Subscribe to Judy&#8217;s Notebook</p><p>Receive new writing from Judy&#8217;s Notebook in your inbox.</p><div class="footer-subscribe"><a class="btn btn--outline btn--sm" href="https://judysnotebook.substack.com/subscribe" rel="noopener noreferrer" target="_blank">Subscribe by Email<span class="sr-only"> (opens in new tab)</span></a>      </div>
-        <div class="footer-bottom"><span>&copy; <span id="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
+          <p class="footer-label">Subscribe to Judy&#8217;s Notebook</p>
+          <p>Receive new writing from Judy&#8217;s Notebook in your inbox.</p>
+          <div class="footer-subscribe">
+            <a class="btn btn--outline btn--sm" href="https://judysnotebook.substack.com/subscribe" rel="noopener noreferrer" target="_blank">Subscribe by Email<span class="sr-only"> (opens in new tab)</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> Judy Wright &amp; Held Close Books. All rights reserved.</span>
         <!--a class="footer-contact-link" href="contact.html">Contact</a-->
       </div>
     </div>
